@@ -8,7 +8,7 @@
 [![models](https://img.shields.io/badge/%F0%9F%A4%97%20models-relsgg--*-yellow.svg)](https://huggingface.co/collections/maelic/relateanything)
 [![demo](https://img.shields.io/badge/demo-try%20in%20your%20browser-brightgreen.svg)](https://maelic.github.io/RelateAnythingProject/demo/)
 [![ci](https://github.com/Maelic/RelateAnything/actions/workflows/ci.yml/badge.svg)](https://github.com/Maelic/RelateAnything/actions/workflows/ci.yml)
-[![license](https://img.shields.io/badge/code-Apache--2.0-blue.svg)](LICENSE)
+[![license](https://img.shields.io/badge/code-AGPL--3.0-blue.svg)](LICENSE)
 
 [Paper](https://arxiv.org/abs/2609.12552) ·
 [Project page](https://maelic.github.io/RelateAnythingProject) ·
@@ -203,7 +203,13 @@ results or changing the scoring path.
 
 ## License
 
-- **Code:** [Apache-2.0](LICENSE).
+- **Code:** [AGPL-3.0-only](LICENSE), with the additional attribution terms in
+  [NOTICE](NOTICE). If you run a modified version as a network service, you must
+  offer its users the complete source of that version.
+- **Commercial license:** to use RelateAnything in a product or service without
+  the AGPL obligations, contact the author (Maëlic Neau) through
+  [GitHub issues](https://github.com/Maelic/RelateAnything/issues) or the email
+  in the paper.
 - **Model weights:** derivatives of Meta DINOv3; see the model cards and
   [DINOv3 license](https://ai.meta.com/resources/models-and-libraries/dinov3-license/).
 - **RA-4M annotations:** carry the [Gemma Terms of Use](https://ai.google.dev/gemma/terms)

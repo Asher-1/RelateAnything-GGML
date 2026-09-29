@@ -7,7 +7,7 @@ authors:
     given-names: Maëlic
 repository-code: "https://github.com/Maelic/RelateAnything"
 url: "https://maelic.github.io/RelateAnythingProject"
-license: Apache-2.0
+license: AGPL-3.0-only
 keywords:
   - scene graph generation
   - visual relationship detection

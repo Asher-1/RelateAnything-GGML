@@ -188,6 +188,17 @@ def apply_vocab(classes_txt, preds_txt):
     return " · ".join(msgs)
 
 
+# Appropriate Legal Notices (AGPL-3.0 sections 5(d) and 13, and the
+# attribution term in NOTICE). Keep this visible in any deployment or fork.
+LEGAL_NOTICE = (
+    "<small>Based on [RelateAnything](https://github.com/Maelic/RelateAnything) "
+    "by Maëlic Neau. Licensed under "
+    "[AGPL-3.0](https://www.gnu.org/licenses/agpl-3.0.html), provided without "
+    "warranty. Source code of this service: "
+    "[github.com/Maelic/RelateAnything](https://github.com/Maelic/RelateAnything)"
+    " (a modified deployment must link to its own source).</small>")
+
+
 def build_ui(device_note: str):
     with gr.Blocks(title="RelateAnything — live scene graphs",
                    theme=gr.themes.Soft()) as demo:
@@ -195,6 +206,7 @@ def build_ui(device_note: str):
             "# RelateAnything · live open-vocabulary scene graphs\n"
             "YOLOE-11m (masks) feeds boxes to an open-vocabulary relation "
             f"model. **Both vocabularies are editable live.** {device_note}")
+        gr.Markdown(LEGAL_NOTICE)
 
         with gr.Row():
             with gr.Column(scale=3):

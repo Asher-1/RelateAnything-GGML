@@ -1,5 +1,14 @@
 # Contributing
 
+## Licensing of contributions
+
+RelateAnything is licensed under AGPL-3.0-only and is also offered under
+separate commercial licenses. By opening a pull request you agree that your
+contribution is licensed under AGPL-3.0-only, and you grant Maëlic Neau a
+perpetual, worldwide, royalty-free right to also license it under other terms,
+including commercial ones. If you cannot agree to this, say so in the pull
+request before it is merged.
+
 ## Setup
 
 ```bash

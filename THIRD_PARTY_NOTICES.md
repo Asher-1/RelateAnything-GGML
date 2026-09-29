@@ -1,6 +1,7 @@
 # Third-party notices
 
-The **code** in this repository is licensed under Apache-2.0 (see `LICENSE`).
+The **code** in this repository is licensed under AGPL-3.0-only (see `LICENSE`
+and the additional terms in `NOTICE`).
 The **released model weights** and the **RA-4M annotations** are derivatives of
 third-party assets and carry the additional terms below. Nothing in this file is
 legal advice; each upstream license is authoritative.
@@ -9,7 +10,7 @@ legal advice; each upstream license is authoritative.
 
 | Component | Upstream | Terms that travel with our artifacts |
 |---|---|---|
-| Vision backbones (ViT-S/16, ViT-S/16+, ViT-B/16; ConvNeXt in ablations) | Meta **DINOv3** pretrained weights (`facebook/dinov3-*`, gated) | Released RelSGG checkpoints are **derivatives of DINOv3 weights** and are distributed under the [DINOv3 License](https://ai.meta.com/resources/models-and-libraries/dinov3-license/), not Apache-2.0. Each model card states this. |
+| Vision backbones (ViT-S/16, ViT-S/16+, ViT-B/16; ConvNeXt in ablations) | Meta **DINOv3** pretrained weights (`facebook/dinov3-*`, gated) | Released RelSGG checkpoints are **derivatives of DINOv3 weights** and are distributed under the [DINOv3 License](https://ai.meta.com/resources/models-and-libraries/dinov3-license/), not AGPL-3.0. Each model card states this. |
 | Predicate text encoder (distilled student) | Distilled from Meta **dino.txt** (DINOv3 text tower) outputs; tokenizer is OpenAI **CLIP** BPE (MIT) | The student checkpoint is a distillation derivative of dino.txt; DINOv3 license terms apply. |
 
 ## Training data
@@ -60,7 +61,7 @@ project page carries it in its footer.
 
 The webcam demo uses YOLO-World v2 / YOLOE / YOLO26 detectors built on **ultralytics**
 (**AGPL-3.0**). Detector weights are **not** part of the RelSGG release artifacts
-(the Apache-2.0 code and the DINOv3-licensed relation checkpoints). They are shipped
+(the AGPL-3.0 code and the DINOv3-licensed relation checkpoints). They are shipped
 separately, and only there:
 
 * The public **browser demo** (github.com/Maelic/RelateAnything_demo, served at
