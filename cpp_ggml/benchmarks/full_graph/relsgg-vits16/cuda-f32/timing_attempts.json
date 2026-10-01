@@ -1,0 +1,314 @@
+[
+  {
+    "returncode": 0,
+    "samples": [
+      {
+        "seconds": 0.0006162450881674886,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          }
+        ]
+      },
+      {
+        "seconds": 0.24395091610495,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 0.4656340969959274,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 0.7833791380980983,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.0079991120146587,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.248270875075832,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.5086120620835572,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.7678109100088477,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.9917391680646688,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 2.21509488299489,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 2.4396518990397453,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 2.6612449400126934,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 2.9047656300244853,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 3.1434982290957123,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 3.3884788440773264,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 3.630029642023146,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 3.8752516410313547,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 4.118147881003097,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 295352,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml"
+          }
+        ]
+      }
+    ],
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  }
+]

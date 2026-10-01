@@ -1,0 +1,518 @@
+[
+  {
+    "returncode": 0,
+    "samples": [
+      {
+        "seconds": 0.0004947069101035595,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          }
+        ]
+      },
+      {
+        "seconds": 0.22303699189797044,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 0.4461971839191392,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 0.6697467959020287,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 0.9112700480036438,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.1777892169775441,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.4418866989435628,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.6659076350042596,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 1.9062691489234567,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 2.171064127003774,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 2.431546274921857,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 2.6754337470047176,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 2.9369701489340514,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 3.1826452909735963,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 3.406794636975974,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 3.75296804390382,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 3.99423042696435,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 4.257296816911548,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 4.506381266983226,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 4.772991798003204,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 4.9977829969720915,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 5.222212987951934,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 5.48916505894158,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 5.713705178000964,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 5.938530209939927,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 6.201162425917573,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 6.440745321917348,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 6.661773739964701,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 6.884387477999553,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      },
+      {
+        "seconds": 7.106035476899706,
+        "processes": [
+          {
+            "pid": 2808612,
+            "name": "/opt/deeproute/prophet/entry/prophet_main"
+          },
+          {
+            "pid": 3695836,
+            "name": "/opt/deeproute/percep-avm/bin/around_view_monitor"
+          },
+          {
+            "pid": 303045,
+            "name": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml"
+          }
+        ]
+      }
+    ],
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  }
+]

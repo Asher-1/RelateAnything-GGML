@@ -1,0 +1,441 @@
+{
+  "iterations_ms": [
+    35.1888780714944,
+    33.74921705108136
+  ],
+  "latency_ms": 34.46904756128788,
+  "predictions": [
+    {
+      "subject": 1,
+      "object": 6,
+      "predicate": "holding",
+      "score": 0.6211616396903992
+    },
+    {
+      "subject": 4,
+      "object": 1,
+      "predicate": "watching",
+      "score": 0.6098596453666687
+    },
+    {
+      "subject": 2,
+      "object": 1,
+      "predicate": "crouching",
+      "score": 0.5992724299430847
+    },
+    {
+      "subject": 3,
+      "object": 8,
+      "predicate": "wearing a baseball",
+      "score": 0.5946598649024963
+    },
+    {
+      "subject": 4,
+      "object": 2,
+      "predicate": "watching",
+      "score": 0.5657476186752319
+    },
+    {
+      "subject": 0,
+      "object": 7,
+      "predicate": "wearing clothing",
+      "score": 0.5555225014686584
+    },
+    {
+      "subject": 2,
+      "object": 4,
+      "predicate": "crouching",
+      "score": 0.5380455851554871
+    },
+    {
+      "subject": 1,
+      "object": 2,
+      "predicate": "beside",
+      "score": 0.5150240659713745
+    },
+    {
+      "subject": 1,
+      "object": 4,
+      "predicate": "beside",
+      "score": 0.4910387694835663
+    },
+    {
+      "subject": 3,
+      "object": 6,
+      "predicate": "throwing",
+      "score": 0.4605223536491394
+    },
+    {
+      "subject": 5,
+      "object": 3,
+      "predicate": "watching the game",
+      "score": 0.4302908480167389
+    },
+    {
+      "subject": 4,
+      "object": 3,
+      "predicate": "watching",
+      "score": 0.41623470187187195
+    },
+    {
+      "subject": 8,
+      "object": 3,
+      "predicate": "worn by",
+      "score": 0.3847166895866394
+    },
+    {
+      "subject": 3,
+      "object": 7,
+      "predicate": "throwing",
+      "score": 0.37426719069480896
+    },
+    {
+      "subject": 6,
+      "object": 1,
+      "predicate": "held by",
+      "score": 0.3458571135997772
+    },
+    {
+      "subject": 1,
+      "object": 3,
+      "predicate": "watching",
+      "score": 0.33116278052330017
+    },
+    {
+      "subject": 0,
+      "object": 3,
+      "predicate": "watching",
+      "score": 0.3095763027667999
+    },
+    {
+      "subject": 2,
+      "object": 3,
+      "predicate": "watching",
+      "score": 0.2973955571651459
+    },
+    {
+      "subject": 7,
+      "object": 0,
+      "predicate": "near",
+      "score": 0.22324177622795105
+    },
+    {
+      "subject": 5,
+      "object": 4,
+      "predicate": "watching",
+      "score": 0.2111971229314804
+    },
+    {
+      "subject": 2,
+      "object": 6,
+      "predicate": "catching",
+      "score": 0.20886453986167908
+    },
+    {
+      "subject": 5,
+      "object": 1,
+      "predicate": "watching",
+      "score": 0.19664162397384644
+    },
+    {
+      "subject": 4,
+      "object": 6,
+      "predicate": "watching",
+      "score": 0.18678215146064758
+    },
+    {
+      "subject": 4,
+      "object": 5,
+      "predicate": "watching",
+      "score": 0.17757132649421692
+    },
+    {
+      "subject": 3,
+      "object": 0,
+      "predicate": "pitching a baseball in",
+      "score": 0.1714603155851364
+    },
+    {
+      "subject": 3,
+      "object": 1,
+      "predicate": "pitching a baseball towards",
+      "score": 0.16460540890693665
+    },
+    {
+      "subject": 6,
+      "object": 4,
+      "predicate": "held by",
+      "score": 0.15838295221328735
+    },
+    {
+      "subject": 1,
+      "object": 0,
+      "predicate": "watching",
+      "score": 0.15686549246311188
+    },
+    {
+      "subject": 4,
+      "object": 0,
+      "predicate": "watching",
+      "score": 0.15520428121089935
+    },
+    {
+      "subject": 2,
+      "object": 7,
+      "predicate": "catching",
+      "score": 0.15481480956077576
+    },
+    {
+      "subject": 3,
+      "object": 2,
+      "predicate": "behind",
+      "score": 0.1516403704881668
+    },
+    {
+      "subject": 2,
+      "object": 0,
+      "predicate": "watching",
+      "score": 0.1506287157535553
+    },
+    {
+      "subject": 5,
+      "object": 8,
+      "predicate": "watching",
+      "score": 0.14043256640434265
+    },
+    {
+      "subject": 0,
+      "object": 1,
+      "predicate": "watching",
+      "score": 0.13427865505218506
+    },
+    {
+      "subject": 4,
+      "object": 8,
+      "predicate": "watching",
+      "score": 0.1330125480890274
+    },
+    {
+      "subject": 5,
+      "object": 2,
+      "predicate": "watching",
+      "score": 0.132481187582016
+    },
+    {
+      "subject": 5,
+      "object": 0,
+      "predicate": "watching",
+      "score": 0.12251193821430206
+    },
+    {
+      "subject": 1,
+      "object": 5,
+      "predicate": "watching",
+      "score": 0.11034497618675232
+    },
+    {
+      "subject": 4,
+      "object": 7,
+      "predicate": "watching",
+      "score": 0.10729188472032547
+    },
+    {
+      "subject": 1,
+      "object": 7,
+      "predicate": "watching",
+      "score": 0.1055581271648407
+    },
+    {
+      "subject": 0,
+      "object": 8,
+      "predicate": "to the left of",
+      "score": 0.0992753878235817
+    },
+    {
+      "subject": 3,
+      "object": 4,
+      "predicate": "to the right of",
+      "score": 0.09918804466724396
+    },
+    {
+      "subject": 0,
+      "object": 2,
+      "predicate": "watching",
+      "score": 0.09895600378513336
+    },
+    {
+      "subject": 1,
+      "object": 8,
+      "predicate": "watching",
+      "score": 0.09580492228269577
+    },
+    {
+      "subject": 2,
+      "object": 8,
+      "predicate": "watching",
+      "score": 0.09354741871356964
+    },
+    {
+      "subject": 0,
+      "object": 6,
+      "predicate": "swinging",
+      "score": 0.09257221221923828
+    },
+    {
+      "subject": 2,
+      "object": 5,
+      "predicate": "watching",
+      "score": 0.0919460579752922
+    },
+    {
+      "subject": 6,
+      "object": 2,
+      "predicate": "held by",
+      "score": 0.08741495013237
+    },
+    {
+      "subject": 3,
+      "object": 5,
+      "predicate": "pitching a baseball in",
+      "score": 0.0833093672990799
+    },
+    {
+      "subject": 8,
+      "object": 0,
+      "predicate": "worn by",
+      "score": 0.08085981011390686
+    },
+    {
+      "subject": 6,
+      "object": 0,
+      "predicate": "held by",
+      "score": 0.07786095887422562
+    },
+    {
+      "subject": 6,
+      "object": 3,
+      "predicate": "held by",
+      "score": 0.0769786536693573
+    },
+    {
+      "subject": 0,
+      "object": 4,
+      "predicate": "watching",
+      "score": 0.07678285241127014
+    },
+    {
+      "subject": 0,
+      "object": 5,
+      "predicate": "to the right of",
+      "score": 0.07583967596292496
+    },
+    {
+      "subject": 6,
+      "object": 5,
+      "predicate": "held by",
+      "score": 0.06776038557291031
+    },
+    {
+      "subject": 5,
+      "object": 7,
+      "predicate": "watching",
+      "score": 0.059773970395326614
+    },
+    {
+      "subject": 8,
+      "object": 5,
+      "predicate": "worn by",
+      "score": 0.05877373740077019
+    },
+    {
+      "subject": 7,
+      "object": 1,
+      "predicate": "held by",
+      "score": 0.058191414922475815
+    },
+    {
+      "subject": 7,
+      "object": 3,
+      "predicate": "worn by",
+      "score": 0.05601556599140167
+    },
+    {
+      "subject": 8,
+      "object": 7,
+      "predicate": "to the right of",
+      "score": 0.05572742223739624
+    },
+    {
+      "subject": 7,
+      "object": 2,
+      "predicate": "worn by a",
+      "score": 0.054830484092235565
+    },
+    {
+      "subject": 8,
+      "object": 4,
+      "predicate": "worn by",
+      "score": 0.050700750201940536
+    },
+    {
+      "subject": 7,
+      "object": 5,
+      "predicate": "worn by",
+      "score": 0.049947820603847504
+    },
+    {
+      "subject": 7,
+      "object": 8,
+      "predicate": "to the left of",
+      "score": 0.04858725517988205
+    },
+    {
+      "subject": 8,
+      "object": 6,
+      "predicate": "swinging at",
+      "score": 0.04723063483834267
+    },
+    {
+      "subject": 8,
+      "object": 1,
+      "predicate": "worn by",
+      "score": 0.042091239243745804
+    },
+    {
+      "subject": 5,
+      "object": 6,
+      "predicate": "swinging",
+      "score": 0.041219454258680344
+    },
+    {
+      "subject": 6,
+      "object": 7,
+      "predicate": "held by",
+      "score": 0.03867950662970543
+    },
+    {
+      "subject": 8,
+      "object": 2,
+      "predicate": "worn by",
+      "score": 0.03776601329445839
+    },
+    {
+      "subject": 7,
+      "object": 4,
+      "predicate": "held by",
+      "score": 0.03034626878798008
+    },
+    {
+      "subject": 6,
+      "object": 8,
+      "predicate": "held by",
+      "score": 0.02627129852771759
+    },
+    {
+      "subject": 7,
+      "object": 6,
+      "predicate": "catching",
+      "score": 0.013380613178014755
+    }
+  ]
+}

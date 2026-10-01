@@ -1,0 +1,50 @@
+{
+  "generated_utc": "2026-09-30T08:35:31Z",
+  "repository": "RelateAnything-GGML",
+  "datasets": [
+    {
+      "id": "maelic/RA-4M",
+      "source": "https://huggingface.co/datasets/maelic/RA-4M",
+      "local_path": "cpp_ggml/test_data/ra4m_50",
+      "status": "50_validation_images_verified_full_snapshot_pruned",
+      "revision": "64829d57318dc8b32ac3e029ac84fbb9834a7700",
+      "retained_images": 50,
+      "retained_image_bytes": 3562723,
+      "retained_relations": 803,
+      "retained_manifest": "cpp_ggml/test_data/ra4m_50/manifest.json",
+      "historic_full_snapshot": {"files": 122, "bytes": 49350823236, "train_images": 472344, "val_images": 24964},
+      "historic_verification": "cpp_ggml/benchmarks/ra4m_verification.json",
+      "note": "The complete snapshot was deleted after retaining 50 original image files and complete per-image GT."
+    },
+    {
+      "id": "maelic/OV-SGG-Bench",
+      "source": "https://huggingface.co/datasets/maelic/OV-SGG-Bench",
+      "local_path": "cpp_ggml/test_data/official/maelic_OV-SGG-Bench",
+      "status": "unavailable_from_current_hf_api",
+      "last_attempt": "snapshot_download returned HTTP 404 for revision main",
+      "impact": "only exact reproduction of the named upstream six-axis protocol; compact RA-4M evaluation is runnable",
+      "retry": "python3 cpp_ggml/scripts/download_test_data.py --dataset maelic/OV-SGG-Bench --dest cpp_ggml/test_data/official --allow-large"
+    },
+    {
+      "id": "maelic/VG150-coco-format",
+      "source": "https://huggingface.co/datasets/maelic/VG150-coco-format",
+      "status": "available_public_alternative_metadata_downloaded",
+      "local_path": "cpp_ggml/test_data/official/maelic_VG150-coco-format",
+      "revision": "ea6fb3a56a0876eee98165ea17792fc6ec8460e6"
+    },
+    {
+      "id": "maelic/PSG-coco-format",
+      "source": "https://huggingface.co/datasets/maelic/PSG-coco-format",
+      "status": "available_public_alternative_metadata_downloaded",
+      "local_path": "cpp_ggml/test_data/official/maelic_PSG-coco-format",
+      "revision": "8a7e2f92840de2d267244c3ea26fa2daa0772120"
+    },
+    {
+      "id": "maelic/IndoorVG-coco-format",
+      "source": "https://huggingface.co/datasets/maelic/IndoorVG-coco-format",
+      "status": "available_public_alternative_metadata_downloaded",
+      "local_path": "cpp_ggml/test_data/official/maelic_IndoorVG-coco-format",
+      "revision": "63105f42838e6ce0867f8ab9e2956c2dcec043fa"
+    }
+  ]
+}

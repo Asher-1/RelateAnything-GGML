@@ -1,0 +1,11 @@
+{
+  "date": "2026-09-30",
+  "published_model_ids": [
+    "maelic/relsgg-vits16",
+    "maelic/relsgg-vits16plus",
+    "maelic/relsgg-vitb16"
+  ],
+  "ov_sgg_bench_public_api_http": 401,
+  "previous_api_http": 404,
+  "evaluation_blocked": false
+}

@@ -1,0 +1,187 @@
+{
+  "ggml_image_configurations": 900,
+  "python_images": 150,
+  "all_complete": true,
+  "checks": [
+    {
+      "model": "relsgg-vits16",
+      "backend": "cuda",
+      "dtype": "f32",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "cuda",
+      "dtype": "f16",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "vulkan",
+      "dtype": "f32",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "vulkan",
+      "dtype": "f16",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "vulkan",
+      "dtype": "q8_0",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cuda",
+      "dtype": "f32",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cuda",
+      "dtype": "f16",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "vulkan",
+      "dtype": "f32",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "vulkan",
+      "dtype": "f16",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "vulkan",
+      "dtype": "q8_0",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cuda",
+      "dtype": "f32",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cuda",
+      "dtype": "f16",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "vulkan",
+      "dtype": "f32",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "vulkan",
+      "dtype": "f16",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "vulkan",
+      "dtype": "q8_0",
+      "images": 50,
+      "native_decode": true,
+      "current_reference": true,
+      "binary_and_weights_hash": true,
+      "no_transient_gpu_jobs": true
+    }
+  ]
+}

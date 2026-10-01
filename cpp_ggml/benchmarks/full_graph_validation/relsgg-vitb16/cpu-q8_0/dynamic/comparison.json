@@ -1,0 +1,13 @@
+{
+  "matched_pairs": 72,
+  "reference_pairs": 72,
+  "candidate_pairs": 72,
+  "pair_set_recall": 1.0,
+  "pair_set_jaccard": 1.0,
+  "logits_rmse": 0.05130143706697368,
+  "logits_mae": 0.04063310888078478,
+  "logits_max_abs": 0.162949800491333,
+  "pair_logits_rmse": 0.012967115302555907,
+  "predicate_top1_agreement": 0.9583333333333334,
+  "logits_cosine": 0.9999750037404476
+}

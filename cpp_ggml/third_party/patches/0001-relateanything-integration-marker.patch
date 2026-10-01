@@ -1,0 +1,12 @@
+diff --git a/README.relateanything.md b/README.relateanything.md
+new file mode 100644
+--- /dev/null
++++ b/README.relateanything.md
+@@ -0,0 +1,7 @@
++# RelateAnything GGML integration
++
++This marker is applied by the parent project's CMake configure step.
++The integration uses GGML's public backend, graph, and GGUF APIs and keeps
++model-specific code in `cpp_ggml`; no cuDNN dependency is introduced.
++The patch is intentionally small so a clean GGML v0.21.0 checkout can replay
++it deterministically.

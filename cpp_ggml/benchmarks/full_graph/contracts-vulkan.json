@@ -1,0 +1,27 @@
+[
+  {
+    "objects": 0,
+    "relations": 0,
+    "passed": true
+  },
+  {
+    "objects": 1,
+    "relations": 0,
+    "passed": true
+  },
+  {
+    "objects": 2,
+    "relations": 2,
+    "passed": true
+  },
+  {
+    "objects": 60,
+    "relations": 128,
+    "passed": true
+  },
+  {
+    "case": "malformed dimensions",
+    "passed": true,
+    "error": "relateanything-ggml: invalid RAIM dimensions"
+  }
+]

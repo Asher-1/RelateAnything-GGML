@@ -1,0 +1,7 @@
+sample=000_9282
+backend=cpu
+architecture=relateanything_full_v1
+pairs=128
+predicates=19103
+latency_ms=463.037
+iteration_ms=463.037

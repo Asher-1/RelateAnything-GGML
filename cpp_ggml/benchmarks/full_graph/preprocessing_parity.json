@@ -1,0 +1,302 @@
+[
+  {
+    "sample": "000_9282",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "001_11355",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "002_14198",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "003_16127",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "004_19163",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "005_24757",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "006_27190",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "007_52536",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "008_55085",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "009_71069",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "010_81185",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "011_91806",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "012_92254",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "013_97855",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "014_102063",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "015_104029",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "016_115571",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "017_122698",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "018_129927",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "019_134453",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "020_143376",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "021_143697",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "022_144846",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "023_147904",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "024_149460",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "025_162793",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "026_172835",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "027_198214",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "028_228279",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "029_231594",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "030_239442",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "031_245050",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "032_265747",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "033_266825",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "034_280716",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "035_300959",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "036_302113",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "037_323754",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "038_358187",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "039_372522",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "040_392539",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "041_431358",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "042_433188",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "043_437629",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "044_461572",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "045_465589",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "046_471413",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "047_475063",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "048_481986",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  },
+  {
+    "sample": "049_495397",
+    "pixel_max_abs": 0.0,
+    "pixels_bit_equal": true,
+    "boxes_max_abs": 0.0
+  }
+]

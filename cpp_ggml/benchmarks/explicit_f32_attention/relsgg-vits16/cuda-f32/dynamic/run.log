@@ -1,0 +1,9 @@
+sample=000_9282
+backend=cuda
+architecture=relateanything_full_v1
+pairs=128
+predicates=6
+latency_ms=75.0744
+iteration_ms=75.0744
+ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):
+  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB

@@ -1,0 +1,17 @@
+{
+  "dataset": "maelic/RA-4M",
+  "revision": "64829d57318dc8b32ac3e029ac84fbb9834a7700",
+  "checked_utc": "2026-09-30T06:45:03.723277+00:00",
+  "local_path": "cpp_ggml/test_data/official/maelic_RA-4M",
+  "expected_files": 122,
+  "expected_bytes": 49350823236,
+  "missing": [],
+  "size_mismatches": [],
+  "parquet_image_rows": {
+    "train": 472344,
+    "val": 24964
+  },
+  "status": "historically_complete_before_50_image_compaction",
+  "current_local_path": "cpp_ggml/test_data/ra4m_50",
+  "full_snapshot_pruned": true
+}

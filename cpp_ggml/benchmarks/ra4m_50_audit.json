@@ -1,0 +1,139 @@
+{
+  "dataset": "maelic/RA-4M",
+  "split": "val",
+  "scope": "50 retained validation images",
+  "shards": [
+    "val-00000-of-00005.parquet",
+    "val-00001-of-00005.parquet",
+    "val-00002-of-00005.parquet",
+    "val-00003-of-00005.parquet",
+    "val-00004-of-00005.parquet"
+  ],
+  "images": 50,
+  "objects": 551,
+  "relations": 803,
+  "distinct_predicates": 205,
+  "source_images": {
+    "coco": 17,
+    "objects365": 17,
+    "openimages": 16
+  },
+  "issues": {},
+  "boundary_warnings_by_source": {},
+  "maximum_boundary_overflow_px": 0.0,
+  "boundary_warning_examples": [],
+  "objects_per_image": {
+    "3": 2,
+    "4": 6,
+    "5": 4,
+    "9": 2,
+    "11": 4,
+    "12": 10,
+    "13": 5,
+    "14": 8,
+    "15": 2,
+    "16": 7
+  },
+  "relations_per_image": {
+    "6": 1,
+    "8": 4,
+    "9": 3,
+    "10": 6,
+    "12": 1,
+    "13": 1,
+    "14": 4,
+    "15": 2,
+    "16": 3,
+    "17": 3,
+    "18": 3,
+    "19": 5,
+    "20": 4,
+    "21": 2,
+    "22": 2,
+    "23": 1,
+    "24": 4,
+    "34": 1
+  },
+  "top_predicates": [
+    [
+      "behind",
+      58
+    ],
+    [
+      "in front of",
+      49
+    ],
+    [
+      "resting on",
+      45
+    ],
+    [
+      "on",
+      43
+    ],
+    [
+      "to the left of",
+      38
+    ],
+    [
+      "to the right of",
+      34
+    ],
+    [
+      "next to",
+      31
+    ],
+    [
+      "part of",
+      28
+    ],
+    [
+      "supporting",
+      26
+    ],
+    [
+      "wearing",
+      23
+    ],
+    [
+      "watching",
+      21
+    ],
+    [
+      "holding",
+      20
+    ],
+    [
+      "containing",
+      20
+    ],
+    [
+      "below",
+      18
+    ],
+    [
+      "inside",
+      17
+    ],
+    [
+      "above",
+      16
+    ],
+    [
+      "beside",
+      15
+    ],
+    [
+      "sitting on",
+      8
+    ],
+    [
+      "worn by",
+      7
+    ],
+    [
+      "looking at",
+      7
+    ]
+  ]
+}

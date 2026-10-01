@@ -1,0 +1,213 @@
+{
+  "dataset": "maelic/RA-4M",
+  "split": "val",
+  "scope": "all validation annotation rows; no model evaluation or image decoding",
+  "shards": [
+    "val-00000-of-00005.parquet",
+    "val-00001-of-00005.parquet",
+    "val-00002-of-00005.parquet",
+    "val-00003-of-00005.parquet",
+    "val-00004-of-00005.parquet"
+  ],
+  "images": 24964,
+  "objects": 140912,
+  "relations": 226203,
+  "distinct_predicates": 2222,
+  "source_images": {
+    "coco": 1393,
+    "objects365": 14073,
+    "openimages": 9498
+  },
+  "issues": {
+    "box_outside_image_by_over_1px": 307
+  },
+  "boundary_warnings_by_source": {
+    "objects365": 307
+  },
+  "maximum_boundary_overflow_px": 34.0,
+  "boundary_warning_examples": [
+    {
+      "source": "objects365",
+      "category": "person",
+      "overflow_px": 2.0
+    },
+    {
+      "source": "objects365",
+      "category": "person",
+      "overflow_px": 1.0000038146972656
+    },
+    {
+      "source": "objects365",
+      "category": "machinery vehicle",
+      "overflow_px": 2.0
+    },
+    {
+      "source": "objects365",
+      "category": "person",
+      "overflow_px": 1.0000076293945312
+    },
+    {
+      "source": "objects365",
+      "category": "paint brush",
+      "overflow_px": 2.0
+    }
+  ],
+  "objects_per_image": {
+    "2": 103,
+    "3": 6395,
+    "4": 5160,
+    "5": 3476,
+    "6": 2843,
+    "7": 1912,
+    "8": 1564,
+    "9": 1025,
+    "10": 732,
+    "11": 507,
+    "12": 385,
+    "13": 205,
+    "14": 196,
+    "15": 117,
+    "16": 96,
+    "17": 56,
+    "18": 48,
+    "19": 26,
+    "20": 21,
+    "21": 18,
+    "22": 18,
+    "23": 7,
+    "24": 11,
+    "25": 6,
+    "26": 10,
+    "27": 9,
+    "28": 6,
+    "29": 5,
+    "30": 7
+  },
+  "relations_per_image": {
+    "0": 105,
+    "1": 159,
+    "2": 507,
+    "3": 1059,
+    "4": 1120,
+    "5": 1888,
+    "6": 2096,
+    "7": 1914,
+    "8": 2379,
+    "9": 2839,
+    "10": 2717,
+    "11": 2363,
+    "12": 1686,
+    "13": 1188,
+    "14": 823,
+    "15": 621,
+    "16": 454,
+    "17": 324,
+    "18": 209,
+    "19": 167,
+    "20": 96,
+    "21": 66,
+    "22": 56,
+    "23": 39,
+    "24": 19,
+    "25": 12,
+    "26": 8,
+    "27": 9,
+    "28": 5,
+    "29": 7,
+    "30": 6,
+    "31": 1,
+    "32": 2,
+    "33": 5,
+    "34": 2,
+    "35": 5,
+    "36": 1,
+    "38": 1,
+    "39": 1,
+    "40": 1,
+    "41": 2,
+    "44": 1,
+    "46": 1
+  },
+  "top_predicates": [
+    [
+      "behind",
+      18101
+    ],
+    [
+      "in front of",
+      17810
+    ],
+    [
+      "wearing",
+      17569
+    ],
+    [
+      "to the right of",
+      15693
+    ],
+    [
+      "to the left of",
+      15197
+    ],
+    [
+      "resting on",
+      10526
+    ],
+    [
+      "on",
+      10499
+    ],
+    [
+      "holding",
+      7867
+    ],
+    [
+      "beside",
+      7065
+    ],
+    [
+      "next to",
+      6861
+    ],
+    [
+      "above",
+      6462
+    ],
+    [
+      "below",
+      6225
+    ],
+    [
+      "part of",
+      5977
+    ],
+    [
+      "supporting",
+      4389
+    ],
+    [
+      "looking at",
+      4313
+    ],
+    [
+      "covering",
+      4091
+    ],
+    [
+      "watching",
+      3939
+    ],
+    [
+      "on top of",
+      3386
+    ],
+    [
+      "containing",
+      3379
+    ],
+    [
+      "sitting on",
+      3266
+    ]
+  ]
+}

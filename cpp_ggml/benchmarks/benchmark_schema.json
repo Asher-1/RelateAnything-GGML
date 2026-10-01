@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["timestamp_utc", "backend", "dtype", "model", "input", "model_size_bytes", "input_size_bytes", "object_count", "feature_dim", "ggml_commit", "warmup", "repeats", "latency_ms_mean", "parity_status", "python_reference_status", "peak_device_memory_bytes", "cudnn"],
+  "properties": {
+    "timestamp_utc": {"type": "string"},
+    "backend": {"enum": ["cpu", "cuda", "vulkan"]},
+    "dtype": {"enum": ["f32", "f16", "q8_0"]},
+    "warmup": {"type": "integer", "minimum": 0},
+    "repeats": {"type": "integer", "minimum": 1},
+    "model_size_bytes": {"type": "integer", "minimum": 0},
+    "input_size_bytes": {"type": "integer", "minimum": 0},
+    "object_count": {"type": "integer", "minimum": 1},
+    "feature_dim": {"type": "integer", "minimum": 1},
+    "ggml_commit": {"type": "string", "minLength": 7},
+    "latency_ms_mean": {"type": "number", "minimum": 0},
+    "parity_status": {"enum": ["not_run", "pass", "fail"]},
+    "python_reference_status": {"enum": ["not_requested", "passed", "failed"]},
+    "peak_device_memory_bytes": {"type": ["integer", "null"], "minimum": 0},
+    "cudnn": {"const": false}
+  }
+}

@@ -1,0 +1,11 @@
+[
+  {"dtype": "f32", "backend": "cpu", "reference": "numpy", "max_abs": 0.000024363399, "mae": 0.0000054119182, "rmse": 0.0000079181009, "atol": 0.0001, "rtol": 0.0001},
+  {"dtype": "f32", "backend": "cuda", "reference": "cpu", "max_abs": 0.000042768195, "mae": 0.000014592024, "rmse": 0.000018176881, "atol": 0.0001, "rtol": 0.0001},
+  {"dtype": "f32", "backend": "vulkan", "reference": "cpu", "max_abs": 0.000037834048, "mae": 0.0000086998316, "rmse": 0.0000119678, "atol": 0.0001, "rtol": 0.0001},
+  {"dtype": "f16", "backend": "cpu", "reference": "f32-cpu", "max_abs": 0.000033177435, "mae": 0.0000071041518, "rmse": 0.000010439392, "atol": 0.02, "rtol": 0.02},
+  {"dtype": "f16", "backend": "cuda", "reference": "f16-cpu", "max_abs": 0.000049110502, "mae": 0.000010947945, "rmse": 0.000014723152, "atol": 0.02, "rtol": 0.02},
+  {"dtype": "f16", "backend": "vulkan", "reference": "f16-cpu", "max_abs": 0.000041483108, "mae": 0.0000099858271, "rmse": 0.000013115181, "atol": 0.02, "rtol": 0.02},
+  {"dtype": "q8_0", "backend": "cpu", "reference": "f32-cpu", "max_abs": 0.0008186847, "mae": 0.00020877905, "rmse": 0.00027277204, "atol": 0.2, "rtol": 0.2},
+  {"dtype": "q8_0", "backend": "cuda", "reference": "q8-cpu", "max_abs": 0.00026153401, "mae": 0.000022168562, "rmse": 0.000053875028, "atol": 0.2, "rtol": 0.2},
+  {"dtype": "q8_0", "backend": "vulkan", "reference": "q8-cpu", "max_abs": 0.0010868497, "mae": 0.00016662246, "rmse": 0.00024645063, "atol": 0.2, "rtol": 0.2}
+]

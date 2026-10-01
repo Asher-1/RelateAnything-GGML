@@ -1,0 +1,9 @@
+sample=000_9282
+backend=vulkan
+architecture=relateanything_full_v1
+pairs=128
+predicates=19103
+latency_ms=114.482
+iteration_ms=114.482
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = NVIDIA GeForce RTX 3060 (NVIDIA) | uma: 0 | fp16: 1 | bf16: 0 | fp4: 0 | warp size: 32 | shared memory: 49152 | int dot: 1 | matrix cores: KHR_coopmat

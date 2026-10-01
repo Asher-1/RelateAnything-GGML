@@ -1,0 +1,510 @@
+{
+  "checkpoint": "relsgg-vitb16",
+  "checkpoint_sha256": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
+  "dataset_revision": "64829d57318dc8b32ac3e029ac84fbb9834a7700",
+  "manifest_sha256": "521e4c874c51b5eb5a9fd1cea62745113b6a229fffe70b378477e4057c7ac225",
+  "image_id": 9282,
+  "image_sha256": "6f68010af1c8cc8b59aaaf3a5acbeeb1c8b775db78fb06db50ad54023e8617f0",
+  "objects": 9,
+  "vocabulary_size": 19103,
+  "device": "cuda",
+  "torch_version": "2.6.0+cu118",
+  "module_calls": {
+    "normalized_image": 1,
+    "fused_patch_map": 1,
+    "spatial_pool": 2,
+    "sampler": 1,
+    "geo_encoder": 1,
+    "box_prompt_tokens": 1,
+    "pair_proj": 1,
+    "rel_transformer": 1,
+    "deformable_read": 1,
+    "rel_interaction": 1,
+    "spa_proj": 1,
+    "predicate_logits": 1
+  },
+  "tensors": {
+    "normalized_image.0": {
+      "shape": [
+        1,
+        3,
+        448,
+        448
+      ],
+      "dtype": "float32",
+      "finite_values": 602112,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -2.1179039478302,
+      "maximum_finite": 2.640000104904175,
+      "mean_finite": -0.7359019612535272
+    },
+    "fused_patch_map.0": {
+      "shape": [
+        1,
+        28,
+        28,
+        768
+      ],
+      "dtype": "float32",
+      "finite_values": 602112,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -17.23832893371582,
+      "maximum_finite": 7.28022575378418,
+      "mean_finite": 7.764343121578064e-10
+    },
+    "spatial_pool.0": {
+      "shape": [
+        1,
+        9,
+        768
+      ],
+      "dtype": "float32",
+      "finite_values": 6912,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -9.398128509521484,
+      "maximum_finite": 7.43241024017334,
+      "mean_finite": 0.0014229147860686663
+    },
+    "sampler.0.0": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "int64",
+      "finite_values": 128,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": 0.0,
+      "maximum_finite": 8.0,
+      "mean_finite": 2.53125
+    },
+    "sampler.0.1": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "int64",
+      "finite_values": 128,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": 0.0,
+      "maximum_finite": 8.0,
+      "mean_finite": 2.53125
+    },
+    "sampler.0.2": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "bool",
+      "finite_values": 128,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": 0.0,
+      "maximum_finite": 1.0,
+      "mean_finite": 0.5625
+    },
+    "sampler.0.3": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "int64",
+      "finite_values": 128,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -1.0,
+      "maximum_finite": -1.0,
+      "mean_finite": -1.0
+    },
+    "sampler.0.4": {
+      "shape": [],
+      "dtype": "float32",
+      "finite_values": 1,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": 0.0,
+      "maximum_finite": 0.0,
+      "mean_finite": 0.0
+    },
+    "sampler.0.5": {
+      "shape": [],
+      "dtype": "float32",
+      "finite_values": 1,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": 0.0,
+      "maximum_finite": 0.0,
+      "mean_finite": 0.0
+    },
+    "sampler.0.6": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "float32",
+      "finite_values": 81,
+      "nonfinite_values": 47,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 47,
+      "minimum_finite": -1.6240651607513428,
+      "maximum_finite": 0.5331750512123108,
+      "mean_finite": -0.6941315609915757
+    },
+    "geo_encoder.0": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -5.569108963012695,
+      "maximum_finite": 4.933902263641357,
+      "mean_finite": -0.0012993183764413163
+    },
+    "box_prompt_tokens.0": {
+      "shape": [
+        1,
+        128,
+        4,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 262144,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -1.7392232418060303,
+      "maximum_finite": 1.960077166557312,
+      "mean_finite": 0.0055875279478438955
+    },
+    "spatial_pool.1": {
+      "shape": [
+        1,
+        256,
+        768
+      ],
+      "dtype": "float32",
+      "finite_values": 196608,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -9.398914337158203,
+      "maximum_finite": 7.883506774902344,
+      "mean_finite": 0.002723882453396461
+    },
+    "pair_proj.0": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -50.48820495605469,
+      "maximum_finite": 265.7441101074219,
+      "mean_finite": -0.5373861339166695
+    },
+    "rel_transformer.0": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -56.05669021606445,
+      "maximum_finite": 264.962158203125,
+      "mean_finite": -0.33334773102262716
+    },
+    "deformable_read.0": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -55.47283935546875,
+      "maximum_finite": 265.1766357421875,
+      "mean_finite": -0.3275323829377612
+    },
+    "rel_interaction.0": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -60.860233306884766,
+      "maximum_finite": 254.28482055664062,
+      "mean_finite": -0.08233096439818155
+    },
+    "vocab_head.proj": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -15.058088302612305,
+      "maximum_finite": 13.623221397399902,
+      "mean_finite": -0.002876615524570525
+    },
+    "sub_text_proj": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -9.73903751373291,
+      "maximum_finite": 9.39892292022705,
+      "mean_finite": -0.06782562794739988
+    },
+    "obj_text_proj": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -9.879975318908691,
+      "maximum_finite": 9.638008117675781,
+      "mean_finite": -0.06842926678240246
+    },
+    "compose_norm": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -4.426787853240967,
+      "maximum_finite": 3.9064393043518066,
+      "mean_finite": -0.03564552639019214
+    },
+    "spa_proj.0": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -18.418153762817383,
+      "maximum_finite": 15.482420921325684,
+      "mean_finite": -0.3042971046481515
+    },
+    "spa_proj": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -18.418153762817383,
+      "maximum_finite": 15.482420921325684,
+      "mean_finite": -0.3042971046481515
+    },
+    "predicate_logits.0": {
+      "shape": [
+        1,
+        128,
+        19103
+      ],
+      "dtype": "float32",
+      "finite_values": 2445184,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -13.582433700561523,
+      "maximum_finite": 4.983870029449463,
+      "mean_finite": -5.889644940640123
+    },
+    "final.logits": {
+      "shape": [
+        1,
+        128,
+        19103
+      ],
+      "dtype": "float32",
+      "finite_values": 2445184,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -13.582433700561523,
+      "maximum_finite": 4.983870029449463,
+      "mean_finite": -5.889644940640123
+    },
+    "final.pair_logits": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "float32",
+      "finite_values": 81,
+      "nonfinite_values": 47,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 47,
+      "minimum_finite": -1.6240651607513428,
+      "maximum_finite": 0.5331750512123108,
+      "mean_finite": -0.6941315609915757
+    },
+    "final.sub_idx": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "int64",
+      "finite_values": 128,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": 0.0,
+      "maximum_finite": 8.0,
+      "mean_finite": 2.53125
+    },
+    "final.obj_idx": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "int64",
+      "finite_values": 128,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": 0.0,
+      "maximum_finite": 8.0,
+      "mean_finite": 2.53125
+    },
+    "final.valid_mask": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "bool",
+      "finite_values": 128,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": 0.0,
+      "maximum_finite": 1.0,
+      "mean_finite": 0.5625
+    },
+    "final.pred_labels": {
+      "shape": [
+        1,
+        128
+      ],
+      "dtype": "int64",
+      "finite_values": 128,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -1.0,
+      "maximum_finite": -1.0,
+      "mean_finite": -1.0
+    },
+    "final.pair_features": {
+      "shape": [
+        1,
+        128,
+        512
+      ],
+      "dtype": "float32",
+      "finite_values": 65536,
+      "nonfinite_values": 0,
+      "nan_values": 0,
+      "positive_inf_values": 0,
+      "negative_inf_values": 0,
+      "minimum_finite": -60.860233306884766,
+      "maximum_finite": 254.28482055664062,
+      "mean_finite": -0.08233096439818155
+    }
+  },
+  "raw_tensors": "cpp_ggml/test_data/python_stage_trace_vitb16.npz"
+}

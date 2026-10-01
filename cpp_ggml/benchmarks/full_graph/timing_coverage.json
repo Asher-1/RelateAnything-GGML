@@ -1,0 +1,191 @@
+{
+  "relsgg-vits16/python": {
+    "attempts": 1,
+    "samples": 51,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16/cuda-f32": {
+    "attempts": 1,
+    "samples": 18,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16/cuda-f16": {
+    "attempts": 1,
+    "samples": 19,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16/cuda-q8_0": {
+    "attempts": 1,
+    "samples": 15,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16/vulkan-f32": {
+    "attempts": 1,
+    "samples": 21,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16/vulkan-f16": {
+    "attempts": 1,
+    "samples": 21,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16/vulkan-q8_0": {
+    "attempts": 1,
+    "samples": 20,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16plus/python": {
+    "attempts": 1,
+    "samples": 50,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16plus/cuda-f32": {
+    "attempts": 1,
+    "samples": 19,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16plus/cuda-f16": {
+    "attempts": 1,
+    "samples": 21,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16plus/cuda-q8_0": {
+    "attempts": 1,
+    "samples": 16,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16plus/vulkan-f32": {
+    "attempts": 1,
+    "samples": 23,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16plus/vulkan-f16": {
+    "attempts": 1,
+    "samples": 21,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vits16plus/vulkan-q8_0": {
+    "attempts": 1,
+    "samples": 22,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vitb16/python": {
+    "attempts": 1,
+    "samples": 66,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vitb16/cuda-f32": {
+    "attempts": 1,
+    "samples": 28,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vitb16/cuda-f16": {
+    "attempts": 1,
+    "samples": 29,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vitb16/cuda-q8_0": {
+    "attempts": 1,
+    "samples": 22,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vitb16/vulkan-f32": {
+    "attempts": 1,
+    "samples": 30,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vitb16/vulkan-f16": {
+    "attempts": 1,
+    "samples": 29,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  },
+  "relsgg-vitb16/vulkan-q8_0": {
+    "attempts": 1,
+    "samples": 29,
+    "transient_pids": [],
+    "allowed_gpu_pids": [
+      2808612,
+      3695836
+    ]
+  }
+}

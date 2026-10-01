@@ -1,0 +1,17 @@
+ggml_vulkan: Found 1 Vulkan devices:
+ggml_vulkan: 0 = NVIDIA GeForce RTX 3060 (NVIDIA) | uma: 0 | fp16: 1 | bf16: 0 | fp4: 0 | warp size: 32 | shared memory: 49152 | int dot: 1 | matrix cores: KHR_coopmat
+graph nodes=753 allocate_ms=0.855975 compute_ms=21.76
+outputs read_ms=0.745367 total_ms=23.5297
+graph nodes=521 allocate_ms=1.62159 compute_ms=12.8985
+outputs read_ms=0.081483 total_ms=14.7724
+graph nodes=753 allocate_ms=0.459156 compute_ms=14.8528
+outputs read_ms=0.410825 total_ms=15.9194
+graph nodes=521 allocate_ms=0.702215 compute_ms=8.44494
+outputs read_ms=0.22237 total_ms=9.57408
+sample=000_9282
+backend=vulkan
+architecture=relateanything_full_v1
+pairs=128
+predicates=19103
+latency_ms=33.5054
+iteration_ms=33.5054

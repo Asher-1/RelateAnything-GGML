@@ -1,0 +1,64 @@
+{
+  "repo": "Asher-1/relateanything-ggml-full",
+  "revision": "7571248f1f5ea4981b8c5cf71215ac896fc4f805",
+  "files": [
+    {
+      "file": "gguf/relsgg-vitb16-f16.gguf",
+      "sha256": "61222e4099c277d5272524507721fc6d65649051bae23984a06fe5cacb8e0806",
+      "bytes": 247690880,
+      "verified": true
+    },
+    {
+      "file": "gguf/relsgg-vitb16-f32.gguf",
+      "sha256": "1537ba73ae9042b9553774269a4bf44ecfba7ea8776cac44acbea02090fe0934",
+      "bytes": 494885312,
+      "verified": true
+    },
+    {
+      "file": "gguf/relsgg-vitb16-q8_0.gguf",
+      "sha256": "61bc2a07233a1d0e189dbcab96736d38afa9f9ade8d8028b327e3aa7a12c3dd5",
+      "bytes": 134249664,
+      "verified": true
+    },
+    {
+      "file": "gguf/relsgg-vits16-f16.gguf",
+      "sha256": "e00c896a5ad816cdd6af285d63346baab27e5c002935dba59ab0a8e124828a59",
+      "bytes": 112374656,
+      "verified": true
+    },
+    {
+      "file": "gguf/relsgg-vits16-f32.gguf",
+      "sha256": "ce90fb86c08716a45b9ca85f0bbfe74787966bf17eb267c3ad23f91094ced081",
+      "bytes": 224252864,
+      "verified": true
+    },
+    {
+      "file": "gguf/relsgg-vits16-q8_0.gguf",
+      "sha256": "ee168035fa5fa2dc334e159c70ab4785e1bf9c4758427c1264b59878200fa429",
+      "bytes": 61281184,
+      "verified": true
+    },
+    {
+      "file": "gguf/relsgg-vits16plus-f16.gguf",
+      "sha256": "4e5631450416ec2496623631b7f7e2bde9f399570fe747fad1dd9a5f20fbcb37",
+      "bytes": 126569408,
+      "verified": true
+    },
+    {
+      "file": "gguf/relsgg-vits16plus-f32.gguf",
+      "sha256": "996960494629efd0035379c2fa8ae7ca1ff0039b53d8ab61637e86b7e05ae52e",
+      "bytes": 252640256,
+      "verified": true
+    },
+    {
+      "file": "gguf/relsgg-vits16plus-q8_0.gguf",
+      "sha256": "bb70680859abf090bb3942871a5932aa07155f6236e87c6999218ed14400c8f9",
+      "bytes": 68877280,
+      "verified": true
+    }
+  ],
+  "published_comparison_grids": 150,
+  "published_galleries": 3,
+  "published_report": "benchmarks/full_graph/README.md",
+  "public_models_verified": true
+}

@@ -1,0 +1,17 @@
+{
+  "sha256": "a686866fa4dbc65001c3539576ba19e81997af8b287d457e3f79afce1c80a82b",
+  "files": {
+    "cpp_ggml/CMakeLists.txt": "33633b871d565dbb241ac6ee181de8c3a4044cc545f14f1eeeb2c58643dffe88",
+    "cpp_ggml/src/backend.cpp": "e4ab35c7754d159386414b3768a0212b4208ed4e1e6157247b0de3db0e88377f",
+    "cpp_ggml/src/full_model.cpp": "788c4e3137168a683266e049eda61e28a751222193586ef184d3b0fe016c327d",
+    "cpp_ggml/src/gguf_model.cpp": "7583c31b11481b3a744058b11c822d46f3189928a035111dd7c55b915ca545c1",
+    "cpp_ggml/src/image_io.cpp": "be95a9b5e1b212247b1993719921f6ea0dfec2ab2f2d358c5fa362b978526d10",
+    "cpp_ggml/src/inference.cpp": "3ebf1a754f789841466f344a3b1f7dad939d53a87e97fb36b3fd7f033c95a6a6",
+    "cpp_ggml/src/main.cpp": "c6f1aa5e196a0c3eecfa78283c239245427799d8eb3f5feb9cf89bdc1c5aee69",
+    "cpp_ggml/include/relateanything/backend.hpp": "810dda190d97a692f4f0ea12ba2aebb6eed8bcfde2baf57c350e8f7ff70c9473",
+    "cpp_ggml/include/relateanything/full_model.hpp": "b43006e43aad8b732ec8176b7231712fd37fd227152b830d5a6ced593fe3e33a",
+    "cpp_ggml/include/relateanything/gguf_model.hpp": "5583b7aa1bbca9a017c7c6d8f61388eb3e8e737e69dccbf22630964e7125e61d",
+    "cpp_ggml/include/relateanything/options.hpp": "3704e8694c0433006811a0c8c0a2ce7f16ee7c1c2111aafc56c68a8a1e780a32",
+    "cpp_ggml/third_party/patches/0001-relateanything-integration-marker.patch": "3464bbb5f9954125303c6901f3a00d16dec84b9ec05c21a843f94a2b37a6e223"
+  }
+}

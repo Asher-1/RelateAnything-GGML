@@ -1,0 +1,1004 @@
+{
+  "dataset": "maelic/RA-4M",
+  "dataset_revision": "64829d57318dc8b32ac3e029ac84fbb9834a7700",
+  "split": "val",
+  "compact_manifest": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/test_data/ra4m_50/manifest.json",
+  "compact_manifest_sha256": "521e4c874c51b5eb5a9fd1cea62745113b6a229fffe70b378477e4057c7ac225",
+  "device": "cuda",
+  "checkpoint_sha256": {
+    "relsgg-vits16": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
+    "relsgg-vits16plus": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
+    "relsgg-vitb16": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d"
+  },
+  "torch_version": "2.6.0+cu118",
+  "vocabulary": "each checkpoint's full released vocabulary",
+  "scope": "three qualitative examples; not an official metric or full-validation result",
+  "samples": [
+    {
+      "row_index": 0,
+      "image_id": 9282,
+      "file_name": "000000321647.jpg",
+      "source": "coco",
+      "objects": [
+        {
+          "category": "person",
+          "bbox_xywh": [
+            279.0,
+            181.0,
+            19.0,
+            45.0
+          ]
+        },
+        {
+          "category": "person",
+          "bbox_xywh": [
+            162.0,
+            249.99998474121094,
+            39.0,
+            103.0
+          ]
+        },
+        {
+          "category": "person",
+          "bbox_xywh": [
+            178.0,
+            293.0,
+            70.0,
+            71.0
+          ]
+        },
+        {
+          "category": "person",
+          "bbox_xywh": [
+            441.0,
+            189.0,
+            50.0,
+            75.0
+          ]
+        },
+        {
+          "category": "person",
+          "bbox_xywh": [
+            117.0,
+            250.99998474121094,
+            46.0,
+            116.0
+          ]
+        },
+        {
+          "category": "person",
+          "bbox_xywh": [
+            21.0,
+            171.0,
+            16.0,
+            31.0
+          ]
+        },
+        {
+          "category": "baseball bat",
+          "bbox_xywh": [
+            170.0,
+            236.0,
+            15.0,
+            22.0
+          ]
+        },
+        {
+          "category": "baseball glove",
+          "bbox_xywh": [
+            294.0,
+            204.0,
+            7.0,
+            5.0
+          ]
+        },
+        {
+          "category": "baseball glove",
+          "bbox_xywh": [
+            467.9999694824219,
+            189.0,
+            11.0,
+            6.999999523162842
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "subject": 3,
+          "object": 0,
+          "predicate": "pitching to"
+        },
+        {
+          "subject": 2,
+          "object": 0,
+          "predicate": "catching for"
+        },
+        {
+          "subject": 1,
+          "object": 3,
+          "predicate": "batting against"
+        },
+        {
+          "subject": 0,
+          "object": 3,
+          "predicate": "watching"
+        },
+        {
+          "subject": 5,
+          "object": 1,
+          "predicate": "officiating"
+        },
+        {
+          "subject": 7,
+          "object": 4,
+          "predicate": "worn by"
+        },
+        {
+          "subject": 8,
+          "object": 3,
+          "predicate": "worn by"
+        },
+        {
+          "subject": 6,
+          "object": 0,
+          "predicate": "held by"
+        },
+        {
+          "subject": 4,
+          "object": 0,
+          "predicate": "standing behind"
+        },
+        {
+          "subject": 0,
+          "object": 3,
+          "predicate": "in front of"
+        },
+        {
+          "subject": 0,
+          "object": 2,
+          "predicate": "in front of"
+        },
+        {
+          "subject": 0,
+          "object": 5,
+          "predicate": "to the right of"
+        },
+        {
+          "subject": 1,
+          "object": 2,
+          "predicate": "behind"
+        },
+        {
+          "subject": 4,
+          "object": 1,
+          "predicate": "to the left of"
+        }
+      ],
+      "predictions": {
+        "relsgg-vits16": [
+          {
+            "subject": 1,
+            "object": 6,
+            "predicate": "holding",
+            "score": 0.690789520740509
+          },
+          {
+            "subject": 2,
+            "object": 1,
+            "predicate": "crouching on",
+            "score": 0.6563290357589722
+          },
+          {
+            "subject": 2,
+            "object": 4,
+            "predicate": "crouching on",
+            "score": 0.5962580442428589
+          },
+          {
+            "subject": 1,
+            "object": 4,
+            "predicate": "beside",
+            "score": 0.4884393513202667
+          },
+          {
+            "subject": 1,
+            "object": 2,
+            "predicate": "crouching on",
+            "score": 0.47564131021499634
+          }
+        ],
+        "relsgg-vits16plus": [
+          {
+            "subject": 1,
+            "object": 6,
+            "predicate": "holding",
+            "score": 0.6211616396903992
+          },
+          {
+            "subject": 4,
+            "object": 1,
+            "predicate": "watching",
+            "score": 0.6098596453666687
+          },
+          {
+            "subject": 2,
+            "object": 1,
+            "predicate": "crouching",
+            "score": 0.5992724299430847
+          },
+          {
+            "subject": 3,
+            "object": 8,
+            "predicate": "wearing a baseball",
+            "score": 0.5946598649024963
+          },
+          {
+            "subject": 4,
+            "object": 2,
+            "predicate": "watching",
+            "score": 0.5657476186752319
+          }
+        ],
+        "relsgg-vitb16": [
+          {
+            "subject": 4,
+            "object": 1,
+            "predicate": "watching a",
+            "score": 0.7279296517372131
+          },
+          {
+            "subject": 1,
+            "object": 6,
+            "predicate": "holding",
+            "score": 0.6685323715209961
+          },
+          {
+            "subject": 3,
+            "object": 8,
+            "predicate": "wearing a baseball",
+            "score": 0.6550721526145935
+          },
+          {
+            "subject": 2,
+            "object": 1,
+            "predicate": "crouching behind",
+            "score": 0.6075014472007751
+          },
+          {
+            "subject": 1,
+            "object": 3,
+            "predicate": "watching the game",
+            "score": 0.5911200046539307
+          }
+        ]
+      }
+    },
+    {
+      "row_index": 1,
+      "image_id": 14198,
+      "file_name": "objects365_v1_00683613.jpg",
+      "source": "objects365",
+      "objects": [
+        {
+          "category": "pillow",
+          "bbox_xywh": [
+            306.0,
+            181.0,
+            81.0,
+            51.0
+          ]
+        },
+        {
+          "category": "bed",
+          "bbox_xywh": [
+            314.0,
+            206.0,
+            325.0,
+            207.0
+          ]
+        },
+        {
+          "category": "chair",
+          "bbox_xywh": [
+            313.0,
+            250.0,
+            119.0,
+            224.0
+          ]
+        },
+        {
+          "category": "desk",
+          "bbox_xywh": [
+            92.00000762939453,
+            343.0,
+            295.0,
+            135.0
+          ]
+        },
+        {
+          "category": "desk",
+          "bbox_xywh": [
+            0.9999990463256836,
+            262.0,
+            138.0,
+            121.0
+          ]
+        },
+        {
+          "category": "desk",
+          "bbox_xywh": [
+            82.99999237060547,
+            226.0,
+            235.0,
+            155.0
+          ]
+        },
+        {
+          "category": "picture frame",
+          "bbox_xywh": [
+            28.999998092651367,
+            221.99998474121094,
+            46.0,
+            45.0
+          ]
+        },
+        {
+          "category": "lamp",
+          "bbox_xywh": [
+            92.0,
+            159.0,
+            73.0,
+            107.0
+          ]
+        },
+        {
+          "category": "book",
+          "bbox_xywh": [
+            165.0,
+            394.0,
+            130.0,
+            68.0
+          ]
+        },
+        {
+          "category": "book",
+          "bbox_xywh": [
+            222.0,
+            317.0,
+            76.0,
+            48.0
+          ]
+        },
+        {
+          "category": "bottle",
+          "bbox_xywh": [
+            151.0,
+            301.0,
+            58.0,
+            125.99999237060547
+          ]
+        },
+        {
+          "category": "laptop",
+          "bbox_xywh": [
+            197.0,
+            173.0,
+            104.0,
+            81.0
+          ]
+        },
+        {
+          "category": "monitor",
+          "bbox_xywh": [
+            181.0,
+            153.0,
+            70.0,
+            81.0
+          ]
+        },
+        {
+          "category": "monitor",
+          "bbox_xywh": [
+            132.0,
+            125.00000762939453,
+            54.0,
+            100.0
+          ]
+        },
+        {
+          "category": "book",
+          "bbox_xywh": [
+            240.00001525878906,
+            359.0,
+            84.0,
+            47.0
+          ]
+        },
+        {
+          "category": "book",
+          "bbox_xywh": [
+            16.999998092651367,
+            258.0,
+            108.0,
+            43.0
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "subject": 0,
+          "object": 1,
+          "predicate": "cushioning"
+        },
+        {
+          "subject": 11,
+          "object": 5,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 12,
+          "object": 11,
+          "predicate": "displaying content for"
+        },
+        {
+          "subject": 7,
+          "object": 11,
+          "predicate": "illuminating"
+        },
+        {
+          "subject": 10,
+          "object": 3,
+          "predicate": "containing liquid for"
+        },
+        {
+          "subject": 14,
+          "object": 3,
+          "predicate": "stacking upon"
+        },
+        {
+          "subject": 15,
+          "object": 4,
+          "predicate": "lying on"
+        },
+        {
+          "subject": 6,
+          "object": 4,
+          "predicate": "decorating"
+        },
+        {
+          "subject": 2,
+          "object": 3,
+          "predicate": "accompanying"
+        },
+        {
+          "subject": 11,
+          "object": 12,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 10,
+          "object": 3,
+          "predicate": "sitting on"
+        },
+        {
+          "subject": 14,
+          "object": 3,
+          "predicate": "sitting on"
+        },
+        {
+          "subject": 8,
+          "object": 3,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 13,
+          "object": 11,
+          "predicate": "supporting"
+        },
+        {
+          "subject": 7,
+          "object": 5,
+          "predicate": "attached to"
+        },
+        {
+          "subject": 2,
+          "object": 3,
+          "predicate": "tucked under"
+        },
+        {
+          "subject": 12,
+          "object": 5,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 15,
+          "object": 4,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 6,
+          "object": 4,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 14,
+          "object": 3,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 10,
+          "object": 3,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 5,
+          "object": 13,
+          "predicate": "supporting"
+        },
+        {
+          "subject": 7,
+          "object": 5,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 0,
+          "object": 1,
+          "predicate": "resting on"
+        },
+        {
+          "subject": 11,
+          "object": 13,
+          "predicate": "in front of"
+        },
+        {
+          "subject": 11,
+          "object": 12,
+          "predicate": "next to"
+        },
+        {
+          "subject": 12,
+          "object": 13,
+          "predicate": "next to"
+        },
+        {
+          "subject": 7,
+          "object": 11,
+          "predicate": "to the left of"
+        },
+        {
+          "subject": 11,
+          "object": 15,
+          "predicate": "to the right of"
+        },
+        {
+          "subject": 4,
+          "object": 5,
+          "predicate": "to the left of"
+        },
+        {
+          "subject": 5,
+          "object": 3,
+          "predicate": "behind"
+        },
+        {
+          "subject": 5,
+          "object": 1,
+          "predicate": "to the left of"
+        },
+        {
+          "subject": 2,
+          "object": 3,
+          "predicate": "next to"
+        },
+        {
+          "subject": 10,
+          "object": 14,
+          "predicate": "next to"
+        }
+      ],
+      "predictions": {
+        "relsgg-vits16": [
+          {
+            "subject": 10,
+            "object": 3,
+            "predicate": "resting on",
+            "score": 0.7474894523620605
+          },
+          {
+            "subject": 8,
+            "object": 3,
+            "predicate": "resting over",
+            "score": 0.7262144684791565
+          },
+          {
+            "subject": 14,
+            "object": 3,
+            "predicate": "resting over",
+            "score": 0.7082146406173706
+          },
+          {
+            "subject": 0,
+            "object": 1,
+            "predicate": "resting over",
+            "score": 0.6634827852249146
+          },
+          {
+            "subject": 15,
+            "object": 4,
+            "predicate": "resting on",
+            "score": 0.6197007894515991
+          }
+        ],
+        "relsgg-vits16plus": [
+          {
+            "subject": 10,
+            "object": 3,
+            "predicate": "resting on",
+            "score": 0.7772377133369446
+          },
+          {
+            "subject": 8,
+            "object": 3,
+            "predicate": "resting over",
+            "score": 0.7662192583084106
+          },
+          {
+            "subject": 15,
+            "object": 4,
+            "predicate": "resting over",
+            "score": 0.7331259250640869
+          },
+          {
+            "subject": 14,
+            "object": 3,
+            "predicate": "resting over",
+            "score": 0.7318047881126404
+          },
+          {
+            "subject": 11,
+            "object": 5,
+            "predicate": "resting on",
+            "score": 0.7045876979827881
+          }
+        ],
+        "relsgg-vitb16": [
+          {
+            "subject": 8,
+            "object": 3,
+            "predicate": "resting over",
+            "score": 0.8072296380996704
+          },
+          {
+            "subject": 14,
+            "object": 3,
+            "predicate": "resting over",
+            "score": 0.7545674443244934
+          },
+          {
+            "subject": 10,
+            "object": 3,
+            "predicate": "resting on",
+            "score": 0.74086594581604
+          },
+          {
+            "subject": 0,
+            "object": 1,
+            "predicate": "resting over",
+            "score": 0.727053165435791
+          },
+          {
+            "subject": 11,
+            "object": 5,
+            "predicate": "resting on",
+            "score": 0.6783954501152039
+          }
+        ]
+      }
+    },
+    {
+      "row_index": 2,
+      "image_id": 11355,
+      "file_name": "f05a0872756979f5.jpg",
+      "source": "openimages",
+      "objects": [
+        {
+          "category": "human body",
+          "bbox_xywh": [
+            272.0,
+            524.0,
+            355.0,
+            409.0
+          ]
+        },
+        {
+          "category": "human head",
+          "bbox_xywh": [
+            355.0000305175781,
+            501.0,
+            91.0,
+            99.0
+          ]
+        },
+        {
+          "category": "mammal",
+          "bbox_xywh": [
+            293.0000305175781,
+            471.0,
+            393.9999694824219,
+            427.0
+          ]
+        },
+        {
+          "category": "human arm",
+          "bbox_xywh": [
+            493.0,
+            576.0,
+            218.0,
+            103.0
+          ]
+        },
+        {
+          "category": "boy",
+          "bbox_xywh": [
+            232.0,
+            487.0,
+            491.0000305175781,
+            341.0
+          ]
+        },
+        {
+          "category": "poster",
+          "bbox_xywh": [
+            0.0,
+            0.0,
+            723.0,
+            1023.0
+          ]
+        },
+        {
+          "category": "human leg",
+          "bbox_xywh": [
+            377.9999694824219,
+            662.0,
+            72.0,
+            122.0
+          ]
+        },
+        {
+          "category": "human leg",
+          "bbox_xywh": [
+            471.0,
+            716.0,
+            165.0,
+            96.0
+          ]
+        },
+        {
+          "category": "man",
+          "bbox_xywh": [
+            263.0,
+            503.0,
+            457.0,
+            312.0
+          ]
+        },
+        {
+          "category": "skateboard",
+          "bbox_xywh": [
+            279.0,
+            779.0,
+            444.0,
+            155.0
+          ]
+        },
+        {
+          "category": "clothing",
+          "bbox_xywh": [
+            333.9999694824219,
+            487.0,
+            305.0,
+            321.0
+          ]
+        },
+        {
+          "category": "human face",
+          "bbox_xywh": [
+            356.0000305175781,
+            512.0,
+            72.0,
+            99.0
+          ]
+        },
+        {
+          "category": "human arm",
+          "bbox_xywh": [
+            273.0,
+            616.0,
+            109.0,
+            169.0
+          ]
+        }
+      ],
+      "ground_truth": [
+        {
+          "subject": 4,
+          "object": 9,
+          "predicate": "riding"
+        },
+        {
+          "subject": 8,
+          "object": 10,
+          "predicate": "wearing"
+        },
+        {
+          "subject": 1,
+          "object": 0,
+          "predicate": "part of"
+        },
+        {
+          "subject": 11,
+          "object": 1,
+          "predicate": "part of"
+        },
+        {
+          "subject": 3,
+          "object": 0,
+          "predicate": "part of"
+        },
+        {
+          "subject": 12,
+          "object": 0,
+          "predicate": "part of"
+        },
+        {
+          "subject": 6,
+          "object": 0,
+          "predicate": "part of"
+        },
+        {
+          "subject": 7,
+          "object": 0,
+          "predicate": "part of"
+        },
+        {
+          "subject": 5,
+          "object": 2,
+          "predicate": "covering"
+        },
+        {
+          "subject": 8,
+          "object": 9,
+          "predicate": "riding"
+        },
+        {
+          "subject": 10,
+          "object": 8,
+          "predicate": "covering"
+        },
+        {
+          "subject": 10,
+          "object": 4,
+          "predicate": "covering"
+        },
+        {
+          "subject": 4,
+          "object": 9,
+          "predicate": "on top of"
+        },
+        {
+          "subject": 5,
+          "object": 4,
+          "predicate": "above"
+        },
+        {
+          "subject": 10,
+          "object": 4,
+          "predicate": "on"
+        },
+        {
+          "subject": 4,
+          "object": 2,
+          "predicate": "behind"
+        }
+      ],
+      "predictions": {
+        "relsgg-vits16": [
+          {
+            "subject": 2,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.836819052696228
+          },
+          {
+            "subject": 4,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.8156881332397461
+          },
+          {
+            "subject": 10,
+            "object": 9,
+            "predicate": "riding",
+            "score": 0.720206618309021
+          },
+          {
+            "subject": 5,
+            "object": 2,
+            "predicate": "depicting",
+            "score": 0.6640954613685608
+          },
+          {
+            "subject": 8,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.6523243188858032
+          }
+        ],
+        "relsgg-vits16plus": [
+          {
+            "subject": 2,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.8389540314674377
+          },
+          {
+            "subject": 4,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.8128396272659302
+          },
+          {
+            "subject": 5,
+            "object": 2,
+            "predicate": "depicting",
+            "score": 0.6262213587760925
+          },
+          {
+            "subject": 2,
+            "object": 5,
+            "predicate": "wearing",
+            "score": 0.6206325888633728
+          },
+          {
+            "subject": 4,
+            "object": 5,
+            "predicate": "wearing",
+            "score": 0.5756753087043762
+          }
+        ],
+        "relsgg-vitb16": [
+          {
+            "subject": 2,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.8485238552093506
+          },
+          {
+            "subject": 0,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.8317797780036926
+          },
+          {
+            "subject": 4,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.8277564644813538
+          },
+          {
+            "subject": 8,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.7960259914398193
+          },
+          {
+            "subject": 10,
+            "object": 9,
+            "predicate": "riding on",
+            "score": 0.7260006070137024
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "actual_tensor_count": 392,
+  "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16/model.pth",
+  "checkpoint_sha256": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
+  "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-q8_0.gguf",
+  "expected_tensor_count": 392,
+  "extra": [],
+  "gguf": "cpp_ggml/models/gguf/relsgg-vits16-q8_0.gguf",
+  "gguf_bytes": 61281184,
+  "gguf_sha256": "ee168035fa5fa2dc334e159c70ab4785e1bf9c4758427c1264b59878200fa429",
+  "graph_kind": "relateanything_full_v1",
+  "missing": [],
+  "passed": true,
+  "runtime_vocabulary": true,
+  "shape_mismatch": {},
+  "type_counts": {
+    "F32": 257,
+    "Q8_0": 135
+  },
+  "value_mismatch": []
+}

@@ -1,0 +1,5 @@
+[
+  {"model": "relsgg-vits16", "params_m": 46.1, "a40_batch1_ms": 19.5, "a40_batch32_img_s": 201, "ovs_f1": 34.6, "hico_f1": 36.4},
+  {"model": "relsgg-vits16plus", "params_m": 53.2, "a40_batch1_ms": 20.0, "a40_batch32_img_s": 188, "ovs_f1": 37.2, "hico_f1": 37.1},
+  {"model": "relsgg-vitb16", "params_m": 113.8, "a40_batch1_ms": 19.3, "a40_batch32_img_s": 130, "ovs_f1": 37.2, "hico_f1": 37.5}
+]

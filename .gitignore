@@ -30,7 +30,24 @@ runs/
 # Benchmark measurements are local artifacts; commit only their Markdown reports.
 docs/benchmarks/*.json
 docs/benchmarks/*.json.gz
+# Keep source-of-truth third-party dependencies only in their owning module.
 third_party/
+!cpp_ggml/
+!cpp_ggml/third_party/
+!cpp_ggml/third_party/ggml/
+!cpp_ggml/third_party/patches/
+!cpp_ggml/third_party/scripts/
+
+# Local GGML build and generated adapter fixtures.
+cpp_ggml/build-*/
+cpp_ggml/test_data/*.raio
+cpp_ggml/test_data/*.raoo
+cpp_ggml/test_data/*.npz
+cpp_ggml/models/gguf/*.gguf
+cpp_ggml/models/pytorch/relsgg-*/
+cpp_ggml/test_data/official/
+# The compact 50-image RA-4M suite is intentionally retained for reproducible
+# evaluation. Source-corpus licensing is documented in test_data/README.md.
 .hf_cache/
 wandb/
 mobileclip*.ts
@@ -58,3 +75,11 @@ assets/reel/poster.jpg
 
 # The report PDF: read it on arXiv rather than carrying 12 MB per revision here
 main.pdf
+
+# Reproducible full-graph diagnostic tensors remain local for packaging.
+cpp_ggml/test_data/*.raim
+cpp_ggml/benchmarks/**/*.raim
+cpp_ggml/benchmarks/**/*.raip
+cpp_ggml/benchmarks/**/*.rafo
+cpp_ggml/benchmarks/**/*.npz
+cpp_ggml/benchmarks/**/*.f32

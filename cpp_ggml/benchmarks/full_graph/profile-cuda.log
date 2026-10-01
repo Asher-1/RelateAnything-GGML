@@ -1,0 +1,17 @@
+ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):
+  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB
+graph nodes=753 allocate_ms=0.378645 compute_ms=57.0441
+outputs read_ms=0.750707 total_ms=58.3822
+graph nodes=521 allocate_ms=0.715199 compute_ms=8.31226
+outputs read_ms=0.030848 total_ms=9.1798
+graph nodes=753 allocate_ms=0.212831 compute_ms=13.2125
+outputs read_ms=0.304395 total_ms=13.8371
+graph nodes=521 allocate_ms=0.146156 compute_ms=7.17574
+outputs read_ms=0.028284 total_ms=7.43556
+sample=000_9282
+backend=cuda
+architecture=relateanything_full_v1
+pairs=128
+predicates=19103
+latency_ms=28.6039
+iteration_ms=28.6039

@@ -1,0 +1,123 @@
+{
+  "model": "relsgg-vits16plus",
+  "backend": "vulkan",
+  "dtype": "f32",
+  "stages": {
+    "fused_patch_map": {
+      "shape": [
+        1,
+        28,
+        28,
+        384
+      ],
+      "rmse": 0.00555742411040803,
+      "max_abs": 0.5457801818847656,
+      "finite": true
+    },
+    "spatial_pool_0": {
+      "shape": [
+        1,
+        9,
+        384
+      ],
+      "rmse": 0.0034196965578346897,
+      "max_abs": 0.020212113857269287,
+      "finite": true
+    },
+    "geo_encoder": {
+      "shape": [
+        72,
+        512
+      ],
+      "rmse": 0.00028293578494530613,
+      "max_abs": 0.0019352734088897705,
+      "finite": true
+    },
+    "box_prompt_tokens": {
+      "shape": [
+        72,
+        4,
+        512
+      ],
+      "rmse": 0.00011163305620556934,
+      "max_abs": 0.0004621148109436035,
+      "finite": true
+    },
+    "pair_proj": {
+      "shape": [
+        72,
+        512
+      ],
+      "rmse": 0.016432385151696854,
+      "max_abs": 0.1234893798828125,
+      "finite": true
+    },
+    "rel_transformer": {
+      "shape": [
+        72,
+        512
+      ],
+      "rmse": 0.018793957610078887,
+      "max_abs": 0.08875274658203125,
+      "finite": true
+    },
+    "deformable_read": {
+      "shape": [
+        72,
+        512
+      ],
+      "rmse": 0.01990209186403045,
+      "max_abs": 0.09002232551574707,
+      "finite": true
+    },
+    "rel_interaction": {
+      "shape": [
+        72,
+        512
+      ],
+      "rmse": 0.023041044454818905,
+      "max_abs": 0.09350919723510742,
+      "finite": true
+    },
+    "vocab_query": {
+      "shape": [
+        72,
+        512
+      ],
+      "rmse": 0.0021842417871605992,
+      "max_abs": 0.012064814567565918,
+      "finite": true
+    },
+    "spa_proj": {
+      "shape": [
+        72,
+        512
+      ],
+      "rmse": 0.008152203767670814,
+      "max_abs": 0.039053916931152344,
+      "finite": true
+    },
+    "predicate_logits": {
+      "shape": [
+        72,
+        19103
+      ],
+      "rmse": 0.004462399038091799,
+      "max_abs": 0.029044628143310547,
+      "finite": true
+    }
+  },
+  "final": {
+    "matched_pairs": 72,
+    "reference_pairs": 72,
+    "candidate_pairs": 72,
+    "pair_set_recall": 1.0,
+    "pair_set_jaccard": 1.0,
+    "logits_rmse": 0.004462399038091799,
+    "logits_mae": 0.0034640146183995465,
+    "logits_max_abs": 0.029044628143310547,
+    "pair_logits_rmse": 0.0027138132342279567,
+    "predicate_top1_agreement": 1.0,
+    "logits_cosine": 0.9999998018312883
+  }
+}
