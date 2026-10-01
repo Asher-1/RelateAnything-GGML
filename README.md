@@ -38,7 +38,8 @@ https://github.com/user-attachments/assets/76544f31-53ac-407b-9445-157e83946938
 no installation; inference runs on your device using WebGPU or WASM.
 
 [Quickstart](#quickstart) · [Models](#models) · [Deployment](#deployment) ·
-[Performance](#performance) · [Results](#results) · [How it works](#how-it-works)
+[C++ GGML](#c-ggml) · [Performance](#performance) · [Results](#results) ·
+[How it works](#how-it-works)
 
 ## Quickstart
 
@@ -124,6 +125,64 @@ The relation model consumes regions; it does not detect objects itself.
 Demo detectors are rebuilt locally and have separate licenses. The exported
 ONNX/TensorRT graph scores boxes; native mask inputs are supported by the
 PyTorch API. [Deployment contracts and limitations](docs/deployment.md).
+
+## C++ GGML
+
+Run the released RelateAnything models with a native **C++17 + GGML** pipeline
+on **CUDA, Vulkan or CPU**, without PyTorch or cuDNN at inference time.
+The full image graph includes DINOv3, box prompts, spatial pooling, pair sampling,
+relation transformers, device-side deformable reads and the dynamic vocabulary
+head. C++ also decodes images, reproduces Pillow preprocessing and returns
+calibrated relation triplets.
+
+- **Three official models × F32/F16/Q8_0:** checkpoint names are preserved;
+  no `demo` weights are used for deployment.
+- **Reproducible evidence:** 50 retained RA-4M images with GT, all 27 CPU/CUDA/Vulkan
+  model/backend/storage combinations, independent PyTorch-CUDA references,
+  raw-logit comparisons and an offline all-image interactive gallery.
+- **Embedding vocabulary replacement:** change the predicate embedding bank
+  through the public options object without retraining the visual model.
+- **Pinned dependency:** GGML v0.21.0 is a submodule; CMake replays one consolidated git patch.
+
+```bash
+git submodule update --init --recursive
+./run_ggml.sh --doctor
+./run_ggml.sh --quickstart
+./run_ggml.sh --backend cuda --model-name relsgg-vits16plus --dtype q8_0 --download
+./run_ggml.sh --backend vulkan --dtype f16
+./run_ggml.sh --engine python --backend cuda --model-name relsgg-vits16plus
+```
+
+新手可直接运行 `--quickstart`：它选择 CUDA、Vulkan 或 CPU，下载推荐的 F16 GGUF，使用内置 person/horse 图片和标注框，并在结束时输出关系数量及延迟。`--doctor` 仅检查工具、设备发现、演示资产、默认测试数据和本地推荐模型，不会构建或下载。
+
+The default input is a real retained image and its GT boxes. Supply your own
+`--image photo.jpg --boxes-json boxes.json` (pixel `x1,y1,x2,y2` rows).
+An object detector is a separate input provider and is not included in the
+reported relation-model timings. F32/F16/Q8 label weight storage; accelerator
+flash attention uses F16 K/V and F32 accumulation. `--no-flash-attention`
+selects explicit F32 attention.
+
+[Build and C++ API](cpp_ggml/README.md) ·
+[Model cards and downloads](cpp_ggml/models/MODEL_CARDS.md) ·
+[Full measured comparison](cpp_ggml/benchmarks/current/full_graph/README.md) ·
+[Evaluation coverage](cpp_ggml/benchmarks/METRIC_COVERAGE.md) ·
+[Unfinished work and continuation checklist](cpp_ggml/benchmarks/NEXT_WINDOW_TODOS.md)
+
+The full native graph, masks, detector weighting, decomposed streams and native
+text encoding are implemented. Fresh 27-stage/dynamic and dense regressions
+locate and reduce the first F32 divergence. Strict bit equality and speed
+superiority for every configuration remain unmet; see
+[current status](cpp_ggml/benchmarks/ALIGNMENT_STATUS.md).
+
+[Detailed all-model/backend/storage gallery](cpp_ggml/benchmarks/gallery/index.html)
+
+![GGML and PyTorch full-pipeline latency](cpp_ggml/benchmarks/gallery/latency_all_backends.png)
+
+The current 50-image run compares all 27 CPU/CUDA/Vulkan F32/F16/Q8 variants plus three CUDA Q8 diagnostics with
+independent PyTorch-CUDA references. Internal invalid candidate rows and zero
+attention masks are eliminated while the public 128-slot output stays stable.
+[Weight rounding and backend arithmetic](cpp_ggml/benchmarks/current/full_graph/quantization_audit/README.md)
+are measured separately; quantized weights do not guarantee original-F32 bit equality.
 
 ## Performance
 

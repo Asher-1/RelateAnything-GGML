@@ -1,0 +1,2200 @@
+{
+  "status": "pass",
+  "torch": "2.6.0+cu118",
+  "device": "NVIDIA GeForce RTX 3060",
+  "model_build": {
+    "backend": "cuda",
+    "build_files": {
+      "files": {
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/CMakeCache.txt": "31530acb9d67792c27b58958b995cb90d7d91db52dfb780a29581eb062b01ae2"
+      },
+      "sha256": "eb82ccf09ba0b4cb0e452394644e4d84a7a544bba84ca86e3a88a441e9db54c7"
+    },
+    "build_type": "Release",
+    "compiler": "c++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0\nCopyright (C) 2019 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "flags": " -O3 -DNDEBUG",
+    "ggml_commit": "8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b",
+    "source": {
+      "files": {
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/CMakeLists.txt": "8b1f657fae9c6670a6b56c8e0e1b8f867c6bc9149eff137a1776df1c53d4b78e",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend.hpp": "89923f4c9927c62eac1c80523e8d78b3e8764af2ddbbc31a5686278491ca51cc",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend_binding.h": "4375d11667036882e395b9ef1e140ebc0910a2843a6b70f49fbf614642cf5442",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/c_api.h": "1748471041bc79b9fdfa345ed7a05bb3e69f23878f0bdc0bc9e4c6baaf3ccff0",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/full_model.hpp": "e4d04007d62cd291721095cf16fbdcdbf0d5c2776b293aa5277c40ac29d8350b",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/gguf_model.hpp": "eef6abfa799616aa5d466ea2e12860c1eef11c849a53bc868819aaee279cb03c",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/options.hpp": "5c7f5a4c7bc3d6663f8f283cd9a58de72cad391f17a5aa6dc47978c7eda50a28",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.h": "090c419b59fcbf6f0588e88f5337ff3db15b91d75196296ccf45256147451edb",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.hpp": "2ad480f6db58e66d3f583ea28f60f1bad2a1b4541442a934c48a886045c625b8",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/types.hpp": "61daf6b8c6ca867ff28791f01e61724e4aeaeb3d00066236b188b19dda8d7dc0",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/provenance.py": "88fd8efe37c2b1b653c84b0c8e450b1bd1516593ea209845fd9549e48b6d5b7f",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/backend.cpp": "0c9bfc7a2c445c89394d4dc931500977c575b0ec34846afb840e91784879803a",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/c_api.cpp": "03e9ecc19f99b89bc788810a3bf8db7934fabe26a9afb492d7e5f09ff9ce30fb",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/full_model.cpp": "62d345fe4321d37b5183dc096b3f67e4af3b61cb44434577baeaf64a81f4d400",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/gguf_model.cpp": "a63b6540a7eb3298df0098d3639e9b738bbe72708a89e0e53eadc47ae78cbbc1",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/image_io.cpp": "fa066a83e5fca5af9127ff90a2932042aea0ff779f86b3b2bd7ac1c8e5c5ddd7",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/inference.cpp": "097af007f92905220a5aab1d974e22ffb6eda76e17694152723f7727a451c1c9",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/main.cpp": "e9cf74a2b3fcd850ed75fe64996db6092180883fe12fafa05ca51566524c2054",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/clip_tokenizer.hpp": "469f57954f9bfbc5b8646b1f8deb1fea82aa1525a68ee406a99a835c35053182",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/patches/0001-relateanything-ggml.patch": "9da78ec56826a857bf4b30b054904ab95c21f14aa988084f76fe524a68e87b8e",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/relsgg/corpus_type_map.json": "0e6230a1cfd747404a2b82f6d47a0111e1d45f403a48259fda257bf16750346d"
+      },
+      "sha256": "ea9a325766e02bfcc825fcc3738385a88161042df08bf6b609661d1e9f4fdd9d"
+    },
+    "binary": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml",
+    "binary_sha256": "ba8797d7316162bfcbdc69919c778e3ffb5947d86084150d245e89b22b7a3a61"
+  },
+  "probe": {
+    "sha256": "3472f10420a58405ba2a56abebb1a2a7c216109477a061d3178ac0919e9a2358",
+    "files": {
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-softmax-probe": "83599e165218991043c1eaf438256c080177b9ebecee39974e7c0617acfa6ab5",
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/audit_cuda_softmax.py": "8d9a50f623fa4bf87c37af5bfcd1d8cd200ec23b6e14cc9956f6ee2256ba4d71",
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/tests/strict_softmax_probe.cpp": "7ab88fcab4f27803be671049be0d0b9cd117d485244bfacd29652d8816e49ec1"
+    }
+  },
+  "rows": [
+    {
+      "columns": 1,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006182,
+        "files": {
+          "sha256": "8c848a5ba0d6ff74739d9b41f5802247d282abef95d6e1c9c9c354052ad2ecf4",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale1.0.input.f32": "5fe137e44c707c4d202683c0c3a6e3e231dff0253b2bc5946ac75f9e56591dd1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale1.0.strict-False.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale1.0.torch.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00518,
+        "files": {
+          "sha256": "465a2a12f8622b7c914a72639b506a7ac0f2ec271a75238b9b6b3a09e1b33dc3",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale1.0.input.f32": "5fe137e44c707c4d202683c0c3a6e3e231dff0253b2bc5946ac75f9e56591dd1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale1.0.strict-True.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale1.0.torch.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006122,
+        "files": {
+          "sha256": "c92ca58482f0ee40312b689e28b22fb789869f1dcac3095165e637fd88ab75e9",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.125.input.f32": "45271d747004b0e9f04b9d8684faf95910622f8cab6d34ebd61707bef10994cd",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.125.strict-False.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.125.torch.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00516,
+        "files": {
+          "sha256": "7246772e87ce22309297b28f4f713739106d9c4774d42c86ee22b1ab24da0e58",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.125.input.f32": "45271d747004b0e9f04b9d8684faf95910622f8cab6d34ebd61707bef10994cd",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.125.strict-True.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.125.torch.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005921,
+        "files": {
+          "sha256": "ac96f18a60ee08601885ccfcce2c6ff498202bfb0c0a01640b92eeafad98f8f6",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.1767766922712326.input.f32": "130174daa48c470296c386d1c1e2a8ec8418493a3e87a4441c8f81b06402dd0d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.1767766922712326.strict-False.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.1767766922712326.torch.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.004939,
+        "files": {
+          "sha256": "2a228489ce851bb268f2053de69cdbed3e959a0a5f7b4288ef82cd4ef3e9e3c4",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.1767766922712326.input.f32": "130174daa48c470296c386d1c1e2a8ec8418493a3e87a4441c8f81b06402dd0d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.1767766922712326.strict-True.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1x19-scale0.1767766922712326.torch.f32": "de991f9095bad46b975b57c0b1d49f8819c65f2e3a432b60622067457f90cbe4"
+          }
+        }
+      }
+    },
+    {
+      "columns": 2,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.7894736842105263,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.0056,
+        "files": {
+          "sha256": "c13fe5feca60ae72ccb67dedcb0d1780a59ef3a6d6476944cd54cc3a1351785b",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale1.0.input.f32": "0c74638b7cb61a4bda8599355230e4c199bc226247dbac7db67819699c97639b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale1.0.strict-False.f32": "90c9042c273fce6029d7cfdf2363bc3aad4808ebacc55599c22ce328e27c82eb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale1.0.torch.f32": "f31b725fb2c0d982e960638dfe5f586776b9eaab845ce3444b7eed0e6cb659d5"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00534,
+        "files": {
+          "sha256": "2d9f3a5e2ea91ad4a01f732b0cc1c7bdb7c4659534305be84a2cb0878d3f206d",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale1.0.input.f32": "0c74638b7cb61a4bda8599355230e4c199bc226247dbac7db67819699c97639b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale1.0.strict-True.f32": "f31b725fb2c0d982e960638dfe5f586776b9eaab845ce3444b7eed0e6cb659d5",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale1.0.torch.f32": "f31b725fb2c0d982e960638dfe5f586776b9eaab845ce3444b7eed0e6cb659d5"
+          }
+        }
+      }
+    },
+    {
+      "columns": 2,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.631578947368421,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.005961,
+        "files": {
+          "sha256": "5e127beb00514e007097826423760ed47ed7c373da415d7fbed45e82305111f9",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.125.input.f32": "86d1f652ac599df212ac3179680ab5c5ee72053177e00a99dcdfb8d6165cbca2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.125.strict-False.f32": "e7f14173a83c118545523f3ecd9ebc9ee8d92b552d7acc6474e4927422b77e3c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.125.torch.f32": "c885320cb922741f9d4b72a5a63b3d93a3920ac9ce212fbaf85376b0bbf831e4"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00505,
+        "files": {
+          "sha256": "ede3811708d571c360fc77b6d3bcffd2a276bb8dd92f8ad4001fa0feee3d0d78",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.125.input.f32": "86d1f652ac599df212ac3179680ab5c5ee72053177e00a99dcdfb8d6165cbca2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.125.strict-True.f32": "c885320cb922741f9d4b72a5a63b3d93a3920ac9ce212fbaf85376b0bbf831e4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.125.torch.f32": "c885320cb922741f9d4b72a5a63b3d93a3920ac9ce212fbaf85376b0bbf831e4"
+          }
+        }
+      }
+    },
+    {
+      "columns": 2,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.631578947368421,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.00567,
+        "files": {
+          "sha256": "3ce68c434176b7a6c566805234c0ab49b520c2b634f5ff766a1b6656f77dbee7",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.1767766922712326.input.f32": "80d07a2f7643bd88e9f0e5dd8d8e13368a687625c2919c3ef59a7f16ba5c2e9d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.1767766922712326.strict-False.f32": "94faf2b152c6cb0772124535604a009035fb3f4d94a40b511cd0975b930253bc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.1767766922712326.torch.f32": "46fb12e86d16179a90c9f3a210088ea98a5834c10a6939311a2de7c41c21ecf0"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00545,
+        "files": {
+          "sha256": "777b08904d1f41a223f0a20d6a944610f4f661a302d67aa7e37c87d4cf6f0f18",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.1767766922712326.input.f32": "80d07a2f7643bd88e9f0e5dd8d8e13368a687625c2919c3ef59a7f16ba5c2e9d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.1767766922712326.strict-True.f32": "46fb12e86d16179a90c9f3a210088ea98a5834c10a6939311a2de7c41c21ecf0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/2x19-scale0.1767766922712326.torch.f32": "46fb12e86d16179a90c9f3a210088ea98a5834c10a6939311a2de7c41c21ecf0"
+          }
+        }
+      }
+    },
+    {
+      "columns": 3,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.47368421052631576,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.005821,
+        "files": {
+          "sha256": "911326aeb250bc821402614778f0fa24cb2cb802d56e9c70ff64cbdb40f592e6",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale1.0.input.f32": "c52839e46f09a9b048cae769407892d07c6786ef54dc4a0f2a12d8f869eba904",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale1.0.strict-False.f32": "347ec76fce821f26819ec06990daf0f73c14ce2993c3b2d9975f79ddcd1f245b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale1.0.torch.f32": "cc195f57b6c41ae092f18e06e437336025e233400b4e5d75ad33e900abd4ca43"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006693,
+        "files": {
+          "sha256": "be7c70dc6b50e4fbd4263a0d19e921969d7f50fd5f7223bfcc9c8c10d7cfb305",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale1.0.input.f32": "c52839e46f09a9b048cae769407892d07c6786ef54dc4a0f2a12d8f869eba904",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale1.0.strict-True.f32": "cc195f57b6c41ae092f18e06e437336025e233400b4e5d75ad33e900abd4ca43",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale1.0.torch.f32": "cc195f57b6c41ae092f18e06e437336025e233400b4e5d75ad33e900abd4ca43"
+          }
+        }
+      }
+    },
+    {
+      "columns": 3,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.5087719298245614,
+        "max_abs": 1.1920928955078125e-07,
+        "median_ms": 0.005721,
+        "files": {
+          "sha256": "e9d7f719b7c3f13be6e7d0cb6570d39a579893835f912b5f52aa2adcce91ff5a",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.125.input.f32": "7084578e69d73508c1e5532369fd29350b869f329f234fa787d31838fc87188b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.125.strict-False.f32": "e2c6ffd854a8ae81290338831fd69ba3eb61143c446376627e5ac66e78d0cbfe",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.125.torch.f32": "aecff48db872a60e62669d066ac0fc14b7f6f6b63c3b57a9222df05721e1ad53"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00544,
+        "files": {
+          "sha256": "3bf83f938ef5885623c5049e9508e732c76be5bf564b67f3e68b5c57c8e3e662",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.125.input.f32": "7084578e69d73508c1e5532369fd29350b869f329f234fa787d31838fc87188b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.125.strict-True.f32": "aecff48db872a60e62669d066ac0fc14b7f6f6b63c3b57a9222df05721e1ad53",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.125.torch.f32": "aecff48db872a60e62669d066ac0fc14b7f6f6b63c3b57a9222df05721e1ad53"
+          }
+        }
+      }
+    },
+    {
+      "columns": 3,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.5964912280701754,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.005701,
+        "files": {
+          "sha256": "de160908e84aa6a9221a5ed00f6d1c9d4ee982f2ac18c8cf012a7d3983135d8a",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.1767766922712326.input.f32": "b246a6d4217c46c510bcab572fc528f804c7aa3767f3c34814bf48e7c757fb4c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.1767766922712326.strict-False.f32": "fd1ec98fa612babd444a2fe3521458dd1b8e09532d175b9adc09431c4c3282de",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.1767766922712326.torch.f32": "cdc0596ba502efd66f32ab0edbc77a0a1c6b30d38e174997e0550dc464db9fc2"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00551,
+        "files": {
+          "sha256": "851cc4480cbd31a09538e6e76f6ab5969367fa68079f5977f0375b48e997fdbd",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.1767766922712326.input.f32": "b246a6d4217c46c510bcab572fc528f804c7aa3767f3c34814bf48e7c757fb4c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.1767766922712326.strict-True.f32": "cdc0596ba502efd66f32ab0edbc77a0a1c6b30d38e174997e0550dc464db9fc2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/3x19-scale0.1767766922712326.torch.f32": "cdc0596ba502efd66f32ab0edbc77a0a1c6b30d38e174997e0550dc464db9fc2"
+          }
+        }
+      }
+    },
+    {
+      "columns": 16,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.375,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.005691,
+        "files": {
+          "sha256": "ca393e22c6c72a1eacde001b2e70efdcc8d93c65526f73a3da20389fbbc596be",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale1.0.input.f32": "f34bd3c0ccb9dd8666983dbefb88217b4ad11d7a3751460cdb45428b92b0f95d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale1.0.strict-False.f32": "33d50966115e89838d5ee0789c3e2fb99d1d6261a5213c75b7327e1d2302c488",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale1.0.torch.f32": "78beb6f71b6ada4da888816c6fe5aa61d549a0ed0e54c94b37f1214f4c57a771"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005651,
+        "files": {
+          "sha256": "4bd0040e68928c06bc894994ed9faa7e3e0462be30dcddaae36bdb22744762e1",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale1.0.input.f32": "f34bd3c0ccb9dd8666983dbefb88217b4ad11d7a3751460cdb45428b92b0f95d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale1.0.strict-True.f32": "78beb6f71b6ada4da888816c6fe5aa61d549a0ed0e54c94b37f1214f4c57a771",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale1.0.torch.f32": "78beb6f71b6ada4da888816c6fe5aa61d549a0ed0e54c94b37f1214f4c57a771"
+          }
+        }
+      }
+    },
+    {
+      "columns": 16,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.5427631578947368,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.00568,
+        "files": {
+          "sha256": "960dbc5dfb03c6130604467e9c87e332dccc6f1a873d6309534098f54bacb558",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.125.input.f32": "066953c86e0a4c0566d85fb7ede236a3106e24bad07661a1f0517ce8a87c464f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.125.strict-False.f32": "a59726fe188df6f3163795c963b8e714fab03473eedecdebf7c0bace1586d95b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.125.torch.f32": "8ddee91f2e71654e72d92c43bf320c47642e155e5ef93473481e7ba0bf8fe901"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00559,
+        "files": {
+          "sha256": "0446d6ccd9f43605d4c51ff60c3486d017fb927f052f05442706e02af4409ade",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.125.input.f32": "066953c86e0a4c0566d85fb7ede236a3106e24bad07661a1f0517ce8a87c464f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.125.strict-True.f32": "8ddee91f2e71654e72d92c43bf320c47642e155e5ef93473481e7ba0bf8fe901",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.125.torch.f32": "8ddee91f2e71654e72d92c43bf320c47642e155e5ef93473481e7ba0bf8fe901"
+          }
+        }
+      }
+    },
+    {
+      "columns": 16,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.48355263157894735,
+        "max_abs": 2.9802322387695312e-08,
+        "median_ms": 0.005681,
+        "files": {
+          "sha256": "f9d5719cee5ae3cc13e822de01a961d69a3feb818b8f0f993437993fd4934e13",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.1767766922712326.input.f32": "3e3cc00cdd4d626fe357534c45d75f61c503a09c12ea0edcbb0d38ef6f8f2373",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.1767766922712326.strict-False.f32": "78883dae7396c370dfb024b17ce06962481c69f710978b989a88507da91ee499",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.1767766922712326.torch.f32": "93c7ae1cb0cefe8c65f78cc258bd1a381bb88b45a20b7ce2113a9ef394b79636"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00556,
+        "files": {
+          "sha256": "72ee92bdd9d00c375097ce621e431931e62177e516f159333dee76c22f86b252",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.1767766922712326.input.f32": "3e3cc00cdd4d626fe357534c45d75f61c503a09c12ea0edcbb0d38ef6f8f2373",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.1767766922712326.strict-True.f32": "93c7ae1cb0cefe8c65f78cc258bd1a381bb88b45a20b7ce2113a9ef394b79636",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/16x19-scale0.1767766922712326.torch.f32": "93c7ae1cb0cefe8c65f78cc258bd1a381bb88b45a20b7ce2113a9ef394b79636"
+          }
+        }
+      }
+    },
+    {
+      "columns": 24,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.2982456140350877,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.005831,
+        "files": {
+          "sha256": "25dc55f84e4657cf758be6c97060fce98daefbf2bd99d771ef80368beb0f343f",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale1.0.input.f32": "44a66b095358d80375390e70ffc46f583c2a8a4bcdc5df36b0e8e08276616fa1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale1.0.strict-False.f32": "b86c21e03ab16b4c99122cc9d36b00fcff186ac8c1f0be4378e0b550fe6bd425",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale1.0.torch.f32": "2b42ae965f4fbac38f3c085cdc961b46bc8fbc516d5207722ec90f4fa082ae93"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005961,
+        "files": {
+          "sha256": "6a4d66fa802073015965f5f4415165931a8ea7eb21dd1941b88f63848d7f1bee",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale1.0.input.f32": "44a66b095358d80375390e70ffc46f583c2a8a4bcdc5df36b0e8e08276616fa1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale1.0.strict-True.f32": "2b42ae965f4fbac38f3c085cdc961b46bc8fbc516d5207722ec90f4fa082ae93",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale1.0.torch.f32": "2b42ae965f4fbac38f3c085cdc961b46bc8fbc516d5207722ec90f4fa082ae93"
+          }
+        }
+      }
+    },
+    {
+      "columns": 24,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.43201754385964913,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.006633,
+        "files": {
+          "sha256": "ec3318516ff390b7ed18ac3f319fa431c3167b25d14d01972f101a9c36b23cda",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.125.input.f32": "09b5a18a6d4a195bcd928e9b7eb1c739549e31605e5e0bac1292dfd168b7ba5d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.125.strict-False.f32": "38d69a8a5e06ad053cf9800d2b4cbe305a771a40d791d9f1a3cfa709d29fe728",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.125.torch.f32": "2b56960bc10b74f9a0ef845a6fd6c2eedb8121fa5067a031971e3cba029096e7"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005711,
+        "files": {
+          "sha256": "8388bd8389d655b06024eb0246eee811f509c06098af5e020e2d87b402ddaaf9",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.125.input.f32": "09b5a18a6d4a195bcd928e9b7eb1c739549e31605e5e0bac1292dfd168b7ba5d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.125.strict-True.f32": "2b56960bc10b74f9a0ef845a6fd6c2eedb8121fa5067a031971e3cba029096e7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.125.torch.f32": "2b56960bc10b74f9a0ef845a6fd6c2eedb8121fa5067a031971e3cba029096e7"
+          }
+        }
+      }
+    },
+    {
+      "columns": 24,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.46271929824561403,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.005932,
+        "files": {
+          "sha256": "0d51945871e7119dd375559343575ed3bb5471bb3eb1bb9e6ad85590d3c19a3f",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.1767766922712326.input.f32": "abf42b5f2989e5aaa380b72f040d46541972d073aef96fad9aaef0680e9330f8",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.1767766922712326.strict-False.f32": "9b0ecd301e55905c4e4939a00caee2e79339ab37939060a49488eed1bb65c035",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.1767766922712326.torch.f32": "e3ea4a7679022423fb9fe27a60164a32901096ca225f4c47b9f4c27dc84044f3"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00554,
+        "files": {
+          "sha256": "38835ad0c12f9ef095511434e00c7d9012c674d17401e0598d0d51e17c6a0ade",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.1767766922712326.input.f32": "abf42b5f2989e5aaa380b72f040d46541972d073aef96fad9aaef0680e9330f8",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.1767766922712326.strict-True.f32": "e3ea4a7679022423fb9fe27a60164a32901096ca225f4c47b9f4c27dc84044f3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/24x19-scale0.1767766922712326.torch.f32": "e3ea4a7679022423fb9fe27a60164a32901096ca225f4c47b9f4c27dc84044f3"
+          }
+        }
+      }
+    },
+    {
+      "columns": 31,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.266553480475382,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.006021,
+        "files": {
+          "sha256": "9b90de1ef06d8e3b0609bd48c03475eefc1ad8257583d643ae130a1e39cb9b76",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale1.0.input.f32": "8765ee33f3c70ee8f0c90d2a3eec84e481435071cc069d1ac13508637f2fae65",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale1.0.strict-False.f32": "545020d52e6215b0f518357ed2ec2e94e8dbac69653a084e1382bfa333c886ab",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale1.0.torch.f32": "3e574222f1d34666cf2ff1f0ba6d6d4e27b34ba058162b56241b833197217fb3"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006312,
+        "files": {
+          "sha256": "5bc75d0e312e9e54626b467b50b4395e1baecc9b1ff654eb1a0917aa7ee4f0bf",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale1.0.input.f32": "8765ee33f3c70ee8f0c90d2a3eec84e481435071cc069d1ac13508637f2fae65",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale1.0.strict-True.f32": "3e574222f1d34666cf2ff1f0ba6d6d4e27b34ba058162b56241b833197217fb3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale1.0.torch.f32": "3e574222f1d34666cf2ff1f0ba6d6d4e27b34ba058162b56241b833197217fb3"
+          }
+        }
+      }
+    },
+    {
+      "columns": 31,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4533106960950764,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.005831,
+        "files": {
+          "sha256": "b51c6860eb4fc72f79e1d0300851d13ed07c56cd0a983cfc3453fe86e06ca41a",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.125.input.f32": "c782b466e69f8a26a3003481dd95b7ed0b0c058c4be353163efd757569bfe7ef",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.125.strict-False.f32": "b2e10600d2c0829f19bbb93e6304847635bd34ab9631a07cb0c28603651a93dc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.125.torch.f32": "ba1671d6cd69bc7be61cc3d13cb4513f6262ff21cefcc04f6895895842a0c700"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00564,
+        "files": {
+          "sha256": "46acec0089202254d22ca8363003ca3277616f8cfb0abaf1006bfea5ea8ae2d6",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.125.input.f32": "c782b466e69f8a26a3003481dd95b7ed0b0c058c4be353163efd757569bfe7ef",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.125.strict-True.f32": "ba1671d6cd69bc7be61cc3d13cb4513f6262ff21cefcc04f6895895842a0c700",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.125.torch.f32": "ba1671d6cd69bc7be61cc3d13cb4513f6262ff21cefcc04f6895895842a0c700"
+          }
+        }
+      }
+    },
+    {
+      "columns": 31,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.466893039049236,
+        "max_abs": 2.9802322387695312e-08,
+        "median_ms": 0.006001,
+        "files": {
+          "sha256": "8a4d776401118b71a7b034088abcbd397eca3ab514bfb702c82e0c68b3bafe0e",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.1767766922712326.input.f32": "d52709aa3fd28c9ba24cd43843a7d1a6f9ccf98e55e717d6da4d130b19a1acdc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.1767766922712326.strict-False.f32": "8480621f2f0de0d0193bdb1391d23356061d1edf341bc3ac56a06c30fbafb145",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.1767766922712326.torch.f32": "d78fe0ae6ce80abbc5a19bf021132592f998dcf6ec835f27758c781d2b9562c9"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.00541,
+        "files": {
+          "sha256": "d3eda3d10c5381de36c18288b6b0ee766ef13aaa29afb5a98fffafa74ec09c10",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.1767766922712326.input.f32": "d52709aa3fd28c9ba24cd43843a7d1a6f9ccf98e55e717d6da4d130b19a1acdc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.1767766922712326.strict-True.f32": "d78fe0ae6ce80abbc5a19bf021132592f998dcf6ec835f27758c781d2b9562c9",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/31x19-scale0.1767766922712326.torch.f32": "d78fe0ae6ce80abbc5a19bf021132592f998dcf6ec835f27758c781d2b9562c9"
+          }
+        }
+      }
+    },
+    {
+      "columns": 32,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.33223684210526316,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.00574,
+        "files": {
+          "sha256": "55d95fa1dedce035761cb7d4eeef4bea523fe855551467b0f7b7bbfe53a956a2",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale1.0.input.f32": "0b6d874d7e3037d14c2deafb8595d0b1a9cdd71ed5ea43f68ebff8c63e73f671",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale1.0.strict-False.f32": "c91f6544cbea119c1b994b0c6dc3918d0e5b99ddcc87723d271d481d9e05a153",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale1.0.torch.f32": "4afa79923f0a76aad6422c0dfa80d2e2aac57c1e047a3cbc839e1377a845e3b6"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006362,
+        "files": {
+          "sha256": "aaec1b425608ad82b077f907b135e1d79918d3fd5e349d90a8d40ecf9cdbaccb",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale1.0.input.f32": "0b6d874d7e3037d14c2deafb8595d0b1a9cdd71ed5ea43f68ebff8c63e73f671",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale1.0.strict-True.f32": "4afa79923f0a76aad6422c0dfa80d2e2aac57c1e047a3cbc839e1377a845e3b6",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale1.0.torch.f32": "4afa79923f0a76aad6422c0dfa80d2e2aac57c1e047a3cbc839e1377a845e3b6"
+          }
+        }
+      }
+    },
+    {
+      "columns": 32,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.5131578947368421,
+        "max_abs": 7.450580596923828e-09,
+        "median_ms": 0.005761,
+        "files": {
+          "sha256": "9f6f2e1f6b39d0f5bc659a196f7fa6b64fc38bf280fa37fa65ca62bd953fba96",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.125.input.f32": "e0ab7b656465ad5c35f12da30dd28615f6c4834612cbeb42727e3ffe32a482c4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.125.strict-False.f32": "9bd55459f4495ce532b665c6fb7a2b0755fcdc8606a0ee8077d09111d2fb4cbe",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.125.torch.f32": "53ac690bc436a672c206bdb0bd587913305e703ddf9b8d480b9eedef62094340"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005771,
+        "files": {
+          "sha256": "298c1f559d3a4b352ea08bf8da7f3f061b6d4c1284469a15e20f224d6b01afeb",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.125.input.f32": "e0ab7b656465ad5c35f12da30dd28615f6c4834612cbeb42727e3ffe32a482c4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.125.strict-True.f32": "53ac690bc436a672c206bdb0bd587913305e703ddf9b8d480b9eedef62094340",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.125.torch.f32": "53ac690bc436a672c206bdb0bd587913305e703ddf9b8d480b9eedef62094340"
+          }
+        }
+      }
+    },
+    {
+      "columns": 32,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.5279605263157895,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.005611,
+        "files": {
+          "sha256": "c4ef0ded0c0b2e4ce5b9bd16e9700e9a3a909675cac3c06d9628b023362fb8a5",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.1767766922712326.input.f32": "78e124ef552c12bca9dd93774db56cb5dc4fbb0f3499deb836ebf90fbcc1dfab",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.1767766922712326.strict-False.f32": "e73003ddedc7db7b4c465d5231b431b1238da80be4720d46628ad605b3901540",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.1767766922712326.torch.f32": "4f3140b2922ddbe31c44a3d2a63be6c95165940070a97623b442a4169854693e"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005491,
+        "files": {
+          "sha256": "275f6a27f8a3123bbc0b19ac0177f62877a04f23d09b5622701b89857f5073d3",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.1767766922712326.input.f32": "78e124ef552c12bca9dd93774db56cb5dc4fbb0f3499deb836ebf90fbcc1dfab",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.1767766922712326.strict-True.f32": "4f3140b2922ddbe31c44a3d2a63be6c95165940070a97623b442a4169854693e",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/32x19-scale0.1767766922712326.torch.f32": "4f3140b2922ddbe31c44a3d2a63be6c95165940070a97623b442a4169854693e"
+          }
+        }
+      }
+    },
+    {
+      "columns": 33,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.21052631578947367,
+        "max_abs": 1.1920928955078125e-07,
+        "median_ms": 0.006712,
+        "files": {
+          "sha256": "12aaaa20cffaf7269353ba797d494e4359aef2f6a54af1bc186d80c0010aae04",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale1.0.input.f32": "322ce19250567ab62c52fd6729802cf32c27fe8e705ee43f75ae5a39b6f984f9",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale1.0.strict-False.f32": "7a2b427df8df0d126d26b7885ef904fcf48374eeefc04120f1f136dbdea5fdd8",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale1.0.torch.f32": "fae4e5b99f5652882f8e74f7af432714f65eb776b02afb3e93913cf3dad43c86"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005981,
+        "files": {
+          "sha256": "82398ffdd924086d9fc7550e16f9e19cf2779f61437ca9b3fe66ef16c837a7ed",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale1.0.input.f32": "322ce19250567ab62c52fd6729802cf32c27fe8e705ee43f75ae5a39b6f984f9",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale1.0.strict-True.f32": "fae4e5b99f5652882f8e74f7af432714f65eb776b02afb3e93913cf3dad43c86",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale1.0.torch.f32": "fae4e5b99f5652882f8e74f7af432714f65eb776b02afb3e93913cf3dad43c86"
+          }
+        }
+      }
+    },
+    {
+      "columns": 33,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.34609250398724084,
+        "max_abs": 1.1920928955078125e-07,
+        "median_ms": 0.005931,
+        "files": {
+          "sha256": "782b8b06adb5ca5d79feaf1672884a75f1ac3ad24fbf8e589ebe960abdc5a6ce",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.125.input.f32": "65fb62fa497198feccd10de45d57060bf0600dc564890756a6c9de3870107ddb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.125.strict-False.f32": "c560efc234004fb1652b34c676d93c370dd9eb9810b6b40e575f11ea1c18231a",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.125.torch.f32": "08d6dd36c1d80ee93998d72a755fe8d9218719537bd9093edac65bddaf043085"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006071,
+        "files": {
+          "sha256": "cc92cb0b79b895f53a9dd4397630957bf3e85d4246afd137d5fa4729c5f891c8",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.125.input.f32": "65fb62fa497198feccd10de45d57060bf0600dc564890756a6c9de3870107ddb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.125.strict-True.f32": "08d6dd36c1d80ee93998d72a755fe8d9218719537bd9093edac65bddaf043085",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.125.torch.f32": "08d6dd36c1d80ee93998d72a755fe8d9218719537bd9093edac65bddaf043085"
+          }
+        }
+      }
+    },
+    {
+      "columns": 33,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.35566188197767146,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.006371,
+        "files": {
+          "sha256": "59dbcb4e5766b97358ccb46da01643038ddb2f69eb43cc6a812bec83de03f6d8",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.1767766922712326.input.f32": "f9a51f5fe1e2f43fda1433cdb30bbc52e0e8e0e7c767185322f18da57a156d9d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.1767766922712326.strict-False.f32": "fbd557fcb4fcc67124ee732736bdc6b36ddd43b1830d58976cbf4217d7e2b560",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.1767766922712326.torch.f32": "3f5ce2422a0fe754a704a91fd87a74c6c001e5277faa7b742a38109e7455ce17"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005711,
+        "files": {
+          "sha256": "1ee9f24f7abbce4dba45d154132aa93838937fbf6872a74a55ffa1e4fde8201e",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.1767766922712326.input.f32": "f9a51f5fe1e2f43fda1433cdb30bbc52e0e8e0e7c767185322f18da57a156d9d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.1767766922712326.strict-True.f32": "3f5ce2422a0fe754a704a91fd87a74c6c001e5277faa7b742a38109e7455ce17",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/33x19-scale0.1767766922712326.torch.f32": "3f5ce2422a0fe754a704a91fd87a74c6c001e5277faa7b742a38109e7455ce17"
+          }
+        }
+      }
+    },
+    {
+      "columns": 72,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.26169590643274854,
+        "max_abs": 8.940696716308594e-08,
+        "median_ms": 0.006082,
+        "files": {
+          "sha256": "bb5b65678abc30dce59ab6019a811b97d6276875e7ba39820d45015c8b8397fb",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale1.0.input.f32": "e4b55e1c870bdf3e3ce8eb5ba641d61e3d15d3dd8225992e3880bbafff09452d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale1.0.strict-False.f32": "3ce195fb15bfeaeac1f06fc2c489a7c3cbc08e064bad905e8cd570950e2d23f7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale1.0.torch.f32": "7f871fc30ab11ac4e3cd160a06fa03bceb798138658d800b7e529b7b1dd92172"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006742,
+        "files": {
+          "sha256": "42d8a4e7141d9cfbfe350d4353c6c077c25472c4d2979c91cdd1dc7678c6610a",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale1.0.input.f32": "e4b55e1c870bdf3e3ce8eb5ba641d61e3d15d3dd8225992e3880bbafff09452d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale1.0.strict-True.f32": "7f871fc30ab11ac4e3cd160a06fa03bceb798138658d800b7e529b7b1dd92172",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale1.0.torch.f32": "7f871fc30ab11ac4e3cd160a06fa03bceb798138658d800b7e529b7b1dd92172"
+          }
+        }
+      }
+    },
+    {
+      "columns": 72,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4466374269005848,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.006112,
+        "files": {
+          "sha256": "cb0cbffc3354efd3786680635ce6904a239602ebea090eb494a63d23057ec074",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.125.input.f32": "1e396ea0810b12ecc86533cc8a5876f9d66e69dfc055faa471facbc368cc2029",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.125.strict-False.f32": "7f758a0610d88eff956942d9e8ed6fa14253ba060d4f6b26a8547cf1b0318dcc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.125.torch.f32": "d1a27f831bda466f33e0b8d0e3025c326c64e182b755709a601a59d85b934baa"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006081,
+        "files": {
+          "sha256": "51f568a3d5fd60cace614e8c77375395cf8a1c8b92b69866bcbeb8ecadc08a2c",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.125.input.f32": "1e396ea0810b12ecc86533cc8a5876f9d66e69dfc055faa471facbc368cc2029",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.125.strict-True.f32": "d1a27f831bda466f33e0b8d0e3025c326c64e182b755709a601a59d85b934baa",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.125.torch.f32": "d1a27f831bda466f33e0b8d0e3025c326c64e182b755709a601a59d85b934baa"
+          }
+        }
+      }
+    },
+    {
+      "columns": 72,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.39766081871345027,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.006252,
+        "files": {
+          "sha256": "18eaae9988525f8328f95c1792909cb5f8fdb1905aa5f410d38835b46962f508",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.1767766922712326.input.f32": "81bbfe343f629c2facc3e7d7e5f1c5e1d94198c800c2daae993bcd7d24901128",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.1767766922712326.strict-False.f32": "c15b8ae3b5f216c50f5ed19df3a862cd3c73bdac0bdb7100447a567d0a2a10a9",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.1767766922712326.torch.f32": "f7640408dbcd7506dd0f8ec4044ba8add5d5c5aab106e5db4d241a12dac30058"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006151,
+        "files": {
+          "sha256": "64dfc71886b056eda18464f9c3eb0d86ab226cb55431fe612006b9b44637329c",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.1767766922712326.input.f32": "81bbfe343f629c2facc3e7d7e5f1c5e1d94198c800c2daae993bcd7d24901128",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.1767766922712326.strict-True.f32": "f7640408dbcd7506dd0f8ec4044ba8add5d5c5aab106e5db4d241a12dac30058",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/72x19-scale0.1767766922712326.torch.f32": "f7640408dbcd7506dd0f8ec4044ba8add5d5c5aab106e5db4d241a12dac30058"
+          }
+        }
+      }
+    },
+    {
+      "columns": 127,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.22503108164111066,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.006472,
+        "files": {
+          "sha256": "9e82634b29e5d598a52331c998948128efbabbe93eb2952c6bfb076bc5f50984",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale1.0.input.f32": "4c004a8f68c68f0ba30d4b7de64931c560cbacaf9ca30a31db026052b19d208c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale1.0.strict-False.f32": "cb4a927baf7e1a8e9ab52ee3c4136c993d06f520d7e279d4640a938018e0dcc3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale1.0.torch.f32": "d6973755ed48a71b2d8397f3687d12d9366390723d65a16d2550258f1e1b6a43"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006652,
+        "files": {
+          "sha256": "ac67f8a237e1775abc3fcc98749c217f38ed00a0e0b3716c9bd09abbde6541cd",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale1.0.input.f32": "4c004a8f68c68f0ba30d4b7de64931c560cbacaf9ca30a31db026052b19d208c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale1.0.strict-True.f32": "d6973755ed48a71b2d8397f3687d12d9366390723d65a16d2550258f1e1b6a43",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale1.0.torch.f32": "d6973755ed48a71b2d8397f3687d12d9366390723d65a16d2550258f1e1b6a43"
+          }
+        }
+      }
+    },
+    {
+      "columns": 127,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.41898052217157067,
+        "max_abs": 7.450580596923828e-09,
+        "median_ms": 0.006372,
+        "files": {
+          "sha256": "34d93841d80a1bbeab1483fe949d5de09ea62c2a682910b04ca12000101a8e6c",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.125.input.f32": "8d3ef7af03a33079506cc43b956c2d3e295f6758fb528fc00378c2fd540283b2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.125.strict-False.f32": "56c0003c23606b47fa09e08648a0dc4d99701fb7c5db624afb4039a90497a8b0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.125.torch.f32": "0bfc0ca1a552d5d33e5326f34fe22f9171d5f661e2e231ce1b8a7aab6c043d79"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006082,
+        "files": {
+          "sha256": "2bb38a2cc837c11759d9741adfeaad896f0198be0a39eec9e296de73b545a64d",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.125.input.f32": "8d3ef7af03a33079506cc43b956c2d3e295f6758fb528fc00378c2fd540283b2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.125.strict-True.f32": "0bfc0ca1a552d5d33e5326f34fe22f9171d5f661e2e231ce1b8a7aab6c043d79",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.125.torch.f32": "0bfc0ca1a552d5d33e5326f34fe22f9171d5f661e2e231ce1b8a7aab6c043d79"
+          }
+        }
+      }
+    },
+    {
+      "columns": 127,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4438458350600912,
+        "max_abs": 2.9802322387695312e-08,
+        "median_ms": 0.006131,
+        "files": {
+          "sha256": "4bf05e182add66d375f766fc77a837c9dc64db490d29c9eb04bc1ee1a019bb00",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.1767766922712326.input.f32": "b231c30cdcb181796b6ca202c3ea623b180f142425ce8566db0a889986d33e0f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.1767766922712326.strict-False.f32": "3b905459b17688a33861bb3e622cba7f124937b2cae2e377e2c87d2c4e36b6b7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.1767766922712326.torch.f32": "79f2915f22b0f235bbcc0b6c726c8fc77ad86ab32793339f9898172a21b5f8d6"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006262,
+        "files": {
+          "sha256": "e65d8c80ecdb284941fff8326540bc64b6904189a1ff62648ab80053cb714ee3",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.1767766922712326.input.f32": "b231c30cdcb181796b6ca202c3ea623b180f142425ce8566db0a889986d33e0f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.1767766922712326.strict-True.f32": "79f2915f22b0f235bbcc0b6c726c8fc77ad86ab32793339f9898172a21b5f8d6",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/127x19-scale0.1767766922712326.torch.f32": "79f2915f22b0f235bbcc0b6c726c8fc77ad86ab32793339f9898172a21b5f8d6"
+          }
+        }
+      }
+    },
+    {
+      "columns": 128,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.2578125,
+        "max_abs": 3.5762786865234375e-07,
+        "median_ms": 0.005741,
+        "files": {
+          "sha256": "869fa6a12a389b921b7e02564dbf6bfb09cff56788600bbdfecb986e00341718",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale1.0.input.f32": "9659766ea5da0f29b8ee58d02f98baf1af5f3622f41950fcbb434894361f6a2e",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale1.0.strict-False.f32": "4b24199b81bdccee1985880b37e1efbf0c0c822a68f0764b6e93a27b07ef8f7d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale1.0.torch.f32": "866895e0619ca385e5d33bc9df7024e3cdd16845812d3c81dff3de360a30fd7a"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.007014,
+        "files": {
+          "sha256": "68168ba0caae19c5e4f1be043d3123b478b57cbb2da62d231267c11f10d81765",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale1.0.input.f32": "9659766ea5da0f29b8ee58d02f98baf1af5f3622f41950fcbb434894361f6a2e",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale1.0.strict-True.f32": "866895e0619ca385e5d33bc9df7024e3cdd16845812d3c81dff3de360a30fd7a",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale1.0.torch.f32": "866895e0619ca385e5d33bc9df7024e3cdd16845812d3c81dff3de360a30fd7a"
+          }
+        }
+      }
+    },
+    {
+      "columns": 128,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4629934210526316,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.00572,
+        "files": {
+          "sha256": "9bf2bde3da9c1b5363ab6978a56f5ed53a5fc8ee5c33bec16405735e6156f858",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.125.input.f32": "2e45919e6fd4d79fdad422ce2cf2564b0be342b8d1398be7ddc9416b40673237",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.125.strict-False.f32": "ea64d227ba9bb3ca9bcd2f893e998dd60d250ad8b77e3914466d41f17f2993a1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.125.torch.f32": "b8cc1cb60dbe6c9384cb9a8702c7a0ef09a432a3f0f7a39bbcd8e33b47f39c4f"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006442,
+        "files": {
+          "sha256": "0aa316a860a85f9221bf3f7d3ecf69898365deee004df0b986208a74ca7e9a4f",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.125.input.f32": "2e45919e6fd4d79fdad422ce2cf2564b0be342b8d1398be7ddc9416b40673237",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.125.strict-True.f32": "b8cc1cb60dbe6c9384cb9a8702c7a0ef09a432a3f0f7a39bbcd8e33b47f39c4f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.125.torch.f32": "b8cc1cb60dbe6c9384cb9a8702c7a0ef09a432a3f0f7a39bbcd8e33b47f39c4f"
+          }
+        }
+      }
+    },
+    {
+      "columns": 128,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.5004111842105263,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.005801,
+        "files": {
+          "sha256": "2ee4fda50846fe6ef82c66932a0fe89f82e7a1bb51fc99bc2a1166add05dfa2c",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.1767766922712326.input.f32": "d13e9fca96394cc1a217c61cd05c0c90b1e550f032555a99ad006e287c3f3cea",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.1767766922712326.strict-False.f32": "6912a108921903529d4514fc250f8465c785e5efd42c7b90704892730259de53",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.1767766922712326.torch.f32": "794d44e3c67532681dce2cf74b104a3cf8c08a4613c8a7cd117521cf91b4a4d4"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006212,
+        "files": {
+          "sha256": "ffe10f9cbf88ca04c2bf6ea0644ac71a61c8e3608872df4fef752725a9cc1197",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.1767766922712326.input.f32": "d13e9fca96394cc1a217c61cd05c0c90b1e550f032555a99ad006e287c3f3cea",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.1767766922712326.strict-True.f32": "794d44e3c67532681dce2cf74b104a3cf8c08a4613c8a7cd117521cf91b4a4d4",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/128x19-scale0.1767766922712326.torch.f32": "794d44e3c67532681dce2cf74b104a3cf8c08a4613c8a7cd117521cf91b4a4d4"
+          }
+        }
+      }
+    },
+    {
+      "columns": 129,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.26805385556915545,
+        "max_abs": 1.1920928955078125e-07,
+        "median_ms": 0.005991,
+        "files": {
+          "sha256": "24215ca758798f83a3c3a1e047d6a2dbbbfdf214522bc8b9aea91183ffbf0046",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale1.0.input.f32": "e297803793aaf577ca59236ba0825c42d644a94003e307cd6092d89cb32d77d6",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale1.0.strict-False.f32": "c557405b71491b46b1bfd6c985e27f8224f48ed4cd082abaf960216fe3cfa567",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale1.0.torch.f32": "49e2befbc4378f9237fe2a2318328a62fcf2e74e14b0cddf885c42d9d3a11fb3"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.007243,
+        "files": {
+          "sha256": "46750634df8d897b35a91475b550c06c4e080251c282946aa3af2909809b8a03",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale1.0.input.f32": "e297803793aaf577ca59236ba0825c42d644a94003e307cd6092d89cb32d77d6",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale1.0.strict-True.f32": "49e2befbc4378f9237fe2a2318328a62fcf2e74e14b0cddf885c42d9d3a11fb3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale1.0.torch.f32": "49e2befbc4378f9237fe2a2318328a62fcf2e74e14b0cddf885c42d9d3a11fb3"
+          }
+        }
+      }
+    },
+    {
+      "columns": 129,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4394124847001224,
+        "max_abs": 7.450580596923828e-09,
+        "median_ms": 0.006813,
+        "files": {
+          "sha256": "8e6524b3f163431bdbb8634dd2b9e5efcd736e51025f30cb643be261dd6fe737",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.125.input.f32": "d7eda753d4ce5dc4271aa10667db3eceeb93b09166172e8cf2d93ee0605fc82e",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.125.strict-False.f32": "195ae45f808c539c612a4dd69d2bb1be414228c17ec4a164d9a3b8470672654b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.125.torch.f32": "70521d245af2b35679e87a8acbb24803d978d9998f8b2d23de49d57628c56e91"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005921,
+        "files": {
+          "sha256": "f036cbdfa57b4dcebe59b5c0f719e611d886f2b7338f7189ff7c417044883c21",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.125.input.f32": "d7eda753d4ce5dc4271aa10667db3eceeb93b09166172e8cf2d93ee0605fc82e",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.125.strict-True.f32": "70521d245af2b35679e87a8acbb24803d978d9998f8b2d23de49d57628c56e91",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.125.torch.f32": "70521d245af2b35679e87a8acbb24803d978d9998f8b2d23de49d57628c56e91"
+          }
+        }
+      }
+    },
+    {
+      "columns": 129,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.467156262749898,
+        "max_abs": 5.587935447692871e-09,
+        "median_ms": 0.006151,
+        "files": {
+          "sha256": "3e0c6cf2757e2fbd874d5ebc22d184e687249c148229a44ca50967e8d586f8ee",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.1767766922712326.input.f32": "09a9a35c51d28a89b72999f3b32206864624a13c34c2beca57608b567d949adb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.1767766922712326.strict-False.f32": "f0c4f83f4c936bb252e560aeea17dd6af7196c47edd86ab9a82381f6e347386b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.1767766922712326.torch.f32": "16361d95aa1e411d5116612112f6a4c6a6658e26a5ece525cba900dbb156ad7d"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.005921,
+        "files": {
+          "sha256": "bda3cb9cb37817070edb89635b715783fb50e18a177090ef10bb22a900bc3cce",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.1767766922712326.input.f32": "09a9a35c51d28a89b72999f3b32206864624a13c34c2beca57608b567d949adb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.1767766922712326.strict-True.f32": "16361d95aa1e411d5116612112f6a4c6a6658e26a5ece525cba900dbb156ad7d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/129x19-scale0.1767766922712326.torch.f32": "16361d95aa1e411d5116612112f6a4c6a6658e26a5ece525cba900dbb156ad7d"
+          }
+        }
+      }
+    },
+    {
+      "columns": 255,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.2059855521155831,
+        "max_abs": 1.1920928955078125e-07,
+        "median_ms": 0.006271,
+        "files": {
+          "sha256": "2ea99a650fab4ac19d9a8b01796d98f59019ecaf2658f975cabeebc875cb9ea0",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale1.0.input.f32": "4c3ee4fe38de172de8c8f609968a58f90a7489368eb3954c0e67975c8eb49e73",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale1.0.strict-False.f32": "6bbe9cf37bf3c9d3e40b02f1930e621c4361e499374e8eb2875af52156242e25",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale1.0.torch.f32": "be85852e2d339fc82baac7e9202fcb3d1a65da4ac7f80a853768982782716f40"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.007033,
+        "files": {
+          "sha256": "73351c191d7f73aa4738a535db638d92ee9253de6103eabafff80d6823bb6401",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale1.0.input.f32": "4c3ee4fe38de172de8c8f609968a58f90a7489368eb3954c0e67975c8eb49e73",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale1.0.strict-True.f32": "be85852e2d339fc82baac7e9202fcb3d1a65da4ac7f80a853768982782716f40",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale1.0.torch.f32": "be85852e2d339fc82baac7e9202fcb3d1a65da4ac7f80a853768982782716f40"
+          }
+        }
+      }
+    },
+    {
+      "columns": 255,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.33560371517027865,
+        "max_abs": 7.450580596923828e-09,
+        "median_ms": 0.006322,
+        "files": {
+          "sha256": "643d232633bcd56556e8cc1269d12ee78a20e0e884658d646d93e0262053f10b",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.125.input.f32": "ed37b675098e44c348b4e8e68038a6ec82ffa4769e05c028daed140ecff9c2e6",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.125.strict-False.f32": "4c1c5bc8f88fec6fc0a8d1b649572981303b607cde1239c424d12430c2fd4419",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.125.torch.f32": "aeca8ebc5cdebaa51f11a15adcfe9121e46324d10936dc6246956bc3a9f0bab9"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006192,
+        "files": {
+          "sha256": "671da1334e6960c38758544bce210c50d88334c862246da3978470acbfcd0a8b",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.125.input.f32": "ed37b675098e44c348b4e8e68038a6ec82ffa4769e05c028daed140ecff9c2e6",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.125.strict-True.f32": "aeca8ebc5cdebaa51f11a15adcfe9121e46324d10936dc6246956bc3a9f0bab9",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.125.torch.f32": "aeca8ebc5cdebaa51f11a15adcfe9121e46324d10936dc6246956bc3a9f0bab9"
+          }
+        }
+      }
+    },
+    {
+      "columns": 255,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.32466460268317854,
+        "max_abs": 7.450580596923828e-09,
+        "median_ms": 0.006252,
+        "files": {
+          "sha256": "526286d5978eb3dc4c90e11e2555f5863d0a28f7e55048ba0e22e28da5fe6dbf",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.1767766922712326.input.f32": "25d35ce99e4942dc2e0f6b456566821b671f9331d64d5fa221a1a3eca26369da",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.1767766922712326.strict-False.f32": "d2d69f21394b231bdd87489466cc547b6e230e90c62907aeba074458059faa7e",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.1767766922712326.torch.f32": "ddcbf38495d56586d00697681d271915b248a5ba5428b4c0467d9d499ea9e22a"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006282,
+        "files": {
+          "sha256": "a99ebab0017dbcc4c1980b66fddd5ffe448635dc20c190a62d3e6979a1ee49d2",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.1767766922712326.input.f32": "25d35ce99e4942dc2e0f6b456566821b671f9331d64d5fa221a1a3eca26369da",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.1767766922712326.strict-True.f32": "ddcbf38495d56586d00697681d271915b248a5ba5428b4c0467d9d499ea9e22a",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/255x19-scale0.1767766922712326.torch.f32": "ddcbf38495d56586d00697681d271915b248a5ba5428b4c0467d9d499ea9e22a"
+          }
+        }
+      }
+    },
+    {
+      "columns": 256,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.24629934210526316,
+        "max_abs": 1.1920928955078125e-07,
+        "median_ms": 0.006492,
+        "files": {
+          "sha256": "3f10f252f322a9d17673b81bdf5db637cd8c010486844417bf1635a9891ddb53",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale1.0.input.f32": "8ec5cb81ad37ab87067190955dd1c30967430a6b5dbcc6b93b3446defc498399",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale1.0.strict-False.f32": "c9efed0f36ca9ca5e73cb06e223e22cb1bda0eb232b2f7fd892155ee0206454d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale1.0.torch.f32": "204d196bb43812411cfd5d891abc878ed16689e80707c5b03e48e520ab8d5aa3"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.007133,
+        "files": {
+          "sha256": "41668252b2bf85b0528bfe6e268dcbc59c141d2d87311402ff9787136b957554",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale1.0.input.f32": "8ec5cb81ad37ab87067190955dd1c30967430a6b5dbcc6b93b3446defc498399",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale1.0.strict-True.f32": "204d196bb43812411cfd5d891abc878ed16689e80707c5b03e48e520ab8d5aa3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale1.0.torch.f32": "204d196bb43812411cfd5d891abc878ed16689e80707c5b03e48e520ab8d5aa3"
+          }
+        }
+      }
+    },
+    {
+      "columns": 256,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.44757401315789475,
+        "max_abs": 7.450580596923828e-09,
+        "median_ms": 0.006081,
+        "files": {
+          "sha256": "fa58a7598fae1022e914e491d774554f9ef99f1996716b010dafbf299396bee3",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.125.input.f32": "d76a632a322f8dd4793c9d22c7a301b42e905555b959841fcf91fbfc9c74ce8d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.125.strict-False.f32": "8bf8bc41776c64787737a6339de53710e57f77b29c8da3a148a022309659851d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.125.torch.f32": "d4dcd131c1614c10c5c903519847aa09d63fbb37142a7edeea6a05a460255170"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006552,
+        "files": {
+          "sha256": "7117d7092f012d818589424126bf2c610b7bd087573b1fcbe3e30dfc5860af42",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.125.input.f32": "d76a632a322f8dd4793c9d22c7a301b42e905555b959841fcf91fbfc9c74ce8d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.125.strict-True.f32": "d4dcd131c1614c10c5c903519847aa09d63fbb37142a7edeea6a05a460255170",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.125.torch.f32": "d4dcd131c1614c10c5c903519847aa09d63fbb37142a7edeea6a05a460255170"
+          }
+        }
+      }
+    },
+    {
+      "columns": 256,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4375,
+        "max_abs": 1.4901161193847656e-08,
+        "median_ms": 0.006161,
+        "files": {
+          "sha256": "5c55fa1ccfdcd1bac18e9e6d41754d795b390f7eac57b44ca6fa8a7bcde14b3d",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.1767766922712326.input.f32": "d6be4229524697d0a91597112d9e5e787136a75b36c504feb6075c361e74d33c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.1767766922712326.strict-False.f32": "0281f1cf0cbe768961806318407d46f4f9e0d5b1244988c07d353c50709dea23",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.1767766922712326.torch.f32": "3f0fb7921c2c3a2381c183906f2c4a38561c00632e2f113292b214cb0a28fc31"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006102,
+        "files": {
+          "sha256": "1258ecdc2cb3bd88f791823249536eb666563457304ad37bea520f2547b967b9",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.1767766922712326.input.f32": "d6be4229524697d0a91597112d9e5e787136a75b36c504feb6075c361e74d33c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.1767766922712326.strict-True.f32": "3f0fb7921c2c3a2381c183906f2c4a38561c00632e2f113292b214cb0a28fc31",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/256x19-scale0.1767766922712326.torch.f32": "3f0fb7921c2c3a2381c183906f2c4a38561c00632e2f113292b214cb0a28fc31"
+          }
+        }
+      }
+    },
+    {
+      "columns": 512,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.17927631578947367,
+        "max_abs": 1.7881393432617188e-07,
+        "median_ms": 0.006332,
+        "files": {
+          "sha256": "86611d7706124aa9128561d59763c15ac411748e69d469334b7e17668f651003",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale1.0.input.f32": "5b3f04b588a5f9dba64c5742aae7630c02a2fa76092bfa63441a3f572d2def19",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale1.0.strict-False.f32": "c5d97f6ec7abb1bb628696b0149bda78deb83927e726d79469fc603ccde144ae",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale1.0.torch.f32": "bec2204dc043f379606a5c3d50c6b1742e09740b26fdc4eadd537e422978a9e0"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.009168,
+        "files": {
+          "sha256": "1e3b1ec43b2abf24231c738f865823308f4414c612d38a1933527a4d13a5c7f4",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale1.0.input.f32": "5b3f04b588a5f9dba64c5742aae7630c02a2fa76092bfa63441a3f572d2def19",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale1.0.strict-True.f32": "bec2204dc043f379606a5c3d50c6b1742e09740b26fdc4eadd537e422978a9e0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale1.0.torch.f32": "bec2204dc043f379606a5c3d50c6b1742e09740b26fdc4eadd537e422978a9e0"
+          }
+        }
+      }
+    },
+    {
+      "columns": 512,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4102590460526316,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.006262,
+        "files": {
+          "sha256": "7753ae310f8b6055c6da3e3bd63e1d1b6b36285de3d387a5b8798709a2268cb4",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.125.input.f32": "6cdfdfb6b5cca1118d704da958da58e619d9592df8e4b77d5d1320f092460e7f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.125.strict-False.f32": "0a8266f0767578bb7a5860263234a37d66d5163e74d4bdb566965d877523cbbd",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.125.torch.f32": "f266e77a1ed4c128b5bdefcd5c0f0ee8ab852ff313a99931a238629818c8af22"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.007013,
+        "files": {
+          "sha256": "750008d38b24da39b7c47609e99c2309bb0f8d8eccbef8ecc4e5023efd5fdaf7",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.125.input.f32": "6cdfdfb6b5cca1118d704da958da58e619d9592df8e4b77d5d1320f092460e7f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.125.strict-True.f32": "f266e77a1ed4c128b5bdefcd5c0f0ee8ab852ff313a99931a238629818c8af22",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.125.torch.f32": "f266e77a1ed4c128b5bdefcd5c0f0ee8ab852ff313a99931a238629818c8af22"
+          }
+        }
+      }
+    },
+    {
+      "columns": 512,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.43061266447368424,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.006251,
+        "files": {
+          "sha256": "30eecadab13f4e1de662df4f7284e92132838f648cd72c859456d8d8eafc4432",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.1767766922712326.input.f32": "5a5d58ba0098a38b347120ff89562ac575369daa79ca75591f611c70e68fab66",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.1767766922712326.strict-False.f32": "0236b93ef12100b9d1b90ce75d0cd5305a493b9fef42d5350e2c1bfd53950ade",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.1767766922712326.torch.f32": "bce921d2af0119c7f2358f6521a2df414ce8f74ee097823cb802c5431e36f0af"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.006943,
+        "files": {
+          "sha256": "f36b9095fa55ed98a3fd1586462c84cc1e9107d0015ca7f90c6eeb287aa7d8a6",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.1767766922712326.input.f32": "5a5d58ba0098a38b347120ff89562ac575369daa79ca75591f611c70e68fab66",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.1767766922712326.strict-True.f32": "bce921d2af0119c7f2358f6521a2df414ce8f74ee097823cb802c5431e36f0af",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/512x19-scale0.1767766922712326.torch.f32": "bce921d2af0119c7f2358f6521a2df414ce8f74ee097823cb802c5431e36f0af"
+          }
+        }
+      }
+    },
+    {
+      "columns": 789,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.18544460009338937,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.006923,
+        "files": {
+          "sha256": "915c83c24c87be671f33cffa432340ad26c7f88813242f9b16877ce0892695a4",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale1.0.input.f32": "66d3ff7d143a61b486925f7802b855f3ad5a38713420d921196e3997ba286616",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale1.0.strict-False.f32": "fd571a42d6ef2e2c08536412434943fc8dea5988017b8f9b732ddaf8331664ca",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale1.0.torch.f32": "30e26d020a7009af105698144ae8f424e29d2ed8645cfd26be897e1c3b5d8efd"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.01075,
+        "files": {
+          "sha256": "9d1c62a63a170c5d9cebc0787a6c485a6f50c2156b5c65961a6dbd402f08fb20",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale1.0.input.f32": "66d3ff7d143a61b486925f7802b855f3ad5a38713420d921196e3997ba286616",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale1.0.strict-True.f32": "30e26d020a7009af105698144ae8f424e29d2ed8645cfd26be897e1c3b5d8efd",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale1.0.torch.f32": "30e26d020a7009af105698144ae8f424e29d2ed8645cfd26be897e1c3b5d8efd"
+          }
+        }
+      }
+    },
+    {
+      "columns": 789,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.43225935561336803,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.007143,
+        "files": {
+          "sha256": "bd4b5c4468ec2b8542f4381d9a06710f1b5e44e1288febe2741d68bfb1ade63c",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.125.input.f32": "6f73c6f768f22a1d25eb4ce52eb0c44af3842304273358def60adf195d0b0e3b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.125.strict-False.f32": "91b66257743e9434dcef05ca17654583e2561be9d4797cb45a3bd75b3cdd2dfc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.125.torch.f32": "a1cbd325a4b9c6bd3dc374333ac83349dd5012b3cfca137e4f959159f05685e3"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.008226,
+        "files": {
+          "sha256": "ad3983c664f20945e85930977f500a7b342fa03acadca856856a599517c5a2f0",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.125.input.f32": "6f73c6f768f22a1d25eb4ce52eb0c44af3842304273358def60adf195d0b0e3b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.125.strict-True.f32": "a1cbd325a4b9c6bd3dc374333ac83349dd5012b3cfca137e4f959159f05685e3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.125.torch.f32": "a1cbd325a4b9c6bd3dc374333ac83349dd5012b3cfca137e4f959159f05685e3"
+          }
+        }
+      }
+    },
+    {
+      "columns": 789,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.438396371156027,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.007253,
+        "files": {
+          "sha256": "3f460195982029b5efdef4f378948aed5e2634a7d10ae818d7ba11024c3f1abd",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.1767766922712326.input.f32": "fe30a193838b0ac14b7d9e7fc59c78f597bb6cd42aef0f626a981f016e3aabf1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.1767766922712326.strict-False.f32": "7670262a7c242d2b4b61468e15b428c8019cc1f241dc2ae727a60010e96ffa43",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.1767766922712326.torch.f32": "2aa873f348af3f4da57ead5c6274435cdb25d9a7fbad7bd6e9f8ceab4fcf6587"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.008656,
+        "files": {
+          "sha256": "39acaca0b4e709f10358308607c0d960996be6ec08b3ada2899492e672f04b8c",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.1767766922712326.input.f32": "fe30a193838b0ac14b7d9e7fc59c78f597bb6cd42aef0f626a981f016e3aabf1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.1767766922712326.strict-True.f32": "2aa873f348af3f4da57ead5c6274435cdb25d9a7fbad7bd6e9f8ceab4fcf6587",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x19-scale0.1767766922712326.torch.f32": "2aa873f348af3f4da57ead5c6274435cdb25d9a7fbad7bd6e9f8ceab4fcf6587"
+          }
+        }
+      }
+    },
+    {
+      "columns": 856,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.1781234628627644,
+        "max_abs": 1.7881393432617188e-07,
+        "median_ms": 0.006903,
+        "files": {
+          "sha256": "ad087ecc7a156e3dea41262e784a7b641c82e71dc71904e497aaa0cf0e9f6b6c",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale1.0.input.f32": "b425a9587a52993ae1ee32d77e3e97e7189aca081f97bebc4fb5f62073217d41",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale1.0.strict-False.f32": "561c212f1fddfea621dd3e3d3e4be5a11afeab805e90a512045e3819f6e538c7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale1.0.torch.f32": "933b92158c734450ffe24e65fc361d3d92581a6882d9ec46646a282e12a31b5c"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.010901,
+        "files": {
+          "sha256": "0752e055424a1bd5c634a69b1c3f0263d484dcbc0c8e4696e9e2c329a2f12f93",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale1.0.input.f32": "b425a9587a52993ae1ee32d77e3e97e7189aca081f97bebc4fb5f62073217d41",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale1.0.strict-True.f32": "933b92158c734450ffe24e65fc361d3d92581a6882d9ec46646a282e12a31b5c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale1.0.torch.f32": "933b92158c734450ffe24e65fc361d3d92581a6882d9ec46646a282e12a31b5c"
+          }
+        }
+      }
+    },
+    {
+      "columns": 856,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.43568617806197735,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.007504,
+        "files": {
+          "sha256": "8ce0adc49eba4eeff4395954301ec38ed5665583967f1f500739458f34339481",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.125.input.f32": "c1d3fad89dd17154bb3b1313883c4ed29a2374c03f7945fd2b9725495629d5d3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.125.strict-False.f32": "fe9bbf486da39a2b9b37c64672e67fed72b2d600292c555d7d40a6de28e23649",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.125.torch.f32": "9876c857041c0d21f83d0ae994bd30bab63bf6d5ab3719c9c681f63555b5c8f9"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.008306,
+        "files": {
+          "sha256": "24be0ca3f437148449e87daaad31254e52b41e274ceb69fc97ae6cd7cf8eb256",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.125.input.f32": "c1d3fad89dd17154bb3b1313883c4ed29a2374c03f7945fd2b9725495629d5d3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.125.strict-True.f32": "9876c857041c0d21f83d0ae994bd30bab63bf6d5ab3719c9c681f63555b5c8f9",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.125.torch.f32": "9876c857041c0d21f83d0ae994bd30bab63bf6d5ab3719c9c681f63555b5c8f9"
+          }
+        }
+      }
+    },
+    {
+      "columns": 856,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.44361780619773733,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.006963,
+        "files": {
+          "sha256": "1a239ef6aa8a88bdac044c50ebf177f8d5899e4763e54dde083c0b66ad0c85e3",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.1767766922712326.input.f32": "e901b4939e6ce956b496125e4562f53294097d1890fabad0b08ce3a1b89d4b16",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.1767766922712326.strict-False.f32": "7ea9cd19aa013a62d3c198e7241494b468035224d079fffe9d9005fa7ead8064",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.1767766922712326.torch.f32": "361b12813df47d89dd60cb37f944a2a06eececaee6c083c4a4efbe4fe55a8a30"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.008375,
+        "files": {
+          "sha256": "f5f52eb0b0d2a499af782d51334948f59d559800618222ae48f04b72d7633bee",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.1767766922712326.input.f32": "e901b4939e6ce956b496125e4562f53294097d1890fabad0b08ce3a1b89d4b16",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.1767766922712326.strict-True.f32": "361b12813df47d89dd60cb37f944a2a06eececaee6c083c4a4efbe4fe55a8a30",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/856x19-scale0.1767766922712326.torch.f32": "361b12813df47d89dd60cb37f944a2a06eececaee6c083c4a4efbe4fe55a8a30"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1023,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.18624273293203683,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.007313,
+        "files": {
+          "sha256": "ab7bb6eb0b02969e5b448148ddb491ad65d9e32a032d9ccdf20cefd873710e0b",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale1.0.input.f32": "384e3290f5a7fd3eca83bedd934d5673c29961e510cf6f649aa7dd769f8aee32",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale1.0.strict-False.f32": "ca556e8868eecedab03e0c5d945a9bda6f57da7ad2933a47aca89bda732953df",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale1.0.torch.f32": "5ebe96eda1f6343ecffe611096537957a8953105e3b84d4775286001b52ff0d9"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.011431,
+        "files": {
+          "sha256": "7f3eaa80054a3ab47b4abfcff260c065d096083176718edd908f587c0932118e",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale1.0.input.f32": "384e3290f5a7fd3eca83bedd934d5673c29961e510cf6f649aa7dd769f8aee32",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale1.0.strict-True.f32": "5ebe96eda1f6343ecffe611096537957a8953105e3b84d4775286001b52ff0d9",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale1.0.torch.f32": "5ebe96eda1f6343ecffe611096537957a8953105e3b84d4775286001b52ff0d9"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1023,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4468796624993569,
+        "max_abs": 2.7939677238464355e-09,
+        "median_ms": 0.007153,
+        "files": {
+          "sha256": "486b54c3644cedae94568d9cd07434b818ee7ffabc0d3e00d5773eff9ca249e6",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.125.input.f32": "a24b51fb96a5f2273a587787aa8fba23024ae04d280319bb40de558cae3c7a6c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.125.strict-False.f32": "6a82b1359f4cc3ab2d4853240366e27ff6e3e37e01f33156ce1189690b3b0d9a",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.125.torch.f32": "a89f3c5e64a35ef54cc5305dced221720c264b83bf56efce92c43bf678355120"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.008567,
+        "files": {
+          "sha256": "fa34728f360967a2976be6092fe03954127879ecac72af3139e8f1cb2e5e83eb",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.125.input.f32": "a24b51fb96a5f2273a587787aa8fba23024ae04d280319bb40de558cae3c7a6c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.125.strict-True.f32": "a89f3c5e64a35ef54cc5305dced221720c264b83bf56efce92c43bf678355120",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.125.torch.f32": "a89f3c5e64a35ef54cc5305dced221720c264b83bf56efce92c43bf678355120"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1023,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4093738745691207,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.006954,
+        "files": {
+          "sha256": "c4edec835927375e337ee0de6b9d6d5c1d3141136f64f592aef5bb646a1d7741",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.1767766922712326.input.f32": "4b797851b458b07f5c1a253618c0f5967b3b1cf3fd6bbb99320c33eb5e32a21c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.1767766922712326.strict-False.f32": "a2d4548c65b27b2de9dae1c855338e6bec9ada4583ee84b29ddc16e9b7642369",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.1767766922712326.torch.f32": "b77e863f6b4c5d9944c0ecb01a5797e56bb347121470ccc901c494eca8072eeb"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.008656,
+        "files": {
+          "sha256": "46bd83adf0e426e01fb4573e872d4254a0974ee17b71d7359cbb38755aca61b7",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.1767766922712326.input.f32": "4b797851b458b07f5c1a253618c0f5967b3b1cf3fd6bbb99320c33eb5e32a21c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.1767766922712326.strict-True.f32": "b77e863f6b4c5d9944c0ecb01a5797e56bb347121470ccc901c494eca8072eeb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1023x19-scale0.1767766922712326.torch.f32": "b77e863f6b4c5d9944c0ecb01a5797e56bb347121470ccc901c494eca8072eeb"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1024,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.1796361019736842,
+        "max_abs": 5.960464477539063e-08,
+        "median_ms": 0.007073,
+        "files": {
+          "sha256": "fb76086abefab93002e4a6e3a8b2507ec442c188379a418d35c1a8df709d3e5f",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale1.0.input.f32": "578dab755f952152d2c0e8ac2eb66498f77559b90dea58cfaba234e2fc41a9ad",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale1.0.strict-False.f32": "ea3a4f19d3bba7e3f09ad02000f67a836c822d07ba634bf21941dfc3fc0ef9a2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale1.0.torch.f32": "c48645c573af53ceb7718237ebd7aff6509d8d92ad22e7a6d2d67e6d5a42a734"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.012263,
+        "files": {
+          "sha256": "63976e1cb263a68f6d3d4075c1c334ff5638f5ea4d41228a226fb0a88b11f255",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale1.0.input.f32": "578dab755f952152d2c0e8ac2eb66498f77559b90dea58cfaba234e2fc41a9ad",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale1.0.strict-True.f32": "c48645c573af53ceb7718237ebd7aff6509d8d92ad22e7a6d2d67e6d5a42a734",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale1.0.torch.f32": "c48645c573af53ceb7718237ebd7aff6509d8d92ad22e7a6d2d67e6d5a42a734"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1024,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.4454152960526316,
+        "max_abs": 1.862645149230957e-09,
+        "median_ms": 0.006973,
+        "files": {
+          "sha256": "a2dec9ee739bc7787ac85347ac97a38b3fe6d99e31e34191d81bd04c3e61f548",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.125.input.f32": "cfe1ba1eec41f8f98d9138f3e9d1f3149094cb1bbd5b406d98ad0f889f7a14c6",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.125.strict-False.f32": "34d5f95666d02412077dc221abd2d187e1fe729cb38525df53ec2be87bfc6020",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.125.torch.f32": "5e76ca3df30883aa499aa89efb4819f8a120430bb84d6ecaf71b4d4b9ac62a03"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.008736,
+        "files": {
+          "sha256": "319e8a1bc4a6fcba8568e3e746b4900ce1bec428adfe76f8939e50eced22e37b",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.125.input.f32": "cfe1ba1eec41f8f98d9138f3e9d1f3149094cb1bbd5b406d98ad0f889f7a14c6",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.125.strict-True.f32": "5e76ca3df30883aa499aa89efb4819f8a120430bb84d6ecaf71b4d4b9ac62a03",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.125.torch.f32": "5e76ca3df30883aa499aa89efb4819f8a120430bb84d6ecaf71b4d4b9ac62a03"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1024,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.45620888157894735,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.006923,
+        "files": {
+          "sha256": "930b9c36f4b1c2eb663caafdacb6f7b4782eb58962431247205f297e50abf1d9",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.1767766922712326.input.f32": "420bdc0cfcc5d81dd4dc80409d89397451ef3e199e2479fa57566369c8ec2406",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.1767766922712326.strict-False.f32": "b572b60032c890629ab263a9e4648152dcd9e140cf70a5fec75a36b095768760",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.1767766922712326.torch.f32": "7ac2d87fefd11ddde4fddf618a92b8a03c15260fe29bd2ee556fd036431dd66a"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.008797,
+        "files": {
+          "sha256": "c9fafbdbf790aef7b4a6f1315bcc2339d0418ad75b59076cb8470fbdd5a1be9e",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.1767766922712326.input.f32": "420bdc0cfcc5d81dd4dc80409d89397451ef3e199e2479fa57566369c8ec2406",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.1767766922712326.strict-True.f32": "7ac2d87fefd11ddde4fddf618a92b8a03c15260fe29bd2ee556fd036431dd66a",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1024x19-scale0.1767766922712326.torch.f32": "7ac2d87fefd11ddde4fddf618a92b8a03c15260fe29bd2ee556fd036431dd66a"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1025,
+      "rows": 19,
+      "scale": 1.0,
+      "scope": "general fallback",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.22341463414634147,
+        "max_abs": 1.1920928955078125e-07,
+        "median_ms": 0.008165,
+        "files": {
+          "sha256": "408a75e5ace04a59c9efd0613b7ae9f9ab45db001090bf234122fbf5fc418d7e",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale1.0.input.f32": "5df9bb0189f14bdb1f722021bca0722936a00bec6f8534af6f2f57bb12ef0800",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale1.0.strict-False.f32": "359ee84ffe8a5168042d29e2c2d856cb09a4f8942356f07998cae8527ce453ce",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale1.0.torch.f32": "5ff9ca45f9b0aad3db13a8f36df6155f1986be54090b62409c007bb9fcc65cb2"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.22341463414634147,
+        "max_abs": 1.1920928955078125e-07,
+        "median_ms": 0.007354,
+        "files": {
+          "sha256": "bdb4106532465c464466616d2572333321db8ee452429c802cca6799d0220ad5",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale1.0.input.f32": "5df9bb0189f14bdb1f722021bca0722936a00bec6f8534af6f2f57bb12ef0800",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale1.0.strict-True.f32": "359ee84ffe8a5168042d29e2c2d856cb09a4f8942356f07998cae8527ce453ce",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale1.0.torch.f32": "5ff9ca45f9b0aad3db13a8f36df6155f1986be54090b62409c007bb9fcc65cb2"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1025,
+      "rows": 19,
+      "scale": 0.125,
+      "scope": "general fallback",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.47065468549422335,
+        "max_abs": 2.7939677238464355e-09,
+        "median_ms": 0.007344,
+        "files": {
+          "sha256": "cbaca8032e867ed1833678dfd57b5f980020476b7492cb71e5e64c9f1967e7dd",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.125.input.f32": "da9a4023adf28439adb3aadc7aeacbe85cf1b2eb0ae58910ede6a1c4e695ab18",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.125.strict-False.f32": "168e5a9473f73831b2f0dd8deed6c7d78bb97a6836691cf0bac42ef2e422c9d3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.125.torch.f32": "355753d630e895ae62f3c6f2a3d1f4b5a505bed92734a499a1b2133fb81ff191"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.47065468549422335,
+        "max_abs": 2.7939677238464355e-09,
+        "median_ms": 0.007043,
+        "files": {
+          "sha256": "04cb4cca0b134e3b66554bf66c590cc532ec8c8ca7ee890fe1004630a92722c9",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.125.input.f32": "da9a4023adf28439adb3aadc7aeacbe85cf1b2eb0ae58910ede6a1c4e695ab18",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.125.strict-True.f32": "168e5a9473f73831b2f0dd8deed6c7d78bb97a6836691cf0bac42ef2e422c9d3",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.125.torch.f32": "355753d630e895ae62f3c6f2a3d1f4b5a505bed92734a499a1b2133fb81ff191"
+          }
+        }
+      }
+    },
+    {
+      "columns": 1025,
+      "rows": 19,
+      "scale": 0.1767766922712326,
+      "scope": "general fallback",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.42829268292682926,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.007103,
+        "files": {
+          "sha256": "3a00e3bfab37f58a27b85c705ff6b47dbff2ccba1e65151a6721a38fb67ec265",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.1767766922712326.input.f32": "b65ec610cf0cf1866947a19f979914c0e4db7963fb96535cd0285eb6541a55b0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.1767766922712326.strict-False.f32": "6f30726006d261c2e9252965feb728e5de9d09b489d9362e3e005c670a592c76",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.1767766922712326.torch.f32": "a9014ff5542034653599545a047245098a30b4c2e0139e08b7b5778015fccff2"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.42829268292682926,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.007263,
+        "files": {
+          "sha256": "d0fc9a6314b287b1fb149e32f02f2c32bd237b1b4ae5894e1117d226dfe31a01",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.1767766922712326.input.f32": "b65ec610cf0cf1866947a19f979914c0e4db7963fb96535cd0285eb6541a55b0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.1767766922712326.strict-True.f32": "6f30726006d261c2e9252965feb728e5de9d09b489d9362e3e005c670a592c76",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/1025x19-scale0.1767766922712326.torch.f32": "a9014ff5542034653599545a047245098a30b4c2e0139e08b7b5778015fccff2"
+          }
+        }
+      }
+    },
+    {
+      "columns": 789,
+      "rows": 4734,
+      "scale": 1.0,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.1271729521306644,
+        "max_abs": 3.5762786865234375e-07,
+        "median_ms": 0.389981,
+        "files": {
+          "sha256": "6ff602d6a2612c1eae983109685acccc7be57d0883fc929fe8efa5f135a53ce4",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale1.0.input.f32": "dfe88f89c04fdd0c59ba0c5961794912e5e6d2c2fc163173492e6cd484b03e2d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale1.0.strict-False.f32": "0179adaf57f16a9b8da86b0470c22f06edb7c23b9d6fa1fb2d829adbcbb5e27b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale1.0.torch.f32": "c3db50d8a3f64004a29a05dc939cf9cb0c9098654b90b43477ccd7522ea88061"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.099406,
+        "files": {
+          "sha256": "06a108e255568e4e844bf519acdb61c65e467e547e2c5b5120d459fe7955f403",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale1.0.input.f32": "dfe88f89c04fdd0c59ba0c5961794912e5e6d2c2fc163173492e6cd484b03e2d",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale1.0.strict-True.f32": "c3db50d8a3f64004a29a05dc939cf9cb0c9098654b90b43477ccd7522ea88061",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale1.0.torch.f32": "c3db50d8a3f64004a29a05dc939cf9cb0c9098654b90b43477ccd7522ea88061"
+          }
+        }
+      }
+    },
+    {
+      "columns": 789,
+      "rows": 4734,
+      "scale": 0.125,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.3828042213301506,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.390202,
+        "files": {
+          "sha256": "6549669ecb19857f06c2f93ee2ff06bef9f158512a7f36cea73f0069272cf38d",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.125.input.f32": "eea760ede15631a47547e2e1ab3d7cb8d20a9406d41aa7557d4e39f1b096991f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.125.strict-False.f32": "3ec8ccf335e320613761f894b75ce6eb55f1b4d6633be6e4213e02884a15da6e",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.125.torch.f32": "e55bc57569c2491ba2efb345642aaebb33be6af446268b56e18104c57b6e269f"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.099597,
+        "files": {
+          "sha256": "1bc1ead520ed5167bcd54bdef6bdd11facac2f8f8e6698eb936f925eb40659f4",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.125.input.f32": "eea760ede15631a47547e2e1ab3d7cb8d20a9406d41aa7557d4e39f1b096991f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.125.strict-True.f32": "e55bc57569c2491ba2efb345642aaebb33be6af446268b56e18104c57b6e269f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.125.torch.f32": "e55bc57569c2491ba2efb345642aaebb33be6af446268b56e18104c57b6e269f"
+          }
+        }
+      }
+    },
+    {
+      "columns": 789,
+      "rows": 4734,
+      "scale": 0.1767766922712326,
+      "scope": "persistent warp",
+      "False": {
+        "bit_equal": false,
+        "bit_equal_fraction": 0.3794369989124865,
+        "max_abs": 3.725290298461914e-09,
+        "median_ms": 0.390092,
+        "files": {
+          "sha256": "450e325bdcf2c6ca46b62be6289e85529a9b12d4750ec004a6f0688f81ae54e5",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.1767766922712326.input.f32": "b76ca2f0b51d9d0d83d936d29d784a420011668b79cd190ccaee65ea1065bfbc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.1767766922712326.strict-False.f32": "aa180e5ca3138c5816ce73cebb98c76e007d528758946c37445239c657791e49",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.1767766922712326.torch.f32": "c306e1d8405ae56fb051cf331a032f887e938c4f7e44179185012f06775dfa4f"
+          }
+        }
+      },
+      "True": {
+        "bit_equal": true,
+        "bit_equal_fraction": 1.0,
+        "max_abs": 0.0,
+        "median_ms": 0.099396,
+        "files": {
+          "sha256": "37ea8546112fb5423b2afbb4d94c7e98e33a634eb1cc7625fbb704427ace7ab0",
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.1767766922712326.input.f32": "b76ca2f0b51d9d0d83d936d29d784a420011668b79cd190ccaee65ea1065bfbc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.1767766922712326.strict-True.f32": "c306e1d8405ae56fb051cf331a032f887e938c4f7e44179185012f06775dfa4f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/final_softmax/789x4734-scale0.1767766922712326.torch.f32": "c306e1d8405ae56fb051cf331a032f887e938c4f7e44179185012f06775dfa4f"
+          }
+        }
+      }
+    }
+  ],
+  "covered_cases": 60,
+  "scope": "one unmasked F32 operator, not full-model bit equality"
+}

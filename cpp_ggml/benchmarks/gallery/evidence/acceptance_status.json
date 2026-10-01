@@ -1,0 +1,237 @@
+{
+  "schema": 1,
+  "created_utc": "2026-10-09T07:06:18.065816+00:00",
+  "run_id": "20261009-options-alignment",
+  "execution": {
+    "status": "complete",
+    "strict_rows": 30,
+    "speed_rows": 30
+  },
+  "statuses": [
+    {
+      "id": "strict_bit_equality",
+      "status": "open",
+      "reason": "original PyTorch-CUDA comparisons retain arithmetic/storage residuals; same-weight oracles diagnose them separately",
+      "evidence": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/gallery/numerical_first_divergence.json"
+    },
+    {
+      "id": "strict_faster_than_python",
+      "status": "open",
+      "reason": "the complete matrix is measured, but at least one strict row remains slower",
+      "evidence": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/summary.json"
+    },
+    {
+      "id": "soft_open_vocab",
+      "status": "missing_asset",
+      "reason": "labelled synonym/inverse corpus, ontology and text-space calibration are absent",
+      "evidence": "upstream benchmark/calibrate_match_tau.py contract"
+    },
+    {
+      "id": "haystack_precision",
+      "status": "missing_asset",
+      "reason": "adjudicated positive/negative judgment pack and split are unavailable",
+      "evidence": "benchmark/SPEC.md and benchmark/eval_haystack.py"
+    },
+    {
+      "id": "sgdet_detector_metrics",
+      "status": "missing_asset",
+      "reason": "fixed detector outputs and operating point are unavailable",
+      "evidence": "benchmark/SPEC.md"
+    },
+    {
+      "id": "judge_hico_ovs",
+      "status": "missing_asset",
+      "reason": "held-out pairings, judge controls and six-axis normalizers are unavailable",
+      "evidence": "benchmark/SPEC.md"
+    },
+    {
+      "id": "ece_brier",
+      "status": "missing_asset",
+      "reason": "label-complete held-out deployment calibration distribution is unavailable",
+      "evidence": "benchmark/eval_operating_point.py"
+    }
+  ],
+  "details": {
+    "exact_precision_and_speed": {
+      "measured_native_configs": 30,
+      "passing_native_configs": []
+    },
+    "strict_bit_equality": {
+      "original_cuda_comparisons": 30,
+      "original_cuda_minimum_logit_bit_equal_fraction": 1.0196214431943187e-05,
+      "same_weight_oracle_configs": 9,
+      "backend_comparisons": 27,
+      "minimum_logit_bit_equal_fraction": 1.2296382733172045e-05,
+      "pair_set_equality_is_reported_separately": true
+    },
+    "strict_faster_than_python": {
+      "native_rows": 30,
+      "python_rows": 3,
+      "slower_or_equal_rows": [
+        {
+          "model": "relsgg-vits16",
+          "config": "cpu-f16",
+          "native_ms": 668.9155000000001,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16",
+          "config": "cpu-f32",
+          "native_ms": 631.527,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16",
+          "config": "cpu-q8_0",
+          "native_ms": 607.017,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16",
+          "config": "cuda-f16",
+          "native_ms": 31.42495,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16",
+          "config": "cuda-f32",
+          "native_ms": 31.92615,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16",
+          "config": "cuda-q8_0-f32-input",
+          "native_ms": 32.33185,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16",
+          "config": "vulkan-f16",
+          "native_ms": 34.0518,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16",
+          "config": "vulkan-f32",
+          "native_ms": 73.31375,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16",
+          "config": "vulkan-q8_0",
+          "native_ms": 35.46875,
+          "python_ms": 28.4839395317249
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "cpu-f16",
+          "native_ms": 665.0815,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "cpu-f32",
+          "native_ms": 697.3420000000001,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "cpu-q8_0",
+          "native_ms": 628.6985,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "cuda-f16",
+          "native_ms": 33.541399999999996,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "cuda-f32",
+          "native_ms": 35.5039,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "cuda-q8_0-f32-input",
+          "native_ms": 35.60195,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "vulkan-f16",
+          "native_ms": 36.233850000000004,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "vulkan-f32",
+          "native_ms": 80.32585,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vits16plus",
+          "config": "vulkan-q8_0",
+          "native_ms": 37.37795,
+          "python_ms": 31.62878955481574
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "cpu-f16",
+          "native_ms": 1358.71,
+          "python_ms": 51.73680710140616
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "cpu-f32",
+          "native_ms": 1439.37,
+          "python_ms": 51.73680710140616
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "cpu-q8_0",
+          "native_ms": 1299.545,
+          "python_ms": 51.73680710140616
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "cuda-f16",
+          "native_ms": 55.202349999999996,
+          "python_ms": 51.73680710140616
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "cuda-f32",
+          "native_ms": 60.772999999999996,
+          "python_ms": 51.73680710140616
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "cuda-q8_0-f32-input",
+          "native_ms": 56.225750000000005,
+          "python_ms": 51.73680710140616
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "vulkan-f16",
+          "native_ms": 54.81595,
+          "python_ms": 51.73680710140616
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "vulkan-f32",
+          "native_ms": 121.6825,
+          "python_ms": 51.73680710140616
+        },
+        {
+          "model": "relsgg-vitb16",
+          "config": "vulkan-q8_0",
+          "native_ms": 55.34925,
+          "python_ms": 51.73680710140616
+        }
+      ]
+    }
+  },
+  "interpretation": "missing_asset is a protocol boundary, not a failed inference run"
+}

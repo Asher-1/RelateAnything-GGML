@@ -1,0 +1,314 @@
+{
+  "primary_ggml_image_configurations": 1350,
+  "diagnostic_ggml_image_configurations": 150,
+  "ggml_image_configurations": 1500,
+  "python_images": 150,
+  "python_timing_passes": 2,
+  "checks": [
+    {
+      "model": "relsgg-vits16",
+      "backend": "cpu",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "e0e956ac51011c412d900f0bf3cb7203ee5b53f9039037661c9ebc11cb5c3f2f",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "cpu",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "d77a19b3ebf2b652f24d225f9f31677df8145186aa93367174603d3315aa5a31",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "cpu",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "8f419371fc2f7ca3032e91698395cec9dd3e1c523c4c26e191be28a33de3d3a1",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "cuda",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "e60213ba47323015b525bdb5899e3848b1624aacf3fd1175c56075485c153dc3",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "cuda",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "548b3d9fc275c87dc963c20fd562ab6cb2cde48d05af80b3c7f62e8dd8c2ed4d",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "3fcc3530778290cf4fffbe9c91b7ae6ea40991ebddbfbfec3949ec69ab1c799f",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "variant": "-f32-input",
+      "images": 50,
+      "provenance_sha256": "ac48228022ae21076fffbf92132b8ff864b095570d14a9a8f576c32d09b85b44",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "vulkan",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "fc13561966442b2c02b26f809e3cc50324ad9a717eab3529bde018e747393829",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "vulkan",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "3279067fb8c0575e9b37f74ba8cd147299baa63a3573bb9d2e8eac311efda6de",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16",
+      "backend": "vulkan",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "62638737e36a3a785ec43db82b5a30a5f5afa082ceeae1834f0bd0eb6878e2dd",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cpu",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "3e0de9fc7c9deacc0c26b83b1cd7317b0fc42ad073d1a0e7f8ddc27a7c448755",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cpu",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "be1eefaeb88b7aed39b6b50dd705845078e79fc03f37563c690b5dd8e54c117a",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cpu",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "4901f8c385de88b7088e0053a225a33d0d3ee8a7b25f70dbebb2ff012e5c8c3e",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cuda",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "f9ef1a3dceb791326513225351148bbdd6c27236cf638ccb92192ffc9e253f05",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cuda",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "54bcaf3452fc2fb133bff5406d0e0f186b4e77f50dda8812d5522044b9f48db7",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "8293e45dc7940b11ed5014fda7ef2b8cf80eb5e66d23ff3a50d6acdc2ab614ad",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "variant": "-f32-input",
+      "images": 50,
+      "provenance_sha256": "5b9eb990081fd6ca907aab8effe6354ad9ad6b67cf7684ab615d5b85b87eab28",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "vulkan",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "fc5f79a75774684ac25ae0392ad6fd0feaaa262e898c41e5fbcb7e263bf7fb24",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "vulkan",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "96d62856cf641576894acb4eab4239f53d53d1ef834f030ef2b62cf4455da63b",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "backend": "vulkan",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "64bf736f6fe086c51e33c519d841c9e10e8c604581a0e523f8d6d70b1df8c315",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cpu",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "2ed95ed68120efd416f3767579dcdd363bdfb8a995fc6df66ee3a3adfc5ab982",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cpu",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "d342e1fac415a792bca086efa0da3692ea3c5d6cd0e9844f52b53224417cccbf",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cpu",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "2468fb9064e15f3fd792a3f1454758751e6b998f7e5963d501d9461a291d8428",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cuda",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "4394ae070026fc739728ecfa71190956c39b2182784e88dcb2b4f0dcde9b97a4",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cuda",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "6270a0f6be5a1d40db736d8a79bc20c8eccf9e0443d2f1d19df9372aeac8ef0d",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "b24018d3a752141a15d758bc6887b2e0c1957abba9449c2ca979fe7f1e6199ac",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "cuda",
+      "dtype": "q8_0",
+      "variant": "-f32-input",
+      "images": 50,
+      "provenance_sha256": "14fb87ab2ccfd575431b85ee0f32ed8b4e0f7904dbfbc85add75334e41accaf9",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "vulkan",
+      "dtype": "f32",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "be3726cb9e3719e64d98e6d945577d1a4408d249e4e9af46dbb06c2b9fece384",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "vulkan",
+      "dtype": "f16",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "2083350159057e6c4fd0ef7e3e1abf43c4e30d39c3ce6711531339f97329270c",
+      "native_decode": true,
+      "raw_parity": true
+    },
+    {
+      "model": "relsgg-vitb16",
+      "backend": "vulkan",
+      "dtype": "q8_0",
+      "variant": "",
+      "images": 50,
+      "provenance_sha256": "062375d7dec0ef48f3b76358f3f954eb24d9eb2ecc8c51fc72cd03d422524ca4",
+      "native_decode": true,
+      "raw_parity": true
+    }
+  ],
+  "scope": "execution provenance and raw/decoded consistency; numerical equality is reported separately",
+  "status": "complete",
+  "all_complete": true,
+  "started_utc": "2026-10-09T06:35:34.054469+00:00",
+  "finished_utc": "2026-10-09T06:37:14.849824+00:00"
+}

@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "run_id": "20261010-post-vulkan-fix",
+  "generated_utc": "2026-10-10T10:23:34.178784+00:00",
+  "report_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/reports/20261010-post-vulkan-fix.zip",
+  "zip_file_name": "20261010-post-vulkan-fix.zip",
+  "zip_bytes": 92890326,
+  "zip_sha256": "9a5c2a30c63a3a93993e6b2b059f1b6b7fa94eef19c2de047d9612e0d900e46c",
+  "report_files": 1012,
+  "source_run_json_sha256": "3bfb6a9f705fee2b3281b2c33c0fff0664e92927d8d828afb1f04dad3ade02a6"
+}

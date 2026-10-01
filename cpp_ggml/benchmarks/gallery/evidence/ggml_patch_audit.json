@@ -1,0 +1,47 @@
+{
+  "ggml_head": "8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b",
+  "ggml_version": "v0.21.0",
+  "patches": [
+    {
+      "name": "0001-relateanything-ggml.patch",
+      "sha256": "de15bc039b037c8497806ed09e4cafdf52ffcb468c66da2a7ff77f96501da3b2",
+      "paths": [
+        "README.relateanything.md",
+        "include/ggml-runtime-options.h",
+        "include/ggml.h",
+        "src/CMakeLists.txt",
+        "src/ggml-backend-meta.cpp",
+        "src/ggml-backend-reg.cpp",
+        "src/ggml-backend.cpp",
+        "src/ggml-cpu/ggml-cpu.c",
+        "src/ggml-cuda/allreduce.cu",
+        "src/ggml-cuda/common.cuh",
+        "src/ggml-cuda/ggml-cuda.cu",
+        "src/ggml-runtime-options.cpp",
+        "src/ggml-vulkan/ggml-vulkan.cpp",
+        "src/ggml.c",
+        "src/ggml.cpp"
+      ]
+    }
+  ],
+  "dirty_paths": [
+    "README.relateanything.md",
+    "include/ggml-runtime-options.h",
+    "include/ggml.h",
+    "src/CMakeLists.txt",
+    "src/ggml-backend-meta.cpp",
+    "src/ggml-backend-reg.cpp",
+    "src/ggml-backend.cpp",
+    "src/ggml-cpu/ggml-cpu.c",
+    "src/ggml-cuda/allreduce.cu",
+    "src/ggml-cuda/common.cuh",
+    "src/ggml-cuda/ggml-cuda.cu",
+    "src/ggml-runtime-options.cpp",
+    "src/ggml-vulkan/ggml-vulkan.cpp",
+    "src/ggml.c",
+    "src/ggml.cpp"
+  ],
+  "unexpected_dirty_paths": [],
+  "all_dirty_paths_patch_owned": true,
+  "exact_patched_tree_match": true
+}

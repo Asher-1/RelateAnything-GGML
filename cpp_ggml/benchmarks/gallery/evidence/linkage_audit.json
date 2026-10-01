@@ -1,0 +1,56 @@
+{
+  "scope": "standalone binaries and static task archive; host adapter must link its compatible GGML runtime",
+  "rows": [
+    {
+      "backend": "cpu",
+      "task_library": "static archive",
+      "archive_sha256": "13c425e4e233c530fd289499505244fad79d8384dfb6f5e7b23d8855cb5052d1",
+      "c_api_symbols": [
+        "ra_create",
+        "ra_default_options",
+        "ra_default_request",
+        "ra_default_runtime_options",
+        "ra_free",
+        "ra_infer_image",
+        "ra_last_error",
+        "ra_ready",
+        "ra_result_free"
+      ],
+      "standalone_executable_dependencies": "\tlinux-vdso.so.1 (0x00007ffe1a341000)\n\tlibjsoncpp.so.1 => /lib/x86_64-linux-gnu/libjsoncpp.so.1 (0x00007f14532e5000)\n\tlibggml.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cpu/third_party/ggml/src/libggml.so.0 (0x00007f14532d8000)\n\tlibggml-cpu.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cpu/third_party/ggml/src/libggml-cpu.so.0 (0x00007f1453161000)\n\tlibggml-base.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cpu/third_party/ggml/src/libggml-base.so.0 (0x00007f1453091000)\n\tlibjpeg.so.8 => /lib/x86_64-linux-gnu/libjpeg.so.8 (0x00007f145300a000)\n\tlibicuuc.so.66 => /lib/x86_64-linux-gnu/libicuuc.so.66 (0x00007f1452e24000)\n\tlibicui18n.so.66 => /lib/x86_64-linux-gnu/libicui18n.so.66 (0x00007f1452b25000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f1452943000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f14527f4000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f14527d9000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f14525e5000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f1453402000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f14525df000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x00007f145259d000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f145257a000)\n\tlibicudata.so.66 => /lib/x86_64-linux-gnu/libicudata.so.66 (0x00007f1450ab9000)\n"
+    },
+    {
+      "backend": "cuda",
+      "task_library": "static archive",
+      "archive_sha256": "13c425e4e233c530fd289499505244fad79d8384dfb6f5e7b23d8855cb5052d1",
+      "c_api_symbols": [
+        "ra_create",
+        "ra_default_options",
+        "ra_default_request",
+        "ra_default_runtime_options",
+        "ra_free",
+        "ra_infer_image",
+        "ra_last_error",
+        "ra_ready",
+        "ra_result_free"
+      ],
+      "standalone_executable_dependencies": "\tlinux-vdso.so.1 (0x00007ffe25bc9000)\n\tlibjsoncpp.so.1 => /lib/x86_64-linux-gnu/libjsoncpp.so.1 (0x00007f60e5162000)\n\tlibggml.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/third_party/ggml/src/libggml.so.0 (0x00007f60e5155000)\n\tlibggml-cpu.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/third_party/ggml/src/libggml-cpu.so.0 (0x00007f60e4fde000)\n\tlibggml-base.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/third_party/ggml/src/libggml-base.so.0 (0x00007f60e4f0e000)\n\tlibjpeg.so.8 => /lib/x86_64-linux-gnu/libjpeg.so.8 (0x00007f60e4e87000)\n\tlibicuuc.so.66 => /lib/x86_64-linux-gnu/libicuuc.so.66 (0x00007f60e4ca1000)\n\tlibicui18n.so.66 => /lib/x86_64-linux-gnu/libicui18n.so.66 (0x00007f60e49a2000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007f60e47c0000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007f60e4671000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007f60e4656000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007f60e4462000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007f60e527f000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007f60e445c000)\n\tlibggml-cuda.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/third_party/ggml/src/ggml-cuda/libggml-cuda.so.0 (0x00007f60dc5fa000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x00007f60dc5b8000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007f60dc595000)\n\tlibicudata.so.66 => /lib/x86_64-linux-gnu/libicudata.so.66 (0x00007f60daad2000)\n\tlibcudart.so.11.0 => /usr/local/cuda/lib64/libcudart.so.11.0 (0x00007f60da82b000)\n\tlibcublas.so.11 => /usr/local/cuda/lib64/libcublas.so.11 (0x00007f60d4bcd000)\n\tlibcuda.so.1 => /lib/x86_64-linux-gnu/libcuda.so.1 (0x00007f60d3001000)\n\tlibrt.so.1 => /lib/x86_64-linux-gnu/librt.so.1 (0x00007f60d2ff7000)\n\tlibcublasLt.so.11 => /usr/local/cuda/lib64/libcublasLt.so.11 (0x00007f60aea6f000)\n"
+    },
+    {
+      "backend": "vulkan",
+      "task_library": "static archive",
+      "archive_sha256": "13c425e4e233c530fd289499505244fad79d8384dfb6f5e7b23d8855cb5052d1",
+      "c_api_symbols": [
+        "ra_create",
+        "ra_default_options",
+        "ra_default_request",
+        "ra_default_runtime_options",
+        "ra_free",
+        "ra_infer_image",
+        "ra_last_error",
+        "ra_ready",
+        "ra_result_free"
+      ],
+      "standalone_executable_dependencies": "\tlinux-vdso.so.1 (0x00007fff3ddb9000)\n\tlibjsoncpp.so.1 => /lib/x86_64-linux-gnu/libjsoncpp.so.1 (0x00007fdef1a12000)\n\tlibggml.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/third_party/ggml/src/libggml.so.0 (0x00007fdef1a05000)\n\tlibggml-cpu.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/third_party/ggml/src/libggml-cpu.so.0 (0x00007fdef188e000)\n\tlibggml-base.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/third_party/ggml/src/libggml-base.so.0 (0x00007fdef17be000)\n\tlibjpeg.so.8 => /lib/x86_64-linux-gnu/libjpeg.so.8 (0x00007fdef1737000)\n\tlibicuuc.so.66 => /lib/x86_64-linux-gnu/libicuuc.so.66 (0x00007fdef1551000)\n\tlibicui18n.so.66 => /lib/x86_64-linux-gnu/libicui18n.so.66 (0x00007fdef1252000)\n\tlibstdc++.so.6 => /lib/x86_64-linux-gnu/libstdc++.so.6 (0x00007fdef1070000)\n\tlibm.so.6 => /lib/x86_64-linux-gnu/libm.so.6 (0x00007fdef0f21000)\n\tlibgcc_s.so.1 => /lib/x86_64-linux-gnu/libgcc_s.so.1 (0x00007fdef0f06000)\n\tlibc.so.6 => /lib/x86_64-linux-gnu/libc.so.6 (0x00007fdef0d12000)\n\t/lib64/ld-linux-x86-64.so.2 (0x00007fdef1b2f000)\n\tlibdl.so.2 => /lib/x86_64-linux-gnu/libdl.so.2 (0x00007fdef0d0c000)\n\tlibggml-vulkan.so.0 => /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/third_party/ggml/src/ggml-vulkan/libggml-vulkan.so.0 (0x00007fdeed8b7000)\n\tlibgomp.so.1 => /lib/x86_64-linux-gnu/libgomp.so.1 (0x00007fdeed875000)\n\tlibpthread.so.0 => /lib/x86_64-linux-gnu/libpthread.so.0 (0x00007fdeed852000)\n\tlibicudata.so.66 => /lib/x86_64-linux-gnu/libicudata.so.66 (0x00007fdeebd8f000)\n\tlibvulkan.so.1 => /lib/x86_64-linux-gnu/libvulkan.so.1 (0x00007fdeebd39000)\n"
+    }
+  ]
+}

@@ -1,0 +1,2768 @@
+{
+  "scope": "diagnostic FMA accumulation only; no inference implementation changed",
+  "torch": "2.6.0+cu118",
+  "device": "NVIDIA GeForce RTX 3060",
+  "kernel_source": "\n#include <cuda_runtime.h>\ntemplate<int parts, bool interleave>\n__global__ void accumulate(const float* w, const float* x, const float* bias,\n                          const int* permutation, float* out, int channels) {\n    int id = blockIdx.x*blockDim.x + threadIdx.x;\n    if (id >= channels*784) return;\n    int c = id/784, p = id%784;\n    float a[parts] = {};\n    for (int base=0; base<768/parts; ++base) {\n        #pragma unroll\n        for (int part=0; part<parts; ++part) {\n            int k = permutation[interleave ? base*parts+part : part*(768/parts)+base];\n            a[part] = __fmaf_rn(w[c*768+k],x[k*784+p],a[part]);\n        }\n    }\n    // Ordered sum of independently rounded partial accumulations.\n    for (int i=1; i<parts; ++i) a[0] = __fadd_rn(a[0],a[i]);\n    out[id] = __fadd_rn(a[0],bias[c]);\n}\nextern \"C\" int probe(const float* w,const float* x,const float* b,const int* perm,\n                     float* out,int c,int parts,int interleave,void* stream) {\n    #define CASE(n) case n: if(interleave) accumulate<n,true><<<(c*784+127)/128,128,0,(cudaStream_t)stream>>>(w,x,b,perm,out,c); else accumulate<n,false><<<(c*784+127)/128,128,0,(cudaStream_t)stream>>>(w,x,b,perm,out,c); break\n    switch(parts) { CASE(1);CASE(2);CASE(4);CASE(8);CASE(16); }\n    #undef CASE\n    return int(cudaGetLastError());\n}\n",
+  "rows": [
+    {
+      "model": "relsgg-vits16",
+      "results": {
+        "cyx-parts1-interleave0": {
+          "bit_equal_fraction": 1.0,
+          "rmse": 0.0,
+          "max_abs": 0.0,
+          "first_difference": null
+        },
+        "cyx-parts2-interleave0": {
+          "bit_equal_fraction": 0.07928425276360544,
+          "rmse": 5.95086742734081e-07,
+          "max_abs": 1.621246337890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785899043083191,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122219,
+            "expected_bits": 3209122215
+          }
+        },
+        "cyx-parts2-interleave1": {
+          "bit_equal_fraction": 0.05270448022959184,
+          "rmse": 8.714575147288996e-07,
+          "max_abs": 2.002716064453125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785904407501221,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122228,
+            "expected_bits": 3209122215
+          }
+        },
+        "cyx-parts4-interleave0": {
+          "bit_equal_fraction": 0.064187393707483,
+          "rmse": 6.432504907310184e-07,
+          "max_abs": 1.5735626220703125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785902619361877,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122225,
+            "expected_bits": 3209122215
+          }
+        },
+        "cyx-parts4-interleave1": {
+          "bit_equal_fraction": 0.0504258343962585,
+          "rmse": 8.269727319946345e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.778589129447937,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122206,
+            "expected_bits": 3209122215
+          }
+        },
+        "cyx-parts8-interleave0": {
+          "bit_equal_fraction": 0.06150018601190476,
+          "rmse": 6.442616295891339e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.778590202331543,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122224,
+            "expected_bits": 3209122215
+          }
+        },
+        "cyx-parts8-interleave1": {
+          "bit_equal_fraction": 0.05331234056122449,
+          "rmse": 7.178992445916563e-07,
+          "max_abs": 1.4543533325195312e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785902619361877,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122225,
+            "expected_bits": 3209122215
+          }
+        },
+        "cyx-parts16-interleave0": {
+          "bit_equal_fraction": 0.06153672406462585,
+          "rmse": 6.376814592474754e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785902619361877,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122225,
+            "expected_bits": 3209122215
+          }
+        },
+        "cyx-parts16-interleave1": {
+          "bit_equal_fraction": 0.057138871173469385,
+          "rmse": 6.705877874444053e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785899043083191,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122219,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts1-interleave0": {
+          "bit_equal_fraction": 0.05730495323129252,
+          "rmse": 6.442217785634306e-07,
+          "max_abs": 1.9550323486328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785904407501221,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122228,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts2-interleave0": {
+          "bit_equal_fraction": 0.05508277529761905,
+          "rmse": 7.039828406444762e-07,
+          "max_abs": 1.9073486328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785905599594116,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122230,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts2-interleave1": {
+          "bit_equal_fraction": 0.050326185161564625,
+          "rmse": 8.689307988671033e-07,
+          "max_abs": 2.193450927734375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785894274711609,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122211,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts4-interleave0": {
+          "bit_equal_fraction": 0.056321747448979595,
+          "rmse": 6.824665914812129e-07,
+          "max_abs": 1.5735626220703125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785905003547668,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122229,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts4-interleave1": {
+          "bit_equal_fraction": 0.04991430165816327,
+          "rmse": 8.284225956491977e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785893678665161,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122210,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts8-interleave0": {
+          "bit_equal_fraction": 0.058185188137755105,
+          "rmse": 6.579776853520112e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785903811454773,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122227,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts8-interleave1": {
+          "bit_equal_fraction": 0.05413942920918367,
+          "rmse": 7.187963852332281e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785893678665161,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122210,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts16-interleave0": {
+          "bit_equal_fraction": 0.06048708545918367,
+          "rmse": 6.411680780545587e-07,
+          "max_abs": 1.3589859008789062e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785899639129639,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122220,
+            "expected_bits": 3209122215
+          }
+        },
+        "cxy-parts16-interleave1": {
+          "bit_equal_fraction": 0.0581586150085034,
+          "rmse": 6.679909890188383e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785901427268982,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122223,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts1-interleave0": {
+          "bit_equal_fraction": 0.0542257918792517,
+          "rmse": 7.667239315654414e-07,
+          "max_abs": 1.5974044799804688e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785896062850952,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122214,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts2-interleave0": {
+          "bit_equal_fraction": 0.0489344175170068,
+          "rmse": 7.852352960485196e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785902619361877,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122225,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts2-interleave1": {
+          "bit_equal_fraction": 0.04559284651360544,
+          "rmse": 9.13594628747225e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785890102386475,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122204,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts4-interleave0": {
+          "bit_equal_fraction": 0.051106770833333336,
+          "rmse": 7.432518251740937e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785905599594116,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122230,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts4-interleave1": {
+          "bit_equal_fraction": 0.046688988095238096,
+          "rmse": 8.533606373024658e-07,
+          "max_abs": 1.4066696166992188e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.778590738773346,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122233,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts8-interleave0": {
+          "bit_equal_fraction": 0.05435201424319728,
+          "rmse": 7.098503614620231e-07,
+          "max_abs": 1.3828277587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785901427268982,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122223,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts8-interleave1": {
+          "bit_equal_fraction": 0.051438934948979595,
+          "rmse": 7.28709840199301e-07,
+          "max_abs": 1.3828277587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785902619361877,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122225,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts16-interleave0": {
+          "bit_equal_fraction": 0.0581586150085034,
+          "rmse": 6.679909890188383e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785901427268982,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122223,
+            "expected_bits": 3209122215
+          }
+        },
+        "ycx-parts16-interleave1": {
+          "bit_equal_fraction": 0.055408296130952384,
+          "rmse": 6.754578200594637e-07,
+          "max_abs": 1.3589859008789062e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785899043083191,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122219,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts1-interleave0": {
+          "bit_equal_fraction": 0.04772534013605442,
+          "rmse": 7.84115838903223e-07,
+          "max_abs": 1.5497207641601562e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.778589129447937,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122206,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts2-interleave0": {
+          "bit_equal_fraction": 0.04750279017857143,
+          "rmse": 7.960289974576471e-07,
+          "max_abs": 1.4543533325195312e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785902619361877,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122225,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts2-interleave1": {
+          "bit_equal_fraction": 0.05369100765306122,
+          "rmse": 6.913771644520726e-07,
+          "max_abs": 1.4066696166992188e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785898447036743,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122218,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts4-interleave0": {
+          "bit_equal_fraction": 0.050684922406462586,
+          "rmse": 7.510824345275089e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785898447036743,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122218,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts4-interleave1": {
+          "bit_equal_fraction": 0.05562420280612245,
+          "rmse": 6.882135311654788e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785894870758057,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122212,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts8-interleave0": {
+          "bit_equal_fraction": 0.05299678465136055,
+          "rmse": 7.18148166078791e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785893082618713,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122209,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts8-interleave1": {
+          "bit_equal_fraction": 0.055919828869047616,
+          "rmse": 6.747268821537389e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785898447036743,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122218,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts16-interleave0": {
+          "bit_equal_fraction": 0.056119127338435375,
+          "rmse": 6.738882213446385e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785893082618713,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122209,
+            "expected_bits": 3209122215
+          }
+        },
+        "yxc-parts16-interleave1": {
+          "bit_equal_fraction": 0.05939094387755102,
+          "rmse": 6.44381220007264e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785896062850952,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122214,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts1-interleave0": {
+          "bit_equal_fraction": 0.04661259034863945,
+          "rmse": 8.004903403408921e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785906791687012,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122232,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts2-interleave0": {
+          "bit_equal_fraction": 0.048821481717687076,
+          "rmse": 7.805669752949422e-07,
+          "max_abs": 1.3589859008789062e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785906791687012,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122232,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts2-interleave1": {
+          "bit_equal_fraction": 0.04403167517006803,
+          "rmse": 9.159879480411632e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785899043083191,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122219,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts4-interleave0": {
+          "bit_equal_fraction": 0.050771285076530615,
+          "rmse": 7.420525422103372e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.778590738773346,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122233,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts4-interleave1": {
+          "bit_equal_fraction": 0.045954905399659865,
+          "rmse": 8.707316069874487e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.778592050075531,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122255,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts8-interleave0": {
+          "bit_equal_fraction": 0.05369765093537415,
+          "rmse": 7.1092000279425e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785903811454773,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122227,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts8-interleave1": {
+          "bit_equal_fraction": 0.052010257227891155,
+          "rmse": 7.316728159573065e-07,
+          "max_abs": 1.3828277587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.778588593006134,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122197,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts16-interleave0": {
+          "bit_equal_fraction": 0.057138871173469385,
+          "rmse": 6.705877874444053e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785899043083191,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122219,
+            "expected_bits": 3209122215
+          }
+        },
+        "xcy-parts16-interleave1": {
+          "bit_equal_fraction": 0.056119127338435375,
+          "rmse": 6.738882213446385e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785893082618713,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122209,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts1-interleave0": {
+          "bit_equal_fraction": 0.045994765093537414,
+          "rmse": 8.122422344396144e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785903811454773,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122227,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts2-interleave0": {
+          "bit_equal_fraction": 0.04692150297619048,
+          "rmse": 7.908741792359061e-07,
+          "max_abs": 1.4543533325195312e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785904407501221,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122228,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts2-interleave1": {
+          "bit_equal_fraction": 0.05239888924319728,
+          "rmse": 6.974991718542057e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785908579826355,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122235,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts4-interleave0": {
+          "bit_equal_fraction": 0.05000398596938776,
+          "rmse": 7.50690208547804e-07,
+          "max_abs": 1.3828277587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785905003547668,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122229,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts4-interleave1": {
+          "bit_equal_fraction": 0.05408960459183673,
+          "rmse": 7.019422382606904e-07,
+          "max_abs": 1.4543533325195312e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785895466804504,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122213,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts8-interleave0": {
+          "bit_equal_fraction": 0.05244871386054422,
+          "rmse": 7.162946773710232e-07,
+          "max_abs": 1.3589859008789062e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785902619361877,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122225,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts8-interleave1": {
+          "bit_equal_fraction": 0.0556109162414966,
+          "rmse": 6.792952884532135e-07,
+          "max_abs": 1.33514404296875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785895466804504,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122213,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts16-interleave0": {
+          "bit_equal_fraction": 0.055408296130952384,
+          "rmse": 6.754578200594637e-07,
+          "max_abs": 1.3589859008789062e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785899043083191,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122219,
+            "expected_bits": 3209122215
+          }
+        },
+        "xyc-parts16-interleave1": {
+          "bit_equal_fraction": 0.059161750637755105,
+          "rmse": 6.460609663396659e-07,
+          "max_abs": 1.3589859008789062e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": -0.7785900831222534,
+            "expected": -0.77858966588974,
+            "actual_bits": 3209122222,
+            "expected_bits": 3209122215
+          }
+        }
+      },
+      "best": "cyx-parts1-interleave0",
+      "inputs": {
+        "sha256": "5f72befadf48818dd9d6b61514408141d8dbee857c15287d8c8029ea7a108a03",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/pytorch/relsgg-vits16/model.pth": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/stages/traces_cuda/python_stage_trace_vits16.npz": "50b3ea3738537db7c1ecf52f0efc4bd1ca514927b61b81e6827968b9f508b72c"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "results": {
+        "cyx-parts1-interleave0": {
+          "bit_equal_fraction": 1.0,
+          "rmse": 0.0,
+          "max_abs": 0.0,
+          "first_difference": null
+        },
+        "cyx-parts2-interleave0": {
+          "bit_equal_fraction": 0.0782578656462585,
+          "rmse": 4.637044297071732e-07,
+          "max_abs": 1.33514404296875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613412737846375,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263502,
+            "expected_bits": 1040263490
+          }
+        },
+        "cyx-parts2-interleave1": {
+          "bit_equal_fraction": 0.051970397534013606,
+          "rmse": 6.906880289224048e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613418698310852,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263506,
+            "expected_bits": 1040263490
+          }
+        },
+        "cyx-parts4-interleave0": {
+          "bit_equal_fraction": 0.062722549957483,
+          "rmse": 5.050030870900766e-07,
+          "max_abs": 1.0013580322265625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261340081691742,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263494,
+            "expected_bits": 1040263490
+          }
+        },
+        "cyx-parts4-interleave1": {
+          "bit_equal_fraction": 0.0503992612670068,
+          "rmse": 6.698465041199536e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.126133531332016,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263462,
+            "expected_bits": 1040263490
+          }
+        },
+        "cyx-parts8-interleave0": {
+          "bit_equal_fraction": 0.060334289965986394,
+          "rmse": 5.077524053104895e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613391876220703,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263488,
+            "expected_bits": 1040263490
+          }
+        },
+        "cyx-parts8-interleave1": {
+          "bit_equal_fraction": 0.053694329294217684,
+          "rmse": 5.792616710531802e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "actual": -0.057318661361932755,
+            "expected": -0.05731819570064545,
+            "actual_bits": 3177891577,
+            "expected_bits": 3177891452
+          }
+        },
+        "cyx-parts16-interleave0": {
+          "bit_equal_fraction": 0.0609022906037415,
+          "rmse": 5.007564943947955e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613369524478912,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263473,
+            "expected_bits": 1040263490
+          }
+        },
+        "cyx-parts16-interleave1": {
+          "bit_equal_fraction": 0.0561789168792517,
+          "rmse": 5.296862016551981e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613391876220703,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263488,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts1-interleave0": {
+          "bit_equal_fraction": 0.0576437606292517,
+          "rmse": 5.199307921238035e-07,
+          "max_abs": 9.059906005859375e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613388895988464,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263486,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts2-interleave0": {
+          "bit_equal_fraction": 0.05535182823129252,
+          "rmse": 5.620400539540694e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613379955291748,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263480,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts2-interleave1": {
+          "bit_equal_fraction": 0.050595238095238096,
+          "rmse": 6.883429073252806e-07,
+          "max_abs": 1.1920928955078125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613388895988464,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263486,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts4-interleave0": {
+          "bit_equal_fraction": 0.055630846088435375,
+          "rmse": 5.436942881543646e-07,
+          "max_abs": 1.0013580322265625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613403797149658,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263496,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts4-interleave1": {
+          "bit_equal_fraction": 0.04923336522108843,
+          "rmse": 6.708334837979031e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261332929134369,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263446,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts8-interleave0": {
+          "bit_equal_fraction": 0.05690635629251701,
+          "rmse": 5.21408217596636e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613391876220703,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263488,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts8-interleave1": {
+          "bit_equal_fraction": 0.05306986075680272,
+          "rmse": 5.782105128437166e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261337399482727,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263476,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts16-interleave0": {
+          "bit_equal_fraction": 0.059248113307823126,
+          "rmse": 5.065667080962178e-07,
+          "max_abs": 1.0013580322265625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613408267498016,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263499,
+            "expected_bits": 1040263490
+          }
+        },
+        "cxy-parts16-interleave1": {
+          "bit_equal_fraction": 0.057049186862244895,
+          "rmse": 5.294689635046365e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613382935523987,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263482,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts1-interleave0": {
+          "bit_equal_fraction": 0.056451291454081634,
+          "rmse": 5.966922307291896e-07,
+          "max_abs": 1.3113021850585938e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613418698310852,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263506,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts2-interleave0": {
+          "bit_equal_fraction": 0.049901015093537414,
+          "rmse": 6.137590130637389e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613412737846375,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263502,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts2-interleave1": {
+          "bit_equal_fraction": 0.04714405293367347,
+          "rmse": 7.216427506308039e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613412737846375,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263502,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts4-interleave0": {
+          "bit_equal_fraction": 0.05193385948129252,
+          "rmse": 5.964433656043014e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613384425640106,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263483,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts4-interleave1": {
+          "bit_equal_fraction": 0.046884964923469385,
+          "rmse": 6.918341060739092e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613359093666077,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263466,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts8-interleave0": {
+          "bit_equal_fraction": 0.05375411883503401,
+          "rmse": 5.682424712321096e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613388895988464,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263486,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts8-interleave1": {
+          "bit_equal_fraction": 0.051482116284013606,
+          "rmse": 5.875618713773919e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613439559936523,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263520,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts16-interleave0": {
+          "bit_equal_fraction": 0.057049186862244895,
+          "rmse": 5.294689635046365e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613382935523987,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263482,
+            "expected_bits": 1040263490
+          }
+        },
+        "ycx-parts16-interleave1": {
+          "bit_equal_fraction": 0.05618223852040816,
+          "rmse": 5.334550730226335e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261337697505951,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263478,
+            "expected_bits": 1040263490
+          }
+        },
+        "yxc-parts1-interleave0": {
+          "bit_equal_fraction": 0.04920014880952381,
+          "rmse": 6.116843814038538e-07,
+          "max_abs": 1.1563301086425781e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261337399482727,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263476,
+            "expected_bits": 1040263490
+          }
+        },
+        "yxc-parts2-interleave0": {
+          "bit_equal_fraction": 0.04856239370748299,
+          "rmse": 6.260964730518338e-07,
+          "max_abs": 9.5367431640625e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613365054130554,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263470,
+            "expected_bits": 1040263490
+          }
+        },
+        "yxc-parts2-interleave1": {
+          "bit_equal_fraction": 0.05472403805272109,
+          "rmse": 5.417258622684028e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613403797149658,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263496,
+            "expected_bits": 1040263490
+          }
+        },
+        "yxc-parts4-interleave0": {
+          "bit_equal_fraction": 0.05084436118197279,
+          "rmse": 6.052745261475216e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613368034362793,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263472,
+            "expected_bits": 1040263490
+          }
+        },
+        "yxc-parts4-interleave1": {
+          "bit_equal_fraction": 0.054036458333333336,
+          "rmse": 5.486964672894216e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261337697505951,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263478,
+            "expected_bits": 1040263490
+          }
+        },
+        "yxc-parts8-interleave0": {
+          "bit_equal_fraction": 0.05278419961734694,
+          "rmse": 5.733759656579941e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613382935523987,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263482,
+            "expected_bits": 1040263490
+          }
+        },
+        "yxc-parts8-interleave1": {
+          "bit_equal_fraction": 0.0556374893707483,
+          "rmse": 5.383675954125876e-07,
+          "max_abs": 1.0013580322265625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261337697505951,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263478,
+            "expected_bits": 1040263490
+          }
+        },
+        "yxc-parts16-interleave0": {
+          "bit_equal_fraction": 0.05604272959183673,
+          "rmse": 5.35288356568696e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "actual": -0.057318463921546936,
+            "expected": -0.05731819570064545,
+            "actual_bits": 3177891524,
+            "expected_bits": 3177891452
+          }
+        },
+        "yxc-parts16-interleave1": {
+          "bit_equal_fraction": 0.05861367984693878,
+          "rmse": 5.107042115870245e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613385915756226,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263484,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts1-interleave0": {
+          "bit_equal_fraction": 0.0468218537414966,
+          "rmse": 6.351554367753464e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613362073898315,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263468,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts2-interleave0": {
+          "bit_equal_fraction": 0.04876169217687075,
+          "rmse": 6.262550591074751e-07,
+          "max_abs": 1.0013580322265625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261335015296936,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263460,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts2-interleave1": {
+          "bit_equal_fraction": 0.0453570099914966,
+          "rmse": 7.350916543006063e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613460421562195,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263534,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts4-interleave0": {
+          "bit_equal_fraction": 0.050459050807823126,
+          "rmse": 5.967359072580493e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613403797149658,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263496,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts4-interleave1": {
+          "bit_equal_fraction": 0.04651294111394558,
+          "rmse": 7.001837549732689e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613430619239807,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263514,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts8-interleave0": {
+          "bit_equal_fraction": 0.053700972576530615,
+          "rmse": 5.66933715990024e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261337697505951,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263478,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts8-interleave1": {
+          "bit_equal_fraction": 0.05180763711734694,
+          "rmse": 5.894530136078105e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613371014595032,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263474,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts16-interleave0": {
+          "bit_equal_fraction": 0.0561789168792517,
+          "rmse": 5.296862016551981e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613391876220703,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263488,
+            "expected_bits": 1040263490
+          }
+        },
+        "xcy-parts16-interleave1": {
+          "bit_equal_fraction": 0.05604272959183673,
+          "rmse": 5.35288356568696e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "actual": -0.057318463921546936,
+            "expected": -0.05731819570064545,
+            "actual_bits": 3177891524,
+            "expected_bits": 3177891452
+          }
+        },
+        "xyc-parts1-interleave0": {
+          "bit_equal_fraction": 0.045994765093537414,
+          "rmse": 6.449141888600376e-07,
+          "max_abs": 9.059906005859375e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613369524478912,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263473,
+            "expected_bits": 1040263490
+          }
+        },
+        "xyc-parts2-interleave0": {
+          "bit_equal_fraction": 0.046858391794217684,
+          "rmse": 6.355213114421795e-07,
+          "max_abs": 1.0013580322265625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613368034362793,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263472,
+            "expected_bits": 1040263490
+          }
+        },
+        "xyc-parts2-interleave1": {
+          "bit_equal_fraction": 0.05237231611394558,
+          "rmse": 5.482223971479921e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613382935523987,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263482,
+            "expected_bits": 1040263490
+          }
+        },
+        "xyc-parts4-interleave0": {
+          "bit_equal_fraction": 0.04960538903061224,
+          "rmse": 6.047152402551122e-07,
+          "max_abs": 9.5367431640625e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261339634656906,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263491,
+            "expected_bits": 1040263490
+          }
+        },
+        "xyc-parts4-interleave1": {
+          "bit_equal_fraction": 0.0530632174744898,
+          "rmse": 5.560700583872701e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613436579704285,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263518,
+            "expected_bits": 1040263490
+          }
+        },
+        "xyc-parts8-interleave0": {
+          "bit_equal_fraction": 0.05278087797619048,
+          "rmse": 5.734551165685696e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613365054130554,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263470,
+            "expected_bits": 1040263490
+          }
+        },
+        "xyc-parts8-interleave1": {
+          "bit_equal_fraction": 0.05466424851190476,
+          "rmse": 5.425414680071717e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.12613388895988464,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263486,
+            "expected_bits": 1040263490
+          }
+        },
+        "xyc-parts16-interleave0": {
+          "bit_equal_fraction": 0.05618223852040816,
+          "rmse": 5.334550730226335e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261337697505951,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263478,
+            "expected_bits": 1040263490
+          }
+        },
+        "xyc-parts16-interleave1": {
+          "bit_equal_fraction": 0.058384486607142856,
+          "rmse": 5.128815034058354e-07,
+          "max_abs": 1.0967254638671875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.1261342465877533,
+            "expected": 0.12613394856452942,
+            "actual_bits": 1040263510,
+            "expected_bits": 1040263490
+          }
+        }
+      },
+      "best": "cyx-parts1-interleave0",
+      "inputs": {
+        "sha256": "ade3af68a3cbe5a89da6a6b7f338b8180133ccc8fca96e08c8afdaacef156fe1",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/pytorch/relsgg-vits16plus/model.pth": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/stages/traces_cuda/python_stage_trace_vits16plus.npz": "3aa2e4e527f4b1c0a615239fab71b8737c390fefa5f3a1371feeda553ffb4ea2"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vitb16",
+      "results": {
+        "cyx-parts1-interleave0": {
+          "bit_equal_fraction": 1.0,
+          "rmse": 0.0,
+          "max_abs": 0.0,
+          "first_difference": null
+        },
+        "cyx-parts2-interleave0": {
+          "bit_equal_fraction": 0.0768461681547619,
+          "rmse": 3.971897917732484e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738080479204655,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178178,
+            "expected_bits": 1002178198
+          }
+        },
+        "cyx-parts2-interleave1": {
+          "bit_equal_fraction": 0.05359634088010204,
+          "rmse": 5.320470103951128e-07,
+          "max_abs": 1.71661376953125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738274194300175,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178594,
+            "expected_bits": 1002178198
+          }
+        },
+        "cyx-parts4-interleave0": {
+          "bit_equal_fraction": 0.06170280612244898,
+          "rmse": 4.3013193366747723e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005737983621656895,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002177970,
+            "expected_bits": 1002178198
+          }
+        },
+        "cyx-parts4-interleave1": {
+          "bit_equal_fraction": 0.05038763552295918,
+          "rmse": 5.425281354732385e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.0057380059733986855,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178018,
+            "expected_bits": 1002178198
+          }
+        },
+        "cyx-parts8-interleave0": {
+          "bit_equal_fraction": 0.059136838329081634,
+          "rmse": 4.291905876316173e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.0057379500940442085,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002177898,
+            "expected_bits": 1002178198
+          }
+        },
+        "cyx-parts8-interleave1": {
+          "bit_equal_fraction": 0.05430883290816327,
+          "rmse": 4.7074742564186355e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738214589655399,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178466,
+            "expected_bits": 1002178198
+          }
+        },
+        "cyx-parts16-interleave0": {
+          "bit_equal_fraction": 0.0601117400085034,
+          "rmse": 4.2372101176792584e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738177336752415,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178386,
+            "expected_bits": 1002178198
+          }
+        },
+        "cyx-parts16-interleave1": {
+          "bit_equal_fraction": 0.05683328018707483,
+          "rmse": 4.3888299315581587e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738110281527042,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178242,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts1-interleave0": {
+          "bit_equal_fraction": 0.05593145461309524,
+          "rmse": 4.405882686655301e-07,
+          "max_abs": 1.1533498764038086e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.0057380665093660355,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178148,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts2-interleave0": {
+          "bit_equal_fraction": 0.05255832801870748,
+          "rmse": 4.846223556615688e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738035775721073,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178082,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts2-interleave1": {
+          "bit_equal_fraction": 0.051417344281462586,
+          "rmse": 5.292064441612836e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738572217524052,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002179234,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts4-interleave0": {
+          "bit_equal_fraction": 0.05404808407738095,
+          "rmse": 4.662438945023152e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738125182688236,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178274,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts4-interleave1": {
+          "bit_equal_fraction": 0.05052382281037415,
+          "rmse": 5.425001472469688e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005737916566431522,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002177826,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts8-interleave0": {
+          "bit_equal_fraction": 0.05621711575255102,
+          "rmse": 4.423318025722813e-07,
+          "max_abs": 1.33514404296875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.00573809165507555,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178202,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts8-interleave1": {
+          "bit_equal_fraction": 0.054230774340986394,
+          "rmse": 4.7104043732216407e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738244391977787,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178530,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts16-interleave0": {
+          "bit_equal_fraction": 0.05827321162840136,
+          "rmse": 4.270164567466811e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738225765526295,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178490,
+            "expected_bits": 1002178198
+          }
+        },
+        "cxy-parts16-interleave1": {
+          "bit_equal_fraction": 0.05725512861394558,
+          "rmse": 4.3924489223039404e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.00573833379894495,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178722,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts1-interleave0": {
+          "bit_equal_fraction": 0.05668878879676871,
+          "rmse": 5.063403491801948e-07,
+          "max_abs": 1.621246337890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738201551139355,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178438,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts2-interleave0": {
+          "bit_equal_fraction": 0.048638791454081634,
+          "rmse": 5.193470799634153e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.00573794636875391,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002177890,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts2-interleave1": {
+          "bit_equal_fraction": 0.049261599170918366,
+          "rmse": 5.457239932245611e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738274194300175,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178594,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts4-interleave0": {
+          "bit_equal_fraction": 0.050503892963435375,
+          "rmse": 4.977425526995443e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738303996622562,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178658,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts4-interleave1": {
+          "bit_equal_fraction": 0.048663703762755105,
+          "rmse": 5.539358349732562e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738870240747929,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002179874,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts8-interleave0": {
+          "bit_equal_fraction": 0.05393348745748299,
+          "rmse": 4.694369347835722e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.00573833379894495,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178722,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts8-interleave1": {
+          "bit_equal_fraction": 0.052968550701530615,
+          "rmse": 4.748169998140436e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738371051847935,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178802,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts16-interleave0": {
+          "bit_equal_fraction": 0.05725512861394558,
+          "rmse": 4.3924489223039404e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.00573833379894495,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178722,
+            "expected_bits": 1002178198
+          }
+        },
+        "ycx-parts16-interleave1": {
+          "bit_equal_fraction": 0.05563416772959184,
+          "rmse": 4.407587871158662e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.0057380953803658485,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178210,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts1-interleave0": {
+          "bit_equal_fraction": 0.048153831845238096,
+          "rmse": 5.182329036653916e-07,
+          "max_abs": 1.621246337890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738233216106892,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178506,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts2-interleave0": {
+          "bit_equal_fraction": 0.04814386692176871,
+          "rmse": 5.243248764042451e-07,
+          "max_abs": 1.71661376953125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738244391977787,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178530,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts2-interleave1": {
+          "bit_equal_fraction": 0.053704294217687076,
+          "rmse": 4.534057620974165e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.00573833379894495,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178722,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts4-interleave0": {
+          "bit_equal_fraction": 0.05010861766581633,
+          "rmse": 5.022871675650658e-07,
+          "max_abs": 1.33514404296875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738259293138981,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178562,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts4-interleave1": {
+          "bit_equal_fraction": 0.053343896152210885,
+          "rmse": 4.5921910004901184e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738065578043461,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178146,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts8-interleave0": {
+          "bit_equal_fraction": 0.05297685480442177,
+          "rmse": 4.7222395028759025e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738184787333012,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178402,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts8-interleave1": {
+          "bit_equal_fraction": 0.055783641581632654,
+          "rmse": 4.4043656652116077e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738184787333012,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178402,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts16-interleave0": {
+          "bit_equal_fraction": 0.05605767697704082,
+          "rmse": 4.415948010570807e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738274194300175,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178594,
+            "expected_bits": 1002178198
+          }
+        },
+        "yxc-parts16-interleave1": {
+          "bit_equal_fraction": 0.058049000850340135,
+          "rmse": 4.281369934373987e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738214589655399,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178466,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts1-interleave0": {
+          "bit_equal_fraction": 0.04500989849064626,
+          "rmse": 5.360996911571532e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738275125622749,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178596,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts2-interleave0": {
+          "bit_equal_fraction": 0.04701118728741496,
+          "rmse": 5.276398068939698e-07,
+          "max_abs": 1.430511474609375e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738181062042713,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178394,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts2-interleave1": {
+          "bit_equal_fraction": 0.04749946853741496,
+          "rmse": 5.536070302653908e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005737886764109135,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002177762,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts4-interleave0": {
+          "bit_equal_fraction": 0.050236500850340135,
+          "rmse": 5.012956799154535e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005737961269915104,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002177922,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts4-interleave1": {
+          "bit_equal_fraction": 0.047461269664115645,
+          "rmse": 5.573182331359056e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.0057380059733986855,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178018,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts8-interleave0": {
+          "bit_equal_fraction": 0.05321933460884354,
+          "rmse": 4.6872070207811945e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738162435591221,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178354,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts8-interleave1": {
+          "bit_equal_fraction": 0.05268288956207483,
+          "rmse": 4.76537592416798e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738274194300175,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178594,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts16-interleave0": {
+          "bit_equal_fraction": 0.05683328018707483,
+          "rmse": 4.3888299315581587e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738110281527042,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178242,
+            "expected_bits": 1002178198
+          }
+        },
+        "xcy-parts16-interleave1": {
+          "bit_equal_fraction": 0.05605767697704082,
+          "rmse": 4.415948010570807e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738274194300175,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178594,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts1-interleave0": {
+          "bit_equal_fraction": 0.0450547406462585,
+          "rmse": 5.438001586023573e-07,
+          "max_abs": 1.33514404296875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738371051847935,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178802,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts2-interleave0": {
+          "bit_equal_fraction": 0.04648802880527211,
+          "rmse": 5.317303420640895e-07,
+          "max_abs": 1.33514404296875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738363601267338,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178786,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts2-interleave1": {
+          "bit_equal_fraction": 0.052060081845238096,
+          "rmse": 4.5803331721067117e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738348700106144,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178754,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts4-interleave0": {
+          "bit_equal_fraction": 0.04941771630527211,
+          "rmse": 5.042341531925369e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738210864365101,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178458,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts4-interleave1": {
+          "bit_equal_fraction": 0.05287720556972789,
+          "rmse": 4.635100035156885e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738259293138981,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178562,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts8-interleave0": {
+          "bit_equal_fraction": 0.05297353316326531,
+          "rmse": 4.7063169096016554e-07,
+          "max_abs": 1.049041748046875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738158710300922,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178346,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts8-interleave1": {
+          "bit_equal_fraction": 0.05540497448979592,
+          "rmse": 4.422340048611335e-07,
+          "max_abs": 1.239776611328125e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.0057379575446248055,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002177914,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts16-interleave0": {
+          "bit_equal_fraction": 0.05563416772959184,
+          "rmse": 4.407587871158662e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.0057380953803658485,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178210,
+            "expected_bits": 1002178198
+          }
+        },
+        "xyc-parts16-interleave1": {
+          "bit_equal_fraction": 0.05788125797193878,
+          "rmse": 4.2852973733636434e-07,
+          "max_abs": 1.1444091796875e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "actual": 0.005738147534430027,
+            "expected": 0.005738089792430401,
+            "actual_bits": 1002178322,
+            "expected_bits": 1002178198
+          }
+        }
+      },
+      "best": "cyx-parts1-interleave0",
+      "inputs": {
+        "sha256": "ad73c9902c8ea0c618ae9539f3d342eaa00661d4d54280d976b3e4aed21eaaa7",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/pytorch/relsgg-vitb16/model.pth": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/stages/traces_cuda/python_stage_trace_vitb16.npz": "4ed2e74649744f1cf2d087c44192dce12eed1d617f31e21e91e0871ca6f12e9a"
+        }
+      }
+    }
+  ]
+}

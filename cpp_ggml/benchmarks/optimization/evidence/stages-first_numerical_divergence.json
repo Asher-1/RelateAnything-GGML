@@ -1,0 +1,1028 @@
+[
+  {
+    "model": "relsgg-vits16",
+    "backend": "cpu",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.7785902619361877,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209122225
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cpu",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.7795156240463257,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209137750
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cpu",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.7785902619361877,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209122225
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cuda",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.77858966588974,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209122215
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cuda",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.7795159220695496,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209137755
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cuda",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.77858966588974,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209122215
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "vulkan",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.7785896062850952,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209122214
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "vulkan",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.7795143723487854,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209137729
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "vulkan",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.7785891890525818,
+      "candidate": -0.7785896062850952,
+      "reference_bits": 3209122207,
+      "candidate_bits": 3209122214
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cpu",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.1261337697505951,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040263478
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cpu",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.12678247690200806,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040307012
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cpu",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.1261337697505951,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040263478
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cuda",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.12613394856452942,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040263490
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cuda",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.12678226828575134,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040306998
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cuda",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.12613394856452942,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040263490
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "vulkan",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.12613381445407867,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040263481
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "vulkan",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.12678223848342896,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040306996
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "vulkan",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.1261337846517563,
+      "candidate": 0.12613381445407867,
+      "reference_bits": 1040263479,
+      "candidate_bits": 1040263481
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cpu",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.0057386914268136024,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1002179490
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cpu",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.006192445755004883,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1003153920
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cpu",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.0057386914268136024,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1002179490
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cuda",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.005738089792430401,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1002178198
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cuda",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.006192207336425781,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1003153408
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cuda",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.005738089792430401,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1002178198
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "vulkan",
+    "dtype": "f32",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.005738035775721073,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1002178082
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "vulkan",
+    "dtype": "f16",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.006192549131810665,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1003154142
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "vulkan",
+    "dtype": "q8_0",
+    "reference_device": "cpu",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.0057382103987038136,
+      "candidate": 0.005738035775721073,
+      "reference_bits": 1002178457,
+      "candidate_bits": 1002178082
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cpu",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.77858966588974,
+      "candidate": -0.7785902619361877,
+      "reference_bits": 3209122215,
+      "candidate_bits": 3209122225
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cpu",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.77858966588974,
+      "candidate": -0.7795156240463257,
+      "reference_bits": 3209122215,
+      "candidate_bits": 3209137750
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cpu",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.77858966588974,
+      "candidate": -0.7785902619361877,
+      "reference_bits": 3209122215,
+      "candidate_bits": 3209122225
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cuda",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_norm1",
+    "difference": {
+      "index": [
+        0,
+        0,
+        15
+      ],
+      "reference": -1.8251785039901733,
+      "candidate": -1.825178623199463,
+      "reference_bits": 3219758963,
+      "candidate_bits": 3219758964
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cuda",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.77858966588974,
+      "candidate": -0.7795159220695496,
+      "reference_bits": 3209122215,
+      "candidate_bits": 3209137755
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "cuda",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_norm1",
+    "difference": {
+      "index": [
+        0,
+        0,
+        15
+      ],
+      "reference": -1.8251785039901733,
+      "candidate": -1.825178623199463,
+      "reference_bits": 3219758963,
+      "candidate_bits": 3219758964
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "vulkan",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.77858966588974,
+      "candidate": -0.7785896062850952,
+      "reference_bits": 3209122215,
+      "candidate_bits": 3209122214
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "vulkan",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.77858966588974,
+      "candidate": -0.7795143723487854,
+      "reference_bits": 3209122215,
+      "candidate_bits": 3209137729
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16",
+    "backend": "vulkan",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": -0.77858966588974,
+      "candidate": -0.7785896062850952,
+      "reference_bits": 3209122215,
+      "candidate_bits": 3209122214
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cpu",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.12613394856452942,
+      "candidate": 0.1261337697505951,
+      "reference_bits": 1040263490,
+      "candidate_bits": 1040263478
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cpu",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.12613394856452942,
+      "candidate": 0.12678247690200806,
+      "reference_bits": 1040263490,
+      "candidate_bits": 1040307012
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cpu",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.12613394856452942,
+      "candidate": 0.1261337697505951,
+      "reference_bits": 1040263490,
+      "candidate_bits": 1040263478
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cuda",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_norm1",
+    "difference": {
+      "index": [
+        0,
+        0,
+        1
+      ],
+      "reference": -0.044263336807489395,
+      "candidate": -0.044263340532779694,
+      "reference_bits": 3174387065,
+      "candidate_bits": 3174387066
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cuda",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.12613394856452942,
+      "candidate": 0.12678226828575134,
+      "reference_bits": 1040263490,
+      "candidate_bits": 1040306998
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "cuda",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_norm1",
+    "difference": {
+      "index": [
+        0,
+        0,
+        1
+      ],
+      "reference": -0.044263336807489395,
+      "candidate": -0.044263340532779694,
+      "reference_bits": 3174387065,
+      "candidate_bits": 3174387066
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "vulkan",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.12613394856452942,
+      "candidate": 0.12613381445407867,
+      "reference_bits": 1040263490,
+      "candidate_bits": 1040263481
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "vulkan",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.12613394856452942,
+      "candidate": 0.12678223848342896,
+      "reference_bits": 1040263490,
+      "candidate_bits": 1040306996
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "backend": "vulkan",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.12613394856452942,
+      "candidate": 0.12613381445407867,
+      "reference_bits": 1040263490,
+      "candidate_bits": 1040263481
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cpu",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.005738089792430401,
+      "candidate": 0.0057386914268136024,
+      "reference_bits": 1002178198,
+      "candidate_bits": 1002179490
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cpu",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.005738089792430401,
+      "candidate": 0.006192445755004883,
+      "reference_bits": 1002178198,
+      "candidate_bits": 1003153920
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cpu",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.005738089792430401,
+      "candidate": 0.0057386914268136024,
+      "reference_bits": 1002178198,
+      "candidate_bits": 1002179490
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cuda",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_norm1",
+    "difference": {
+      "index": [
+        0,
+        0,
+        1
+      ],
+      "reference": 0.06551782786846161,
+      "candidate": 0.06551781296730042,
+      "reference_bits": 1032203830,
+      "candidate_bits": 1032203828
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cuda",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.005738089792430401,
+      "candidate": 0.006192207336425781,
+      "reference_bits": 1002178198,
+      "candidate_bits": 1003153408
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "cuda",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_norm1",
+    "difference": {
+      "index": [
+        0,
+        0,
+        1
+      ],
+      "reference": 0.06551782786846161,
+      "candidate": 0.06551781296730042,
+      "reference_bits": 1032203830,
+      "candidate_bits": 1032203828
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "vulkan",
+    "dtype": "f32",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.005738089792430401,
+      "candidate": 0.005738035775721073,
+      "reference_bits": 1002178198,
+      "candidate_bits": 1002178082
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "vulkan",
+    "dtype": "f16",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.005738089792430401,
+      "candidate": 0.006192549131810665,
+      "reference_bits": 1002178198,
+      "candidate_bits": 1003154142
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  },
+  {
+    "model": "relsgg-vitb16",
+    "backend": "vulkan",
+    "dtype": "q8_0",
+    "reference_device": "cuda",
+    "first_nonidentical_boundary": "backbone_patch",
+    "difference": {
+      "index": [
+        0,
+        0,
+        0
+      ],
+      "reference": 0.005738089792430401,
+      "candidate": 0.005738035775721073,
+      "reference_bits": 1002178198,
+      "candidate_bits": 1002178082
+    },
+    "scope": "first instrumented boundary; not an unobserved internal primitive"
+  }
+]

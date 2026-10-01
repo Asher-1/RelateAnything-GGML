@@ -1,0 +1,16 @@
+{
+  "time_utc": "2026-10-09T04:36:35.599807+00:00",
+  "repository": "maelic/OV-SGG-Bench",
+  "attempts": [
+    {
+      "auth": "anonymous",
+      "status_code": 401,
+      "error_type": "RepositoryNotFoundError"
+    },
+    {
+      "auth": "local-token",
+      "status_code": 404,
+      "error_type": "RepositoryNotFoundError"
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "cpp_ggml/scripts",
+    "-p",
+    "test_*.py"
+  ],
+  "passed": 27,
+  "log": "...........................\n----------------------------------------------------------------------\nRan 27 tests in 0.064s\n\nOK\n",
+  "log_sha256": "8c74ed9f96e1cbd4dd1496e8ddabff920e5d042bebee8da4e4fb92acb4125d0d",
+  "executed_utc": "2026-10-09T06:35:04.456655+00:00",
+  "test_sources": {
+    "cpp_ggml/scripts/test_acceptance_status.py": "d00b3b41218200b8fc678d0de4cc493906dff0703c41d441abec1f6aa50495f7",
+    "cpp_ggml/scripts/test_stage_statistics.py": "1cd1cfc30de59e413058f40f90e19917031de0d67d72985eec0c8ce4e8e1f45a",
+    "cpp_ggml/scripts/test_provenance.py": "9a2c0fb60401cae2e449d3a0c06dadff40e8ca1ef8552f64c02f222092c67381",
+    "cpp_ggml/scripts/test_benchmark_layout.py": "5097a7f79ffe42e68d2b99210c07071b6b891202c7b5d678acdf8f76d10aaf5f"
+  }
+}

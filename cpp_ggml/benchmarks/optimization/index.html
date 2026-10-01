@@ -1,0 +1,28 @@
+<!doctype html><html lang="zh"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Strict CUDA 优化进度</title><style>body{font:16px system-ui;max-width:1300px;margin:auto;padding:20px;overflow-wrap:anywhere}img{width:100%;height:auto}pre{white-space:pre-wrap}a{color:#076778}</style><h1>Strict CUDA 优化进度</h1><p>12 个 CUDA 配置、600 图；27 组 stage/dynamic；全模型逐位一致与全部后端更快仍为 open。</p><p><a href="../ALL_COMPARISONS.html">全部后端对比</a> · <a href="summary.json">完整统计</a></p><pre># Strict CUDA 优化进度
+
+这是新 CUDA 的专项重测，覆盖 3 个模型 × F32/F16/Q8 × 50 图，另有 150 图 Q8 F32-input。完整 CPU/CUDA/Vulkan 基线仍在上一级画廊。
+
+**全模型原版 CUDA 逐位一致、全部后端 strict 更快仍为 open。** 算子通过不能替代全模型通过。
+
+计时：原图解码到校准三元组；2 次预热、5 次重复；官方 Python 在每组模型前后独立测量。
+
+| 模型 | 存储 | 原完整基线 ms | 精确算子禁用 capture ms | 启用 capture ms | 本轮 Python ms | 速度倍率 | 预热后 capture 开关逐位相同图数 |
+|---|---|---:|---:|---:|---:|---:|---:|
+| relsgg-vits16 | f32 | 31.93 | 29.62 | 30.74 | 31.54 | 1.026 | 50/50 |
+| relsgg-vits16 | f16 | 31.42 | 28.86 | 29.76 | 31.54 | 1.060 | 50/50 |
+| relsgg-vits16 | q8_0 | 26.93 | 25.30 | 25.33 | 31.54 | 1.245 | 50/50 |
+| relsgg-vits16plus | f32 | 35.50 | 33.15 | 33.38 | 32.85 | 0.984 | 50/50 |
+| relsgg-vits16plus | f16 | 33.54 | 31.33 | 32.55 | 32.85 | 1.009 | 50/50 |
+| relsgg-vits16plus | q8_0 | 28.43 | 27.09 | 27.73 | 32.85 | 1.184 | 50/50 |
+| relsgg-vitb16 | f32 | 60.77 | 58.56 | 59.51 | 54.67 | 0.919 | 50/50 |
+| relsgg-vitb16 | f16 | 55.20 | 50.38 | 54.20 | 54.67 | 1.009 | 50/50 |
+| relsgg-vitb16 | q8_0 | 42.32 | 37.87 | 40.24 | 54.67 | 1.359 | 50/50 |
+
+速度倍率使用每图 Python 重复计时汇总后的 50 图 P50；before/after 分布另行保留。7/9 是本轮观测值，接近 1 倍的结果不足以保证稳定更快，且全模型逐位一致仍未通过。
+
+| 模型 | Python 前 P50 ms | Python 后 P50 ms | 漂移 |
+|---|---:|---:|---:|
+| relsgg-vits16 | 31.13 | 30.98 | 0.48% |
+| relsgg-vits16plus | 32.27 | 34.10 | 5.67% |
+| relsgg-vitb16 | 55.20 | 54.60 | 1.08% |
+</pre><h2>latency</h2><img src="latency.png"><a href="latency.svg">SVG</a><h2>precision</h2><img src="precision.png"><a href="precision.svg">SVG</a><h2>speed_and_replay_bits</h2><img src="speed_and_replay_bits.png"><a href="speed_and_replay_bits.svg">SVG</a><h2>softmax_operator</h2><img src="softmax_operator.png"><a href="softmax_operator.svg">SVG</a><h2>stage_errors_cpu</h2><img src="stage_errors_cpu.png"><a href="stage_errors_cpu.svg">SVG</a><h2>stage_errors_cuda</h2><img src="stage_errors_cuda.png"><a href="stage_errors_cuda.svg">SVG</a><h2>patch_and_next_boundary</h2><img src="patch_and_next_boundary.png"><a href="patch_and_next_boundary.svg">SVG</a><h2>dynamic_vocabulary</h2><img src="dynamic_vocabulary.png"><a href="dynamic_vocabulary.svg">SVG</a><h2>quant_f32_input</h2><img src="quant_f32_input.png"><a href="quant_f32_input.svg">SVG</a><h2>all_backends_latency</h2><img src="all_backends_latency.png"><a href="all_backends_latency.svg">SVG</a></html>

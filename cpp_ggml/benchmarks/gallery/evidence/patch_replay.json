@@ -1,0 +1,17 @@
+{
+  "ggml_version": "v0.21.0",
+  "pin": "8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b",
+  "original_tree": "f6a93ab908d56ccf20c53a74c824148862e6c128",
+  "patched_tree": "1c56064934a77f6d1536813fa6fa4401725a147f",
+  "reverse_restores_tree": true,
+  "patches": [
+    {
+      "patch": "0001-relateanything-ggml.patch",
+      "sha256": "de15bc039b037c8497806ed09e4cafdf52ffcb468c66da2a7ff77f96501da3b2",
+      "forward_check": true,
+      "applied": true,
+      "reverse_check": true,
+      "idempotent_skip": true
+    }
+  ]
+}
