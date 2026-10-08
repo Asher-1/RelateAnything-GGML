@@ -2,9 +2,24 @@
 
 ## What the released models were trained with
 
-One recipe, three backbones. The backbone is the only variable across the
-family. Full-scale runs are 503,754 images/epoch × 12 epochs on 4× A100
-(global batch 128), roughly 6 hours each.
+One recipe, seven backbones: three DINOv3 ViTs and four DINOv3 ConvNeXts. The
+backbone is the only variable across the family, apart from the ConvNeXt
+learning rate below. Full-scale runs are 537,355 images/epoch (503,754 for the
+zero-shot control, which has no HICO-DET) × 12 epochs on 4× A100 (global batch
+128), roughly 6 hours each for the ViTs and up to 12 hours for ConvNeXt-L.
+
+A DINOv3 ConvNeXt tower is a drop-in backbone: its four stage maps (strides 4,
+8, 16, 32) are fused onto the same stride-16 grid, the fusion is trained at the
+head's learning rate, and the tower takes `--backbone_lr 1e-5`, the best of a
+1e-4 / 3e-5 / 1e-5 / 3e-6 ladder on a 50K-image proxy. ConvNeXt-B and -L need
+activation checkpointing (`--backbone_grad_ckpt`, same gradients) to fit 32
+images per GPU at the 672 px multi-scale rung on a 48 GB card. Keep the
+per-GPU batch at 32: the loss is batch-local InfoNCE.
+
+```bash
+BACKBONE=facebook/dinov3-convnext-tiny-pretrain-lvd1689m BACKBONE_LR=1e-5 ./train.sh
+BACKBONE=facebook/dinov3-convnext-base-pretrain-lvd1689m BACKBONE_LR=1e-5 ./train.sh --backbone_grad_ckpt
+```
 
 ```bash
 torchrun --nproc_per_node 4 train.py \

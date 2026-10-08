@@ -144,7 +144,7 @@ def main() -> None:
         args.checkpoint, preds, text_student=args.text_student,
         device="cpu", weights=args.weights, img_size=args.img_size,
         strict=True, embeddings=bank_E)
-    bt = "dinov3"
+    bt = "dinov3_convnext" if ra.model.backbone.is_convnext else "dinov3"
     print("[export] text encoder: " + (f"none (vocabulary from {args.vocab_npz})"
                                        if bank_E is not None else str(ra.text_student)))
     model = ra.model.eval()

@@ -97,9 +97,13 @@ ln -s ovsgg_bench/text_student_v2_512 runs/packed/text_student_v2_512
 ln -s ovsgg_bench/datamix_v22 runs/packed/datamix_v22
 ```
 
-After that every command in the docs works with its default paths. Packs
-record image roots as `datasets/<name>/<split>`; point `RA_DATASETS` at the
-directory that holds your copies of the source images.
+After that every command in the docs works with its default paths. A pack
+records the image directory it was built against (`meta.json: img_dir`); point
+the packs at the directory that holds your copies of the source images with
+
+```bash
+RA_DATASETS=/path/to/datasets python training/relocate_packs.py runs/packed/<pack>...
+```
 
 ## The gated backbone (training only)
 

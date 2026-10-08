@@ -205,3 +205,37 @@ def test_end_to_end_records_cannot_be_published_as_relation_only(tmp_path):
     source.write_text(json.dumps(data))
     with pytest.raises(ValueError, match="relation-only"):
         report.load_records(source)
+
+
+@pytest.mark.parametrize("seed", range(5))
+def test_device_side_decoding_matches_host_decoding(seed):
+    """The PyTorch arms reduce scores to each pair's best predicate before the
+    host transfer; the triplets must be the host decoder's."""
+    from deploy.bench_gpu_backends import decode_best, same_triplets
+    from deploy.postprocess import ThresholdConfig, decode
+
+    rng = np.random.default_rng(seed)
+    pairs, vocab, boxes = 64, 300, 12
+    logits = rng.normal(0, 3, (pairs, vocab)).astype(np.float32)
+    pair_logits = rng.normal(0, 2, pairs).astype(np.float32)
+    sub_idx = rng.integers(0, boxes + 3, pairs)
+    obj_idx = rng.integers(0, boxes + 3, pairs)
+    valid = rng.random(pairs) > 0.2
+    names = [f"p{i}" for i in range(vocab)]
+    box_scores = rng.random(boxes).astype(np.float32)
+    cfg = ThresholdConfig(topk=20, threshold=0.5, calib_a=0.56, calib_b=-1.9)
+    score = cfg.contract().scores(logits, pair_logits)
+    host = decode(
+        logits, pair_logits, sub_idx, obj_idx, valid, names, cfg, box_scores=box_scores
+    )
+    device = decode_best(
+        score.max(axis=1),
+        score.argmax(axis=1),
+        sub_idx,
+        obj_idx,
+        valid,
+        names,
+        cfg,
+        box_scores=box_scores,
+    )
+    assert host and same_triplets(host, device)

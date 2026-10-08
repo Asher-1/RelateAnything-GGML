@@ -107,13 +107,9 @@ including empty inputs and vocabulary swaps. Installation, engine generation,
 the webcam/image demo and the standalone API are documented in
 [TensorRT deployment](../deploy/README.md#tensorrt-nvidia-gpu).
 
-For measurements of all three checkpoints with PyTorch, ONNX CUDA and TensorRT
-on an RTX 3080 Laptop GPU, see the [README performance section](../README.md#performance)
-and [full benchmark and reproduction guide](benchmarks/README.md). The
-benchmark writes software versions, input/model hashes and every timed sample
-into local JSON artifacts. Regenerate the documented values with
-`python release/update_readme_latency.py --source /path/to/family.json`;
-add `--check` to compare the report with that local source.
+For the latency of all seven checkpoints with PyTorch, ONNX Runtime and
+TensorRT on an RTX 3080 Laptop GPU, with and without a detector, see the
+[laptop benchmark](benchmarks/README.md).
 
 ## Laptop CPU (OpenVINO)
 
