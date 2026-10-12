@@ -41,7 +41,7 @@ def main():
         validate_run(benchmark/model/'python', script=ROOT/'cpp_ggml/scripts/benchmark_full_graph.py')
     folder = ROOT/'cpp_ggml/benchmarks'
     paths = {}
-    for name in ('README.md', 'ALIGNMENT_STATUS.md', 'NEXT_WINDOW_TODOS.md',
+    for name in ('README.md', 'RELEASE_STATUS.md', 'ALIGNMENT_STATUS.md', 'NEXT_WINDOW_TODOS.md',
                  'METRIC_COVERAGE.md', 'EXPORT_STATUS.md', 'PORTING_NOTES.md',
                  'RA4M_50.md', 'OFFICIAL_DATA.md', 'full_gguf_manifest.json',
                  'official_data_manifest.json', 'cleanup_manifest.json'):

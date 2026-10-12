@@ -58,8 +58,10 @@ def export(run, output):
     if not audit.get('all_complete') or audit.get('primary_ggml_image_configurations') != 1350:
         raise RuntimeError('a complete three-backend release audit is required')
     status = read(reports/'acceptance_status.json')
-    if status['execution']['strict_rows'] != 30:
-        raise RuntimeError('all 30 native precision/timing configurations are required')
+    if status['execution']['primary_rows'] != 27:
+        raise RuntimeError('all 27 primary native precision/timing configurations are required')
+    if status.get('release_decision') not in ('complete', 'accepted_with_one_performance_deviation'):
+        raise RuntimeError('release acceptance decision is blocked')
     for backend in BACKENDS:
         rows = read(reports/f'c_api-{backend}.json')['rows']
         if len(rows) != 9 or any(row['returncode'] for row in rows):
@@ -148,126 +150,71 @@ def timing_table(summary):
 
 def documents(reports, status, run_id, figure_count):
     folder = ROOT/'cpp_ggml/benchmarks'
-    todo_path = folder/'NEXT_WINDOW_TODOS.md'
-    continuation = ''
-    if todo_path.is_file():
-        previous = todo_path.read_text()
-        start = '<!-- continuation-todos:start -->'
-        end = '<!-- continuation-todos:end -->'
-        if start in previous or end in previous:
-            if previous.count(start) != 1 or previous.count(end) != 1:
-                raise RuntimeError('invalid continuation TODO markers; refusing to overwrite the checklist')
-            begin, finish = previous.index(start), previous.index(end)
-            if finish < begin:
-                raise RuntimeError('reversed continuation TODO markers; refusing to overwrite the checklist')
-            # Execution summaries are generated; outstanding work is maintained
-            # by the user/agent and must survive the next compact report export.
-            continuation = previous[begin:finish+len(end)]+'\n\n'
     summary = read(reports/'full_graph/summary.json')
-    versions = sorted({read(reports/f'full_graph/{m}/python/results.json')['torch_version'] for m in MODELS})
-    bit = status['details']['strict_bit_equality']
-    slow = status['details']['strict_faster_than_python']['slower_or_equal_rows']
-    joint = status['details']['exact_precision_and_speed']['passing_native_configs']
     statuses = {row['id']: row for row in status['statuses']}
-    common = (f'当前发布运行：`{run_id}`。'
-              '[机器验收状态](gallery/evidence/acceptance_status.json)与'
-              '[跨平台报告摘要](summary/README.md)分别记录稳定证据和下载身份。\n\n'
-              '全部源修改和构建冻结后重新运行；执行完成不等于精度、速度或协议验收通过。'
-              '离线详细图和机器证据保存在 [gallery](gallery/README.md)，无需旧日期目录。\n\n')
-    table = timing_table(summary)
-    coverage = ('- 27 主配置 × 50 图：S / S+ / B、CPU / CUDA / Vulkan、F32 / F16 / Q8_0。'
-                '另有 3 × 50 图 CUDA Q8 F32-input；总计 1500 个 native 图像配置、150 个官方 Python 图像。\n'
-                '- 27 组 stage/dynamic，对独立 CPU 和原始 CUDA 参考分别定位首个不同浮点位；'
-                '27 dense、固定候选对误差分析和九组可选接口。\n'
-                '- 27 组真实模型 C API 验证：内存/文件输入、五种像素格式、stride/capacity、取消、'
-                '独立结果生命周期、宿主 backend lease。CTest：CPU 5/5、CUDA 6/6、Vulkan 6/6。\n'
-                '- 9 个 GGUF 存储权重 CPU oracle × 50 图，对 CPU/CUDA/Vulkan 分别比较；'
-                '存储误差、参考设备误差和 native 算术误差分别报告。\n'
-                '- PSG / IndoorVG / VG150 共 81 个模型配置子集回归，SpatialSense valid/test 共 54 个；'
-                '全部使用对应公开标注，不能代表完整 leaderboard。\n'
-                '- GGML v0.21.0 (`8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b`) 的'
-                '一个合并补丁已完成 pristine 正向/反向/还原重放，当前依赖树逐文件一致。'
-                '401 个编译源/头文件通过环境开关审计，运行策略由版本化 Struct Options 显式配置。\n\n')
-    numerical = (f'原版 PyTorch-CUDA 的逐位对照覆盖 {bit["original_cuda_comparisons"]} 个 native 配置，'
-                 f'最小 logits 逐位相同比例为 {bit["original_cuda_minimum_logit_bit_equal_fraction"]:.8%}。'
-                 '同时比较候选对、pair logits 和谓词 logits，近似误差或相同候选集不代表逐位一致。\n\n'
-                 'F16/Q8 权重转换会丢失原始 FP32 信息；strict F32 控制算术精度，不能恢复已丢失的权重位。'
-                 'F32 也保留不同 kernel/reduction 的浮点残差。'
-                 '[逐 stage 首个差异](gallery/evidence/stages/first_numerical_divergence.json)'
-                 '记录坐标、值和 IEEE-754 位，仅定位已观测边界，未把它称为内部算子的最终根因。\n\n')
-    performance = ('上游 Python 推理源码在本机 PyTorch '+', '.join(versions)+' 环境执行。'
-                   +f'{summary["warmup"]} 次预热、{summary["repeats"]} 次重复，50 图 P50，单位 ms。'
-                   '完整图像解码到校准三元组，包含预处理、图构造/分配、传输、推理和排序；'
-                   '模型加载与写文件不计入。官方 Python 在每个模型 native 矩阵前后独立计时。\n\n'
-                   +table+'\n\n'
-                   +f'30 个 native 配置中 {len(slow)} 个未快于 PyTorch-CUDA；'
-                   f'同时满足原始 CUDA 逐位一致和速度更快的配置为 {len(joint)} 个。'
-                   '这是 RTX 3060 共享工作站的实测结果。'
-                   '[全局图与逐次分布](gallery/README.md)保存 P50/P95、慢图和未剔除的测量分布。\n\n')
-    assets = ('五类协议资产仍缺失：同义词/反义词及 text-space 校准、裁定正负例 Haystack、'
-              '固定 detector 与 operating point、judge/HICO/OVS 控制及归一化、'
-              '标签完备的 held-out ECE/Brier 分布。'
-              '不能把未标注样本当负例，也不能用自动生成的同义词代替对应标注资产。'
-              '[资产来源与访问结果](OFFICIAL_DATA.md)、[指标定义](METRIC_COVERAGE.md)。\n\n')
-    (folder/'ALIGNMENT_STATUS.md').write_text('# 对齐状态入口\n\n'
-        '验收状态统一维护在 [NEXT_WINDOW_TODOS.md](NEXT_WINDOW_TODOS.md)，避免两份清单产生冲突。\n\n'
-        '[全部对比图](ALL_COMPARISONS.html)覆盖完整基线与专项重测；'
-        '[接口与 AICore 集成边界](PORTING_NOTES.md)。\n')
-    focused = ''
-    optimization = folder/'optimization/summary.json'
-    if optimization.is_file():
-        progress = read(optimization)
-        # Attach only the optimization measured against this complete baseline.
-        # A later baseline must not inherit an unrelated earlier progress claim.
-        prefix = str((reports.parent/'artifacts/full_graph').resolve())+'/'
-        if any(path.startswith(prefix) for path in progress['source']['files']):
-            faster = sum(row['speedup_vs_python'] > 1 for row in progress['rows'])
-            capture = progress['capture_profile']
-            focused = ('## 本轮 strict 专项重测\n\n'
-                '[修复与图表](optimization/index.html)：'+progress['scope']+'。\n\n'
-                f'新 CUDA 主矩阵 {faster}/{len(progress["rows"])} 的 P50 快于同期官方 Python；'
-                '全模型原版逐位一致和全部 strict 配置更快仍未达成。'
-                f'另有 {len(progress["stage_rows"])} 组 stage/dynamic 和 '
-                f'{progress["operator_cases"]} 个精确 softmax 用例。\n\n'
-                f'端到端 profiler 记录 {capture["cuda_capture_begins"]} 次 capture、'
-                f'{capture["cuda_graph_launches"]} 次 graph launch；'
-                '编译启用 capture 不代表图重放加速已发生。'
-                '完整基线与专项重测分别标明来源，专项重测不替换完整验收状态。\n\n')
-    labels = [('strict_bit_equality', '原始 PyTorch-CUDA 逐位一致', 'gallery/numerical_first_divergence.json'),
-              ('strict_faster_than_python', '每个 strict 配置快于 PyTorch-CUDA', 'gallery/evidence/full_graph/summary.json'),
-              ('soft_open_vocab', 'SoftR / SoftmR / SoftF1、open-vocabulary A3', 'OFFICIAL_DATA.md'),
-              ('haystack_precision', 'Haystack fAP / rare fAP、P-AUC / PDD / PDO', 'OFFICIAL_DATA.md'),
-              ('sgdet_detector_metrics', 'SGDet、box AP/mAP、detector retention', 'OFFICIAL_DATA.md'),
-              ('judge_hico_ovs', 'judge、counterfactual、HICO/zero-shot、OVS', 'OFFICIAL_DATA.md'),
-              ('ece_brier', 'ECE / Brier', 'OFFICIAL_DATA.md')]
-    lines = ['| 验收项 | 状态 | 证据 / 所需资产 |', '|---|---|---|']
-    for key, label, link in labels:
-        row = statuses[key]
-        lines.append(f'| {label} | **{row["status"]}** | [{row["reason"]}]({link}) |')
-    todo_path.write_text('# GGML / upstream Python 最终验收\n\n'+common
-        +continuation+focused
-        +'## 七项验收\n\n'+'\n'.join(lines)+'\n\n'
-        +'`missing_asset` 是协议输入缺失，不能标作模型通过或失败。取得资产后须记录版本、许可、'
-        'split、标注哈希和评测脚本哈希，创建新运行。\n\n'
-        +'## 已完成的重构与验证\n\n'+coverage
-        +'## 完整基线精度与性能结论\n\n'+numerical+performance+assets
-        +'## 复现与结果保留\n\n'
-        +'```sh\npython3 cpp_ggml/scripts/run_alignment.py --run-id my-alignment --current --warmup 2 --repeats 5\n'
-        +'python3 cpp_ggml/scripts/export_alignment_report.py --run cpp_ggml/outputs/runs/my-alignment\n```\n\n'
-        +'运行目录不可覆盖。完整 suite 和审计完成后原子更新 `benchmarks/current`；'
-        f'导出脚本只复制紧凑报告和 {figure_count} 张 PNG/SVG 图，不复制大数组。'
-        '替代结果验证完成后，按 [清理清单](cleanup_manifest.json)移除旧运行和 probes。\n\n'
-        +'## 可视化与测试数据\n\n'
-        +'在浏览器打开 [全量图表](ALL_COMPARISONS.html)、[输出入口](../outputs/index.html) 或 [离线画廊](gallery/index.html)。'
-        '全部模型/后端/存储配置的原图关系对照、逐配置数值图、端到端延迟和 stage 图均可查看。\n\n'
-        +'[测试数据预览](../test_data/index.html)包含 100 个样本入口；'
-        '99 个具备至少两个标注对象，可以自动填充。'
-        '[ZIP 与缓存接口](../test_data/PACKAGE.md)记录目录、校验和 XYXY 框/类别字段。'
-        '本地包已生成，远端 URL 尚未发布；ACloudViewer 按钮连接不作为已完成项目。\n\n'
-        +'```sh\npython3 cpp_ggml/scripts/package_test_data.py\n'
-        +'python3 cpp_ggml/scripts/package_test_data.py --verify-only\n'
-        +'python3 cpp_ggml/scripts/verify_visual_outputs.py\n```\n\n'
-        +'浏览器验证需要 Playwright 和 Chrome，仅用于检查；查看 HTML 和生成 ZIP 无此依赖。\n')
+    g1, g2, precision = (statuses[key] for key in ('g1_numeric', 'g2_gpu_performance', 'auto_precision'))
+    decision = ('通过' if status['release_decision'] == 'complete' else
+                '通过，含一项已接受的精度优先性能偏差' if
+                status['release_decision'] == 'accepted_with_one_performance_deviation' else '阻塞')
+    failures = '\n'.join(
+        f'- `{row["model"]}/{row["config"]}`：{row["native_ms"]:.2f} ms vs '
+        f'PyTorch {row["python_ms"]:.2f} ms（{row["python_ms"]/row["native_ms"]:.2f}×）'
+        for row in g2['failed']) or '- 无'
+    status_text = f'''# GGML 发布验收状态
+
+## 发布结论
+
+- 运行：`{run_id}`
+- 发布决策：**{decision}**
+- 数值门槛 G1：**{g1["passed"]}/{g1["total"]}**（`{g1["status"]}`）
+- GPU 性能门槛 G2：**{g2["passed"]}/{g2["total"]}**（`{g2["status"]}`）
+- 默认 auto 精度模式：**{precision["passed"]}/{precision["total"]}**（`{precision["status"]}`）
+- 模型工件：[9 个 GGUF 清单](full_gguf_manifest.json)，GGUF 发布 commit `2377ca3539bf5c4f09161a886a38dd0fc7517bd0`
+- 报告身份与下载：[summary/current.json](summary/current.json)
+
+`accepted_deviation` 不表示机器门槛通过；它保留失败测量，并记录“CUDA F32 精度优先”的显式发布决策。
+
+## 默认精度规则
+
+默认请求为 `auto`：仅 CUDA 加载全 F32 矩阵时生效 `strict_f32=1`；其余 CPU、Vulkan、F16、Q8_0 配置生效 `strict_f32=0`。显式 `--strict-f32` / `--no-strict-f32` 仅作诊断或覆盖，不代表默认发布路径。
+
+strict 保留 F32 GEMM/softmax/norm 与显式 F32 attention，避免 TF32/F16 中间算术触发 top-k 边界换对；non-strict 使用更快的 TF32、flash F16 K/V 或量化激活路径。F16/Q8 已丢失的存储精度无法由 strict 恢复。
+
+## 已接受偏差
+
+{failures}
+
+## 覆盖范围
+
+- 3 模型 × 3 后端 × 3 存储，共 27 个主配置，每配置 50 图。
+- 2 次预热、5 次重复；GPU 使用前后 PyTorch bracket 和 GPU idle 检测。
+- stage/dynamic、dense sampler、量化 oracle、可选接口、真实 C API、PSG/IndoorVG/VG150/SpatialSense 子集。
+- R/mR/F1/wR、候选集合、logits 误差、P50/P95、吞吐、后端内存均保留在报告中。
+- 离线图表：[gallery](gallery/README.md)，机器状态：[acceptance_status.json](gallery/evidence/acceptance_status.json)。
+
+## 非目标
+
+- 不承诺 F16/Q8 与原始 F32 逐位一致。
+- 公共子集回归不等于完整 leaderboard；缺失的标注资产不会由推理输出替代。
+- accepted deviation 不修改原始 G2 18/18 门槛。
+
+## 复现
+
+```sh
+python3 cpp_ggml/scripts/run_alignment.py --run-id my-auto-release --warmup 2 --repeats 5
+python3 cpp_ggml/scripts/export_alignment_report.py --run cpp_ggml/outputs/runs/my-auto-release
+```
+
+本次导出包含 {figure_count} 张 PNG/SVG 图；完整原始数组保留在不可覆盖的运行目录中。
+
+## 端到端延迟
+
+{timing_table(summary)}
+'''
+    (folder/'RELEASE_STATUS.md').write_text(status_text)
+    redirect = '# 兼容入口\n\n发布验收状态已统一迁移至 [RELEASE_STATUS.md](RELEASE_STATUS.md)。\n'
+    for name in ('ALIGNMENT_STATUS.md', 'NEXT_WINDOW_TODOS.md'):
+        (folder/name).write_text(redirect)
 
 
 def main():

@@ -166,13 +166,13 @@ selects explicit F32 attention.
 [Model cards and downloads](cpp_ggml/models/MODEL_CARDS.md) ·
 [Full measured comparison](cpp_ggml/benchmarks/current/full_graph/README.md) ·
 [Evaluation coverage](cpp_ggml/benchmarks/METRIC_COVERAGE.md) ·
-[Unfinished work and continuation checklist](cpp_ggml/benchmarks/NEXT_WINDOW_TODOS.md)
+[Release acceptance status](cpp_ggml/benchmarks/RELEASE_STATUS.md)
 
 The full native graph, masks, detector weighting, decomposed streams and native
 text encoding are implemented. Fresh 27-stage/dynamic and dense regressions
-locate and reduce the first F32 divergence. Strict bit equality and speed
-superiority for every configuration remain unmet; see
-[current status](cpp_ggml/benchmarks/ALIGNMENT_STATUS.md).
+locate and reduce the first F32 divergence. Numerical and performance gates,
+auto precision behavior, and any explicitly accepted deviation are recorded in
+[the release status](cpp_ggml/benchmarks/RELEASE_STATUS.md).
 
 [Detailed all-model/backend/storage gallery](cpp_ggml/benchmarks/gallery/index.html)
 

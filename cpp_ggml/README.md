@@ -7,10 +7,9 @@ deformable read → relation interaction → dynamic vocabulary → calibrated
 triplets. The runtime needs C++17, GGML, libjpeg, jsoncpp and ICU; it does not use PyTorch,
 Python model inference or cuDNN.
 
-[Current alignment status](benchmarks/ALIGNMENT_STATUS.md) and
-[acceptance checklist](benchmarks/NEXT_WINDOW_TODOS.md) distinguish the
-implemented graph from the remaining numerical, performance and protocol
-criteria. The latest publishable execution identity and report download are recorded in
+[Release acceptance status](benchmarks/RELEASE_STATUS.md) records the numerical
+and performance gates, effective auto precision modes, and any explicitly
+accepted deviation. The latest publishable execution identity and report download are recorded in
 [the benchmark release summary](benchmarks/summary/README.md).
 
 Open [all comparison charts](benchmarks/ALL_COMPARISONS.html) for every
@@ -138,6 +137,13 @@ matrices through cuBLAS with default math and Vulkan through a scalar F32 shader
 avoiding TF32/F16 input conversion. It applies to native text encoding too.
 This is an explicit precision mode with a measured latency cost; F16/Q8 stored
 weights remain rounded, and floating-point reduction order can still differ.
+The executable and the C API enable it by default for CUDA when every matrix
+weight in the GGUF is F32 (`ModelOptions.strict_f32_auto`, C
+`strict_f32 = RA_STRICT_F32_AUTO`): the default TF32 GEMMs and F16
+flash K/V otherwise add enough pair-score noise to swap close top-128
+candidates. `--no-strict-f32` (C `strict_f32 = 0`) keeps the faster
+accelerated path; `--strict-f32` (C `strict_f32 = 1`) forces strict mode on
+every backend.
 
 ## Reproduce validation
 

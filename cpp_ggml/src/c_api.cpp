@@ -48,7 +48,7 @@ ra_runtime_options ra_default_runtime_options(void) { return ra_runtime_options{
 ra_options ra_default_options(void) {
     ra_options result{};
     result.struct_size=sizeof(result); result.abi_version=RA_ABI_VERSION;
-    result.backend="cpu"; result.max_boxes=60; result.topk=128; result.strict_f32=1;
+    result.backend="cpu"; result.max_boxes=60; result.topk=128; result.strict_f32=RA_STRICT_F32_AUTO;
     return result;
 }
 ra_request ra_default_request(void) {
@@ -70,9 +70,11 @@ ra_context * ra_create(const ra_options * options) {
         }
         o.model=options->model_path; o.backend=options->backend ? options->backend : "cpu";
         require(o.backend=="cpu" || o.backend=="cuda" || o.backend=="vulkan","invalid backend");
+        require(options->strict_f32>=RA_STRICT_F32_AUTO,"invalid strict_f32 mode");
         require(!options->quant_f32_input || o.backend=="cuda","quant_f32_input requires CUDA");
         o.device_index=options->device_index; o.threads=options->threads; o.max_boxes=options->max_boxes;
-        o.topk=options->topk; o.strict_f32=options->strict_f32!=0; o.quant_f32_input=options->quant_f32_input!=0;
+        o.topk=options->topk; o.quant_f32_input=options->quant_f32_input!=0;
+        if(options->strict_f32>=0) { o.strict_f32=options->strict_f32!=0; o.strict_f32_auto=false; }
         o.raw_logits=options->raw_logits!=0; o.decompose=options->decompose!=0;
         if(options->vocabulary_path) o.vocabulary=options->vocabulary_path;
         if(options->vocabulary_names_path) o.vocabulary_names=options->vocabulary_names_path;

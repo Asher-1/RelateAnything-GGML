@@ -90,6 +90,15 @@ struct TensorLoader {
                 const char * emitted = gguf_get_tensor_name(gguf, i);
                 tensors.emplace(emitted, ggml_get_tensor(weights_ctx, emitted));
             }
+            if (options.strict_f32_auto) {
+                // CUDA F32 default kernels (TF32 GEMM, F16 flash K/V) add pair-score
+                // noise above the top-k candidate margin; F16/Q8 storage has already
+                // rounded the weights, so strict arithmetic is reserved for F32.
+                bool f32_matrices = true;
+                for (const auto & [name, tensor] : tensors)
+                    if (ggml_n_dims(tensor) >= 2 && tensor->type != GGML_TYPE_F32) f32_matrices = false;
+                options.strict_f32 = options.backend == "cuda" && f32_matrices;
+            }
             weights_buffer = ggml_backend_alloc_ctx_tensors(weights_ctx, backend->accelerator);
             if (!weights_buffer) throw std::runtime_error("cannot allocate full graph weights");
             ggml_backend_buffer_set_usage(weights_buffer, GGML_BACKEND_BUFFER_USAGE_WEIGHTS);
@@ -464,7 +473,8 @@ struct FullModel::Impl : TensorLoader {
         return readback_buffer ? ggml_backend_buffer_get_base(readback_buffer) : nullptr;
     }
 
-    explicit Impl(const ModelOptions & options) : TensorLoader(options) {
+    // The body reads the loader's copy, whose strict_f32 is resolved.
+    explicit Impl(const ModelOptions & opts) : TensorLoader(opts) {
         c = meta_u32("ra.hidden_size"); d = meta_u32("ra.relation_dim"); depth = meta_u32("ra.depth");
         heads = meta_u32("ra.num_heads"); intermediate = meta_u32("ra.intermediate_size"); patch = meta_u32("ra.patch_size", 16);
         regs = meta_u32("ra.num_register_tokens", 4); predicates = meta_u32("ra.predicate_count");
@@ -665,13 +675,13 @@ struct FullModel::Impl : TensorLoader {
         return linear(ctx, attn, t("ra." + p + ".out_proj.weight"), t("ra." + p + ".out_proj.bias"));
     }
 
-    // Strict CUDA: cross-attention with a float key-padding mask goes through
-    // F.multi_head_attention_forward to SDPA, which selects mem-efficient
-    // attention with the mask as an additive bias broadcast over heads and
-    // queries. q and the packed k/v projections are addmm calls; k and v are
-    // made contiguous like _in_projection_packed's chunks. mask is [keys, 1].
-    ggml_tensor * sdpa_cross_attention(ggml_context * ctx, ggml_tensor * x, ggml_tensor * memory,
-                                       const std::string & p, ggml_tensor * mask) {
+    // Strict CUDA: cross-attention with a float key-padding mask. q and the
+    // packed k/v projections are addmm calls; k and v are made contiguous like
+    // _in_projection_packed's chunks. The scaled scores take mask [keys, 1] as
+    // an additive bias broadcast over queries and heads, then softmax and the
+    // value product run as explicit GGML ops.
+    ggml_tensor * strict_cross_attention(ggml_context * ctx, ggml_tensor * x, ggml_tensor * memory,
+                                         const std::string & p, ggml_tensor * mask) {
         const int64_t dim = x->ne[0], nheads = 8, dh = dim / nheads;
         auto * w = t("ra." + p + ".in_proj_weight");
         auto * b = t("ra." + p + ".in_proj_bias");
@@ -681,14 +691,13 @@ struct FullModel::Impl : TensorLoader {
         auto * k = ggml_cont(ctx, ggml_view_2d(ctx, kv, dim, memory->ne[1], kv->nb[1], 0));
         auto * v = ggml_cont(ctx, ggml_view_2d(ctx, kv, dim, memory->ne[1], kv->nb[1], dim * sizeof(float)));
         const auto heads = [&](ggml_tensor * z) {
-            return ggml_view_4d(ctx, z, dh, z->ne[1], nheads, 1, z->nb[1], dh * sizeof(float), z->nb[1] * z->ne[1], 0);
+            return ggml_cont(ctx, ggml_permute(ctx, ggml_reshape_3d(ctx, z, dh, nheads, z->ne[1]), 0, 2, 1, 3));
         };
-        auto * attn = ggml_flash_attn_ext(ctx, heads(q), heads(k), heads(v),
-            mask ? ggml_cast(ctx, mask, GGML_TYPE_F16) : nullptr, 1.0f / std::sqrt(static_cast<float>(dh)), 0.0f, 0.0f);
-        ggml_flash_attn_ext_set_prec(attn, GGML_PREC_F32);
-        ggml_flash_attn_ext_set_hint(attn, GGML_HINT_STRICT_F32);
-        return linear(ctx, ggml_reshape_2d(ctx, attn, dim, x->ne[1]),
-                      t("ra." + p + ".out_proj.weight"), t("ra." + p + ".out_proj.bias"));
+        ggml_tensor * scores = ggml_scale(ctx, matmul(ctx, heads(k), heads(q)), 1.0f / std::sqrt(static_cast<float>(dh)));
+        if (mask) scores = ggml_add(ctx, scores, mask);
+        auto * attn = ggml_out_prod(ctx, heads(v), ggml_transpose(ctx, ggml_soft_max(ctx, scores)));
+        attn = ggml_reshape_2d(ctx, ggml_cont(ctx, ggml_permute(ctx, attn, 0, 2, 1, 3)), dim, x->ne[1]);
+        return linear(ctx, attn, t("ra." + p + ".out_proj.weight"), t("ra." + p + ".out_proj.bias"));
     }
 
     ggml_tensor * encoder(ggml_context * ctx, ggml_tensor * x, const std::string & p,
@@ -713,7 +722,7 @@ struct FullModel::Impl : TensorLoader {
         const std::string cross = p + (last ? ".cross_attn" : ".multihead_attn");
         if (strict_cuda()) {
             x = ggml_add(ctx, x, native_self_attention(ctx, y, p + ".self_attn", pair_mask));
-            x = ggml_add(ctx, x, sdpa_cross_attention(ctx, ln(ctx, x, p + ".norm2"), memory, cross, memory_mask));
+            x = ggml_add(ctx, x, strict_cross_attention(ctx, ln(ctx, x, p + ".norm2"), memory, cross, memory_mask));
         } else {
             x = ggml_add(ctx, x, mha(ctx, y, y, p + ".self_attn", pair_mask));
             x = ggml_add(ctx, x, mha(ctx, ln(ctx, x, p + ".norm2"), memory, cross, memory_mask));
@@ -848,7 +857,7 @@ struct FullModel::Impl : TensorLoader {
         if (compact_pairs() && std::all_of(valid.begin(), valid.end(),
                                                 [](uint8_t value) { return value != 0; }))
             return nullptr;
-        // Strict CUDA attention broadcasts one [keys, 1] row over queries and heads.
+        // Strict CUDA attention adds one [keys, 1] row broadcast over queries and heads.
         if (strict_cuda()) queries = 1;
         std::vector<float> mask;
         build_mask(mask, valid.size(), queries, valid);
@@ -1163,13 +1172,7 @@ struct FullModel::Impl : TensorLoader {
             v = ggml_permute(ctx, ggml_reshape_4d(ctx, v, dh, heads, tokens, 1), 0, 2, 1, 3);
             q = rope(ctx, q, cos, sin, dh); k = rope(ctx, k, cos, sin, dh);
             ggml_tensor * attn;
-            if (strict_cuda) {
-                // One SDPA call: q/k after RoPE are contiguous [dh,tokens,heads],
-                // v is the head view of the projection; output is [dh,heads,tokens].
-                attn = ggml_flash_attn_ext(ctx, q, k, v, nullptr, 1.0f / std::sqrt(static_cast<float>(dh)), 0.0f, 0.0f);
-                ggml_flash_attn_ext_set_prec(attn, GGML_PREC_F32);
-                ggml_flash_attn_ext_set_hint(attn, GGML_HINT_STRICT_F32);
-            } else if (options.flash_attention && !options.strict_f32 && options.backend != "cpu") {
+            if (options.flash_attention && !options.strict_f32 && options.backend != "cpu") {
                 attn = ggml_flash_attn_ext(ctx, ggml_cont(ctx, q),
                     ggml_cast(ctx, k, GGML_TYPE_F16), ggml_cast(ctx, v, GGML_TYPE_F16),
                     nullptr, 1.0f / std::sqrt(static_cast<float>(dh)), 0.0f, 0.0f);
@@ -1546,6 +1549,7 @@ struct FullModel::Impl : TensorLoader {
 
 FullModel::FullModel(const ModelOptions & options) : impl_(std::make_unique<Impl>(options)) {}
 FullModel::~FullModel() = default;
+bool FullModel::strict_f32() const { return impl_->options.strict_f32; }
 std::vector<float> encode_predicates(const ModelOptions & options, const std::vector<std::string> & texts) {
     if (options.text_student.empty() || options.tokenizer.empty())
         throw std::runtime_error("text encoding requires student and tokenizer paths");
@@ -1674,7 +1678,7 @@ std::vector<float> encode_predicates(const ModelOptions & options, const std::ve
         auto * embedding = ggml_l2_norm(ctx,affine(pooled,"head",false),1e-12f);
         run.graph = ggml_new_graph_custom(ctx,8192,false);
         ggml_set_output(embedding); ggml_build_forward_expand(run.graph,embedding);
-        if (options.strict_f32) for (int i = 0; i < ggml_graph_n_nodes(run.graph); ++i) {
+        if (loader.options.strict_f32) for (int i = 0; i < ggml_graph_n_nodes(run.graph); ++i) {
             auto * node = ggml_graph_node(run.graph,i);
             if (node->op == GGML_OP_SOFT_MAX)
                 ggml_soft_max_set_hint(node, GGML_HINT_STRICT_F32);

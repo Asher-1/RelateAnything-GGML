@@ -38,6 +38,11 @@ struct ModelOptions {
     bool retain_features = true;
     bool quant_f32_input = false;
     bool strict_f32 = false;
+    // Replace strict_f32 after each GGUF is read: true on CUDA when every
+    // matrix weight is F32, false otherwise. This is the default for the
+    // executable and the C API; --strict-f32 / --no-strict-f32 and a
+    // non-negative ra_options.strict_f32 clear it to force a fixed mode.
+    bool strict_f32_auto = true;
     bool raw_logits = false;
     bool profile = false;
 

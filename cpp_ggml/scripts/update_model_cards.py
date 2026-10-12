@@ -26,7 +26,7 @@ stage_boundary_text='/'.join(map(str,stage_boundary_counts))
 report='../benchmarks/summary/README.md'
 manifest=json.loads((root/'cpp_ggml/benchmarks/full_gguf_manifest.json').read_text())['models']
 lines=['# RelateAnything GGUF model cards','',
-'Current execution auditing is complete. Strict numerical equality, an advantage over Python for every configuration, and all six-axis metrics remain unmet; see [alignment status](../benchmarks/ALIGNMENT_STATUS.md). Audit completion verifies provenance and raw/decoded consistency only.','',
+'Execution provenance and storage conversion are verified. Numerical and performance gates, effective auto precision modes, and any accepted deviation are recorded in the [release acceptance status](../benchmarks/RELEASE_STATUS.md).','',
 'Three official checkpoint families run through the native C++ image graph. Each has F32, F16 and Q8_0 storage: nine deployment models, no `demo` suffixes. Source weights and sidecars are under `pytorch/`; GGUFs are under `gguf/` and published in [Asher-1/relateanything-ggml-full](https://huggingface.co/Asher-1/relateanything-ggml-full).','',
 '## Model families and intended scenarios','',
 '| Official checkpoint | Backbone / upstream parameters | Scenario |','|---|---|---|',
@@ -54,10 +54,10 @@ lines+=['','[The machine-readable manifest](../benchmarks/full_gguf_manifest.jso
 '| Storage | Conversion | Suitable use |','|---|---|---|',
 '| F32 | Prepared runtime floating tensors stored in F32 | Numerical reference, closest weight representation to official PyTorch |',
 '| F16 | Floating tensors stored in F16; auxiliary values converted as needed by native ops | Smaller files and weight buffers; latency depends on backend kernels |',
-'| Q8_0 | Rank-2 matrices with inner dimension divisible by 32 use Q8_0; other tensors stay F32 | Lower weight bandwidth/storage, particularly useful on CUDA; inspect ranking drift for your vocabulary |','',
-'Default GPU flash attention uses F16 K/V and F32 accumulation. `--strict-f32` preserves F32 matrix operands and selects explicit attention; its measured latency is reported separately. `--no-flash-attention` changes attention only. Q8/F16 cannot reproduce original F32 weights bit-for-bit, and close-score predicates/candidates may change. Packed Q/K/V weights consume additional runtime memory.','',
+'| Q8_0 | Rank-2 matrices with inner dimension divisible by 32 use Q8_0, except the `vocab_head.W` predicate bank (F16, keeps close top-1 predicates stable under CPU Q8_0 activation rounding); other tensors stay F32 | Lower weight bandwidth/storage, particularly useful on CUDA; inspect ranking drift for your vocabulary |','',
+'Default GPU flash attention uses F16 K/V and F32 accumulation. CUDA with F32 weights defaults to `--strict-f32`, which preserves F32 matrix operands and selects explicit attention, so close top-128 candidate pairs do not flip; `--no-strict-f32` restores the faster accelerated path. `--strict-f32` can also be forced for other storage types. `--no-flash-attention` changes attention only. Q8/F16 cannot reproduce original F32 weights bit-for-bit, and close-score predicates/candidates may change. Packed Q/K/V weights consume additional runtime memory.','',
 '## Measured full-pipeline evidence','',
-'The [portable full report](../benchmarks/summary/README.md) contains three independent official PyTorch-CUDA baselines, 27 primary CPU/CUDA/Vulkan variants, and three additional CUDA Q8 F32-input diagnostics. Each row covers all 50 retained RA-4M images, GT boxes and the full vocabulary. Native timing includes JPEG decode, exact preprocessing, graph construction/allocation/transfers, inference and calibrated ranking. Loading and output files are excluded on both sides. All current native timing rows use strict F32 precision; their latency cannot be replaced with historical default-kernel timings.','',
+'The [portable full report](../benchmarks/summary/README.md) contains three independent official PyTorch-CUDA baselines, 27 primary CPU/CUDA/Vulkan variants, and three additional CUDA Q8 F32-input diagnostics. Each row covers all 50 retained RA-4M images, GT boxes and the full vocabulary. Native timing includes JPEG decode, exact preprocessing, graph construction/allocation/transfers, inference and calibrated ranking. Loading and output files are excluded on both sides. The default `auto` request enables strict arithmetic only for CUDA F32; CPU, Vulkan, F16 and Q8_0 remain non-strict. Each result records both the requested and effective precision mode, so timing is interpreted using the actual path.','',
 '[Offline detailed gallery](../benchmarks/gallery/index.html)\n\n![All backend pipeline latency](../benchmarks/gallery/latency_all_backends.png)','',
 '![Numerical and candidate agreement](../benchmarks/gallery/accuracy_candidates.png)','',
 'Per-image grids cover every retained frame and every engine/storage variant. Numerical metrics include MAE, RMSE, max absolute error, cosine, predicate agreement and pair recall/Jaccard. Task metrics include R/mR@20/50/100, their harmonic F1, weighted recall and explicit local support buckets. Median/P95, throughput and allocator-scoped memory measurements accompany the accuracy rows.','',
@@ -122,9 +122,9 @@ vocabulary and calibration match the official full-vocabulary Python API.
 '''
 card=header+'\n'.join(lines[lines.index('## Model families and intended scenarios'):lines.index('## Fixture isolation')])+'\n'
 card=card.replace('## Model families and intended scenarios',
-    'Execution provenance is verified; strict numerical equality, speed superiority '
-    'for every configuration, and all six-axis metrics remain unmet. See '
-    '[alignment status](../benchmarks/ALIGNMENT_STATUS.md).\n\n## Model families and intended scenarios',1)
+    'Execution provenance and storage conversion are verified. Numerical and performance '
+    'gates, effective auto precision modes, and any accepted deviation are recorded in the '
+    '[release acceptance status](../benchmarks/RELEASE_STATUS.md).\n\n## Model families and intended scenarios',1)
 card=card.replace('(../benchmarks/', '(benchmarks/').replace('(../outputs/', '(outputs/').replace('(../../deploy/', '(https://github.com/Asher-1/RelateAnything-GGML/blob/main/deploy/')
 card+='\n## Terms\n\n'+lines[-1]+'\n'
 (models/'HF_MODEL_CARD.md').write_text(card)

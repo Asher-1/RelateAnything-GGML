@@ -97,7 +97,7 @@ def main():
     p.add_argument('--sample-index', type=int, default=0)
     p.add_argument('--warmup', type=int, default=2); p.add_argument('--repeats', type=int, default=3)
     p.add_argument('--threads', type=int, default=0); p.add_argument('--max-boxes', type=int, default=60)
-    for name in ('configure','build','self-test','no-flash-attention','no-compact-pairs','matmul-sampler','matmul-geometry','no-fused-vocabulary','no-cache-positions','no-retain-features','quant-f32-input','strict-f32','no-cuda-graphs','decompose','raw-logits','profile','download'):
+    for name in ('configure','build','self-test','no-flash-attention','no-compact-pairs','matmul-sampler','matmul-geometry','no-fused-vocabulary','no-cache-positions','no-retain-features','quant-f32-input','strict-f32','no-strict-f32','no-cuda-graphs','decompose','raw-logits','profile','download'):
         p.add_argument('--'+name, action='store_true')
     p.add_argument('--demo', choices=tuple(DEMO_REQUESTS), help='run a maintained image-and-box demo')
     p.add_argument('--quickstart', action='store_true', help='download and run the recommended demo with an auto-selected backend')
@@ -207,7 +207,7 @@ def main():
     if not model.exists(): raise SystemExit(f'Missing model: {model}. Download links: cpp_ggml/models/MODEL_CARDS.md')
     cmd+=['--model',model,'--output',output,'--warmup',args.warmup,'--repeats',args.repeats,'--threads',args.threads,'--max-boxes',args.max_boxes,'--topk',args.topk,'--device-index',args.device_index]
     if args.backend_profile: cmd+=['--backend-profile']
-    for flag in ('no_flash_attention','no_compact_pairs','matmul_sampler','matmul_geometry','no_fused_vocabulary','no_cache_positions','no_retain_features','quant_f32_input','strict_f32','no_cuda_graphs','decompose','raw_logits','profile'):
+    for flag in ('no_flash_attention','no_compact_pairs','matmul_sampler','matmul_geometry','no_fused_vocabulary','no_cache_positions','no_retain_features','quant_f32_input','strict_f32','no_strict_f32','no_cuda_graphs','decompose','raw_logits','profile'):
         if getattr(args,flag): cmd+=['--'+flag.replace('_','-')]
     if args.vocabulary_embeddings: cmd+=['--vocabulary',args.vocabulary_embeddings.resolve()]
     with tempfile.TemporaryDirectory(prefix='relateanything-') as temp:

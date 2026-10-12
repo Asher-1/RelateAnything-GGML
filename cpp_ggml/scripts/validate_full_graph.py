@@ -45,6 +45,7 @@ def run(args, model, backend, dtype, name, extra=()):
     if name=='stages': cmd+=['--dump-directory',str(dest)]
     if args.no_flash: cmd+=['--no-flash-attention']
     if args.strict_f32: cmd+=['--strict-f32']
+    if args.no_strict_f32: cmd+=['--no-strict-f32']
     inputs=[args.input, Path(cmd[cmd.index('--model')+1])]
     if '--vocabulary' in cmd:
         bank=Path(cmd[cmd.index('--vocabulary')+1])
@@ -184,7 +185,9 @@ def main():
     p.add_argument('--input',type=Path,required=True)
     p.add_argument('--traces',type=Path,required=True)
     p.add_argument('--no-flash',action='store_true');p.add_argument('--dynamic',action='store_true')
-    p.add_argument('--strict-f32',action='store_true')
+    precision=p.add_mutually_exclusive_group()
+    precision.add_argument('--strict-f32',action='store_true')
+    precision.add_argument('--no-strict-f32',action='store_true')
     p.add_argument('--cuda-reference',action=argparse.BooleanOptionalAction,default=True,
                    help='also locate the first boundary against original PyTorch-CUDA')
     args=p.parse_args();results=[]

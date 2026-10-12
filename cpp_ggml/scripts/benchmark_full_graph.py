@@ -311,17 +311,22 @@ def _ggml_benchmark(args, samples, model_name, backend, dtype):
     if args.no_cache_positions: cmd.append('--no-cache-positions')
     if args.quant_f32_input: cmd.append('--quant-f32-input')
     if args.strict_f32: cmd.append('--strict-f32')
+    if args.no_strict_f32: cmd.append('--no-strict-f32')
     if args.no_cuda_graphs: cmd.append('--no-cuda-graphs')
     if args.no_retain_features: cmd.append('--no-retain-features')
     started = time.perf_counter()
     result = native_timing_run(args, cmd, dst)
     (dst / 'stdout.log').write_text(result.stdout); (dst / 'stderr.log').write_text(result.stderr)
     if result.returncode: raise RuntimeError(f'GGML failed {backend}/{dtype}: {result.stderr[-3000:]}')
-    times, current = {}, None
+    times, current, strict = {}, None, set()
     for line in result.stdout.splitlines():
         if line.startswith('sample='): current = line.split('=',1)[1]
+        elif line.startswith('strict_f32='): strict.add(line.split('=',1)[1] == '1')
         elif line.startswith('iteration_ms='):
             times[current] = [float(x) for x in line.split('=',1)[1].split(',')]
+    # The binary resolves the default per model (strict for CUDA F32 weights).
+    if len(strict) != 1: raise RuntimeError(f'GGML did not report one precision mode: {strict}')
+    strict = strict.pop()
     vocab = json.loads((args.output / model_name / 'python/vocabulary.json').read_text())
     raw_cmd = list(cmd)
     raw_cmd[raw_cmd.index('--repeats')+1] = '1'
@@ -351,8 +356,9 @@ def _ggml_benchmark(args, samples, model_name, backend, dtype):
             'iterations_ms': times[name], 'parity': numerical,
             'predictions': predictions[:100], **gt_metrics(predictions, sample)})
     save(dst / 'results.json', {'backend': backend, 'dtype': dtype, 'gguf_sha256': sha256(model),
-        'gguf_bytes': model.stat().st_size, 'flash_attention': not (args.no_flash or args.strict_f32),
-        'strict_f32': args.strict_f32,
+        'gguf_bytes': model.stat().st_size, 'flash_attention': not (args.no_flash or strict),
+        'strict_f32': strict,
+        'strict_f32_request': 'on' if args.strict_f32 else 'off' if args.no_strict_f32 else 'auto',
         'compact_pairs': not args.no_compact_pairs,
         'matmul_sampler': args.matmul_sampler,
         'matmul_geometry': args.matmul_geometry,
@@ -411,7 +417,7 @@ def report(args, samples):
         f'Generated {datetime.now(timezone.utc).isoformat()}. Hardware: {platform.platform()}.', '',
         'All rows use the same 50 retained RA-4M images, GT boxes, 448 x 448 pixels, 19,103 predicates, and official checkpoints.',
         'Python measures image decode through calibrated triplets with CUDA synchronization. GGML measures native C++ image decode, Pillow-compatible resize, normalization, full graph allocation/transfers/execution, and calibrated triplets in one wall-clock interval. Model loading and artifact writes are excluded for both. Numerical validation uses a separate raw-logit pass; exporting 9.8 MB per image does not burden the native deployment timing.',
-        'Accelerated attention uses F16 K/V with F32 accumulation for all storage types. Use --no-flash for explicit F32 attention. F32/F16/Q8 label weight storage, not every activation. For controlled runs, timing_attempts.json records sampled GPU processes and discarded attempts. Explicit --allow-gpu-pid values permit persistent services on both sides. Hardware/process snapshots are included in each results.json; measurements on this shared workstation are not isolated-device guarantees.',
+        'Accelerated attention uses F16 K/V with F32 accumulation; CUDA with F32 weights defaults to strict F32 with explicit attention (results.json records the effective mode, --no-strict-f32 restores accelerated attention). Use --no-flash for explicit F32 attention. F32/F16/Q8 label weight storage, not every activation. For controlled runs, timing_attempts.json records sampled GPU processes and discarded attempts. Explicit --allow-gpu-pid values permit persistent services on both sides. Hardware/process snapshots are included in each results.json; measurements on this shared workstation are not isolated-device guarantees.',
         f'Both engines use {args.warmup} warmups per image and {args.repeats} timed iterations per image per pass. With --bracket-python, independent Python passes precede and follow each model\'s native group; the reference pools both passes per image and reports their drift. CUDA q8_0-f32-input is an additional precision diagnostic with F32 activation GEMM, distinct from the default Q8 kernels.',
         'Raw logits are aligned by subject/object IDs. A changed pair set is reported separately. Quantized storage cannot be bit identical to F32. Exact-string R/mR are local diagnostics on incomplete positive annotations, not upstream OVS-F1 or negative-set AP.', '',
         '| Model | Engine/storage | Median ms | P95 ms | R@50 | mR@50 | Logit RMSE | Top-1 agreement | Pair recall |',
@@ -523,6 +529,7 @@ def main():
     p.add_argument('--no-cache-positions',action='store_true',help='recompute fixed scene positions each frame')
     p.add_argument('--quant-f32-input',action='store_true',help='CUDA quantized weights with F32 activation GEMM')
     p.add_argument('--strict-f32',action='store_true',help='preserve F32 operands and use explicit F32 attention')
+    p.add_argument('--no-strict-f32',action='store_true',help='disable the CUDA F32 strict default')
     p.add_argument('--no-cuda-graphs',action='store_true',help='disable CUDA graph capture/replay through RuntimeOptions')
     p.add_argument('--no-retain-features',action='store_true',help='round-trip patch map through host')
     p.add_argument('--bracket-python',action='store_true',help='measure Python before and after each native model group')
@@ -530,6 +537,7 @@ def main():
     p.add_argument('--allow-gpu-pid',type=int,nargs='*',default=[],help='explicit persistent GPU processes allowed during timing')
     args=p.parse_args()
     if args.warmup<0 or args.repeats<1:p.error('invalid warmup/repeats')
+    if args.strict_f32 and args.no_strict_f32:p.error('--strict-f32 and --no-strict-f32 are exclusive')
     if args.quant_f32_input and args.backends != ['cuda']:
         p.error('--quant-f32-input requires --backends cuda')
     args.output=args.output.resolve();args.data=args.data.resolve()

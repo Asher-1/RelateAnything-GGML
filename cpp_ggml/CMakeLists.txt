@@ -112,22 +112,6 @@ if(NOT RA_GGML_AUDIT_RESULT EQUAL 0 OR
         "Unexpected files: ${RA_GGML_EXTRA_FILES}")
 endif()
 
-# Strict CUDA attention compiles PyTorch 2.6's mem-efficient attention from the
-# vendored, hash-pinned header closure; refuse a tree that drifted from it.
-set(RA_MEM_EFF_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third_party/pytorch_mem_eff")
-if(RA_GGML_CUDA)
-    find_package(Python3 COMPONENTS Interpreter REQUIRED)
-    execute_process(
-        COMMAND "${Python3_EXECUTABLE}" "${CMAKE_CURRENT_SOURCE_DIR}/scripts/vendor_mem_eff_attention.py"
-        RESULT_VARIABLE RA_MEM_EFF_RESULT OUTPUT_QUIET)
-    if(NOT RA_MEM_EFF_RESULT EQUAL 0)
-        message(FATAL_ERROR "Vendored ${RA_MEM_EFF_DIR} does not match UPSTREAM.json")
-    endif()
-    set(GGML_CUDA_STRICT_ATTENTION_INCLUDE_DIRS
-        "${RA_MEM_EFF_DIR}/shim;${RA_MEM_EFF_DIR}/pytorch/aten/src;${RA_MEM_EFF_DIR}/cutlass/include"
-        CACHE STRING "" FORCE)
-endif()
-
 add_subdirectory(third_party/ggml EXCLUDE_FROM_ALL)
 find_package(JPEG REQUIRED)
 find_package(jsoncpp CONFIG REQUIRED)
@@ -170,7 +154,6 @@ add_custom_command(OUTPUT "${RA_BUILD_INFO}"
         --cache "${CMAKE_CURRENT_BINARY_DIR}/CMakeCache.txt"
         "--flags=${CMAKE_CXX_FLAGS} ${CMAKE_CXX_FLAGS_${RA_BUILD_TYPE_UPPER}}"
     DEPENDS ${RA_PROVENANCE_INPUTS} ${RA_GGML_PATCHES}
-        "${RA_MEM_EFF_DIR}/UPSTREAM.json"
         "${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt"
         "${CMAKE_CURRENT_SOURCE_DIR}/scripts/provenance.py"
         "${CMAKE_CURRENT_SOURCE_DIR}/../relsgg/corpus_type_map.json"

@@ -173,6 +173,7 @@ int main(int argc, char ** argv) {
                 }
                 std::cout << "sample=" << path.stem().string() << '\n'
                           << "backend=" << options.backend << '\n'
+                          << "strict_f32=" << (model.strict_f32() ? 1 : 0) << '\n'
                           << "architecture=relateanything_full_v1\n"
                           << "pairs=" << output.pair_count << '\n'
                           << "predicates=" << output.predicate_count << '\n'

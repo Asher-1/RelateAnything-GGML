@@ -1,6 +1,6 @@
 # RelateAnything GGUF model cards
 
-Current execution auditing is complete. Strict numerical equality, an advantage over Python for every configuration, and all six-axis metrics remain unmet; see [alignment status](../benchmarks/ALIGNMENT_STATUS.md). Audit completion verifies provenance and raw/decoded consistency only.
+Execution provenance and storage conversion are verified. Numerical and performance gates, effective auto precision modes, and any accepted deviation are recorded in the [release acceptance status](../benchmarks/RELEASE_STATUS.md).
 
 Three official checkpoint families run through the native C++ image graph. Each has F32, F16 and Q8_0 storage: nine deployment models, no `demo` suffixes. Source weights and sidecars are under `pytorch/`; GGUFs are under `gguf/` and published in [Asher-1/relateanything-ggml-full](https://huggingface.co/Asher-1/relateanything-ggml-full).
 
@@ -22,15 +22,15 @@ Every artifact contains DINOv3, prompt/pool/sampler, relation transformer, defor
 
 | Model download | Size MiB | Tensors | SHA256 |
 |---|---:|---:|---|
-| [relsgg-vitb16-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-f16.gguf) | 236.22 | 392 | `61222e4099c277d5272524507721fc6d65649051bae23984a06fe5cacb8e0806` |
-| [relsgg-vitb16-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-f32.gguf) | 471.96 | 392 | `1537ba73ae9042b9553774269a4bf44ecfba7ea8776cac44acbea02090fe0934` |
-| [relsgg-vitb16-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-q8_0.gguf) | 128.03 | 392 | `61bc2a07233a1d0e189dbcab96736d38afa9f9ade8d8028b327e3aa7a12c3dd5` |
-| [relsgg-vits16-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-f16.gguf) | 107.17 | 392 | `e00c896a5ad816cdd6af285d63346baab27e5c002935dba59ab0a8e124828a59` |
-| [relsgg-vits16-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-f32.gguf) | 213.86 | 392 | `ce90fb86c08716a45b9ca85f0bbfe74787966bf17eb267c3ad23f91094ced081` |
-| [relsgg-vits16-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-q8_0.gguf) | 58.44 | 392 | `ee168035fa5fa2dc334e159c70ab4785e1bf9c4758427c1264b59878200fa429` |
-| [relsgg-vits16plus-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f16.gguf) | 120.71 | 416 | `4e5631450416ec2496623631b7f7e2bde9f399570fe747fad1dd9a5f20fbcb37` |
-| [relsgg-vits16plus-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f32.gguf) | 240.94 | 416 | `996960494629efd0035379c2fa8ae7ca1ff0039b53d8ab61637e86b7e05ae52e` |
-| [relsgg-vits16plus-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-q8_0.gguf) | 65.69 | 416 | `bb70680859abf090bb3942871a5932aa07155f6236e87c6999218ed14400c8f9` |
+| [relsgg-vitb16-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-f16.gguf) | 236.22 | 392 | `fbd6e868e171024182535c281b6ef142b166ea4e67060209d8cfd4b01ac5e911` |
+| [relsgg-vitb16-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-f32.gguf) | 471.96 | 392 | `f7d2aa5765877e945d15fc9433c4c947a10e948091692b3f5208c71c24b8e17f` |
+| [relsgg-vitb16-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-q8_0.gguf) | 136.78 | 392 | `44f40492955b493c53d796c7b4ad65d968dce301cd09567920313bf88e4c2b61` |
+| [relsgg-vits16-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-f16.gguf) | 107.17 | 392 | `bd5d0eabc41747af6d0243c755f789917c3f53864f763989bee5a4f0371767cf` |
+| [relsgg-vits16-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-f32.gguf) | 213.86 | 392 | `b87e7cff5e5678e2871cbfcf2804be22e5a9b814a89be763c54c95b9c39468f4` |
+| [relsgg-vits16-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-q8_0.gguf) | 67.19 | 392 | `d281ace4ad9a51edc78da26660ffd89a98d073df352de735711812b48e2dee53` |
+| [relsgg-vits16plus-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f16.gguf) | 120.71 | 416 | `36ed9f832324dff4d06edf216782eb692645f8f10c0bd7d1b4c5fa58d44d7d39` |
+| [relsgg-vits16plus-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f32.gguf) | 240.94 | 416 | `24970d851decd61bfdf4b109f5353ff81596ae8d7c9a35635f9de89d17f935e4` |
+| [relsgg-vits16plus-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-q8_0.gguf) | 74.43 | 416 | `c19c25acae196e3a762fcbb4032ba450e716847bc66540988d730e4c75572177` |
 
 ### Native text-student downloads
 
@@ -50,13 +50,13 @@ Free-text encoding uses one additional F32 student for the selected model family
 |---|---|---|
 | F32 | Prepared runtime floating tensors stored in F32 | Numerical reference, closest weight representation to official PyTorch |
 | F16 | Floating tensors stored in F16; auxiliary values converted as needed by native ops | Smaller files and weight buffers; latency depends on backend kernels |
-| Q8_0 | Rank-2 matrices with inner dimension divisible by 32 use Q8_0; other tensors stay F32 | Lower weight bandwidth/storage, particularly useful on CUDA; inspect ranking drift for your vocabulary |
+| Q8_0 | Rank-2 matrices with inner dimension divisible by 32 use Q8_0, except the `vocab_head.W` predicate bank (F16, keeps close top-1 predicates stable under CPU Q8_0 activation rounding); other tensors stay F32 | Lower weight bandwidth/storage, particularly useful on CUDA; inspect ranking drift for your vocabulary |
 
-Default GPU flash attention uses F16 K/V and F32 accumulation. `--strict-f32` preserves F32 matrix operands and selects explicit attention; its measured latency is reported separately. `--no-flash-attention` changes attention only. Q8/F16 cannot reproduce original F32 weights bit-for-bit, and close-score predicates/candidates may change. Packed Q/K/V weights consume additional runtime memory.
+Default GPU flash attention uses F16 K/V and F32 accumulation. CUDA with F32 weights defaults to `--strict-f32`, which preserves F32 matrix operands and selects explicit attention, so close top-128 candidate pairs do not flip; `--no-strict-f32` restores the faster accelerated path. `--strict-f32` can also be forced for other storage types. `--no-flash-attention` changes attention only. Q8/F16 cannot reproduce original F32 weights bit-for-bit, and close-score predicates/candidates may change. Packed Q/K/V weights consume additional runtime memory.
 
 ## Measured full-pipeline evidence
 
-The [portable full report](../benchmarks/summary/README.md) contains three independent official PyTorch-CUDA baselines, 27 primary CPU/CUDA/Vulkan variants, and three additional CUDA Q8 F32-input diagnostics. Each row covers all 50 retained RA-4M images, GT boxes and the full vocabulary. Native timing includes JPEG decode, exact preprocessing, graph construction/allocation/transfers, inference and calibrated ranking. Loading and output files are excluded on both sides. All current native timing rows use strict F32 precision; their latency cannot be replaced with historical default-kernel timings.
+The [portable full report](../benchmarks/summary/README.md) contains three independent official PyTorch-CUDA baselines, 27 primary CPU/CUDA/Vulkan variants, and three additional CUDA Q8 F32-input diagnostics. Each row covers all 50 retained RA-4M images, GT boxes and the full vocabulary. Native timing includes JPEG decode, exact preprocessing, graph construction/allocation/transfers, inference and calibrated ranking. Loading and output files are excluded on both sides. The default `auto` request enables strict arithmetic only for CUDA F32; CPU, Vulkan, F16 and Q8_0 remain non-strict. Each result records both the requested and effective precision mode, so timing is interpreted using the actual path.
 
 [Offline detailed gallery](../benchmarks/gallery/index.html)
 

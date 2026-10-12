@@ -19,7 +19,9 @@ def main():
     parser.add_argument('--backends',nargs='+',choices=('cpu','cuda','vulkan'),default=['cpu','cuda','vulkan'])
     parser.add_argument('--dtypes',nargs='+',choices=('f32','f16','q8_0'))
     parser.add_argument('--matmul-geometry',action='store_true',help='historical Vulkan geometry scorer for ablation')
-    parser.add_argument('--strict-f32',action='store_true')
+    precision=parser.add_mutually_exclusive_group()
+    precision.add_argument('--strict-f32',action='store_true')
+    precision.add_argument('--no-strict-f32',action='store_true')
     args=parser.parse_args()
     import torch
     from relsgg import RelateAnything
@@ -64,6 +66,7 @@ def main():
                      '--dump-directory',str(dst/f'{name}-{backend}-{dtype}-stages')]
                 if args.matmul_geometry:cmd.append('--matmul-geometry')
                 if args.strict_f32:cmd.append('--strict-f32')
+                if args.no_strict_f32:cmd.append('--no-strict-f32')
                 run_folder=dst/f'{name}-{backend}-{dtype}-stages'
                 with recorded_run(run_folder, inputs=[dst/'input.raim', Path(cmd[cmd.index('--model')+1]),
                                   dst/(name+'-python.npz')],config={'command':cmd},binary=Path(cmd[0]),outputs=[out]):

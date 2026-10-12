@@ -68,22 +68,29 @@ def main():
             native.append(result)
     if not native:
         raise SystemExit('no verified native runs')
-    strict = {row.get('strict_f32', False) for row in native}
+    # Rows written before the CUDA F32 strict default carry only the effective flag.
+    strict = {row.get('strict_f32_request', 'on' if row.get('strict_f32') else 'off') for row in native}
     if len(strict) != 1:
         raise SystemExit('mixed strict/default runs require separate reports')
-    is_strict = strict.pop()
+    request = strict.pop()
+    is_strict = request == 'on'
     mode = ('All native rows use --strict-f32: F32 matrix operands retain F32 '
             'backend precision and attention is explicit. F16/Q8 weight storage '
             'still loses information; strict mode alone does not remove Q8 '
             'activation quantization. CUDA q8_0-f32-input is the separate F32 '
             'activation diagnostic.' if is_strict else
+            'Native rows use the default precision: CUDA rows with F32 weights '
+            'run strict F32 (explicit attention), other rows use the default '
+            'matrix precision. The effective mode and attention are recorded in '
+            'each results.json; flash attention uses F16 K/V and F32 accumulation. '
+            'F32/F16/Q8 name weight storage.' if request == 'auto' else
             'Native rows use the default matrix precision. Attention mode is '
             'recorded in each results.json; flash attention uses F16 K/V and '
             'F32 accumulation. F32/F16/Q8 name weight storage.')
     path = folder/'README.md'
     lines = path.read_text().splitlines()
     for index, line in enumerate(lines):
-        if line.startswith('Accelerated attention uses ') or line.startswith('All native rows use --strict-f32:') or line.startswith('Native rows use the default matrix precision.'):
+        if line.startswith('Accelerated attention uses ') or line.startswith('All native rows use --strict-f32:') or line.startswith('Native rows use the default'):
             lines[index] = mode + ' Timing attempts retain sampled GPU processes, allowed persistent PIDs and discarded attempts. These shared-workstation measurements are not isolated-device guarantees.'
         if 'benchmark_full_graph.py --stage all ' in line:
             if is_strict and '--strict-f32' not in line:
@@ -91,19 +98,19 @@ def main():
     if not any(line.startswith(mode) for line in lines):
         raise SystemExit('expected report precision paragraph not found')
     marker = '## Current Acceptance Scope'
-    status_link = Path(os.path.relpath(ROOT/'cpp_ggml/benchmarks/ALIGNMENT_STATUS.md',
+    status_link = Path(os.path.relpath(ROOT/'cpp_ggml/benchmarks/RELEASE_STATUS.md',
                                       folder.resolve())).as_posix()
     if marker not in lines:
         lines += ['', marker, '',
                   'The release audit verifies execution identities and raw/decoded '
                   'consistency. It does not certify bit equality, a speed advantage '
                   'for every row, or the unavailable six-axis benchmark. See '
-                  f'[current alignment status]({status_link}).', '',
+                  f'[release acceptance status]({status_link}).', '',
                   '[Sampled process memory and slower images](PROCESS_MEASUREMENTS.md). '
                   '[Reference-device and storage error components](quantization_audit/COMPONENTS.md).']
     text = '\n'.join(lines)+'\n'
     text = text.replace('[current alignment status](../../ALIGNMENT_STATUS.md)',
-                        f'[current alignment status]({status_link})')
+                        f'[release acceptance status]({status_link})')
     path.write_text(text)
     for name in ('quantization_audit', 'quantization_audit_f32_input'):
         quantization_report(folder/name)

@@ -22,6 +22,8 @@ int main(int argc,char ** argv) {
         auto * bad=ra_create(&options); check(bad && !ra_ready(bad) && std::strlen(ra_last_error(bad)),"bad ABI creation");
         ra_result * output=reinterpret_cast<ra_result *>(1);
         check(ra_infer_image(bad,nullptr,nullptr,&output)==-1 && !output,"failure must clear output"); ra_free(bad);
+        options=ra_default_options(); options.strict_f32=RA_STRICT_F32_AUTO-1; options.model_path="/absent/relateanything-model.gguf";
+        bad=ra_create(&options); check(bad && !ra_ready(bad) && std::strstr(ra_last_error(bad),"strict_f32"),"invalid strict mode"); ra_free(bad);
         options=ra_default_options(); options.model_path="/absent/relateanything-model.gguf";
         bad=ra_create(&options); check(bad && !ra_ready(bad),"failed load readiness"); ra_free(bad);
         // Test every format with padded row strides against identical RGB pixels.
@@ -61,7 +63,8 @@ int main(int argc,char ** argv) {
             auto req=ra_default_request();req.object_count=count;req.boxes_xyxy=regions.boxes_xyxy.data();
             options=ra_default_options();options.model_path=argv[1];options.backend=argv[2];options.raw_logits=1;options.threads=4;
             auto * ctx=ra_create(&options);check(ra_ready(ctx),ra_last_error(ctx));
-            relateanything::Options direct;direct.model=argv[1];direct.backend=argv[2];direct.strict_f32=true;direct.raw_logits=true;direct.threads=4;
+            // Both defaults resolve strict_f32 automatically from the loaded GGUF.
+            relateanything::Options direct;direct.model=argv[1];direct.backend=argv[2];direct.raw_logits=true;direct.threads=4;
             relateanything::FullModel model(direct);const auto expected=model.infer(relateanything::read_image_request(argv[3]));
             check(ra_infer_image(ctx,&image,&req,&output)==0,ra_last_error(ctx));
             check(output->pair_count==expected.pair_count && output->predicate_count==expected.predicate_count,"typed dimensions");
@@ -69,6 +72,14 @@ int main(int argc,char ** argv) {
             check(output->relation_count==expected.relations.size(),"typed relation count");
             check(output->timings.valid_fields==(RA_TIMING_PREPROCESS|RA_TIMING_E2E) && output->timings.e2e_ms>=output->timings.preprocess_ms,"truthful timing");
             ra_result_free(output);
+            // A non-negative strict_f32 overrides the automatic rule.
+            auto forced=options;forced.strict_f32=1;auto * fixed=ra_create(&forced);check(ra_ready(fixed),ra_last_error(fixed));
+            relateanything::Options strict=direct;strict.strict_f32=true;strict.strict_f32_auto=false;
+            relateanything::FullModel strict_model(strict);check(strict_model.strict_f32(),"forced strict_f32 was replaced");
+            const auto expected_strict=strict_model.infer(relateanything::read_image_request(argv[3]));
+            check(ra_infer_image(fixed,&image,&req,&output)==0,ra_last_error(fixed));
+            check(std::memcmp(output->predicate_logits,expected_strict.predicate_logits.data(),expected_strict.predicate_logits.size()*4)==0,"forced strict raw logits differ");
+            ra_result_free(output);ra_free(fixed);
             // The embedding host owns handles and lease-group serialization.
             relateanything::Backend host_backend(direct);int leases=0;
             ra_backend_binding binding{sizeof(ra_backend_binding),RA_ABI_VERSION,

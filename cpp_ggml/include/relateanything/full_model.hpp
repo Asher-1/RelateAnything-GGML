@@ -60,6 +60,8 @@ public:
     FullModel & operator=(const FullModel &) = delete;
     ImageOutput infer(const ImageInput & input);
     const std::vector<std::string> & predicates() const;
+    // Effective precision mode after strict_f32_auto was resolved.
+    bool strict_f32() const;
 private:
     struct Impl;
     std::unique_ptr<Impl> impl_;

@@ -7,7 +7,7 @@ int main(void) {
     if(options.struct_size!=sizeof(options) || runtime.struct_size!=sizeof(runtime) ||
        request.struct_size!=sizeof(request) || options.abi_version!=RA_ABI_VERSION ||
        runtime.abi_version!=RA_ABI_VERSION || runtime.op_offload_min_batch!=32 ||
-       !options.strict_f32 || runtime.cuda_disable_graphs || runtime.vk_disable_f16) return 1;
+       options.strict_f32!=RA_STRICT_F32_AUTO || runtime.cuda_disable_graphs || runtime.vk_disable_f16) return 1;
     puts("C_API_HEADER PASS");
     return 0;
 }

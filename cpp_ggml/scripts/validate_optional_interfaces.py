@@ -27,7 +27,9 @@ def main():
     parser.add_argument('--output',type=Path,required=True)
     parser.add_argument('--backends',nargs='+',default=['cpu','cuda','vulkan'])
     parser.add_argument('--models',nargs='+',default=list(MODELS))
-    parser.add_argument('--strict-f32',action='store_true')
+    precision=parser.add_mutually_exclusive_group()
+    precision.add_argument('--strict-f32',action='store_true')
+    precision.add_argument('--no-strict-f32',action='store_true')
     args=parser.parse_args(); args.output.mkdir(parents=True,exist_ok=True)
     torch.set_num_threads(4)
     data=ROOT/'cpp_ggml/test_data/ra4m_50'
@@ -69,6 +71,7 @@ def main():
             binary=ROOT/f'cpp_ggml/build-{backend}/relateanything-ggml'
             base=[str(binary),'--backend',backend,'--threads','8','--warmup','0','--repeats','1']
             if args.strict_f32:base.append('--strict-f32')
+            if args.no_strict_f32:base.append('--no-strict-f32')
             command=base+['--input',str(args.output/'regions.raip'),'--model',str(ROOT/f'cpp_ggml/models/gguf/{model}-f32.gguf'),
                          '--output',str(folder/'regions.json'),'--decompose','--topk','20']
             with recorded_run(folder,inputs=[args.output/'regions.raip',args.output/'masks.u8',data/sample['image'],

@@ -44,7 +44,17 @@ def execute(script, arguments, folder, name, record):
         raise RuntimeError(f'{name} failed with exit code {code}; see {log}')
 
 
-def main():
+def precision_arguments(request):
+    if request == 'auto':
+        return []
+    if request == 'on':
+        return ['--strict-f32']
+    if request == 'off':
+        return ['--no-strict-f32']
+    raise ValueError(f'unknown precision request: {request}')
+
+
+def parse_args(argv=None):
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--run-id')
     parser.add_argument('--root', type=Path, default=OUTPUTS)
@@ -53,22 +63,32 @@ def main():
                         default=['cpu', 'cuda', 'vulkan'])
     parser.add_argument('--warmup', type=int, default=2)
     parser.add_argument('--repeats', type=int, default=5)
+    precision = parser.add_mutually_exclusive_group()
+    precision.add_argument('--strict-f32', dest='precision', action='store_const', const='on',
+                           help='force strict F32 arithmetic on every backend/storage type')
+    precision.add_argument('--no-strict-f32', dest='precision', action='store_const', const='off',
+                           help='force default accelerated arithmetic on every backend/storage type')
+    parser.set_defaults(precision='auto')
     parser.add_argument('--current', action='store_true', help='advance report view after all selected suites succeed')
-    args = parser.parse_args()
+    return parser.parse_args(argv)
+
+
+def main():
+    args = parse_args()
     if args.warmup < 0 or args.repeats < 1:
-        parser.error('invalid warmup/repeats')
+        raise SystemExit('invalid warmup/repeats')
     if 'full' in args.suites and not {'cuda', 'vulkan'}.issubset(args.backends):
-        parser.error('the full release protocol requires CUDA and Vulkan')
+        raise SystemExit('the full release protocol requires CUDA and Vulkan')
     if args.current and (set(args.suites) != set(SUITES) or
                          set(args.backends) != {'cpu', 'cuda', 'vulkan'}):
-        parser.error('--current requires every suite and all three backends')
+        raise SystemExit('--current requires every suite and all three backends')
     folder = allocate(args.run_id, root=args.root)
     artifacts = folder/'artifacts'
     artifacts.mkdir()
     record = json.loads((folder/'run.json').read_text())
     record.update(status='running', started_utc=now(), steps=[], config={
         'suites': args.suites, 'backends': args.backends,
-        'strict_f32': True, 'warmup': args.warmup, 'repeats': args.repeats},
+        'precision_request': args.precision, 'warmup': args.warmup, 'repeats': args.repeats},
         orchestrator=fingerprint([Path(__file__), SCRIPTS/'benchmark_layout.py']))
     save(folder/'run.json', record)
     print(f'run={folder}', flush=True)
@@ -82,7 +102,8 @@ def main():
         run('verify_patch_replay.py', ['--output', artifacts/'patch_replay.json'], 'patch-replay')
         run('audit_runtime_options.py', ['--output', artifacts/'runtime_options_audit.json'], 'runtime-options-audit')
         full = artifacts/'full_graph'
-        timing = ['--strict-f32', '--warmup', args.warmup, '--repeats', args.repeats,
+        precision = precision_arguments(args.precision)
+        timing = [*precision, '--warmup', args.warmup, '--repeats', args.repeats,
                   '--wait-gpu-idle']
         if 'full' in args.suites:
             run('benchmark_full_graph.py', ['--stage', 'all', '--output', full,
@@ -99,7 +120,7 @@ def main():
             run('report_quantization_components.py', ['--benchmark', full], 'quantization-components')
             run('verify_benchmark_release.py', ['--folder', full], 'release-audit')
             run('benchmark_full_graph.py', ['--stage', 'report', '--output', full,
-                                           '--strict-f32', '--warmup', args.warmup,
+                                           *precision, '--warmup', args.warmup,
                                            '--repeats', args.repeats], 'full-report')
             run('report_alignment_gallery.py', ['--benchmark', full, '--output', artifacts/'gallery'], 'detailed-gallery')
             run('report_process_measurements.py', ['--benchmark', full], 'process-measurements')
@@ -118,16 +139,16 @@ def main():
             run('validate_full_graph.py', ['--output', artifacts/'stages',
                                           '--input', full/'inputs/000_9282.raim', '--traces', traces,
                                           '--backends', *args.backends, '--dtypes', 'f32', 'f16', 'q8_0',
-                                          '--dynamic', '--strict-f32'], 'stages-dynamic')
+                                          '--dynamic', *precision], 'stages-dynamic')
         if 'dense' in args.suites:
             run('validate_dense_sampler.py', ['--output', artifacts/'dense', '--device', 'cpu',
                                              '--backends', *args.backends, '--dtypes', 'f32', 'f16', 'q8_0',
-                                             '--strict-f32'], 'dense-sampler')
+                                             *precision], 'dense-sampler')
             run('audit_dense_candidates.py', ['--dense', artifacts/'dense',
                                              '--output', artifacts/'dense_candidate_audit'], 'dense-candidate-audit')
         if 'interfaces' in args.suites:
             run('validate_optional_interfaces.py', ['--output', artifacts/'interfaces',
-                                                   '--backends', *args.backends, '--strict-f32'], 'optional-interfaces')
+                                                   '--backends', *args.backends, *precision], 'optional-interfaces')
         if 'contracts' in args.suites:
             for backend in args.backends:
                 run('check_runtime_contracts.py', ['--backend', backend, '--benchmark', full], 'contracts-'+backend)

@@ -7,6 +7,9 @@
 extern "C" {
 #endif
 #define RA_ABI_VERSION 1u
+/* ra_options.strict_f32: this value (the default) enables strict F32 only on
+ * CUDA when every matrix weight is F32; 0 disables it, positive forces it. */
+#define RA_STRICT_F32_AUTO (-1)
 typedef struct ra_context ra_context;
 /* Strings are borrowed during create. Calls on a context must be serialized.
  * Runtime tuning is configured by the owning runtime before creating sessions. */

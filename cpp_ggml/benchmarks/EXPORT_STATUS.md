@@ -1,8 +1,8 @@
 # Official full-model export and execution
 
-[Current unfinished runtime and release work](NEXT_WINDOW_TODOS.md) is tracked
-separately from container conversion. Existing exports do not establish that
-all numerical, interface and publication criteria are complete.
+[Current release acceptance status](RELEASE_STATUS.md) is tracked separately
+from container conversion. Existing exports alone do not establish that all
+numerical, interface and publication criteria are complete.
 
 All three official checkpoint families have runnable native C++ full graphs
 and F32/F16/Q8_0 GGUF exports. The nine artifacts are inventoried in

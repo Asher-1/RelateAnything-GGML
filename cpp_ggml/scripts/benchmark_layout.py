@@ -109,7 +109,7 @@ def publish_reports(folder):
                  'acceptance are reported separately from execution completion.', '']
         entries = [('gallery/index.html', 'Offline all-model/backend/storage gallery'),
                    ('runtime_options_audit.json', 'Compiled environment-switch audit'),
-                   ('acceptance_status.json', 'Seven acceptance conditions'),
+                   ('acceptance_status.json', 'Release acceptance status'),
                    ('full_graph/README.md', 'Full 50-image benchmark and galleries'),
                    ('stages/summary.json', 'Stage and dynamic-vocabulary comparisons'),
                    ('dense/results.json', 'Dense sampler comparisons'),

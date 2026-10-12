@@ -88,6 +88,10 @@ Options Options::from_args(int argc, char ** argv) {
             options.quant_f32_input = true;
         } else if (arg == "--strict-f32") {
             options.strict_f32 = true;
+            options.strict_f32_auto = false;
+        } else if (arg == "--no-strict-f32") {
+            options.strict_f32 = false;
+            options.strict_f32_auto = false;
         } else if (arg == "--no-cuda-graphs") {
             options.runtime.cuda_disable_graphs = true;
         } else if (arg == "--no-retain-features") {
@@ -152,6 +156,8 @@ void Options::print_help(const char * program) {
     std::printf("  --no-cache-positions        recompute fixed scene positions (ablation)\n");
     std::printf("  --quant-f32-input           CUDA quantized weights with F32 activation GEMM\n");
     std::printf("  --strict-f32                preserve F32 matrix operands; use F32 attention\n");
+    std::printf("                              (default: on for CUDA with F32 matrix weights)\n");
+    std::printf("  --no-strict-f32             default matrix precision on every backend\n");
     std::printf("  --no-cuda-graphs            disable CUDA graph capture/replay (ablation)\n");
     std::printf("  --no-retain-features        round-trip the patch map through host (ablation)\n");
     std::printf("  --output PATH               write calibrated predictions (JSON)\n");

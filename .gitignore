@@ -40,8 +40,6 @@ third_party/
 !cpp_ggml/third_party/ggml/
 !cpp_ggml/third_party/patches/
 !cpp_ggml/third_party/scripts/
-# Hash-pinned PyTorch/CUTLASS strict-attention headers are regenerated locally.
-cpp_ggml/third_party/pytorch_mem_eff/
 
 # Local GGML build and generated adapter fixtures.
 cpp_ggml/build-*/

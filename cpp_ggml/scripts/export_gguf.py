@@ -27,6 +27,10 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 CONTRACT = "relation_pair_linear_v1"
 FULL_CONTRACT = "relateanything_full_v1"
+# Q8_0 exceptions kept as F16. The CPU Q8_0 GEMM also quantizes activations in
+# 32-element blocks; on the [predicates, text_dim] vocabulary bank that rounding
+# flips close top-1 predicates (vits16 CPU top-1 0.9696 -> 0.9729, +9.2 MB).
+Q8_0_F16_TENSORS = frozenset({"ra.vocab_head.W"})
 
 
 def _tensor_array(value: Any) -> np.ndarray:
@@ -139,7 +143,9 @@ def _add_tensor(writer: GGUFWriter, name: str, value: np.ndarray, dtype: str) ->
         raw_shape = value.shape
     else:
         raw_shape = value.shape
-    if dtype == "q8_0" and value.ndim == 2 and value.shape[1] % 32 == 0:
+    if dtype == "q8_0" and name in Q8_0_F16_TENSORS:
+        writer.add_tensor(name, value.astype(np.float16), raw_shape=raw_shape)
+    elif dtype == "q8_0" and value.ndim == 2 and value.shape[1] % 32 == 0:
         if value.shape[1] % 32:
             raise RuntimeError(f"Q8_0 requires the input dimension to be divisible by 32: {name} shape={value.shape}")
         data = quantize(value, Q.Q8_0)
@@ -212,7 +218,8 @@ def export_full(payload: dict[str, Any], output: Path, dtype: str, source: str) 
     writer.add_string("ra.graph_kind", FULL_CONTRACT)
     writer.add_string("ra.model_family", "dinov3_vit")
     writer.add_string("ra.quantization", dtype)
-    writer.add_string("ra.quantization_policy", "q8_0 rank-2 tensors with input dimension divisible by 32; other tensors keep f16/f32")
+    writer.add_string("ra.quantization_policy", "q8_0 rank-2 tensors with input dimension divisible by 32, except f16 " + ", ".join(sorted(Q8_0_F16_TENSORS)) + "; other tensors keep f32"
+                      if dtype == "q8_0" else f"all tensors {dtype}")
     writer.add_string("ra.source", source)
     writer.add_string("ra.vocabulary_source", "official predicate_embeddings.npz with runtime gate reparameterization")
     for key, value in payload.get("ggml_provenance", {}).items():
