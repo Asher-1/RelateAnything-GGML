@@ -84,12 +84,33 @@ selection decision on the ladder composite changes no outcome.
 **Never select a model on a composite unless the run targets its weakest
 axis** — otherwise you are optimizing the aggregate rather than the deficiency.
 
-## Running an evaluation
+## Running the benchmark
 
-The packs come from the `maelic/OV-SGG-Bench` dataset repository and the
-checkpoint from `maelic/relsgg-<model>` (see
-[installation](installation.md#get-the-weights)); images are read from
-`RA_DATASETS`.
+```bash
+pip install -e ".[train,hub]"
+python benchmark/setup_data.py
+python benchmark/run_benchmark.py --checkpoint maelic/relsgg-vits16plus
+```
+
+`setup_data.py` downloads [`maelic/OV-SGG-Bench`](https://huggingface.co/datasets/maelic/OV-SGG-Bench)
+(packs, negatives, text space, shared detections) and the test images of every
+source (about 15 GB) into `$RA_DATASETS`, points the packs at them and checks that
+every image is there. `--axes a1 a4 a6` fetches only what those axes read; a rerun
+resumes.
+
+`run_benchmark.py` takes a Hugging Face model id or any checkpoint of the recipe,
+writes every axis to `runs/benchmark/<model>/` and prints the per-axis scores and
+**OVS-F1 over A1, A2, A4 and A6**, the composite of the
+[model comparison](results.md#model-comparison). `--axes` runs a subset; a rerun
+skips finished axes.
+
+**A5 is optional.** It needs a VLM judge: `--judge` runs it with vLLM and
+`Qwen/Qwen3.6-27B`, the judge chosen on PSG val (about 60 GB of GPU memory;
+`--judge-tp 2` splits it over two GPUs, `--judge-python` points at a separate venv
+holding vLLM). With A5 the composite covers the five axes of the paper. Another
+judge (`--judge-model`) gives numbers that are not comparable with the paper's.
+
+Each axis can also be run on its own:
 
 ```bash
 python benchmark/eval_zeroshot.py \
@@ -98,12 +119,6 @@ python benchmark/eval_zeroshot.py \
   --split test \
   --graph_constraint \
   --out_dir runs/eval/<name>
-```
-
-Open-vocabulary mode — the model is never told the benchmark's label set:
-
-```bash
-python benchmark/eval_zeroshot.py... --open_vocab --tau_eval 0.72
 ```
 
 Other entry points:

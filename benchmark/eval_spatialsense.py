@@ -118,7 +118,9 @@ def score_split(model, pack, cells_json, device, a):
                         collate_fn=collate_fn, num_workers=a.num_workers,
                         pin_memory=True)
     ck = model._ckpt_args
-    ts = ck.get("text_student") or ""
+    from relsgg.text.student import resolve_student_path
+    # a released model.pth names "text_student.pt", which sits beside it
+    ts = resolve_student_path(ck.get("text_student") or "", near=a.checkpoint)
     from relsgg.text.student import encode_texts_student
     E = encode_texts_student(pred_names, ts, templates=TRAIN_TEMPLATES,
                              device=device)

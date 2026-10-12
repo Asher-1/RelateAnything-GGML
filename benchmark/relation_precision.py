@@ -161,6 +161,92 @@ predicate. Judge the two questions independently and do not let one drive the ot
 Reply with STRICT JSON on the last line and nothing after it:
 {{"true": "yes" | "no" | "unclear", "info": 0 | 1 | 2 | 3}}"""
 
+# ---------------------------------------------------------------------------------
+# TRUTH ONLY, scored by probability (--rubric truth). A5 reads only `true`: the joint
+# rubric's `info` is not used by the bits axis and collapses onto truth anyway (above).
+# Asking the one question, verdict first, lets the judge be read as P(yes) from the
+# first token's logits instead of a greedy word -- a continuous score, so a judge is
+# characterised by a whole ROC curve rather than one operating point, and the
+# threshold is chosen on a calibration split (benchmark/judge_selection.py).
+ZOOM_NOTE = (" The second image is an enlarged crop of the region around the two "
+             "boxes, for detail.")
+
+RUBRIC_TRUTH = """You are checking ONE claimed relationship in a photograph.
+
+The numbered boxes drawn on the image identify the objects. This claim is about \
+box {s} (the SUBJECT) and box {o} (the OBJECT).{zoom}
+
+CLAIM: {sname} #{s} — {pred} → {oname} #{o}
+
+Is this claim true of THIS photograph? Answer "yes" only if the stated relationship \
+really holds between those two boxes, in that direction. Answer "no" if it is false, \
+reversed, or describes some other pair.
+
+Answer with a single word: yes or no."""
+
+RUBRIC_TRUTH_HL = """You are checking ONE claimed relationship in a photograph.
+
+Two boxes are highlighted. The SUBJECT is in the THICK BLUE box labelled "SUBJECT". \
+The OBJECT is in the THICK ORANGE box labelled "OBJECT". Thin grey boxes are other \
+objects and are NOT part of this claim.{zoom}
+
+CLAIM: the {sname} in the BLUE box — {pred} → the {oname} in the ORANGE box
+
+Is this claim true of THIS photograph? Answer "yes" only if the stated relationship \
+really holds between the two highlighted boxes, in that direction (blue does the \
+action to orange). Answer "no" if it is false, reversed, or describes some other pair.
+
+Answer with a single word: yes or no."""
+
+
+def zoom_crop(im, boxes, s_i, o_i, orig_size, pad=0.25, min_side=512, max_side=1024):
+    """Enlarged crop of the drawn image around the union of the two boxes (pixel xyxy
+    in the ORIGINAL image; ``im`` may have been downscaled by the renderer)."""
+    from PIL import Image
+    sc = im.size[0] / orig_size[0]
+    x0 = min(boxes[s_i][0], boxes[o_i][0]) * sc
+    y0 = min(boxes[s_i][1], boxes[o_i][1]) * sc
+    x1 = max(boxes[s_i][2], boxes[o_i][2]) * sc
+    y1 = max(boxes[s_i][3], boxes[o_i][3]) * sc
+    px, py = max(16.0, pad * (x1 - x0)), max(16.0, pad * (y1 - y0))
+    box = (max(0, int(x0 - px)), max(0, int(y0 - py)),
+           min(im.size[0], int(x1 + px)), min(im.size[1], int(y1 + py)))
+    crop = im.crop(box)
+    w, h = crop.size
+    up = min(max_side / max(w, h), max(1.0, min_side / max(w, h)))
+    if up != 1.0:
+        crop = crop.resize((max(1, int(w * up)), max(1, int(h * up))), Image.LANCZOS)
+    return crop
+
+
+def p_yes(first_token_logprobs):
+    """P(yes) / (P(yes) + P(no)) over the first generated token's top logprobs, and
+    the probability mass the two answers carry (low mass = the judge did not answer
+    with a bare yes/no, and the score is not usable)."""
+    import math
+    yes = no = 0.0
+    for lp in (first_token_logprobs or {}).values():
+        tok = (lp.decoded_token or "").strip().lower()
+        if tok == "yes":
+            yes += math.exp(lp.logprob)
+        elif tok == "no":
+            no += math.exp(lp.logprob)
+    mass = yes + no
+    return (yes / mass if mass > 0 else float("nan")), mass
+
+
+_SIZES: dict = {}
+
+
+def orig_size(path):
+    """Pixel size of the source photograph (the renderers may downscale it)."""
+    if path not in _SIZES:
+        from PIL import Image
+        with Image.open(path) as im:
+            _SIZES[path] = im.size
+    return _SIZES[path]
+
+
 SUBJ_RGB, OBJ_RGB, OTHER_RGB = (0, 110, 255), (255, 140, 0), (150, 150, 150)
 
 
@@ -323,6 +409,19 @@ def main():
     p.add_argument("--max_model_len", type=int, default=8192)
     p.add_argument("--max_num_seqs", type=int, default=64)
     p.add_argument("--gpu_frac", type=float, default=0.90)
+    p.add_argument("--rubric", choices=["joint", "truth"], default="joint",
+                   help="joint: the original reply with `true` and `info`. truth: one "
+                        "question, verdict first, scored as P(yes) from the first token's "
+                        "logits; `true` is then P(yes) >= --threshold.")
+    p.add_argument("--threshold", type=float, default=0.5,
+                   help="--rubric truth: P(yes) at which a claim counts as true. Choose it "
+                        "on a calibration split (benchmark/judge_selection.py), never on "
+                        "the split being scored.")
+    p.add_argument("--zoom", action="store_true",
+                   help="add an enlarged crop around the two boxes as a second image")
+    p.add_argument("--thinking", action="store_true",
+                   help="leave the chat template's thinking mode on (Qwen3.5+ default it "
+                        "on). Off by default: the verdict must be the reply's first token.")
     p.add_argument("--out", required=True)
     a = p.parse_args()
 
@@ -350,11 +449,14 @@ def main():
     # so a naming discrepancy would read as one model asserting nonsense (llm_judge.py
     # makes the same choice for the same reason).
     from vllm import LLM, SamplingParams
-    llm = LLM(model=a.model, limit_mm_per_prompt={"image": 1},
+    llm = LLM(model=a.model, limit_mm_per_prompt={"image": 2 if a.zoom else 1},
               enable_prefix_caching=True, tensor_parallel_size=a.tp,
               max_model_len=a.max_model_len, max_num_seqs=a.max_num_seqs,
               gpu_memory_utilization=a.gpu_frac, trust_remote_code=False)
-    sp = SamplingParams(temperature=a.temperature, max_tokens=a.max_new)
+    sp = (SamplingParams(temperature=0.0, max_tokens=1, logprobs=20)
+          if a.rubric == "truth" else
+          SamplingParams(temperature=a.temperature, max_tokens=a.max_new))
+    tmpl = {"enable_thinking": bool(a.thinking)}
 
     def build(rows_chunk):
         """Requests for one chunk of images.
@@ -381,17 +483,24 @@ def main():
                         shown, is_ctl = t, False
                     sn, pred, on = shown
                     s_i = int(sn.rsplit("#", 1)[1]); o_i = int(on.rsplit("#", 1)[1])
+                    names = dict(sname=sn.rsplit("#", 1)[0], oname=on.rsplit("#", 1)[0],
+                                 pred=pred)
+                    zoom = ZOOM_NOTE if a.zoom else ""
                     if a.highlight:
                         img = render_pair(img_dir / file_names[row], bx, s_i, o_i,
                                           max_side=a.max_side)
-                        text = RUBRIC_HL.format(sname=sn.rsplit("#", 1)[0],
-                                                oname=on.rsplit("#", 1)[0], pred=pred)
+                        text = (RUBRIC_TRUTH_HL.format(zoom=zoom, **names)
+                                if a.rubric == "truth" else RUBRIC_HL.format(**names))
                     else:
                         img = im
-                        text = RUBRIC.format(s=s_i, o=o_i, sname=sn.rsplit("#", 1)[0],
-                                             oname=on.rsplit("#", 1)[0], pred=pred)
-                    reqs.append([{"role": "user", "content": [
-                        {"type": "image_pil", "image_pil": img},
+                        text = (RUBRIC_TRUTH.format(s=s_i, o=o_i, zoom=zoom, **names)
+                                if a.rubric == "truth" else
+                                RUBRIC.format(s=s_i, o=o_i, **names))
+                    content = [{"type": "image_pil", "image_pil": img}]
+                    if a.zoom:
+                        content.append({"type": "image_pil", "image_pil": zoom_crop(
+                            img, bx, s_i, o_i, orig_size(img_dir / file_names[row]))})
+                    reqs.append([{"role": "user", "content": content + [
                         {"type": "text", "text": text}]}])
                     recs.append({"system": name, "row": row, "rank": j,
                                  "n_rel": len(tris), "control": is_ctl,
@@ -404,9 +513,16 @@ def main():
           f"{' (one rendered image PER RELATION)' if a.highlight else ''}")
     for ci, ch in enumerate(chunks):
         reqs, rc = build(ch)
-        outs = llm.chat(reqs, sp)
+        outs = llm.chat(reqs, sp, chat_template_kwargs=tmpl)
         for r, o in zip(rc, outs):
-            r["true"], r["info"] = parse(o.outputs[0].text)
+            if a.rubric == "truth":
+                r["p_yes"], r["p_mass"] = p_yes(o.outputs[0].logprobs[0]
+                                                if o.outputs[0].logprobs else None)
+                r["true"] = (None if r["p_yes"] != r["p_yes"]          # nan: no yes/no
+                             else "yes" if r["p_yes"] >= a.threshold else "no")
+                r["info"] = -1
+            else:
+                r["true"], r["info"] = parse(o.outputs[0].text)
             r["raw"] = o.outputs[0].text[-300:]
         recs.extend(rc)
         del reqs                      # release this chunk's rendered images
@@ -463,6 +579,8 @@ def main():
     summary = {"model": a.model, "pack": str(pack), "n_images": len(chosen),
                "max_rel": a.max_rel, "rel_frac": a.rel_frac, "seed": a.seed,
                "info_mode": a.info_mode, "highlight": bool(a.highlight),
+               "rubric": a.rubric, "zoom": bool(a.zoom), "thinking": bool(a.thinking),
+               **({"threshold": a.threshold} if a.rubric == "truth" else {}),
                **({"info_anchors": summary_info_anchor} if a.info_mode == "text" else {}),
                "n_judged": len(recs)}
     ctl = [r for r in recs if r["control"] and r["true"]]

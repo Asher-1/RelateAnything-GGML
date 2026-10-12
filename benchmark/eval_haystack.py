@@ -96,7 +96,9 @@ def main() -> None:
     ck_args = ckpt.get("args") or {}
     if not isinstance(ck_args, dict):
         ck_args = vars(ck_args)
-    ts = ck_args.get("text_student") or ""
+    from relsgg.text.student import resolve_student_path
+    # a released model.pth names "text_student.pt", which sits beside it
+    ts = resolve_student_path(ck_args.get("text_student") or "", near=a.checkpoint)
     if not ts:
         raise SystemExit("checkpoint was not trained in student text space")
     from relsgg.text.student import encode_texts_student
@@ -121,6 +123,7 @@ def main() -> None:
               f"{m.get('PAUC', float('nan')):>7.4f} {m['PDD']:>6.3f} {m['PDO']:>6.3f}")
 
     out_dir = a.out_dir or os.path.dirname(a.checkpoint)
+    os.makedirs(out_dir, exist_ok=True)
     out = os.path.join(out_dir, "haystack_%s%s.json" % (
         a.score_mode, "_nopair" if a.no_pair else ""))
     json.dump({"metrics": metrics,

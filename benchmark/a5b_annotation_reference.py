@@ -86,7 +86,9 @@ def main() -> None:
     gt_bits = bits / n
 
     info = _load(a.info)["per_system"]
+    info_j = _load(a.info)
     out = {"run": a.run, "info": a.info, "pack": str(pack), "ref": a.ref,
+           "statistic": info_j.get("statistic", "thresholded"),
            "n_images": n, "gt_rel_per_image": n_rel / n, "gt_bits_per_image": gt_bits,
            "per_system": {}}
     for sysname, v in info.items():
@@ -97,7 +99,10 @@ def main() -> None:
         ok = v.get("bits_comparable", True) and b is not None
         out["per_system"][sysname] = {
             "true_bits_per_image": b,
-            "share_of_annotation": (b / gt_bits) if ok else None}
+            "share_of_annotation": (b / gt_bits) if ok else None,
+            # the decomposition, so a table can be read from this one file
+            **{k: v[k] for k in ("rel_per_image", "true_rel_per_image",
+                                 "bits_per_true_rel", "precision") if k in v}}
 
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     json.dump(out, open(a.out, "w"), indent=2)

@@ -348,6 +348,10 @@ def main() -> None:
         ck_args = vars(ck_args)
     text_student = (args.text_student if args.text_student is not None
                     else ck_args.get("text_student") or "")
+    if text_student:
+        from relsgg.text.student import resolve_student_path
+        # a released model.pth names "text_student.pt", which sits beside it
+        text_student = resolve_student_path(text_student, near=args.checkpoint)
     if args.keep_W and list(ckpt.get("pred_names") or []) == list(pred_names):
         print(f"[{args.dataset_name}] --keep_W: vocabulary matches the checkpoint's "
               f"{len(pred_names)} predicates; keeping its W")

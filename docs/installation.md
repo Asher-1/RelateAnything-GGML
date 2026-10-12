@@ -31,6 +31,7 @@ pip install -e ".[detector]"    # ultralytics (AGPL-3.0) — rebuild demo detect
 pip install -e ".[datagen]"     # vLLM annotation pipeline — heavy, GPU only
 pip install -e ".[monitoring]"  # wandb + matplotlib
 pip install -e ".[hub]"         # huggingface_hub — download weights and packs
+pip install -e ".[train]"       # scikit-learn + pyarrow — training and the RA-4M image export
 pip install -e ".[gradio]"      # the server-side Gradio demo (needs [detector] too)
 pip install -e ".[release]"     # huggingface_hub — publishing
 pip install -e ".[dev]"         # pytest, black, isort
@@ -78,32 +79,30 @@ only needed to *train*.
 
 ## Get the data
 
-| what | where | size |
-|---|---|---|
-| RA-4M annotations, image manifest, training packs | [`maelic/RA-4M`](https://huggingface.co/datasets/maelic/RA-4M) | about 0.4 GB |
-| evaluation packs, negatives, text student, recipe artifacts | [`maelic/OV-SGG-Bench`](https://huggingface.co/datasets/maelic/OV-SGG-Bench) | about 0.2 GB |
-| images | the source datasets (MegaSG via `JosephZ/mega_1m`, VG150, PSG, IndoorVG, HICO-DET, Haystack, SpatialSense) | not redistributed |
-
 ```bash
-python - <<'PY'
-from huggingface_hub import snapshot_download
-snapshot_download("maelic/OV-SGG-Bench", repo_type="dataset", local_dir="runs/ovsgg_bench")
-snapshot_download("maelic/RA-4M", repo_type="dataset", local_dir="runs/ra4m")
-PY
-mkdir -p runs/packed runs/datamix
-ln -s../ovsgg_bench/packs/*../ra4m/packs/* runs/packed/
-ln -s../ovsgg_bench/datamix/* runs/datamix/
-ln -s ovsgg_bench/text_student_v2_512 runs/packed/text_student_v2_512
-ln -s ovsgg_bench/datamix_v22 runs/packed/datamix_v22
+pip install -e ".[train,hub]"
+python training/setup_data.py      # to train: packs, text space, ~52 GB of images
+python benchmark/setup_data.py     # to evaluate: OV-SGG-Bench and its ~15 GB of test images
 ```
 
-After that every command in the docs works with its default paths. A pack
-records the image directory it was built against (`meta.json: img_dir`); point
-the packs at the directory that holds your copies of the source images with
+Both download from the Hugging Face Hub, keep only the images the packs name, write
+them to `$RA_DATASETS` (default `datasets/`), link the packs into `runs/packed` and
+`runs/datamix`, point every pack at `$RA_DATASETS` and check that each image is
+there. A rerun resumes.
 
-```bash
-RA_DATASETS=/path/to/datasets python training/relocate_packs.py runs/packed/<pack>...
-```
+| what | where |
+|---|---|
+| training packs: `megasg`, `megasg_clean`, `vg_raw`, `megasg_proxy50k` | [`maelic/RA-4M`](https://huggingface.co/datasets/maelic/RA-4M) `packs/` |
+| evaluation packs, `hicodet`, negatives, text student, text space, shared detections | [`maelic/OV-SGG-Bench`](https://huggingface.co/datasets/maelic/OV-SGG-Bench) |
+| MegaSG images | [`maelic/RA-4M`](https://huggingface.co/datasets/maelic/RA-4M) (also `release/ra4m/export_images.py`) |
+| Visual Genome images (`vg_raw`, VG150), PSG, IndoorVG | `maelic/VG150-coco-format`, `maelic/PSG-coco-format`, `maelic/IndoorVG-coco-format` |
+| HICO-DET images | [`maelic/HICO-DET-coco-format`](https://huggingface.co/datasets/maelic/HICO-DET-coco-format) |
+| Haystack, SpatialSense images (evaluation only) | their authors' releases (SA-1B subset; Zenodo 8104370) |
+
+`training/setup_data.py --proxy` takes the 50,000-image development pack
+(`megasg_proxy50k`, 6 GB of MegaSG images instead of 43 GB) for runs on one GPU.
+A pack records the directory of its images (`meta.json: img_dir`); to move the
+images later, rerun the setup or `training/relocate_packs.py`.
 
 ## The gated backbone (training only)
 

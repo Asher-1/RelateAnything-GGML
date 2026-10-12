@@ -205,12 +205,13 @@ changes the vocabulary without retraining the vision model.
   redistributed. [Dataset details and generation](docs/data.md).
 - **[OV-SGG-Bench](https://huggingface.co/datasets/maelic/OV-SGG-Bench):** evaluation
   packs, explicit negatives and calibration files for six complementary axes.
-  [Protocol](benchmark/SPEC.md).
+  [Protocol](benchmark/SPEC.md) · [run it in two commands](docs/evaluation.md#running-the-benchmark).
 
 ## Reproduce and contribute
 
-- **Train:** [training guide](docs/training.md), [released configs](training/configs/)
-  and [`train.sh`](train.sh).
+- **Train:** `python training/setup_data.py && ./train.sh` downloads the data and
+  retrains the released mixture. [Training guide](docs/training.md),
+  [released configs](training/configs/).
 - **Evaluate:** [evaluation guide](docs/evaluation.md) and [`benchmark/`](benchmark/).
 - **Generate annotations:** [`datagen/`](datagen/). **Explore the paper's probes:**
   [`research/`](research/).

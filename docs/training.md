@@ -45,17 +45,21 @@ command with the backbone as a variable, and the resolved arguments of every
 released run are in [`training/configs/`](../training/configs/), one JSON per
 model.
 
-Inputs, and where they come from (see [installation](installation.md#get-the-data)):
+`python training/setup_data.py` downloads every input below and checks it
+([installation](installation.md#get-the-data)); `./train.sh` then reproduces the
+released mixture. The inputs, and where they come from:
 
 | input | source |
 |---|---|
-| `runs/packed/megasg_clean`, `vg_raw`, `hicodet` | training packs in the `maelic/RA-4M` dataset repository, or rebuilt with `training/pack_megasg.py` |
+| `runs/packed/megasg_clean`, `vg_raw` (and `megasg` for validation) | training packs in the `maelic/RA-4M` dataset repository, or rebuilt with `training/pack_megasg.py` |
+| `runs/packed/hicodet` | `maelic/OV-SGG-Bench` (its `train` split is the training partner, its `test` split an evaluation pack) |
 | `runs/packed/psg` (checkpoint selection) | `maelic/OV-SGG-Bench` |
 | `runs/packed/text_student_v2_512/student.pt` | `maelic/OV-SGG-Bench`; to retrain it, `training/distill/` |
 | `runs/packed/datamix_v22/{text_space/soft_supervision.npz, pair_opportunity.npz}` | `maelic/OV-SGG-Bench`; rebuilt by `training/build_soft_supervision.py` and `training/build_pair_opportunity.py` |
 | `runs/datamix/indoorvg_holdout.json` | `maelic/OV-SGG-Bench`; rebuilt by `training/build_indoorvg_holdout.py` |
 | the backbone | the gated `facebook/dinov3-*` repositories (`huggingface-cli login`) or a local conversion |
-| images | `RA_DATASETS` must hold the MegaSG, Visual Genome and HICO-DET images the packs name |
+| images | `RA_DATASETS` must hold the MegaSG (`release/ra4m/export_images.py`), Visual Genome and HICO-DET images the packs name |
+| Python | `pip install -e ".[train,hub]"` (scikit-learn for the gate warm start) |
 
 ## The parts of the recipe that actually matter
 

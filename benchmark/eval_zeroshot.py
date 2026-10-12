@@ -104,6 +104,10 @@ def main() -> None:
                         "every tau >= 0.90, so this only costs ~1.1 GB of "
                         "[V,V] ontology masks. Turn on to prove the property "
                         "rather than rely on it.")
+    p.add_argument("--pred_embeds", default="",
+                   help="--open_vocab: the training-vocabulary embeddings (npz with "
+                        "'predicates' and 'embeddings'), for a checkpoint that does not "
+                        "record them, such as a released model.pth")
     p.add_argument("--tau_eval", type=float, default=None,
                    help="Cosine threshold for --open_vocab synonym matching. "
                         "DEFAULT None = read it from --tau_calibration, which "
@@ -165,7 +169,14 @@ def main() -> None:
     text_student = (args.text_student if args.text_student is not None
                     else ck_args.get("text_student") or "")
     if text_student:
+        from relsgg.text.student import resolve_student_path
+        # a released model.pth names "text_student.pt", which sits beside it
+        text_student = resolve_student_path(text_student, near=args.checkpoint)
         print(f"vocabulary encoder: STUDENT ({text_student})")
+    # A released model.pth does not record its training text space; the same
+    # matrix ships in OV-SGG-Bench (runs/packed/datamix_v22/text_space/).
+    if args.pred_embeds:
+        ck_args["pred_embeds"] = args.pred_embeds
 
     # ---- open-vocabulary setup (loaded once; identical for every root) ----
     ov_train_preds = ov_E_train = ov_inverse_mask = None

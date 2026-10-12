@@ -40,6 +40,9 @@ tensorrt = ["tensorrt-cu12>=10.8,<11", "onnxruntime~=1.28", "onnx~=1.22", "openc
 gradio = ["gradio>=5"]
 # Pull weights and packs from the Hugging Face Hub.
 hub = ["huggingface_hub~=1.23"]
+# Training: the gate warm start fits a scikit-learn probe; pyarrow reads the
+# RA-4M parquet shards (release/ra4m/export_images.py).
+train = ["scikit-learn~=1.9", "pyarrow>=17"]
 # Rebuild the AGPL detector locally (never redistributed — see
 # THIRD_PARTY_NOTICES.md). Installing this extra pulls AGPL-3.0 code.
 detector = ["ultralytics~=8.4"]

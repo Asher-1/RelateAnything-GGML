@@ -23,6 +23,12 @@ export HF_HOME="${HF_HOME:-$PWD/.hf_cache}"
 BACKBONE="${BACKBONE:-facebook/dinov3-vits16plus-pretrain-lvd1689m}"
 # 5e-5 for the ViTs; the ConvNeXt proxy ladder (1e-4 / 3e-5 / 1e-5 / 3e-6) peaks at 1e-5.
 BACKBONE_LR="${BACKBONE_LR:-5e-5}"
+# ConvNeXt-B and -L need activation checkpointing to fit 32 images per GPU at the
+# 672 px rung on a 48 GB card; it leaves the gradients unchanged.
+case "$BACKBONE" in
+    *convnext-base*|*convnext-large*|*convnext_base*|*convnext_large*) GRAD_CKPT=(--backbone_grad_ckpt) ;;
+    *) GRAD_CKPT=() ;;
+esac
 NPROC="${NPROC:-4}"
 EPOCHS="${EPOCHS:-12}"
 MIX="${MIX:-released}"
@@ -45,7 +51,7 @@ torchrun --nproc_per_node "$NPROC" --master_port "${MASTER_PORT:-29500}" train.p
     --exclude_ids runs/datamix/indoorvg_holdout.json \
     --val_root runs/packed/megasg \
     --dev_root runs/packed/psg --dev_metric mR@50 \
-    --backbone_model "$BACKBONE" --backbone_lr "$BACKBONE_LR" \
+    --backbone_model "$BACKBONE" --backbone_lr "$BACKBONE_LR" "${GRAD_CKPT[@]}" \
     --pred_embeds "$TS/pred_embeds_studentv2_512_photo.npz" \
     --ontology_meta "$TS/union_meta.json" \
     --soft_supervision "$TS/soft_supervision.npz" \
