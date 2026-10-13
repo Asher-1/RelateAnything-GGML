@@ -169,11 +169,39 @@ def resolve_student_path(path: str, near: Optional[str] = None) -> str:
     return path
 
 
+def lookup_key(templates: Optional[List[str]]) -> str:
+    """Key of a template ensemble in a precomputed lookup (``*.npz``)."""
+    import hashlib
+    return hashlib.sha1("\x1f".join(templates or []).encode()).hexdigest()[:12]
+
+
+def _encode_from_lookup(texts: List[str], path: str,
+                        templates: Optional[List[str]]) -> torch.Tensor:
+    """Rows of a precomputed text space (training/build_teacher_lookup.py), for
+    runs trained against a frozen encoder that is not a student, e.g. the
+    dino.txt teacher of the text-space ablation. Every string must be present
+    under the exact template ensemble: a lookup never guesses."""
+    import numpy as np
+    z = np.load(path, allow_pickle=False)
+    key = lookup_key(templates)
+    if f"names__{key}" not in z.files:
+        raise KeyError(f"{path}: no embeddings for template ensemble {templates}")
+    row = {str(n): i for i, n in enumerate(z[f"names__{key}"])}
+    missing = [t for t in texts if t not in row]
+    if missing:
+        raise KeyError(f"{path}: {len(missing)} strings missing, e.g. {missing[:5]}")
+    E = torch.from_numpy(np.asarray(z[f"emb__{key}"])[[row[t] for t in texts]])
+    return F.normalize(E.float(), dim=-1)
+
+
 def encode_texts_student(texts: List[str], ckpt_path: str,
                          templates: Optional[List[str]] = None, device=None,
                          batch: int = 1024) -> torch.Tensor:
     """Encode strings with a student checkpoint, averaging over ``templates``
-    (each with a ``{p}`` slot) and re-normalising. Returns float32 on CPU."""
+    (each with a ``{p}`` slot) and re-normalising. Returns float32 on CPU.
+    A ``.npz`` path is a precomputed lookup instead (``_encode_from_lookup``)."""
+    if str(ckpt_path).endswith(".npz"):
+        return _encode_from_lookup(list(texts), str(ckpt_path), templates)
     device = device or torch.device("cuda" if torch.cuda.is_available() else "cpu")
     model = PredicateTextStudent.from_checkpoint(ckpt_path, device)
 

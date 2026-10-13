@@ -6,29 +6,45 @@ benchmark rationale. For installation and inference, start with the
 
 ## Model comparison
 
-Three checkpoints, one recipe; the backbone is the only variable. All three
-train on RA-4M + raw Visual Genome + a 5 % share of HICO-DET. Every number is
-generated from measured evaluation files by
-[`release/make_model_cards.py`](../release/make_model_cards.py).
+Seven checkpoints, one recipe: three DINOv3 ViTs and four DINOv3 ConvNeXts. The
+backbone is the only variable, apart from the ConvNeXt backbone learning rate
+(1e-5 instead of 5e-5; [training](training.md)). All train on RA-4M + raw
+Visual Genome + a 5 % share of HICO-DET.
 
-| model | backbone | params | A40, batch 1 | img/s, batch 32 | OVS-F1 | HICO F1 |
+| model | backbone | params | A100, PyTorch bf16 | RTX 3080 Laptop, TensorRT | OVS-F1 | HICO F1 |
 |---|---|---|---|---|---|---|
-| [`relsgg-vits16`](https://huggingface.co/maelic/relsgg-vits16) | DINOv3 ViT-S/16 | 46.1 M | 19.5 ms | 201 | 34.6 | 36.4 |
-| [`relsgg-vits16plus`](https://huggingface.co/maelic/relsgg-vits16plus) ⭐ | DINOv3 ViT-S/16+ | 53.2 M | 20.0 ms | 188 | 37.2 | 37.1 |
-| [`relsgg-vitb16`](https://huggingface.co/maelic/relsgg-vitb16) | DINOv3 ViT-B/16 | 113.8 M | 19.3 ms | 130 | 37.2 | 37.5 |
+| [`relsgg-vits16`](https://huggingface.co/maelic/relsgg-vits16) | DINOv3 ViT-S/16 | 46.1 M | 29.7 ms | 15.1 ms | 35.6 | 36.4 |
+| [`relsgg-vits16plus`](https://huggingface.co/maelic/relsgg-vits16plus) ⭐ | DINOv3 ViT-S/16+ | 53.2 M | 30.8 ms | 16.8 ms | 37.5 | 37.2 |
+| [`relsgg-vitb16`](https://huggingface.co/maelic/relsgg-vitb16) | DINOv3 ViT-B/16 | 113.8 M | 29.7 ms | 34.2 ms | 37.3 | 37.5 |
+| [`relsgg-convnext-tiny`](https://huggingface.co/maelic/relsgg-convnext-tiny) | DINOv3 ConvNeXt-T | 58.6 M | **25.4 ms** | **14.7 ms** | 36.2 | 36.3 |
+| [`relsgg-convnext-small`](https://huggingface.co/maelic/relsgg-convnext-small) | DINOv3 ConvNeXt-S | 80.2 M | 30.9 ms | 20.6 ms | 37.7 | 37.4 |
+| [`relsgg-convnext-base`](https://huggingface.co/maelic/relsgg-convnext-base) | DINOv3 ConvNeXt-B | 123.5 M | 31.1 ms | 32.3 ms | 39.1 | 37.4 |
+| [`relsgg-convnext-large`](https://huggingface.co/maelic/relsgg-convnext-large) | DINOv3 ConvNeXt-L | 245.7 M | 30.9 ms | 55.0 ms | 39.4 | 37.2 |
 
-⭐ `relsgg-vits16plus` is the recommended default: it matches the ViT-B model's
-composite at half the parameters, and the advantage ViT-B holds on individual
-axes does not survive the deployment operating point. Latency is the relation
-head alone, bf16, over the full 19,103-string vocabulary; at batch size 1 the
-family is dispatch-bound, so it is flat across a 2.5× range of FLOPs and the
-argument for the small tower is throughput. The OVS-F1 column is the
-chance-corrected harmonic mean over **A1, A2, A4 and A6** — the axis set used
-for the model ladder, since A5 costs one judge run per arm. It is therefore not
-the five-axis composite of the [headline table](#evaluation-results): that one adds A5 and
-reads 40.1 for the released tower against 11.8 for the baseline. A composite is
-comparable only between models scored on the same axis set. Each model card
-lists the full per-benchmark numbers, deployment thresholds and provenance.
+<p align="center"><img src="../assets/model_family.png" alt="OVS-F1 against laptop latency for the seven checkpoints. ConvNeXt-T, ViT-S+, ConvNeXt-S, ConvNeXt-B and ConvNeXt-L form the Pareto frontier; ViT-S and ViT-B lie below it." width="720"></p>
+
+⭐ `relsgg-vits16plus` is the recommended default; `relsgg-convnext-base` is the
+most accurate model for its size, and ConvNeXt-L adds 0.3 OVS-F1 at twice its
+parameters and 1.7× its laptop latency. Every model in the table was evaluated
+by the same evaluator in October 2026 (the ViT values differ slightly from the
+August release notes for that reason).
+
+- **Latency** is the relation model alone, batch 1. RTX 3080 Laptop (plotted):
+  TensorRT FP32, the released 243 predicates, preprocessing and decoding
+  included ([all runtimes](benchmarks/README.md)). A100: PyTorch bf16, the full
+  19,103 predicates; at batch 1 it waits on the CPU to launch kernels, so its
+  latency barely depends on model size. **Bold**: the fastest checkpoint.
+- **OVS-F1** is the chance-corrected harmonic mean over **A1, A2, A4 and A6**,
+  each tower with its own HICO-DET cell. It is not the five-axis composite of the
+  [headline table](#evaluation-results), which adds A5 and uses the zero-shot
+  tower's HICO-DET cell. A composite is comparable only between models scored on
+  the same axis set.
+- **HICO F1** is F1@50 on HICO-DET test (graph-constrained). The ConvNeXt towers
+  train on the HICO-DET pack with 186 duplicate images removed (33,415 instead of
+  33,601 images).
+
+Each model card lists the full per-benchmark numbers, deployment thresholds and
+provenance.
 
 ## Evaluation results
 
@@ -78,19 +94,24 @@ under the PSG training marginal, so a graph of five hundred `on` edges scores
 nothing; the same judge returns two verdicts that favour the baseline, and both
 are reported in the paper.
 
-**End-to-end cost**, batch 1, median latency, eager PyTorch for both, whole
-system including the detector:
+**End-to-end cost**, batch 1, median latency on one A100, from pixels to scene
+graph, whole system including the detector
+([all systems and the protocol](benchmarks/a100-systems.md)):
 
-| system | params | boxes/img | A40 | A100 | H100 | FPS (A40) |
-|---|---|---|---|---|---|---|
-| OvSGTR Swin-T | 177 M | 98 | 194.0 ms | 179.9 ms | 128.1 ms | 5.1 |
-| OvSGTR Swin-B | 237 M | 98 | 228.5 ms | 195.1 ms | 134.3 ms | 4.3 |
-| **RelateAnything + YOLO-World** | 231 M | 20 | **25.0 ms** | 35.0 ms | 25.6 ms | **40.0** |
+| system | params | boxes/img | A100 | FPS |
+|---|---|---|---|---|
+| **RelateAnything ViT-S/16+ + YOLO-World, `torch.compile`** | 243 M | 26 | **25.6 ms** | **39.1** |
+| RelateAnything ViT-S/16+ + YOLO-World, eager | 243 M | 26 | 47.9 ms | 20.9 |
+| OvSGTR Swin-T | 177 M | 99 | 231.5 ms | 4.3 |
+| OvSGTR Swin-B | 237 M | 98 | 243.3 ms | 4.1 |
+| ACC Swin-T (self-query) | 177 M | 96 | 498.1 ms | 2.0 |
+| ROBIN-3B + YOLO-World | 3,515 M | 39 | 38.8 s | 0.03 |
 
-7.8× end to end on an A40 while carrying more parameters than the Swin-T
-baseline, because batch-1 cost is dispatch-bound rather than FLOP-bound. With
-`torch.compile` the released tower reaches 20 ms per frame (49 FPS) on an A40;
-on eight CPU threads through OpenVINO it reaches 7 FPS.
+The compiled pipeline is 9× faster than OvSGTR end to end (4.8× eager) while
+carrying more parameters than the Swin-T baseline, because batch-1 cost is
+dispatch-bound rather than FLOP-bound. On an A40 the compiled tower reaches
+20 ms per frame (49 FPS); on eight CPU threads through OpenVINO it reaches
+7 FPS.
 
 **Transfer with ground-truth boxes (released model)**
 (`relsgg-vits16plus`, graph-constrained). The HICO-DET row includes the
@@ -126,7 +147,7 @@ ground-truth object-category pairs, using no pixels, beats a trained model on
 the most reported metric while losing to it by a wide margin per predicate:
 
 | benchmark | edges | freq, micro | ours, micro | freq, macro | ours, macro |
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 | VG150 | 152,535 | **68.4** | 57.7 (−15.6 %) | 18.9 | **35.1** (+85.7 %) |
 | PSG | 13,623 | **50.9** | 43.3 (−15.0 %) | 20.7 | **31.6** (+52.4 %) |
 | IndoorVG | 29,175 | **67.9** | 57.3 (−15.5 %) | 29.8 | **38.4** (+28.9 %) |
@@ -146,7 +167,7 @@ corpus's relation instances whose ⟨subject category, predicate, object
 category⟩ triple the benchmark also annotates:
 
 | training corpus | matched on | VG150 | PSG | IndoorVG | Haystack |
-|---|---|---|---|---|---|
+|---|---|---|---|---|---|---|
 | the released mixture (19,103 predicates) | predicate string | 53.4 % | 38.7 % | 49.5 % | 38.7 % |
 | | both object categories | 44.4 % | 36.7 % | 26.8 % | 30.7 % |
 | | **the whole triple** | **12.8 %** | **10.7 %** | **6.6 %** | **4.9 %** |

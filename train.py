@@ -76,6 +76,11 @@ def parse_args(argv=None) -> argparse.Namespace:
     g.add_argument("--data_roots", nargs="+", required=True,
                    help="Packed training sources, trained jointly over the union vocabulary "
                         "(training/pack_megasg.py). The first is the base pack.")
+    g.add_argument("--spatial_flag_roots", nargs="+", default=None,
+                   help="packs whose relation flags warm-start the predicate gate "
+                        "(default: --data_roots). An annotation-source ablation sets "
+                        "the reference packs here, so swapping annotations does not "
+                        "also change the gate's initialisation.")
     g.add_argument("--mix_fractions", nargs="+", type=float, default=None,
                    help="Per-source sampling fractions (default: equal).")
     g.add_argument("--val_root", default=None,
@@ -171,6 +176,9 @@ def parse_args(argv=None) -> argparse.Namespace:
     g.add_argument("--min_lr_factor", type=float, default=0.01)
     g.add_argument("--grad_accum", type=int, default=1,
                    help="Micro-batches per optimiser step (N reproduces an N-GPU run).")
+    g.add_argument("--backbone_grad_ckpt", action="store_true",
+                   help="Activation checkpointing in the backbone (ConvNeXt): same gradients, "
+                        "less memory, about one extra tower forward per step.")
     g.add_argument("--amp", action="store_true", default=True)
     g.add_argument("--no_amp", action="store_false", dest="amp")
     g.add_argument("--amp_dtype", default="bf16", choices=["bf16", "fp16"])
@@ -253,13 +261,27 @@ def build_datasets(args) -> Tuple[torch.utils.data.Dataset, torch.utils.data.Dat
         n = len(train_ds)
         k = int(round(n * args.train_subset_frac))
         keep = np.sort(np.random.default_rng(args.train_subset_seed).permutation(n)[:k])
-        train_ds = torch.utils.data.Subset(train_ds, keep.tolist())
+        train_ds = _PairIndexSubset(train_ds, keep.tolist())
         source_of_index = source_of_index[keep]
         print(f"[subset] train restricted to {k:,}/{n:,} images")
     args._source_of_index = source_of_index
     args._source_names = source_names
     args._union_categories = union_categories
     return train_ds, val_ds, union_predicates
+
+
+class _PairIndexSubset(torch.utils.data.Subset):
+    """``Subset`` for ``--train_subset_frac`` that also takes the ``(index,
+    resolution)`` pairs ``MultiScaleBatchSampler`` yields: only the image
+    index is remapped, the resolution passes through unchanged."""
+
+    def __getitem__(self, idx):
+        if isinstance(idx, tuple):
+            return self.dataset[(self.indices[idx[0]],) + tuple(idx[1:])]
+        return self.dataset[self.indices[idx]]
+
+    def __getitems__(self, indices):
+        return [self[i] for i in indices]
 
 
 def save_training_plots(history: List[dict], output_dir: str) -> None:
@@ -415,6 +437,8 @@ def main() -> None:
     model = build_model(args, pred_names, obj_names=args._union_categories).to(device)
     if args.init_from:
         apply_init_from(model, args.init_from)
+    if args.backbone_grad_ckpt:
+        model.backbone.set_grad_checkpointing(True)
     if ddp:
         model = nn.parallel.DistributedDataParallel(model, device_ids=[args.local_rank],
                                                     find_unused_parameters=True)

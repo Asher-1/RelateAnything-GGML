@@ -76,7 +76,9 @@ def main():
     ck_args = ckpt.get("args") or {}
     if not isinstance(ck_args, dict):
         ck_args = vars(ck_args)
-    ts = ck_args.get("text_student") or ""
+    from relsgg.text.student import resolve_student_path
+    # a released model.pth names "text_student.pt", which sits beside it
+    ts = resolve_student_path(ck_args.get("text_student") or "", near=a.checkpoint)
     if not ts:
         raise SystemExit("checkpoint not trained in student text space")
     from relsgg.text.student import encode_texts_student

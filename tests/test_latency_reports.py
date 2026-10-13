@@ -39,6 +39,11 @@ def benchmark_data():
         rows=[],
         measurement_blocks=[],
         fp32_cross_backend_checks=[],
+        vocabularies={
+            "bank": 243,
+            "full": 19103,
+            "full_vocabulary_arms": report.ARMS[:2],
+        },
     )
     gpu = {
         "clocks_event_reasons_counters.sw_thermal_slowdown": "0 us",
@@ -46,51 +51,53 @@ def benchmark_data():
         "enforced.power.limit": "90 W",
         "temperature.gpu": "60",
     }
-    for arm in report.ARMS:
-        for vocab in report.VOCABS:
-            base["rows"].append(
-                {
-                    "backend": arm,
-                    "predicates": vocab,
-                    "n": 1,
-                    "samples_ms": [10.0],
-                    "median_ms": 10.0,
-                    "pipeline_samples": [
-                        {
-                            "detector_ms": 3.0,
-                            "relation_ms": 5.0,
-                            "decode_ms": 1.0,
-                            "total_ms": 10.0,
-                            "round": 1,
-                            "image_index": 0,
-                            "detected_boxes": 2,
-                            "used_boxes": 2,
-                            "relation_skipped": False,
-                            "triplets": 1,
-                        }
-                    ],
-                }
-            )
-            base["measurement_blocks"].append(
-                {
-                    "backend": arm,
-                    "predicates": vocab,
-                    "round": 1,
-                    "gpu_before_warmup": deepcopy(gpu),
-                    "gpu_after_timing": deepcopy(gpu),
-                    "cooling_seconds": 0,
-                }
-            )
-            if arm in (report.ARMS[0], report.ARMS[2]):
-                base["fp32_cross_backend_checks"].append(
+    configurations = [(arm, 243) for arm in report.ARMS] + [
+        (arm, 19103) for arm in report.ARMS[:2]
+    ]
+    for arm, vocab in configurations:
+        base["rows"].append(
+            {
+                "backend": arm,
+                "predicates": vocab,
+                "n": 1,
+                "samples_ms": [10.0],
+                "median_ms": 10.0,
+                "pipeline_samples": [
                     {
-                        "backend": arm,
-                        "predicates": vocab,
-                        "image": "scene.jpg",
-                        "same_valid_pairs": True,
-                        "max_logit_delta": 0.0,
+                        "detector_ms": 3.0,
+                        "relation_ms": 5.0,
+                        "decode_ms": 1.0,
+                        "total_ms": 10.0,
+                        "round": 1,
+                        "image_index": 0,
+                        "detected_boxes": 2,
+                        "used_boxes": 2,
+                        "relation_skipped": False,
+                        "triplets": 1,
                     }
-                )
+                ],
+            }
+        )
+        base["measurement_blocks"].append(
+            {
+                "backend": arm,
+                "predicates": vocab,
+                "round": 1,
+                "gpu_before_warmup": deepcopy(gpu),
+                "gpu_after_timing": deepcopy(gpu),
+                "cooling_seconds": 0,
+            }
+        )
+        if arm in (report.ARMS[0], report.ARMS[2]) and vocab == 243:
+            base["fp32_cross_backend_checks"].append(
+                {
+                    "backend": arm,
+                    "predicates": vocab,
+                    "image": "scene.jpg",
+                    "same_valid_pairs": True,
+                    "max_logit_delta": 0.0,
+                }
+            )
     records = []
     for family in report.DETECTORS:
         for checkpoint in report.MODELS:

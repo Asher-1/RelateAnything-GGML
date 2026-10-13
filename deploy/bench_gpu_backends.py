@@ -21,6 +21,77 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 ARMS = ["PyTorch eager FP32", "PyTorch eager BF16", "ONNX CUDA FP32", "TensorRT FP32"]
+#: The full training vocabulary exists only in the Python API (the ONNX and
+#: TensorRT bundles ship the predicate bank), so only these arms time it.
+FULL_VOCABULARY_ARMS = ARMS[:2]
+
+
+def decode_best(
+    best_score,
+    best_pred,
+    sub_idx,
+    obj_idx,
+    valid_mask,
+    predicates,
+    cfg,
+    boxes_xyxy=None,
+    box_scores=None,
+    box_labels=None,
+):
+    """deploy.postprocess.decode for one predicate per pair and one global
+    threshold, from each pair's best calibrated score and its predicate index.
+    The PyTorch arms reduce [pairs, predicates] to these on the GPU, as the
+    Python API does, instead of copying every logit to the host."""
+    import numpy as np
+
+    from deploy.postprocess import Triplet
+
+    if cfg.max_per_pair != 1 or cfg.per_predicate:
+        raise ValueError(
+            "decode_best needs max_per_pair=1 and no per-predicate thresholds"
+        )
+    n_boxes = None
+    if box_scores is not None:
+        n_boxes = len(np.asarray(box_scores).reshape(-1))
+    elif boxes_xyxy is not None:
+        n_boxes = len(boxes_xyxy)
+    if n_boxes is not None:
+        in_range = (sub_idx < n_boxes) & (obj_idx < n_boxes)
+        sub_idx = np.clip(sub_idx, 0, n_boxes - 1)
+        obj_idx = np.clip(obj_idx, 0, n_boxes - 1)
+    else:
+        in_range = np.ones_like(valid_mask, dtype=bool)
+    keep = (best_score >= cfg.threshold) & valid_mask.astype(bool)
+    keep &= in_range & (sub_idx != obj_idx)
+    rank = best_score
+    if cfg.box_score_weight and box_scores is not None:
+        bs = np.asarray(box_scores, np.float32).reshape(-1)
+        rank = best_score * (bs[sub_idx] * bs[obj_idx])
+    k_i = np.nonzero(keep)[0]
+    order = k_i[np.argsort(-rank[k_i], kind="stable")[: cfg.topk]]
+    return [
+        Triplet(
+            subject_idx=int(sub_idx[k]),
+            object_idx=int(obj_idx[k]),
+            predicate=predicates[int(best_pred[k])],
+            score=float(best_score[k]),
+            subject_box=None if boxes_xyxy is None else boxes_xyxy[sub_idx[k]],
+            object_box=None if boxes_xyxy is None else boxes_xyxy[obj_idx[k]],
+            subject_label=None if box_labels is None else box_labels[sub_idx[k]],
+            object_label=None if box_labels is None else box_labels[obj_idx[k]],
+        )
+        for k in order
+    ]
+
+
+def same_triplets(a, b, atol=1e-4):
+    """Same pairs and predicates in the same order, scores within atol."""
+    return len(a) == len(b) and all(
+        (x.subject_idx, x.object_idx, x.predicate)
+        == (y.subject_idx, y.object_idx, y.predicate)
+        and abs(x.score - y.score) <= atol
+        for x, y in zip(a, b)
+    )
 
 
 def sha256(path):
@@ -86,6 +157,12 @@ def main():
         help="print the measurement plan without loading models or using the GPU",
     )
     parser.add_argument(
+        "--full-vocabulary",
+        action="store_true",
+        help="also time the checkpoint's whole training vocabulary on the PyTorch arms "
+        "(needs predicate_embeddings.npz beside the checkpoint)",
+    )
+    parser.add_argument(
         "--cooldown-temperature",
         type=int,
         help="wait for GPU to reach this temperature before each block (requires nvidia-smi)",
@@ -116,7 +193,12 @@ def main():
                         str(args.detector_weights) if args.detector else None
                     ),
                     "relation_backends": ARMS,
-                    "vocabularies": ["default", "full bank"],
+                    "vocabularies": ["predicate bank"]
+                    + (
+                        ["full training vocabulary (PyTorch arms)"]
+                        if args.full_vocabulary
+                        else []
+                    ),
                     "rounds": args.rounds,
                     "timed_calls_per_configuration": args.rounds * args.iterations,
                     "max_relation_boxes": args.boxes,
@@ -178,6 +260,21 @@ def main():
         strict=True,
     )
     model = ra.model.eval()
+    full = None
+    if args.full_vocabulary:
+        from relsgg.api import load_sidecar_embeddings
+        from relsgg.checkpoint import load_checkpoint
+
+        names = list(load_checkpoint(str(args.checkpoint)).get("pred_names") or [])
+        embeddings = load_sidecar_embeddings(str(args.checkpoint), names)
+        if not names or embeddings is None:
+            raise RuntimeError(
+                "--full-vocabulary needs the checkpoint's pred_names and "
+                "predicate_embeddings.npz beside it"
+            )
+        model.vocab_head.set_vocabulary_matrix(names, embeddings)
+        model.reparameterize()
+        full = (names, model.vocab_head.W.clone(), model.vocab_head.alpha.clone())
     if (
         ra.img_size != t_head.img_size
         or model.config.final_budget != engine_meta["final_budget"]
@@ -354,31 +451,80 @@ def main():
             out["valid_mask"].cpu().numpy(),
         ]
 
-    def select_vocab(vocab):
-        t_head.set_predicates(vocab)
-        o_head.set_predicates(vocab)
-        # Feed identical released embeddings and gate weights to every arm.
-        model.vocab_head.W = torch.from_numpy(t_head._W).cuda()
-        model.vocab_head.alpha = torch.from_numpy(t_head._alpha).cuda()
+    contract = cfg.contract()
+
+    def torch_best(feed, bf16=False):
+        """The PyTorch arms: calibrated scores and each pair's best predicate
+        on the GPU, so only [pairs] values cross to the host."""
+        inputs = {
+            key: torch.from_numpy(feed[key]).to("cuda")
+            for key in ("image", "boxes", "box_counts")
+        }
+        with torch.autocast("cuda", dtype=torch.bfloat16, enabled=bf16):
+            out = model(
+                inputs["image"],
+                inputs["boxes"],
+                box_counts=inputs["box_counts"],
+                targets=None,
+            )
+        score = contract.scores(out["logits"][0].float(), out["pair_logits"][0].float())
+        best_score, best_pred = score.max(dim=-1)
+        return (
+            "best",
+            [
+                best_score.cpu().numpy(),
+                best_pred.cpu().numpy(),
+                out["sub_idx"][0].cpu().numpy(),
+                out["obj_idx"][0].cpu().numpy(),
+                out["valid_mask"][0].cpu().numpy(),
+            ],
+        )
+
+    current = {}
+
+    def select_vocab(index):
+        if index == 0:
+            t_head.set_predicates(vocabularies[0])
+            o_head.set_predicates(vocabularies[0])
+            # Feed identical released embeddings and gate weights to every arm.
+            W = torch.from_numpy(t_head._W).cuda()
+            alpha = torch.from_numpy(t_head._alpha).cuda()
+        else:
+            _, W, alpha = full
+        model.vocab_head.W, model.vocab_head.alpha = W, alpha
         model.vocab_head.is_reparameterized = True
+        current["names"] = vocabularies[index]
 
     def relation_raw(arm, f, b):
         feed = t_head.make_feed(f, b)
         if arm == "TensorRT FP32":
-            return t_head._run_engine(feed)
+            return "logits", t_head._run_engine(feed)
         elif arm == "ONNX CUDA FP32":
-            return o_head._run_engine(feed)
-        return torch_raw(feed, bf16=arm == "PyTorch eager BF16")
+            return "logits", o_head._run_engine(feed)
+        return torch_best(feed, bf16=arm == "PyTorch eager BF16")
 
-    def decode_pipeline(raw, boxes, scores, labels):
+    def decode_any(raw, boxes, scores=None, labels=None):
+        kind, arrays = raw
+        if kind == "best":
+            return decode_best(
+                *arrays,
+                current["names"],
+                cfg,
+                boxes_xyxy=boxes,
+                box_scores=scores,
+                box_labels=labels,
+            )
         return decode(
-            *(x[0] for x in raw),
-            t_head.predicates,
+            *(x[0] for x in arrays),
+            current["names"],
             cfg,
             boxes_xyxy=boxes,
             box_scores=scores,
             box_labels=labels,
         )
+
+    def decode_pipeline(raw, boxes, scores, labels):
+        return decode_any(raw, boxes, scores, labels)
 
     def call(arm, index):
         f = frames[index % len(frames)]
@@ -392,8 +538,7 @@ def main():
                 synchronize=torch.cuda.synchronize,
             )
         b = boxsets[index % len(frames)]
-        raw = relation_raw(arm, f, b)
-        return decode(*(x[0] for x in raw), t_head.predicates, cfg, boxes_xyxy=b)
+        return decode_any(relation_raw(arm, f, b), b)
 
     def cool_down():
         start = time.monotonic()
@@ -422,14 +567,25 @@ def main():
             status = gpu_status()
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
-    vocabularies = [list(t_head.predicates), t_head.available_predicates()]
-    configurations = [(arm, i) for i in range(len(vocabularies)) for arm in ARMS]
+    # The released predicate bank on every arm, then the full vocabulary on the
+    # PyTorch arms when requested.
+    vocabularies = [t_head.available_predicates()]
+    configurations = [(arm, 0) for arm in ARMS]
+    if full is not None:
+        vocabularies.append(full[0])
+        configurations += [(arm, 1) for arm in FULL_VOCABULARY_ARMS]
+    results["vocabularies"] = {
+        "bank": len(vocabularies[0]),
+        "full": len(full[0]) if full is not None else None,
+        "full_vocabulary_arms": FULL_VOCABULARY_ARMS if full is not None else [],
+    }
     times = {key: [] for key in configurations}
     per_round = {key: [] for key in configurations}
     pipeline_samples = {key: [] for key in configurations}
     with torch.inference_mode():
-        for vocab in vocabularies:
-            select_vocab(vocab)
+        # Only the bank has a TensorRT reference to check the other arms against.
+        for vocab in vocabularies[:1]:
+            select_vocab(0)
             for index, (frame, boxes) in enumerate(zip(frames, boxsets)):
                 feed = t_head.make_feed(frame, boxes)
                 reference = t_head._run_engine(feed)
@@ -455,11 +611,33 @@ def main():
                 f"Parity passed: {len(vocab)} predicates, {len(frames)} images",
                 flush=True,
             )
+        # The GPU-side reduction of the PyTorch arms must give the triplets the
+        # host decoder gives on the full logits, for every vocabulary.
+        results["decode_checks"] = []
+        for vocab_index in range(len(vocabularies)):
+            select_vocab(vocab_index)
+            for index, (frame, boxes) in enumerate(zip(frames, boxsets)):
+                feed = t_head.make_feed(frame, boxes)
+                host = decode_any(("logits", torch_raw(feed)), boxes)
+                device = decode_any(torch_best(feed), boxes)
+                if not same_triplets(host, device):
+                    raise RuntimeError(
+                        f"GPU decoding differs from host decoding on {paths[index].name} "
+                        f"with {len(vocabularies[vocab_index])} predicates"
+                    )
+                results["decode_checks"].append(
+                    {
+                        "predicates": len(vocabularies[vocab_index]),
+                        "image": paths[index].name,
+                        "triplets": len(host),
+                    }
+                )
+        print("GPU decoding matches host decoding", flush=True)
         for round_no in range(args.rounds):
             order = list(configurations)
             random.Random(42 + round_no).shuffle(order)
             for arm, vocab_index in order:
-                select_vocab(vocabularies[vocab_index])
+                select_vocab(vocab_index)
                 before, cooling = cool_down()
                 for i in range(args.warmup):
                     call(arm, i)
@@ -487,7 +665,7 @@ def main():
                 results["measurement_blocks"].append(
                     {
                         "backend": arm,
-                        "predicates": len(t_head.predicates),
+                        "predicates": len(current["names"]),
                         "round": round_no + 1,
                         "cooling_seconds": cooling,
                         "gpu_before_warmup": before,
@@ -495,7 +673,7 @@ def main():
                     }
                 )
                 print(
-                    f"{len(t_head.predicates)} predicates, round {round_no + 1}, {arm}: "
+                    f"{len(current['names'])} predicates, round {round_no + 1}, {arm}: "
                     f"{np.median(samples):.3f} ms (cooled {cooling:.1f}s)",
                     flush=True,
                 )

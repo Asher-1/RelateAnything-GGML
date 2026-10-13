@@ -84,9 +84,8 @@ missed it too.
 The sampler now uses half the dtype minimum for masked selection scores. The
 CUDA regression test exports the actual sampler and checks empty, singleton,
 sparse and dense inputs for unique, matching valid pairs. Re-export old ONNX
-graphs before using sparse inputs with the CUDA provider. The
-[latency protocol](benchmarks/README.md#sparse-pair-onnx-cuda-correction) records
-which artifacts include the correction.
+graphs (exported before 2026-09-22) before using sparse inputs with the CUDA
+provider.
 
 ### The text space must match the checkpoint
 
