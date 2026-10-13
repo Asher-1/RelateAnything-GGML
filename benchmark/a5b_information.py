@@ -37,6 +37,13 @@ each model's own predicate distribution, and distinct predicates per graph.
     python benchmark/a5b_information.py \
         --run runs/judge/relation_precision_psg_top10.json \
         --ref runs/packed/psg/train/meta.json
+
+EXPECTED MODE (--expected). A judge scored with the truth rubric records P(yes) for
+every relation (`relation_precision.py --rubric truth`). Weighting each relation by
+P(yes) instead of thresholding it gives the EXPECTED true bits, sum of P(yes) x bits:
+no threshold to choose, and a relation the judge is unsure of earns half its bits
+rather than all or none. The decomposition keeps its meaning with expectations in
+place of counts: accepted/img is sum P(yes), bits/accepted the P(yes)-weighted mean.
 """
 from __future__ import annotations
 
@@ -72,6 +79,8 @@ def main() -> None:
     p.add_argument("--ref", default="runs/packed/psg/train/meta.json",
                    help="pack meta holding predicate_counts")
     p.add_argument("--max_rank", type=int, default=10 ** 9)
+    p.add_argument("--expected", action="store_true",
+                   help="weight each relation by the judge's P(yes) instead of its verdict")
     p.add_argument("--out", default="")
     a = p.parse_args()
 
@@ -93,21 +102,29 @@ def main() -> None:
         true = [r for r in judged if r["true"] == "yes"]
 
         inv = [r for r in judged if r["claim"][1] in bits]
-        inv_true = [r for r in true if r["claim"][1] in bits]
+        # w = 1 for an accepted relation and 0 otherwise, or P(yes) in expected mode
+        w = (lambda r: float(r["p_yes"])) if a.expected else (
+            lambda r: 1.0 if r["true"] == "yes" else 0.0)
         # Scale to the full graph: verdict rates come from non-controls, graph size
         # from everything emitted (a control was emitted, only its verdict is unusable).
         scale = len(emitted) / max(1, len(judged))
 
-        b_true = sum(bits[r["claim"][1]] for r in inv_true)
+        n_true = sum(w(r) for r in judged)
+        w_inv = sum(w(r) for r in inv)
+        b_true = sum(w(r) * bits[r["claim"][1]] for r in inv)
         rows[name] = {
             "n_images": nimg,
             "rel_per_image": len(emitted) / nimg,
-            "precision": len(true) / max(1, len(judged)),
+            "precision": n_true / max(1, len(judged)),
             "in_vocab_frac": len(inv) / max(1, len(judged)),
-            "bits_per_true_rel": b_true / max(1, len(inv_true)),
+            "bits_per_true_rel": b_true / w_inv if w_inv else 0.0,
             "true_bits_per_image": b_true * scale / nimg,
-            "true_rel_per_image": len(true) * scale / nimg,
+            "true_rel_per_image": n_true * scale / nimg,
             "pred_entropy": entropy(Counter(r["claim"][1] for r in judged)),
+            # the most frequent predicate and its share of the graph (judge-free)
+            **dict(zip(("modal_pred", "modal_share"), next(
+                ((k, c / len(judged)) for k, c in
+                 Counter(r["claim"][1] for r in judged).most_common(1)), (None, 0.0)))),
             "distinct_true_pred_per_graph": (
                 sum(len({r["claim"][1] for r in g})
                     for g in _group(true).values()) / max(1, len(_group(true)))),
@@ -146,7 +163,9 @@ def main() -> None:
           "qualifies. H(pred) and distinct/gr need no judge.")
 
     if a.out:
-        json.dump({"source": a.run, "ref": a.ref, "per_system": rows},
+        json.dump({"source": a.run, "ref": a.ref,
+                   "statistic": "expected (P(yes)-weighted)" if a.expected else "thresholded",
+                   "per_system": rows},
                   open(a.out, "w"), indent=1)
         print(f"wrote {a.out}")
 

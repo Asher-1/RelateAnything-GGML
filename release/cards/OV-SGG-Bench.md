@@ -37,7 +37,7 @@ are in
 | `vg150` (test) | 26,404 | in-domain control (100 % vocabulary overlap with VG150-trained baselines) | A1, A3 |
 | `psg` (test) | 2,179 | primary transfer, COCO images, 56 predicates | A1, A3, A4, A5 |
 | `indoorvg` (test) | 4,403 | domain shift | A1, A3 |
-| `hicodet` (test) | 9,546 | 116 external verbs; federated negatives | A1, A2 |
+| `hicodet` (test) | 9,490 | 116 external verbs; federated negatives (its `train` split, 33,415 images, is a training source) | A1, A2 |
 | `haystack` | 11,368 | explicit negatives on SA-1B images (no image overlap with any training set) | A2 |
 | `spatialsense`, `spatialsense_test`, `spatialsense_valid` | 1,920 test images, 2,758 balanced true/false triples | adversarial spatial understanding | A6 |
 
@@ -50,28 +50,32 @@ are in
 | `datamix/spatialsense_{test,valid}_cells.json` | the balanced true/false cells for A6 |
 | `datamix/indoorvg_holdout.json` | image ids excluded from training (leakage audit) |
 | `datamix/registry.json`, `vg2coco.json`, `psg2coco.json` | id registry used by the converters |
+| `detect/yoloworld_ov_psg_test.npz` | the shared YOLO-World detections on PSG test that A4 and A5 score every system on |
 | `text_student_v2_512/student.pt` | the distilled predicate text encoder every released checkpoint was trained with |
 | `datamix_v22/pair_opportunity.npz`, `datamix_v22/text_space/*` | the soft-supervision and synonym artifacts the training recipe names (`train.sh`) |
 
 ## Use
 
-```bash
-# download into $RA_RUNS (default runs/)
-python - <<'PY'
-from huggingface_hub import snapshot_download
-snapshot_download("maelic/OV-SGG-Bench", repo_type="dataset", local_dir="runs/ovsgg_bench")
-PY
-ln -s ovsgg_bench/packs/* runs/packed/          # or point --data_roots at the packs directly
-export RA_DATASETS=/path/to/datasets           # images: VG150_coco_format/, PSG_coco_format/,...
+Two commands from a clone of [RelateAnything](https://github.com/Maelic/RelateAnything):
 
-python benchmark/eval_zeroshot.py --checkpoint model.pth \
-    --data_roots runs/packed/vg150 runs/packed/psg runs/packed/indoorvg runs/packed/hicodet
+```bash
+pip install -e ".[train,hub]"
+python benchmark/setup_data.py        # this dataset, the test images (~15 GB), every pack relocated and checked
+python benchmark/run_benchmark.py --checkpoint maelic/relsgg-vits16plus
 ```
 
-Each pack's `meta.json` records `img_dir` as `datasets/<name>/<split>`; the
-evaluators resolve it under `RA_DATASETS`. Where to obtain the images, and the
-converters that produced each pack from its upstream release, are documented
-in [`docs/evaluation.md`](https://github.com/Maelic/RelateAnything/blob/main/docs/evaluation.md).
+`setup_data.py --axes a1 a4 a6` downloads only the images those axes read. The images come
+from their sources (VG150, PSG and IndoorVG from `maelic/*-coco-format`, HICO-DET from
+`maelic/HICO-DET-coco-format`, Haystack from its authors, SpatialSense from Zenodo); none are
+redistributed here. Each pack's `meta.json` records `img_dir` as `datasets/<source>/<split>`,
+which `setup_data.py` re-roots at `$RA_DATASETS`.
+
+`run_benchmark.py` takes a Hugging Face model id or any checkpoint of the recipe and prints
+OVS-F1 over A1, A2, A4 and A6. A5, the graph-quality axis, needs a VLM judge (vLLM,
+`Qwen/Qwen3.6-27B`) and runs only with `--judge`; it adds the fifth axis of the paper's
+composite. The protocol and the composite are defined in
+[`benchmark/SPEC.md`](https://github.com/Maelic/RelateAnything/blob/main/benchmark/SPEC.md)
+and [`docs/evaluation.md`](https://github.com/Maelic/RelateAnything/blob/main/docs/evaluation.md).
 
 ## Licenses
 

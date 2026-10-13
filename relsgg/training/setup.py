@@ -86,7 +86,8 @@ def build_model(args, pred_names: List[str], obj_names: Optional[List[str]] = No
     if getattr(args, "init_from", ""):
         print("[init_from] gate loaded from the source checkpoint; probe fit skipped")
     else:
-        is_spatial = union_spatial_flags(args.data_roots, pred_names)
+        flag_roots = getattr(args, "spatial_flag_roots", None) or args.data_roots
+        is_spatial = union_spatial_flags(flag_roots, pred_names)
         target = spatial_probe_alpha(model.vocab_head.W.cpu().numpy(), is_spatial)
         mse = model.vocab_head.warm_start_gate(target)
         a = model.vocab_head.alpha
@@ -119,7 +120,11 @@ def build_model(args, pred_names: List[str], obj_names: Optional[List[str]] = No
             print(f"Encoding {len(obj_names)} object categories with the text student")
             W_obj = encode_texts_student(obj_names, args.text_student,
                                          templates=["{p}", "a photo of a {p}"])
-            np.savez_compressed(cache, embeddings=W_obj.numpy().astype(np.float16), names=obj_names)
+            # Every DDP rank gets here on a cold cache: write to a private name
+            # and rename, so no rank ever reads another's half-written file.
+            tmp = f"{cache}.{os.getpid()}.tmp.npz"
+            np.savez_compressed(tmp, embeddings=W_obj.numpy().astype(np.float16), names=obj_names)
+            os.replace(tmp, cache)
         model.set_object_vocabulary(obj_names, W_obj)
     return model
 
@@ -164,12 +169,15 @@ def apply_init_from(model: RelSGG, path: str) -> None:
 def build_optimizer(model: RelSGG, args) -> torch.optim.Optimizer:
     """AdamW: head at ``--lr``, backbone at ``--backbone_lr``; no weight decay
     on biases, norms and the zero-initialised gates (every tensor with one
-    dimension or fewer)."""
+    dimension or fewer). Backbone modules trained from scratch (the ConvNeXt
+    stage fusion) go with the head."""
     backbone_params, other_params = [], []
     for name, param in model.named_parameters():
         if not param.requires_grad:
             continue
-        (backbone_params if "backbone" in name else other_params).append(param)
+        pretrained = (name.startswith("backbone.")
+                      and not model.backbone.from_scratch(name[len("backbone."):]))
+        (backbone_params if pretrained else other_params).append(param)
     groups: list = []
 
     def _emit(params: list, lr: float, wd: float) -> None:

@@ -1,12 +1,13 @@
-"""Upload the two dataset repositories the paper links.
+"""Upload the packs and artifacts of the two dataset repositories the paper links.
 
-``--ra4m``   -> <org>/RA-4M          the corpus: relation annotations, statistics,
-                                     the image manifest, the extractor, the three
-                                     generator prompts, and the training-ready packs
-``--bench``  -> <org>/OV-SGG-Bench   the evaluation packs (no images), the
-                                     negatives and cell files the scorers read, the
-                                     text student and the training-side artifacts
-                                     the shipped recipe names
+``--ra4m``   -> <org>/RA-4M          the training packs and the dataset card; the
+                                     corpus itself (parquet shards with images,
+                                     COCO json, masks, ``packs/megasg``) is already
+                                     there and is not touched
+``--bench``  -> <org>/OV-SGG-Bench   the evaluation packs and the ``hicodet`` pack
+                                     (no images), the negatives and cell files the
+                                     scorers read, the text student and the
+                                     training-side artifacts the shipped recipe names
 
 Everything is read from ``$RA_RUNS`` (default ``runs/``), so run this from the
 training checkout. Pack ``meta.json`` files carry the image root of the machine
@@ -35,21 +36,11 @@ CARDS = REPO / "release" / "cards"
 
 # ---- RA-4M -----------------------------------------------------------------
 RA4M_FILES = {
-    # in repo                              on disk
-    "annotations/ra4m_train.jsonl.gz":     RUNS / "vllm_generate/megasg_sgg_train_full.jsonl",
-    "annotations/ra4m_val.jsonl.gz":       RUNS / "vllm_generate/megasg_sgg_val_full.jsonl",
-    "annotations/ra4m_train.stats.json":   RUNS / "vllm_generate/megasg_sgg_train_full.stats.json",
-    "annotations/ra4m_val.stats.json":     RUNS / "vllm_generate/megasg_sgg_val_full.stats.json",
-    "images/ra4m_image_manifest.tsv.gz":   REPO / "release/ra4m/ra4m_image_manifest.tsv.gz",
-    "images/ra4m_image_filenames.txt.gz":  REPO / "release/ra4m/ra4m_image_filenames.txt.gz",
-    "images/extract_from_mega1m.py":       REPO / "release/ra4m/extract_from_mega1m.py",
-    "images/README.md":                    REPO / "release/ra4m/README.md",
-    "prompts/iter_20.txt":                 REPO / "datagen/prompts/iter_20.txt",
-    "prompts/sgg26b_grow_v1.txt":          REPO / "datagen/prompts/sgg26b_grow_v1.txt",
-    "prompts/sgg26b_spatial_v3.txt":       REPO / "datagen/prompts/sgg26b_spatial_v3.txt",
     "README.md":                           CARDS / "RA-4M.md",
 }
-RA4M_PACKS = ["megasg_clean", "vg_raw", "hicodet", "megasg_proxy50k"]
+# hicodet is both a training partner and an evaluation pack; it lives in
+# OV-SGG-Bench only, so the two downloads can be linked into one runs/packed.
+RA4M_PACKS = ["megasg_clean", "vg_raw", "megasg_proxy50k"]
 
 # ---- OV-SGG-Bench ----------------------------------------------------------
 BENCH_PACKS = ["vg150", "psg", "indoorvg", "hicodet", "haystack",
@@ -64,6 +55,7 @@ BENCH_FILES = {
     "datamix/registry.json":                 DATAMIX / "registry.json",
     "datamix/vg2coco.json":                  DATAMIX / "vg2coco.json",
     "datamix/psg2coco.json":                 DATAMIX / "psg2coco.json",
+    "detect/yoloworld_ov_psg_test.npz":      RUNS / "detect/yoloworld_ov_psg_test.npz",
     "text_student_v2_512/student.pt":        PACKED / "text_student_v2_512/student.pt",
     "text_student_v2_512/student.history.json": PACKED / "text_student_v2_512/student.history.json",
     "text_student_v2_512/tau_calibration.json": PACKED / "text_student_v2_512/tau_calibration.json",
@@ -89,6 +81,10 @@ def clean_meta(meta: dict, name: str, split: str) -> dict:
         if isinstance(v, str) and any(m in v for m in PRIVATE_MARKERS):
             tail = v.split("DATASETS/")[-1] if "DATASETS/" in v else os.path.basename(v)
             meta[k] = f"datasets/{tail}"
+    # a proxy pack names the pack it was drawn from
+    v = meta.get("proxy_of")
+    if isinstance(v, str) and any(m in v for m in PRIVATE_MARKERS):
+        meta["proxy_of"] = "runs/packed/" + os.path.basename(v.rstrip("/"))
     return meta
 
 

@@ -37,7 +37,8 @@ and the head-to-head cell is a dash.
 
 A5 costs one judge run per model, so a run without one is scored on the
 remaining axes and prints its axis set. Do not compare an OVS over four axes
-with an OVS over five.
+with an OVS over five. A run directory carries A5 in
+``a5/annotation_reference.json`` (benchmark/run_benchmark.py --judge).
 Reported beside it: OVS_arith (arithmetic mean of axes), the WEAKEST axis, and
 `balance` = OVS / OVS_arith in (0, 1] — 1.0 exactly when all axes are equal, so
 it reads directly as "how specialised is this model".
@@ -226,7 +227,7 @@ def main() -> None:
             else sorted(q for q in Path("runs/train").glob("*") if q.is_dir()))
     rows = []
     for d in runs:
-        label = d.name
+        arm = label = d.name
         if not d.exists():
             continue
         cells, axes = {}, {}
@@ -335,6 +336,17 @@ def main() -> None:
             cells["A6/spatialsense"] = (x, n)
             cells["A6/spatialsense_pooled"] = (ss["AUC"], norm(ss["AUC"], 0.5))
             axes["A6 spatial"] = n
+
+        # A5 from the run's own judge run (benchmark/run_benchmark.py --judge):
+        # the share of the annotation's information, already chance-free.
+        f = d / "a5" / "annotation_reference.json"
+        if f.exists():
+            per_system = json.load(open(f))["per_system"]
+            if len(per_system) == 1:
+                x = next(iter(per_system.values())).get("share_of_annotation")
+                if x is not None:
+                    cells["A5/psg_matched"] = (x, x)
+                    axes["A5 graph quality"] = x
 
         if not axes:
             continue

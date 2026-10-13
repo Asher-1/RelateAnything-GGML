@@ -49,37 +49,46 @@ inference, or use `device="cpu"` in the example below.
 ```bash
 git clone https://github.com/Maelic/RelateAnything.git
 cd RelateAnything
-pip install -e ".[hub]"
+pip install -e ".[hub,detector]"   # detector: ultralytics YOLO, used below
 ```
 
-Run this from the repository root. The sample photo is included; the two
-example boxes identify the person and the horse.
+Run this from the repository root. A detector finds the objects in the
+included sample photo; RelateAnything predicts the relations between them.
 
 ```python
-import numpy as np
 from PIL import Image
+from ultralytics import YOLO
 from relsgg import RelateAnything
 
-model = RelateAnything.from_pretrained("maelic/relsgg-vits16plus", device="cuda")
 image = Image.open("assets/reel/images/horse.jpg").convert("RGB")
-boxes = np.array([[470, 130, 650, 630], [90, 310, 1010, 875]], dtype=np.float32)
 
-# Boxes are [x1, y1, x2, y2] in original-image pixels.
-# Labels are optional and only make the printed triplets easier to read.
-for triplet in model.predict(image, boxes, box_labels=["person", "horse"], topk=5):
+# 1. Find the objects. Any detector or segmenter works; this one is YOLO26.
+detections = YOLO("yolo26m.pt")(image, conf=0.4, verbose=False)[0]
+boxes = detections.boxes.xyxy.cpu().numpy()  # [N, 4]: x1, y1, x2, y2 in pixels
+labels = [detections.names[int(c)] for c in detections.boxes.cls]  # for display only
+
+# 2. Predict the relations between them.
+model = RelateAnything.from_pretrained("maelic/relsgg-vits16plus", device="cuda")
+for triplet in model.predict(image, boxes, box_labels=labels, topk=3):
     print(triplet)
+# (person) --riding [0.76]--> (horse)
+# (horse) --carrying [0.51]--> (person)
+# (horse) --walking past [0.43]--> (car)
 
-# Change what relations to look for, without retraining.
+# 3. Change the relations to look for, without retraining.
 model.set_vocabulary(["riding", "carrying a rider", "beside", "in front of"])
-graphs = model.predict(image, boxes, box_labels=["person", "horse"], decompose=True)
-print(graphs["spatial"])
-print(graphs["semantic"])
+graphs = model.predict(image, boxes, box_labels=labels, decompose=True, topk=3)
+print(graphs["spatial"])   # where things are, e.g. (horse) --in front of--> (car)
+print(graphs["semantic"])  # what they do, e.g. (person) --riding--> (horse)
 ```
 
+The relation model reads the image and the boxes; the detector's labels are
+never an input. Boxes can come from any detector, a segmenter (pass `masks=` as
+well) or a person: an `[N, 4]` array in original-image pixels is all it needs.
 Released checkpoints include the backbone configuration and text encoder;
-**no gated DINOv3 login is needed for inference**. Replace the sample image and
-boxes with your own inputs; the API also supports masks and a larger built-in
-relation vocabulary.
+**no gated DINOv3 login is needed for inference**. The `detector` extra
+installs [ultralytics](https://github.com/ultralytics/ultralytics), which is
+AGPL-3.0 and downloads the YOLO26 weights on first use.
 
 [API guide: inputs, vocabularies, masks, and scores](docs/quickstart.md) ·
 [Installation and offline use](docs/installation.md)
@@ -87,13 +96,24 @@ relation vocabulary.
 ## Models
 
 Start with **`relsgg-vits16plus`**, the recommended balance of quality and speed.
-All three checkpoints use the same training recipe; their vision backbones differ.
+For more accuracy, use **`relsgg-convnext-base`**: within 0.3 OVS of
+ConvNeXt-L at half its parameters. All seven checkpoints
+share the training recipe and differ in their vision backbone; the ConvNeXt
+towers also train their backbone at a lower learning rate.
 
 | Checkpoint | Backbone | Parameters |
 |---|---|---:|
 | [`relsgg-vits16`](https://huggingface.co/maelic/relsgg-vits16) | DINOv3 ViT-S/16 | 46.1 M |
 | **[`relsgg-vits16plus`](https://huggingface.co/maelic/relsgg-vits16plus)** | **DINOv3 ViT-S/16+** | **53.2 M** |
 | [`relsgg-vitb16`](https://huggingface.co/maelic/relsgg-vitb16) | DINOv3 ViT-B/16 | 113.8 M |
+| [`relsgg-convnext-tiny`](https://huggingface.co/maelic/relsgg-convnext-tiny) | DINOv3 ConvNeXt-T | 58.6 M |
+| [`relsgg-convnext-small`](https://huggingface.co/maelic/relsgg-convnext-small) | DINOv3 ConvNeXt-S | 80.2 M |
+| [`relsgg-convnext-base`](https://huggingface.co/maelic/relsgg-convnext-base) | DINOv3 ConvNeXt-B | 123.5 M |
+| [`relsgg-convnext-large`](https://huggingface.co/maelic/relsgg-convnext-large) | DINOv3 ConvNeXt-L | 245.7 M |
+
+<p align="center"><a href="docs/results.md#model-comparison"><img src="assets/model_family.png" alt="OVS-F1 against laptop latency for the seven checkpoints. ConvNeXt-T, ViT-S+, ConvNeXt-S, ConvNeXt-B and ConvNeXt-L form the Pareto frontier; ViT-S and ViT-B lie below it." width="720"></a></p>
+
+<p align="center"><sub>Accuracy (OVS-F1, four benchmark axes) against latency of the relation model on a laptop RTX 3080 with TensorRT. The shaded line is the Pareto frontier.</sub></p>
 
 [Compare model quality and speed](docs/results.md#model-comparison).
 Each model card includes evaluation results and calibration details.
@@ -187,21 +207,23 @@ are measured separately; quantized weights do not guarantee original-F32 bit equ
 ## Performance
 
 <!-- BEGIN GENERATED LATENCY -->
-On an **RTX 3080 Laptop GPU**, the recommended
-**ViT-S+** model takes **17.2 ms per image** with TensorRT FP32,
-including preprocessing, transfers and triplet decoding. Object regions are provided as input.
+On an **RTX 3080 Laptop GPU** with TensorRT, the relation model takes **14.7 ms**
+per image with **ConvNeXt-T**, the fastest checkpoint, and **16.8 ms**
+with the recommended **ViT-S+**. The full 19,103-predicate vocabulary
+(Python API) adds at most 1.5 ms.
 <!-- END GENERATED LATENCY -->
 
 <!-- BEGIN GENERATED E2E LATENCY -->
-With **YOLO26m detection included**, the full pipeline takes **36.5 ms per image**.
-Detection uses PyTorch FP32; ViT-S+ relations use TensorRT FP32.
-
-*Warm median latency, batch 1, 35 relation types, 6 sample images; loading and setup excluded.*
-
-[All models and runtimes](docs/benchmarks/README.md) ·
-[YOLO26, YOLO-World and YOLOE comparison](docs/benchmarks/end-to-end.md) ·
-[Paper pipeline benchmarks](docs/deployment.md#realtime-pipeline)
+With **YOLO26m detection** included, a frame takes **33.5 ms** with
+**ConvNeXt-T** and **38.7 ms** with **ViT-S+** (TensorRT relations).
 <!-- END GENERATED E2E LATENCY -->
+
+On one A100, the compiled ViT-S+ pipeline with detection takes **25.6 ms per
+image**, against 232 ms for OvSGTR, 498 ms for ACC and about 40 s for ROBIN-3B.
+
+[All checkpoints and runtimes](docs/benchmarks/README.md) ·
+[With a detector](docs/benchmarks/end-to-end.md) ·
+[Across scene-graph systems](docs/benchmarks/a100-systems.md)
 
 ## Results
 
@@ -242,12 +264,13 @@ changes the vocabulary without retraining the vision model.
   redistributed. [Dataset details and generation](docs/data.md).
 - **[OV-SGG-Bench](https://huggingface.co/datasets/maelic/OV-SGG-Bench):** evaluation
   packs, explicit negatives and calibration files for six complementary axes.
-  [Protocol](benchmark/SPEC.md).
+  [Protocol](benchmark/SPEC.md) · [run it in two commands](docs/evaluation.md#running-the-benchmark).
 
 ## Reproduce and contribute
 
-- **Train:** [training guide](docs/training.md), [released configs](training/configs/)
-  and [`train.sh`](train.sh).
+- **Train:** `python training/setup_data.py && ./train.sh` downloads the data and
+  retrains the released mixture. [Training guide](docs/training.md),
+  [released configs](training/configs/).
 - **Evaluate:** [evaluation guide](docs/evaluation.md) and [`benchmark/`](benchmark/).
 - **Generate annotations:** [`datagen/`](datagen/). **Explore the paper's probes:**
   [`research/`](research/).

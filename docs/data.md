@@ -26,12 +26,12 @@ The deployed vocabulary in the released models is larger than RA-4M's own —
 ### Getting it
 
 The corpus is the dataset repository
-[`maelic/RA-4M`](https://huggingface.co/datasets/maelic/RA-4M): the relation
-annotations (`annotations/ra4m_{train,val}.jsonl.gz`, one record per image),
-their statistics, the image manifest with the extractor that rebuilds the
-image set from [JosephZ/mega_1m](https://huggingface.co/datasets/JosephZ/mega_1m),
-the three generator prompts, and the training-ready packs. The pipeline that
-produced it is [`datagen/`](../datagen/). See
+[`maelic/RA-4M`](https://huggingface.co/datasets/maelic/RA-4M): one parquet row
+per image with the image, boxes, SAM 3 masks and relations, the same
+annotations as COCO-SGG json, and the training packs (`megasg`, `megasg_clean`,
+`megasg_proxy50k`, `vg_raw`). [`release/ra4m/export_images.py`](../release/ra4m/export_images.py)
+writes the images to disk under the file names the packs record. The pipeline
+that produced it is [`datagen/`](../datagen/). See
 [installation](installation.md#get-the-data) for the download commands.
 
 ## Other sources

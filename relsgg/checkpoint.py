@@ -26,6 +26,8 @@ BACKBONE_HF_IDS = {
     "vits16plus_lvd1689m": "facebook/dinov3-vits16plus-pretrain-lvd1689m",
     "vitb16_lvd1689m": "facebook/dinov3-vitb16-pretrain-lvd1689m",
     "vitl16_lvd1689m": "facebook/dinov3-vitl16-pretrain-lvd1689m",
+    **{f"convnext_{v}_lvd1689m": f"facebook/dinov3-convnext-{v}-pretrain-lvd1689m"
+       for v in ("tiny", "small", "base", "large")},
 }
 
 #: State-dict entries older training checkpoints carry that the model no

@@ -13,12 +13,21 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
-from release.update_readme_latency import ARMS, MODELS, thermal_delta, update_block
+from release.update_readme_latency import (
+    ARMS,
+    MODELS,
+    RECOMMENDED,
+    bold_fastest,
+    column_headers,
+    configurations,
+    thermal_delta,
+    update_block,
+    vocabularies,
+)
 
 START = "<!-- BEGIN GENERATED E2E LATENCY -->"
 END = "<!-- END GENERATED E2E LATENCY -->"
 DETECTORS = {"yolo26": "YOLO26m", "yolo-world": "YOLO-World v2-m", "yoloe": "YOLOE-26m"}
-VOCABS = (35, 243)
 
 
 def load_records(source):
@@ -62,6 +71,7 @@ def load_records(source):
         "cooldown_temperature_c",
         "timing",
         "stage_timing",
+        "vocabularies",
     )
     detector_metadata = {}
     for record in records:
@@ -97,10 +107,12 @@ def load_records(source):
         family = detector["family"]
         if detector != detector_metadata.setdefault(family, detector):
             raise ValueError("Detector configuration changed between checkpoints")
-        configurations = {(arm, vocab) for arm in ARMS for vocab in VOCABS}
+        expected = set(configurations(records))
         rows = {(row["backend"], row["predicates"]): row for row in record["rows"]}
-        if len(rows) != len(record["rows"]) or set(rows) != configurations:
-            raise ValueError("Expected four relation backends at both vocabulary sizes")
+        if len(rows) != len(record["rows"]) or set(rows) != expected:
+            raise ValueError(
+                "Expected four relation backends on the bank and the PyTorch arms on the full vocabulary"
+            )
         expected_n = record["rounds"] * record["timed_iterations_per_round"]
         if record["timed_iterations_per_round"] % record["images"]:
             raise ValueError("Every image must be timed equally")
@@ -149,7 +161,7 @@ def load_records(source):
         ) != Counter(
             {
                 (arm, vocab, r): 1
-                for arm, vocab in configurations
+                for arm, vocab in expected
                 for r in range(1, record["rounds"] + 1)
             }
         ):
@@ -158,9 +170,8 @@ def load_records(source):
             thermal_delta(block)
         checks = record["fp32_cross_backend_checks"]
         expected_checks = {
-            (arm, vocab, Path(image["path"]).name)
+            (arm, vocabularies(records)[0], Path(image["path"]).name)
             for arm in (ARMS[0], ARMS[2])
-            for vocab in VOCABS
             for image in record["input_images"]
         }
         if (
@@ -205,219 +216,81 @@ def all_samples(record):
     return [sample for row in record["rows"] for sample in row["pipeline_samples"]]
 
 
-def thermal_note(records):
-    blocks = [block for record in records for block in record["measurement_blocks"]]
-    limits = sorted(
-        {
-            b[phase]["enforced.power.limit"]
-            for b in blocks
-            for phase in ("gpu_before_warmup", "gpu_after_timing")
-        }
-    )
-    limited = sum(thermal_delta(b) for b in blocks) > 0
-    return f"Observed enforced GPU power limits: **{', '.join(limits)}**. " + (
-        "**Thermal slowdown was recorded**; inspect the per-run telemetry below."
-        if limited
-        else "No thermal slowdown counter increase was recorded during the measured blocks (warmup included)."
-    )
+def total_ms(record, arm, vocab):
+    return stats([s["total_ms"] for s in samples(record, arm, vocab)])[0]
 
 
 def render_overview(records):
     first = records[0]
+    columns = configurations(records)
     lines = [
-        f"Warm **end-to-end median latency** on the {first['gpu'].removeprefix('NVIDIA GeForce ')}:",
-        "detection, relation preprocessing/inference and triplet decoding, including transfers.",
-        "Detectors run **PyTorch FP32 throughout**; columns select the **relation backend**.",
-        "YOLOE includes segmentation computation, with boxes passed to RelateAnything.",
+        "Median ms per image, batch 1, detection included. **Bold**: the fastest",
+        "checkpoint with each detector in each column.",
         "",
-        "| Detector | Relation model | PyTorch FP32 | PyTorch BF16 | ONNX CUDA FP32 | TensorRT FP32 |",
-        "|---|---|---:|---:|---:|---:|",
+        "| Detector | Checkpoint | " + " | ".join(column_headers(records)) + " |",
+        "|---|---|" + "---:|" * len(columns),
     ]
-    for record in records:
-        cells = [DETECTORS[record["detector"]["family"]], MODELS[record["checkpoint"]]]
-        medians = [
-            stats([s["total_ms"] for s in samples(record, arm, VOCABS[0])])[0]
-            for arm in ARMS
-        ]
-        cells += [
-            f"**{value:.1f} ms**" if value == min(medians) else f"{value:.1f} ms"
-            for value in medians
-        ]
-        lines.append("| " + " | ".join(cells) + " |")
-    count = sum(row["n"] for record in records for row in record["rows"])
+    for family, label in DETECTORS.items():
+        group = [r for r in records if r["detector"]["family"] == family]
+        formatted = {c: bold_fastest([total_ms(r, *c) for r in group]) for c in columns}
+        for i, record in enumerate(group):
+            name = MODELS[record["checkpoint"]]
+            lines.append(
+                "| "
+                + " | ".join([label, name] + [formatted[c][i] for c in columns])
+                + " |"
+            )
+    bank, full = vocabularies(records)
     boxes = [s["used_boxes"] for record in records for s in all_samples(record)]
-    skipped = sum(
-        s["relation_skipped"] for record in records for s in all_samples(record)
-    )
     lines += [
         "",
-        f"Shown: {VOCABS[0]} predicates, batch {first['batch']}, {first['images']} photos, COCO-80 objects.",
-        f"The full sweep contains **{count:,} timed calls** across {len(records) * len(ARMS) * len(VOCABS)} configurations, including {VOCABS[1]} predicates.",
-        f"Retained detections ranged from {min(boxes)} to {max(boxes)} per image; {skipped} calls skipped relation inference.",
-        *(
-            [
-                f"Blocks start at ≤{first['cooldown_temperature_c']}°C; cooling waits are excluded from latency."
-            ]
-            if first.get("cooldown_temperature_c") is not None
-            else []
-        ),
-        "Image loading, display, prompt encoding and model/engine setup are excluded. This is serial latency, not pipelined video throughput.",
-        "FP32 runs have TF32 disabled; BF16 accuracy was not evaluated.",
-        "",
-        thermal_note(records),
+        f"The detector runs in PyTorch FP32; the columns choose the relation runtime and vocabulary "
+        f"({bank} released predicates, or the full {full:,} in the Python API). "
+        f"Measured on {first['images']} photos with {min(boxes)} to {max(boxes)} detected objects.",
     ]
     return "\n".join(lines)
 
 
 def render_summary(records):
-    record = next(
-        r
-        for r in records
-        if r["checkpoint"] == "maelic/relsgg-vits16plus"
-        and r["detector"]["family"] == "yolo26"
-    )
-    latency = stats(
-        [s["total_ms"] for s in samples(record, "TensorRT FP32", VOCABS[0])]
-    )[0]
+    bank, _ = vocabularies(records)
+    group = [r for r in records if r["detector"]["family"] == "yolo26"]
+    trt = {r["checkpoint"]: total_ms(r, "TensorRT FP32", bank) for r in group}
+    fastest = min(trt, key=trt.get)
     return "\n".join(
         [
-            f"With **{DETECTORS['yolo26']} detection included**, the full pipeline takes **{latency:.1f} ms per image**.",
-            "Detection uses PyTorch FP32; ViT-S+ relations use TensorRT FP32.",
-            "",
-            f"*Warm median latency, batch {record['batch']}, {VOCABS[0]} relation types, {record['images']} sample images; loading and setup excluded.*",
-            "",
-            "[All models and runtimes](docs/benchmarks/README.md) ·",
-            "[YOLO26, YOLO-World and YOLOE comparison](docs/benchmarks/end-to-end.md) ·",
-            "[Paper pipeline benchmarks](docs/deployment.md#realtime-pipeline)",
+            f"With **{DETECTORS['yolo26']} detection** included, a frame takes **{trt[fastest]:.1f} ms** with",
+            f"**{MODELS[fastest]}** and **{trt[RECOMMENDED]:.1f} ms** with **{MODELS[RECOMMENDED]}** (TensorRT relations).",
         ]
     )
 
 
 def render_details(records):
-    lines = [
-        render_overview(records),
-        "",
-        "### Stage breakdowns",
-        "",
-        "All latency cells show **median / p95 in milliseconds**, recomputed from raw calls.",
-        "Total percentiles include orchestration and are measured directly, not summed from stage percentiles.",
-        "",
-    ]
+    bank, _ = vocabularies(records)
+    detection = {}
     for family, label in DETECTORS.items():
-        family_samples = [
-            s
-            for r in records
-            if r["detector"]["family"] == family
-            for s in all_samples(r)
-        ]
-        skipped = sum(s["relation_skipped"] for s in family_samples)
-        columns = "| Relation model | Relation backend | Predicates | Detector | Relations | Decode | Total |"
-        separator = "|---|---|---:|---:|---:|---:|---:|"
-        if skipped:
-            columns += " Skipped calls | Active-frame total |"
-            separator += "---:|---:|"
-        lines += [
-            f"#### {label}",
-            "",
-            f"{skipped} of {len(family_samples):,} calls skipped relation inference."
-            + (
-                " Active-frame totals exclude those calls."
-                if skipped
-                else " Active-frame and overall totals are identical."
-            ),
-            "",
-            columns,
-            separator,
-        ]
-        for record in records:
-            if record["detector"]["family"] != family:
-                continue
-            for vocab in VOCABS:
-                for arm in ARMS:
-                    measured = samples(record, arm, vocab)
-                    cells = [MODELS[record["checkpoint"]], arm, str(vocab)]
-                    cells += [
-                        cell([s[stage + "_ms"] for s in measured])
-                        for stage in ("detector", "relation", "decode", "total")
-                    ]
-                    if skipped:
-                        cells += [
-                            str(sum(s["relation_skipped"] for s in measured)),
-                            cell(
-                                [
-                                    s["total_ms"]
-                                    for s in measured
-                                    if not s["relation_skipped"]
-                                ]
-                            ),
-                        ]
-                    lines.append("| " + " | ".join(cells) + " |")
-        lines.append("")
-    lines += [
-        "### Workload and validation",
-        "",
-        "Detected / retained box-count ranges, across every timed call for each image:",
-        "",
-        "| Image | YOLO26m | YOLO-World v2-m | YOLOE-26m |",
-        "|---|---:|---:|---:|",
-    ]
-    for i, image in enumerate(records[0]["input_images"]):
-        cells = [Path(image["path"]).name]
-        for family in DETECTORS:
-            measured = [
-                s
-                for r in records
-                if r["detector"]["family"] == family
-                for s in all_samples(r)
-                if s["image_index"] == i
-            ]
-            ranges = []
-            for key in ("detected_boxes", "used_boxes"):
-                values = [s[key] for s in measured]
-                ranges.append(
-                    str(min(values))
-                    if min(values) == max(values)
-                    else f"{min(values)}–{max(values)}"
-                )
-            cells.append(" / ".join(ranges))
-        lines.append("| " + " | ".join(cells) + " |")
-    checks = [c for r in records for c in r["fp32_cross_backend_checks"]]
-    lines += [
-        "",
-        f"All {len(checks)} FP32 preflight comparisons passed with identical valid pair sets.",
-        f"Largest absolute logit difference: {max(c['max_logit_delta'] for c in checks):.9f}.",
-        "Tolerances and per-image results are saved in local result files. BF16 accuracy was not evaluated.",
-        "",
-        "### GPU conditions",
-        "",
-        "Temperature ranges before warmup / after timing, and thermal counters including warmup:",
-        "",
-        "| Detector | Relation model | GPU temperature | Enforced power limit | Thermal counter increase | Cooling waits |",
-        "|---|---|---|---|---:|---:|",
-    ]
-    for record in records:
-        blocks = record["measurement_blocks"]
-        temps = []
-        for phase in ("gpu_before_warmup", "gpu_after_timing"):
-            values = [int(b[phase]["temperature.gpu"]) for b in blocks]
-            temps.append(f"{min(values)}–{max(values)}°C")
-        limits = sorted(
-            {
-                b[phase]["enforced.power.limit"]
-                for b in blocks
-                for phase in ("gpu_before_warmup", "gpu_after_timing")
-            }
+        group = [r for r in records if r["detector"]["family"] == family]
+        detection[label] = statistics.median(
+            stats([s["detector_ms"] for s in samples(r, "TensorRT FP32", bank)])[0]
+            for r in group
         )
-        lines.append(
-            f"| {DETECTORS[record['detector']['family']]} | {MODELS[record['checkpoint']]} | {' / '.join(temps)} | {', '.join(limits)} | {sum(thermal_delta(b) for b in blocks) / 1000:.1f} ms | {sum(b['cooling_seconds'] for b in blocks):.1f} s |"
-        )
+    decode = max(
+        stats([s["decode_ms"] for s in samples(r, arm, vocab)])[0]
+        for r in records
+        for arm, vocab in configurations(records)
+    )
     first = records[0]
-    lines += [
-        "",
-        f"Software: PyTorch {first['torch']}, CUDA {first['cuda']}, TensorRT {first['tensorrt']}, ONNX Runtime {first['onnxruntime']}, Ultralytics {first['ultralytics']}.",
-        f"CPU: {first['cpu']}. PyTorch/ONNX CPU threads: {first['threads']}; OpenCV threads: {first['opencv_threads']}.",
-    ]
-    return "\n".join(lines)
+    return "\n".join(
+        [
+            render_overview(records),
+            "",
+            "Detection alone takes "
+            + ", ".join(f"{ms:.0f} ms with {label}" for label, ms in detection.items())
+            + f"; decoding takes under {decode:.1f} ms. The rest is the relation model.",
+            "",
+            f"PyTorch {first['torch']}, CUDA {first['cuda']}, TensorRT {first['tensorrt']}, "
+            f"ONNX Runtime {first['onnxruntime']}, Ultralytics {first['ultralytics']}; {first['cpu']}.",
+        ]
+    )
 
 
 def main():

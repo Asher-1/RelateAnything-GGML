@@ -1,4 +1,4 @@
-"""Generate README medians and detailed GPU latency tables from raw samples.
+"""Generate the README sentence and the laptop latency table from raw samples.
 
 Pass --source with a local result file; --check fails if either page is stale.
 """
@@ -19,8 +19,48 @@ MODELS = {
     "maelic/relsgg-vits16": "ViT-S",
     "maelic/relsgg-vits16plus": "ViT-S+",
     "maelic/relsgg-vitb16": "ViT-B",
+    "maelic/relsgg-convnext-tiny": "ConvNeXt-T",
+    "maelic/relsgg-convnext-small": "ConvNeXt-S",
+    "maelic/relsgg-convnext-base": "ConvNeXt-B",
+    "maelic/relsgg-convnext-large": "ConvNeXt-L",
 }
+RECOMMENDED = "maelic/relsgg-vits16plus"
 ARMS = ["PyTorch eager FP32", "PyTorch eager BF16", "ONNX CUDA FP32", "TensorRT FP32"]
+#: The full training vocabulary exists only in the Python API.
+FULL_ARMS = ARMS[:2]
+HEADERS = {
+    "PyTorch eager FP32": "PyTorch FP32",
+    "PyTorch eager BF16": "PyTorch BF16",
+    "ONNX CUDA FP32": "ONNX Runtime FP32",
+    "TensorRT FP32": "TensorRT FP32",
+}
+
+
+def vocabularies(records):
+    """(bank, full): the released predicate bank and the full vocabulary."""
+    sizes = {(r["vocabularies"]["bank"], r["vocabularies"]["full"]) for r in records}
+    if len(sizes) != 1 or None in next(iter(sizes)):
+        raise ValueError("Every record must time the same bank and full vocabulary")
+    return next(iter(sizes))
+
+
+def configurations(records):
+    """(arm, predicates) of every column, in table order."""
+    bank, full = vocabularies(records)
+    return [(arm, bank) for arm in ARMS] + [(arm, full) for arm in FULL_ARMS]
+
+
+def column_headers(records):
+    bank, full = vocabularies(records)
+    return [HEADERS[arm] for arm in ARMS] + [
+        f"{HEADERS[arm]}, {full:,} predicates" for arm in FULL_ARMS
+    ]
+
+
+def bold_fastest(values):
+    """Format a column, the fastest value in bold."""
+    best = min(values)
+    return [f"**{v:.1f}**" if v == best else f"{v:.1f}" for v in values]
 
 
 def load_records(source):
@@ -58,6 +98,7 @@ def load_records(source):
         "ort_cuda_options",
         "cooldown_temperature_c",
         "timing",
+        "vocabularies",
     ]
     for record in records:
         if not record["complete"]:
@@ -68,17 +109,19 @@ def load_records(source):
             )
         if any(record[key] != records[0][key] for key in shared):
             raise ValueError("Benchmark conditions differ between checkpoints")
+    expected = set(configurations(records))
+    for record in records:
         rows = {(r["backend"], r["predicates"]): r for r in record["rows"]}
-        if len(rows) != len(record["rows"]) or set(rows) != {
-            (a, v) for a in ARMS for v in (35, 243)
-        }:
-            raise ValueError("Expected four backends at both vocabulary sizes")
+        if len(rows) != len(record["rows"]) or set(rows) != expected:
+            raise ValueError(
+                "Expected four backends on the bank and the PyTorch arms on the full vocabulary"
+            )
         for row in rows.values():
             samples = row["samples_ms"]
-            expected = record["rounds"] * record["timed_iterations_per_round"]
+            expected_n = record["rounds"] * record["timed_iterations_per_round"]
             if (
                 len(samples) != row["n"]
-                or row["n"] != expected
+                or row["n"] != expected_n
                 or not all(math.isfinite(x) and x > 0 for x in samples)
             ):
                 raise ValueError("Invalid latency samples")
@@ -112,110 +155,51 @@ def thermal_delta(block):
 
 
 def render_summary(records):
-    record = next(r for r in records if r["checkpoint"] == "maelic/relsgg-vits16plus")
-    latency = stats(record, "TensorRT FP32", 35)[0]
+    bank, full = vocabularies(records)
+    trt = {r["checkpoint"]: stats(r, "TensorRT FP32", bank)[0] for r in records}
+    fastest = min(trt, key=trt.get)
+    extra = [
+        stats(r, arm, full)[0] - stats(r, arm, bank)[0]
+        for r in records
+        for arm in FULL_ARMS
+    ]
+    gpu = records[0]["gpu"].removeprefix("NVIDIA GeForce ")
     return "\n".join(
         [
-            f"On an **{record['gpu'].removeprefix('NVIDIA GeForce ')}**, the recommended",
-            f"**ViT-S+** model takes **{latency:.1f} ms per image** with TensorRT FP32,",
-            "including preprocessing, transfers and triplet decoding. Object regions are provided as input.",
+            f"On an **{gpu}** with TensorRT, the relation model takes **{trt[fastest]:.1f} ms**",
+            f"per image with **{MODELS[fastest]}**, the fastest checkpoint, and **{trt[RECOMMENDED]:.1f} ms**",
+            f"with the recommended **{MODELS[RECOMMENDED]}**. The full {full:,}-predicate vocabulary",
+            f"(Python API) adds at most {max(extra):.1f} ms.",
         ]
     )
 
 
 def render_details(records):
+    columns = configurations(records)
+    cells = {(r["checkpoint"], c): stats(r, *c)[0] for r in records for c in columns}
+    formatted = {
+        c: bold_fastest([cells[r["checkpoint"], c] for r in records]) for c in columns
+    }
+    bank, full = vocabularies(records)
     lines = [
-        "Latency in milliseconds; each cell is **median / p95**.",
+        f"Median ms per image, batch 1. **Bold**: the fastest checkpoint in each column.",
         "",
-        "| Checkpoint | Backend | 35 predicates | 243 predicates |",
-        "|---|---|---:|---:|",
+        "| Checkpoint | " + " | ".join(column_headers(records)) + " |",
+        "|---|" + "---:|" * len(columns),
     ]
-    for record in records:
-        for arm in ARMS:
-            cells = [MODELS[record["checkpoint"]], arm]
-            cells += [
-                " / ".join(f"{value:.2f}" for value in stats(record, arm, count))
-                for count in (35, 243)
-            ]
-            lines.append("| " + " | ".join(cells) + " |")
-    lines += [
-        "",
-        "TensorRT compared with eager PyTorch at 35 predicates:",
-        "",
-        "| Checkpoint | Change vs. FP32 | Change vs. BF16 |",
-        "|---|---:|---:|",
-    ]
-    for record in records:
-        trt = stats(record, "TensorRT FP32", 35)[0]
-        cells = [MODELS[record["checkpoint"]]]
-        for arm in ARMS[:2]:
-            baseline = stats(record, arm, 35)[0]
-            direction = "faster" if trt < baseline else "slower"
-            cells.append(
-                f"{abs(baseline - trt):.2f} ms ({abs(100 * (1 - trt / baseline)):.1f}%) {direction}"
-            )
-        lines.append("| " + " | ".join(cells) + " |")
-    lines += [
-        "",
-        "Engine validation against FP32 ONNX Runtime on CPU:",
-        "",
-        "| Checkpoint | Cases | Largest absolute logit difference |",
-        "|---|---:|---:|",
-    ]
-    for record in records:
-        report = record["engine_validation"]
+    for i, record in enumerate(records):
+        label = MODELS[record["checkpoint"]]
         lines.append(
-            f"| {MODELS[record['checkpoint']]} | {report['cases']} | {report['max_abs_logit_delta']:.9f} |"
-        )
-    lines += [
-        "",
-        "Before timing, the benchmark also checks each FP32 GPU backend against TensorRT",
-        "on every timing image and both vocabulary sizes (identical valid pair sets).",
-        "",
-        "| Checkpoint | PyTorch FP32: largest logit difference | ONNX CUDA FP32: largest logit difference |",
-        "|---|---:|---:|",
-    ]
-    for record in records:
-        cells = [MODELS[record["checkpoint"]]]
-        for arm in ["PyTorch eager FP32", "ONNX CUDA FP32"]:
-            checks = [
-                r for r in record["fp32_cross_backend_checks"] if r["backend"] == arm
-            ]
-            if len(checks) != record["images"] * 2 or not all(
-                r["same_valid_pairs"] for r in checks
-            ):
-                raise ValueError("Incomplete FP32 cross-backend validation")
-            cells.append(f"{max(r['max_logit_delta'] for r in checks):.9f}")
-        lines.append("| " + " | ".join(cells) + " |")
-    lines += [
-        "",
-        "Thermal observations across the measurement blocks (warmup included):",
-        "",
-        "| Checkpoint | GPU temperature before / after blocks | Observed power limit | Thermal slowdown counter increase |",
-        "|---|---|---|---:|",
-    ]
-    for record in records:
-        blocks = record["measurement_blocks"]
-        if len(blocks) != record["rounds"] * len(ARMS) * 2:
-            raise ValueError("Missing measurement-block telemetry")
-        temps = []
-        for phase in ("gpu_before_warmup", "gpu_after_timing"):
-            values = [int(block[phase]["temperature.gpu"]) for block in blocks]
-            temps.append(f"{min(values)}–{max(values)}°C")
-        thermal_us = 0
-        power_limits = set()
-        for block in blocks:
-            for phase in ("gpu_before_warmup", "gpu_after_timing"):
-                power_limits.add(block[phase]["enforced.power.limit"])
-            thermal_us += thermal_delta(block)
-        lines.append(
-            f"| {MODELS[record['checkpoint']]} | {' / '.join(temps)} | {', '.join(sorted(power_limits))} | {thermal_us / 1000:.1f} ms |"
+            "| " + " | ".join([label] + [formatted[c][i] for c in columns]) + " |"
         )
     data = records[0]
     lines += [
         "",
-        f"Software: PyTorch {data['torch']}, CUDA {data['cuda']}, "
-        f"TensorRT {data['tensorrt']}, ONNX Runtime {data['onnxruntime']}.",
+        f"The first four columns use the released {bank}-predicate vocabulary on every runtime; "
+        f"the last two the full {full:,}-predicate training vocabulary, which only the Python API offers.",
+        "",
+        f"PyTorch {data['torch']}, CUDA {data['cuda']}, TensorRT {data['tensorrt']}, "
+        f"ONNX Runtime {data['onnxruntime']}; {data['cpu']}.",
     ]
     return "\n".join(lines)
 

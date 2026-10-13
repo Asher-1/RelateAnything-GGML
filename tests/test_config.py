@@ -60,4 +60,6 @@ def test_backbone_is_the_only_per_model_difference():
               for n in RELEASED}
     assert towers == {"facebook/dinov3-vits16-pretrain-lvd1689m",
                       "facebook/dinov3-vits16plus-pretrain-lvd1689m",
-                      "facebook/dinov3-vitb16-pretrain-lvd1689m"}
+                      "facebook/dinov3-vitb16-pretrain-lvd1689m",
+                      *(f"facebook/dinov3-convnext-{s}-pretrain-lvd1689m"
+                        for s in ("tiny", "small", "base", "large"))}
