@@ -19,6 +19,21 @@ def execute(command, folder, inputs):
         if result.returncode: raise RuntimeError(result.stderr[-3000:])
 
 
+def compare_triplet_streams(reference, native):
+    identity=lambda row:(row['subject'],row['object'],row['predicate'])
+    reference_ids=[identity(row) for row in reference]
+    native_ids=[identity(row) for row in native]
+    reference_scores={identity(row):row['score'] for row in reference}
+    native_scores={identity(row):row['score'] for row in native}
+    if len(reference_scores)!=len(reference) or len(native_scores)!=len(native):
+        raise RuntimeError('duplicate triplet identity')
+    same_set=reference_scores.keys()==native_scores.keys()
+    return {'triplet_set_equal':same_set,
+            'ranked_triplets_equal':reference_ids==native_ids,
+            'max_score_error':max((abs(reference_scores[key]-native_scores[key])
+                                   for key in reference_scores),default=0.0) if same_set else None}
+
+
 def main():
     from relsgg import RelateAnything
     from relsgg.text.student import PredicateTextStudent, encode_texts_student
@@ -93,10 +108,7 @@ def main():
                 native=json.loads((folder/'regions.json').read_text())
                 record={'model':model,'backend':backend,'masks':parity(raw,load_cpp(folder/'regions.rafo')),'streams':{}}
                 for tag in ('spatial','semantic'):
-                    a=reference[tag]; b=native[tag]
-                    ids=lambda rows:[(r['subject'],r['object'],r['predicate']) for r in rows]
-                    record['streams'][tag]={'ranked_triplets_equal':ids(a)==ids(b),
-                        'max_score_error':max(abs(x['score']-y['score']) for x,y in zip(a,b))}
+                    record['streams'][tag]=compare_triplet_streams(reference[tag],native[tag])
                 limited=list(command)+['--max-boxes','5']
                 limited[limited.index('--output')+1]=str(folder/'selected.json')
                 run=subprocess.run(limited,capture_output=True,text=True)
@@ -104,10 +116,10 @@ def main():
                 selected=json.loads((folder/'selected.json').read_text())
                 record['selected_streams']={}
                 for tag in ('spatial','semantic'):
-                    a=selected_reference[tag];b=selected[tag]
-                    if ids(a)!=ids(b):raise RuntimeError('score/mask region selection rank mismatch')
-                    record['selected_streams'][tag]={'ranked_triplets_equal':True,
-                         'max_score_error':max(abs(x['score']-y['score']) for x,y in zip(a,b))}
+                    comparison=compare_triplet_streams(selected_reference[tag],selected[tag])
+                    if not comparison['triplet_set_equal']:
+                        raise RuntimeError('score/mask region selection triplet-set mismatch')
+                    record['selected_streams'][tag]=comparison
                 record['text']={}
                 for ensemble in (False,True):
                     prefix='ensemble' if ensemble else 'single'

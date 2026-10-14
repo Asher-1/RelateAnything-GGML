@@ -14,8 +14,8 @@ tags:
 
 # RelateAnything native full-graph GGUF
 
-Nine downstream conversions of the three official RelateAnything models run
-with native C++17/GGML on CPU, CUDA and Vulkan. The graph implements DINOv3,
+Twenty-one downstream conversions of the seven official RelateAnything checkpoints (three DINOv3 ViT towers, four DINOv3 ConvNeXt towers) run
+with native C++17/GGML on CPU, CUDA and Vulkan. The graph implements DINOv3 (ViT and ConvNeXt),
 box prompt, spatial pool, pair sampler, relation transformer, deformable read,
 interaction and the dynamic vocabulary head, including calibrated triplets.
 C++ inference needs no PyTorch, Python model execution or cuDNN.
@@ -33,8 +33,12 @@ Execution provenance and storage conversion are verified. Numerical and performa
 | [relsgg-vits16](https://huggingface.co/maelic/relsgg-vits16) | DINOv3 ViT-S/16, 46.1M | Lowest-capacity released tower; latency and CPU-sensitive deployment |
 | [relsgg-vits16plus](https://huggingface.co/maelic/relsgg-vits16plus) | DINOv3 ViT-S/16+, 53.2M, SwiGLU | Upstream recommended balance of relation quality and cost |
 | [relsgg-vitb16](https://huggingface.co/maelic/relsgg-vitb16) | DINOv3 ViT-B/16, 113.8M | Larger visual capacity; use when memory and latency permit |
+| [relsgg-convnext-tiny](https://huggingface.co/maelic/relsgg-convnext-tiny) | DINOv3 ConvNeXt-T | Lowest batch-1 GPU latency of the family; best SpatialSense (A6) |
+| [relsgg-convnext-small](https://huggingface.co/maelic/relsgg-convnext-small) | DINOv3 ConvNeXt-S | +0.3 OVS over ViT-S/16+ at 1.5× the parameters |
+| [relsgg-convnext-base](https://huggingface.co/maelic/relsgg-convnext-base) | DINOv3 ConvNeXt-B | Most accurate tower for its cost (+1.6 OVS over ViT-S/16+) |
+| [relsgg-convnext-large](https://huggingface.co/maelic/relsgg-convnext-large) | DINOv3 ConvNeXt-L | ConvNeXt scaling flattens past B (+0.1 OVS at twice the parameters) |
 
-The checked-out upstream [release manifest](https://github.com/Asher-1/RelateAnything-GGML/blob/main/deploy/release_manifest.json) identifies exactly these three published `final` models. Its three `*-zeroshot` siblings are explicitly `unreleased`, have no `hf_repo`, and have no downloadable weights. They are not omitted supported releases. ONNX/TensorRT exports are deployment formats, not additional checkpoint families; the optional S+ ONNX file is not needed by GGML.
+The checked-out upstream [release manifest](https://github.com/Asher-1/RelateAnything-GGML/blob/main/deploy/release_manifest.json) identifies exactly these seven published `final` models. Its three `*-zeroshot` siblings are explicitly `unreleased`, have no `hf_repo`, and have no downloadable weights. They are not omitted supported releases. ONNX/TensorRT exports are deployment formats, not additional checkpoint families; the optional per-model ONNX file is not needed by GGML.
 
 Each local official snapshot contains `model.pth`, `config.json`, `relateanything.json`, `calibration.json`, `thresholds.json`, `predicate_embeddings.npz`, `predicate_bank.npz`, `text_student.pt`, `tokenizer.json` and `tokenizer_config.json`. C++ accepts a replacement embedding bank or encodes free text with the exported text-student GGUF and official tokenizer.
 
@@ -139,12 +143,12 @@ The [portable full report](benchmarks/summary/README.md) includes weight-roundin
 
 ## Supported interface and limits
 
-- Batch 1, 448×448, boxes, up to `ModelOptions.max_boxes` (default 60), 128 candidate slots; all three released architectures.
+- Batch 1, 448×448, boxes, up to `ModelOptions.max_boxes` (default 60), 128 candidate slots; all seven released checkpoints across the ViT and ConvNeXt families.
 - CPU, CUDA and Vulkan execute native GGML graphs; no Python inference or cuDNN dependency in C++.
 - `ModelOptions` configures model/backend/precision mode/threads/vocabulary, with explicit `RuntimeOptions` for backend policy. `ImageInput` supplies image and pixel XYXY boxes.
 - The versioned C ABI accepts borrowed RGB/RGBA/GRAY/BGR/BGRA memory with stride; results have independent ownership. A host can bind its existing backend lease. See [integration contract](benchmarks/PORTING_NOTES.md).
 - Replacement vocabularies use finite row-major F32 `[V,512]` embeddings or native CLIP BPE/text-student encoding. The head normalizes them and computes its learned gate.
-- Native masks, detector-score weighting and decomposed spatial/semantic outputs are independently compared with Python on all three models and backends. The 50-image timing profile uses boxes only.
+- Native masks, detector-score weighting and decomposed spatial/semantic outputs are independently compared with Python on all three ViT models and backends; the ConvNeXt family passes the same raw-logits parity on all three backends. The 50-image timing profile uses boxes only.
 - GT-box evaluation measures relation prediction, not detector localization or end-to-end detection recall.
 
 ```sh

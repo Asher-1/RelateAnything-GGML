@@ -2,7 +2,7 @@
 
 Execution provenance and storage conversion are verified. Numerical and performance gates, effective auto precision modes, and any accepted deviation are recorded in the [release acceptance status](../benchmarks/RELEASE_STATUS.md).
 
-Three official checkpoint families run through the native C++ image graph. Each has F32, F16 and Q8_0 storage: nine deployment models, no `demo` suffixes. Source weights and sidecars are under `pytorch/`; GGUFs are under `gguf/` and published in [Asher-1/relateanything-ggml-full](https://huggingface.co/Asher-1/relateanything-ggml-full).
+Seven official checkpoint families run through the native C++ image graph. Each has F32, F16 and Q8_0 storage: twenty-one deployment models, no `demo` suffixes. Source weights and sidecars are under `pytorch/`; GGUFs are under `gguf/` and published in [Asher-1/relateanything-ggml-full](https://huggingface.co/Asher-1/relateanything-ggml-full).
 
 ## Model families and intended scenarios
 
@@ -11,8 +11,12 @@ Three official checkpoint families run through the native C++ image graph. Each 
 | [relsgg-vits16](https://huggingface.co/maelic/relsgg-vits16) | DINOv3 ViT-S/16, 46.1M | Lowest-capacity released tower; latency and CPU-sensitive deployment |
 | [relsgg-vits16plus](https://huggingface.co/maelic/relsgg-vits16plus) | DINOv3 ViT-S/16+, 53.2M, SwiGLU | Upstream recommended balance of relation quality and cost |
 | [relsgg-vitb16](https://huggingface.co/maelic/relsgg-vitb16) | DINOv3 ViT-B/16, 113.8M | Larger visual capacity; use when memory and latency permit |
+| [relsgg-convnext-tiny](https://huggingface.co/maelic/relsgg-convnext-tiny) | DINOv3 ConvNeXt-T | Lowest batch-1 GPU latency of the family; best SpatialSense (A6) |
+| [relsgg-convnext-small](https://huggingface.co/maelic/relsgg-convnext-small) | DINOv3 ConvNeXt-S | +0.3 OVS over ViT-S/16+ at 1.5× the parameters |
+| [relsgg-convnext-base](https://huggingface.co/maelic/relsgg-convnext-base) | DINOv3 ConvNeXt-B | Most accurate tower for its cost (+1.6 OVS over ViT-S/16+) |
+| [relsgg-convnext-large](https://huggingface.co/maelic/relsgg-convnext-large) | DINOv3 ConvNeXt-L | ConvNeXt scaling flattens past B (+0.1 OVS at twice the parameters) |
 
-The checked-out upstream [release manifest](../../deploy/release_manifest.json) identifies exactly these three published `final` models. Its three `*-zeroshot` siblings are explicitly `unreleased`, have no `hf_repo`, and have no downloadable weights. They are not omitted supported releases. ONNX/TensorRT exports are deployment formats, not additional checkpoint families; the optional S+ ONNX file is not needed by GGML.
+The four ConvNeXt rows quote the upstream release manifest, which measures them with the 2026-10 evaluator; those OVS numbers are not directly comparable with the 2026-08 ViT gate values. The checked-out upstream [release manifest](../../deploy/release_manifest.json) identifies exactly these seven published `final` models. Its three `*-zeroshot` siblings are explicitly `unreleased`, have no `hf_repo`, and have no downloadable weights. They are not omitted supported releases. ONNX/TensorRT exports are deployment formats, not additional checkpoint families; the optional per-model ONNX file is not needed by GGML.
 
 Each local official snapshot contains `model.pth`, `config.json`, `relateanything.json`, `calibration.json`, `thresholds.json`, `predicate_embeddings.npz`, `predicate_bank.npz`, `text_student.pt`, `tokenizer.json` and `tokenizer_config.json`. C++ accepts a replacement embedding bank or encodes free text with the exported text-student GGUF and official tokenizer.
 
@@ -31,6 +35,18 @@ Every artifact contains DINOv3, prompt/pool/sampler, relation transformer, defor
 | [relsgg-vits16plus-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f16.gguf) | 120.71 | 416 | `36ed9f832324dff4d06edf216782eb692645f8f10c0bd7d1b4c5fa58d44d7d39` |
 | [relsgg-vits16plus-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f32.gguf) | 240.94 | 416 | `24970d851decd61bfdf4b109f5353ff81596ae8d7c9a35635f9de89d17f935e4` |
 | [relsgg-vits16plus-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-q8_0.gguf) | 74.43 | 416 | `c19c25acae196e3a762fcbb4032ba450e716847bc66540988d730e4c75572177` |
+| [relsgg-convnext-tiny-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-tiny-f32.gguf) | 261.48 | 377 | `97fb3e7409699188926cf285d714620cc3dd0f89e13cbe2f3975ff1a78ebb272` |
+| [relsgg-convnext-tiny-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-tiny-f16.gguf) | 130.98 | 377 | `785d3f0d324bb1412c69df1b89fe04be7cf3afe92258f1e68a78d89ce079a65f` |
+| [relsgg-convnext-tiny-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-tiny-q8_0.gguf) | 91.74 | 377 | `018690fdaf159a9627de71506c93ee85624a77345d1148d3b174ef43a03ec10c` |
+| [relsgg-convnext-small-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-small-f32.gguf) | 344.03 | 539 | `b5290933a39cff1ef97f064d6965f4d3c5260955a37dbc30728ad21f9344c606` |
+| [relsgg-convnext-small-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-small-f16.gguf) | 172.26 | 539 | `5cc130db41c1a7de0eb4da5d63539c605686eaadbcd649f92ae2e235f953edf0` |
+| [relsgg-convnext-small-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-small-q8_0.gguf) | 114.80 | 539 | `d0d0431f4e1493c58aa4d428484fbae61b6d0aeb8197879a6f7fc3db17a36e84` |
+| [relsgg-convnext-base-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-base-f32.gguf) | 508.94 | 539 | `c3ec29b957f6c04d472576dbe052e056925ee56370e852600db7d54bf331a99b` |
+| [relsgg-convnext-base-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-base-f16.gguf) | 254.72 | 539 | `b7fd03203c87b7203215b4dfe4e58a3d5881368c2015efa6eca23005544d099e` |
+| [relsgg-convnext-base-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-base-q8_0.gguf) | 168.52 | 539 | `549a4ab4a053d582454126d6e3f3dec70969ab1fcdfb91681cab8c01c5cb7dcc` |
+| [relsgg-convnext-large-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-large-f32.gguf) | 975.26 | 539 | `2fc1d48e2ea8e96ff8429a734205c5915eac73bf774efa2299227b8126d7ecc2` |
+| [relsgg-convnext-large-f16.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-large-f16.gguf) | 487.88 | 539 | `d0dbd9fea5fd0fe6c728dd6df55b9cb34bb7a5fb9645c5591b7767622b0f3fbc` |
+| [relsgg-convnext-large-q8_0.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-large-q8_0.gguf) | 320.07 | 539 | `37a743155aab2390f5d7c8c4dd3d3c595d299870ce951db357dd1ade788ea6e2` |
 
 ### Native text-student downloads
 
@@ -42,7 +58,11 @@ Free-text encoding uses one additional F32 student for the selected model family
 | [relsgg-vits16-text-student-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-text-student-f32.gguf) | 42.86 | 78 | `8cd368fa8692a987a4d8739fcc642dc74fd2902d73ac5544a65f24018656475b` |
 | [relsgg-vits16plus-text-student-f32.gguf](https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-text-student-f32.gguf) | 42.86 | 78 | `8cd368fa8692a987a4d8739fcc642dc74fd2902d73ac5544a65f24018656475b` |
 
-[The machine-readable manifest](../benchmarks/full_gguf_manifest.json) records the exact source checkpoint SHA, type counts, missing/extra tensors and numerical verification. All nine files pass the declared storage-conversion check.
+[The machine-readable manifest](../benchmarks/full_gguf_manifest.json) records the exact source checkpoint SHA, type counts, missing/extra tensors and numerical verification. All twenty-one files pass the declared storage-conversion check.
+
+### ConvNeXt runtime notes
+
+The ConvNeXt backbone is a hierarchical tower: four stages at strides 4/8/16/32 are brought to the 28×28 patch grid (phase-folding projection for the finer stages, bilinear resize for the stride-32 map) and combined with the same learned softmax over stage weights. Every convolution kernel is dequantized once at model load into a packed F32 buffer, so the stage-fusion projections and depthwise convolutions keep F32 operands on all backends regardless of the stored GGUF type. One image-level raw-logits comparison per model against the official PyTorch CUDA graph on a retained RA-4M frame passes at F32 parity for all four towers: logits RMSE 0.00043–0.00090 (F32, CPU/CUDA/Vulkan), predicate top-1 agreement 1.0, pair-set recall 1.0; F16 0.0033 and Q8_0 0.035 with 0.986 top-1 on `tiny`, in line with the ViT storage baselines. The full 50-image latency and task-metric matrix for the ConvNeXt rows is generated by the next release run and is not yet in the table below.
 
 ## Storage policy and selection
 
@@ -117,7 +137,7 @@ The [portable full report](../benchmarks/summary/README.md) includes weight-roun
 
 ## Supported interface and limits
 
-- Batch 1, 448×448, boxes, up to `ModelOptions.max_boxes` (default 60), 128 candidate slots; all three released architectures.
+- Batch 1, 448×448, boxes, up to `ModelOptions.max_boxes` (default 60), 128 candidate slots; all seven released checkpoints across the ViT and ConvNeXt families.
 - CPU, CUDA and Vulkan execute native GGML graphs; no Python inference or cuDNN dependency in C++.
 - `ModelOptions` configures model/backend/precision mode/threads/vocabulary, with explicit `RuntimeOptions` for backend policy. `ImageInput` supplies image and pixel XYXY boxes.
 - The versioned C ABI accepts borrowed RGB/RGBA/GRAY/BGR/BGRA memory with stride; results have independent ownership. A host can bind its existing backend lease. See [integration contract](../benchmarks/PORTING_NOTES.md).

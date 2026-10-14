@@ -1,6 +1,6 @@
 # RelateAnything C++ / GGML
 
-The three released checkpoints run as a native image-to-relation pipeline:
+The seven released checkpoints (three DINOv3 ViT towers, four DINOv3 ConvNeXt towers) run as a native image-to-relation pipeline:
 JPEG/PNG decode → Pillow-compatible 448×448 resize/normalization → DINOv3 →
 spatial pooling and box prompts → pair sampler → relation transformer →
 deformable read → relation interaction → dynamic vocabulary → calibrated

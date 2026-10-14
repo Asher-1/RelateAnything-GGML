@@ -184,27 +184,64 @@ def _full_tensors(payload: dict[str, Any]) -> tuple[dict[str, np.ndarray], dict[
     if pair_proj is None or pair_proj.ndim != 2:
         raise RuntimeError("checkpoint is missing pair_proj.weight; cannot describe full graph")
     hidden = int(pair_proj.shape[0])
-    backbone_dim = int(cfg.get("hidden_size", 0))
-    if backbone_dim <= 0:
-        raise RuntimeError("backbone_config.hidden_size is missing")
-    ffn_type = "swiglu" if "ra.backbone.model.model.layer.0.mlp.gate_proj.weight" in tensors else "gelu"
-    meta = {
-        "hidden_size": backbone_dim,
-        "intermediate_size": int(cfg.get("intermediate_size", 0)),
-        "depth": int(cfg.get("num_hidden_layers", 0)),
-        "num_heads": int(cfg.get("num_attention_heads", 0)),
-        "patch_size": int(cfg.get("patch_size", 16)),
-        "num_register_tokens": int(cfg.get("num_register_tokens", 4)),
-        "rope_theta": float(cfg.get("rope_theta", 100.0)),
-        "layer_norm_eps": float(cfg.get("layer_norm_eps", 1e-5)),
-        "relation_dim": hidden,
-        "text_dim": int(tensors.get("ra.vocab_head.W", np.empty((0, 0))).shape[-1]),
-        "predicate_count": int(tensors.get("ra.vocab_head.W", np.empty((0, 0))).shape[0]),
-        "ffn_type": ffn_type,
-        "pred_names": list(payload.get("pred_names") or []),
-        "tensor_name_map": tensor_name_map,
-    }
-    required = ("depth", "num_heads", "intermediate_size", "predicate_count", "text_dim")
+    model_family = str(cfg.get("model_type") or "dinov3_vit")
+    if model_family == "dinov3_convnext":
+        # The hierarchical tower carries hidden_sizes/depths instead of the
+        # ViT scalar fields; every ConvNeXt block is a gated FFN on channels,
+        # so num_heads/rope/register metadata do not apply.
+        hidden_sizes = [int(v) for v in cfg.get("hidden_sizes") or []]
+        depths = [int(v) for v in cfg.get("depths") or []]
+        if not hidden_sizes or len(hidden_sizes) != len(depths) or any(v <= 0 for v in depths):
+            raise RuntimeError("convnext backbone_config is missing hidden_sizes/depths")
+        backbone_dim = hidden_sizes[-1]
+        meta = {
+            "model_family": model_family,
+            "hidden_size": backbone_dim,
+            "hidden_sizes": hidden_sizes,
+            "depths": depths,
+            "depth": sum(depths),
+            "num_heads": 0,
+            "intermediate_size": 0,
+            "patch_size": 16,
+            "num_register_tokens": 0,
+            "rope_theta": 0.0,
+            "layer_norm_eps": float(cfg.get("layer_norm_eps", 1e-6)),
+            "layer_offsets": [-4, -3, -2, -1],
+            "relation_dim": hidden,
+            "text_dim": int(tensors.get("ra.vocab_head.W", np.empty((0, 0))).shape[-1]),
+            "predicate_count": int(tensors.get("ra.vocab_head.W", np.empty((0, 0))).shape[0]),
+            "ffn_type": str(cfg.get("hidden_act", "gelu")),
+            "pred_names": list(payload.get("pred_names") or []),
+            "tensor_name_map": tensor_name_map,
+        }
+    else:
+        model_family = "dinov3_vit"
+        backbone_dim = int(cfg.get("hidden_size", 0))
+        if backbone_dim <= 0:
+            raise RuntimeError("backbone_config.hidden_size is missing")
+        ffn_type = "swiglu" if "ra.backbone.model.model.layer.0.mlp.gate_proj.weight" in tensors else "gelu"
+        meta = {
+            "model_family": model_family,
+            "hidden_size": backbone_dim,
+            "hidden_sizes": [],
+            "depths": [],
+            "intermediate_size": int(cfg.get("intermediate_size", 0)),
+            "depth": int(cfg.get("num_hidden_layers", 0)),
+            "num_heads": int(cfg.get("num_attention_heads", 0)),
+            "patch_size": int(cfg.get("patch_size", 16)),
+            "num_register_tokens": int(cfg.get("num_register_tokens", 4)),
+            "rope_theta": float(cfg.get("rope_theta", 100.0)),
+            "layer_norm_eps": float(cfg.get("layer_norm_eps", 1e-5)),
+            "layer_offsets": [-6, -3, -1],
+            "relation_dim": hidden,
+            "text_dim": int(tensors.get("ra.vocab_head.W", np.empty((0, 0))).shape[-1]),
+            "predicate_count": int(tensors.get("ra.vocab_head.W", np.empty((0, 0))).shape[0]),
+            "ffn_type": ffn_type,
+            "pred_names": list(payload.get("pred_names") or []),
+            "tensor_name_map": tensor_name_map,
+        }
+    required = ("depth", "predicate_count", "text_dim") if model_family == "dinov3_convnext" \
+        else ("depth", "num_heads", "intermediate_size", "predicate_count", "text_dim")
     if any(int(meta[k]) <= 0 for k in required):
         raise RuntimeError(f"incomplete full graph metadata: {meta}")
     return tensors, meta
@@ -216,7 +253,7 @@ def export_full(payload: dict[str, Any], output: Path, dtype: str, source: str) 
     writer.add_string("general.name", output.stem)
     writer.add_string("general.description", "RelateAnything official full checkpoint weights")
     writer.add_string("ra.graph_kind", FULL_CONTRACT)
-    writer.add_string("ra.model_family", "dinov3_vit")
+    writer.add_string("ra.model_family", meta["model_family"])
     writer.add_string("ra.quantization", dtype)
     writer.add_string("ra.quantization_policy", "q8_0 rank-2 tensors with input dimension divisible by 32, except f16 " + ", ".join(sorted(Q8_0_F16_TENSORS)) + "; other tensors keep f32"
                       if dtype == "q8_0" else f"all tensors {dtype}")
@@ -239,7 +276,10 @@ def export_full(payload: dict[str, Any], output: Path, dtype: str, source: str) 
     writer.add_uint32("ra.text_dim", meta["text_dim"])
     writer.add_uint32("ra.predicate_count", meta["predicate_count"])
     writer.add_string("ra.ffn_type", meta["ffn_type"])
-    writer.add_array("ra.layer_offsets", [-6, -3, -1])
+    if meta["hidden_sizes"]:
+        writer.add_array("ra.hidden_sizes", meta["hidden_sizes"])
+        writer.add_array("ra.depths", meta["depths"])
+    writer.add_array("ra.layer_offsets", meta["layer_offsets"])
     if meta["pred_names"]:
         writer.add_array("ra.predicate_names", meta["pred_names"])
     if meta["tensor_name_map"]:

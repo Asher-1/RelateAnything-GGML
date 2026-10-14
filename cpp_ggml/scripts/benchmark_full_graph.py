@@ -30,7 +30,8 @@ from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
-MODELS = ('relsgg-vits16', 'relsgg-vits16plus', 'relsgg-vitb16')
+MODELS = ('relsgg-vits16', 'relsgg-vits16plus', 'relsgg-vitb16',
+          'relsgg-convnext-tiny', 'relsgg-convnext-small', 'relsgg-convnext-base', 'relsgg-convnext-large')
 DTYPES = ('f32', 'f16', 'q8_0')
 
 
@@ -346,8 +347,16 @@ def _ggml_benchmark(args, samples, model_name, backend, dtype):
         # The same raw logits must produce the native calibrated triplets.
         native = {(p['subject'],p['object']):p for p in predictions}
         native_score_error = max(abs(native[(p['subject'],p['object'])]['score']-p['score']) for p in decoded)
-        if any(native[(p['subject'],p['object'])]['predicate_id']!=p['predicate_id'] for p in decoded):
-            raise RuntimeError(f'native argmax disagrees with raw logits: {name}')
+        for p in decoded:
+            chosen = native[(p['subject'],p['object'])]
+            if chosen['predicate_id'] == p['predicate_id']: continue
+            # Bit-equal top logits make the top-1 id tie-break implementation
+            # defined (numpy takes the first occurrence, the device argmax may
+            # not); accept a disagreement only when the two candidate ids tie,
+            # which keeps the check fatal for real row/argmax misalignment.
+            i = int(np.flatnonzero((out['sub']==p['subject']) & (out['obj']==p['object']) & (out['valid']==1))[0])
+            if out['logits'][i, chosen['predicate_id']] != out['logits'][i, p['predicate_id']]:
+                raise RuntimeError(f'native argmax disagrees with raw logits: {name}')
         if native_score_error > 1e-5: raise RuntimeError(f'calibration mismatch: {native_score_error}')
         elapsed = statistics.median(times[name])
         rows.append({'sample': name, 'image_id': sample['image_id'], 'source': sample['source'],

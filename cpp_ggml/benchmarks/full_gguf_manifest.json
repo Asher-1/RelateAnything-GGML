@@ -1,191 +1,439 @@
 {
-  "contract": "relateanything_full_v1",
-  "models": [
-    {
-      "actual_tensor_count": 392,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vitb16/model.pth",
-      "checkpoint_sha256": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-f16.gguf",
-      "expected_tensor_count": 392,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vitb16-f16.gguf",
-      "gguf_bytes": 247690848,
-      "gguf_sha256": "fbd6e868e171024182535c281b6ef142b166ea4e67060209d8cfd4b01ac5e911",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F16": 392
-      },
-      "value_mismatch": []
-    },
-    {
-      "actual_tensor_count": 392,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vitb16/model.pth",
-      "checkpoint_sha256": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-f32.gguf",
-      "expected_tensor_count": 392,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vitb16-f32.gguf",
-      "gguf_bytes": 494885344,
-      "gguf_sha256": "f7d2aa5765877e945d15fc9433c4c947a10e948091692b3f5208c71c24b8e17f",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F32": 392
-      },
-      "value_mismatch": []
-    },
-    {
-      "actual_tensor_count": 392,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vitb16/model.pth",
-      "checkpoint_sha256": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-q8_0.gguf",
-      "expected_tensor_count": 392,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vitb16-q8_0.gguf",
-      "gguf_bytes": 143419168,
-      "gguf_sha256": "44f40492955b493c53d796c7b4ad65d968dce301cd09567920313bf88e4c2b61",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F16": 1,
-        "F32": 257,
-        "Q8_0": 134
-      },
-      "value_mismatch": []
-    },
-    {
-      "actual_tensor_count": 392,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16/model.pth",
-      "checkpoint_sha256": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-f16.gguf",
-      "expected_tensor_count": 392,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vits16-f16.gguf",
-      "gguf_bytes": 112374624,
-      "gguf_sha256": "bd5d0eabc41747af6d0243c755f789917c3f53864f763989bee5a4f0371767cf",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F16": 392
-      },
-      "value_mismatch": []
-    },
-    {
-      "actual_tensor_count": 392,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16/model.pth",
-      "checkpoint_sha256": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-f32.gguf",
-      "expected_tensor_count": 392,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vits16-f32.gguf",
-      "gguf_bytes": 224252896,
-      "gguf_sha256": "b87e7cff5e5678e2871cbfcf2804be22e5a9b814a89be763c54c95b9c39468f4",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F32": 392
-      },
-      "value_mismatch": []
-    },
-    {
-      "actual_tensor_count": 392,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16/model.pth",
-      "checkpoint_sha256": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-q8_0.gguf",
-      "expected_tensor_count": 392,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vits16-q8_0.gguf",
-      "gguf_bytes": 70450688,
-      "gguf_sha256": "d281ace4ad9a51edc78da26660ffd89a98d073df352de735711812b48e2dee53",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F16": 1,
-        "F32": 257,
-        "Q8_0": 134
-      },
-      "value_mismatch": []
-    },
-    {
-      "actual_tensor_count": 416,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16plus/model.pth",
-      "checkpoint_sha256": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f16.gguf",
-      "expected_tensor_count": 416,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vits16plus-f16.gguf",
-      "gguf_bytes": 126569376,
-      "gguf_sha256": "36ed9f832324dff4d06edf216782eb692645f8f10c0bd7d1b4c5fa58d44d7d39",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F16": 416
-      },
-      "value_mismatch": []
-    },
-    {
-      "actual_tensor_count": 416,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16plus/model.pth",
-      "checkpoint_sha256": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f32.gguf",
-      "expected_tensor_count": 416,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vits16plus-f32.gguf",
-      "gguf_bytes": 252640288,
-      "gguf_sha256": "24970d851decd61bfdf4b109f5353ff81596ae8d7c9a35635f9de89d17f935e4",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F32": 416
-      },
-      "value_mismatch": []
-    },
-    {
-      "actual_tensor_count": 416,
-      "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16plus/model.pth",
-      "checkpoint_sha256": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
-      "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-q8_0.gguf",
-      "expected_tensor_count": 416,
-      "extra": [],
-      "gguf": "cpp_ggml/models/gguf/relsgg-vits16plus-q8_0.gguf",
-      "gguf_bytes": 78046784,
-      "gguf_sha256": "c19c25acae196e3a762fcbb4032ba450e716847bc66540988d730e4c75572177",
-      "graph_kind": "relateanything_full_v1",
-      "missing": [],
-      "passed": true,
-      "runtime_vocabulary": true,
-      "shape_mismatch": {},
-      "type_counts": {
-        "F16": 1,
-        "F32": 269,
-        "Q8_0": 146
-      },
-      "value_mismatch": []
-    }
-  ]
+ "contract": "relateanything_full_v1",
+ "models": [
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-base/model.pth",
+   "checkpoint_sha256": "b407734de4d620c689ec6982f683dd49a761e62c3c56ae70860583222251fc35",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-base-f16.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-base-f16.gguf",
+   "gguf_bytes": 267090624,
+   "gguf_sha256": "b7fd03203c87b7203215b4dfe4e58a3d5881368c2015efa6eca23005544d099e",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 539
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-base/model.pth",
+   "checkpoint_sha256": "b407734de4d620c689ec6982f683dd49a761e62c3c56ae70860583222251fc35",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-base-f32.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-base-f32.gguf",
+   "gguf_bytes": 533661952,
+   "gguf_sha256": "c3ec29b957f6c04d472576dbe052e056925ee56370e852600db7d54bf331a99b",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F32": 539
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-base/model.pth",
+   "checkpoint_sha256": "b407734de4d620c689ec6982f683dd49a761e62c3c56ae70860583222251fc35",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-base-q8_0.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-base-q8_0.gguf",
+   "gguf_bytes": 176707744,
+   "gguf_sha256": "549a4ab4a053d582454126d6e3f3dec70969ab1fcdfb91681cab8c01c5cb7dcc",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 1,
+    "F32": 404,
+    "Q8_0": 134
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-large/model.pth",
+   "checkpoint_sha256": "b3fb614f23b0a67a5862096aa9b8dc55c89c09a539a1420e7904410f001f9598",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-large-f16.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-large-f16.gguf",
+   "gguf_bytes": 511578944,
+   "gguf_sha256": "d0dbd9fea5fd0fe6c728dd6df55b9cb34bb7a5fb9645c5591b7767622b0f3fbc",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 539
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-large/model.pth",
+   "checkpoint_sha256": "b3fb614f23b0a67a5862096aa9b8dc55c89c09a539a1420e7904410f001f9598",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-large-f32.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-large-f32.gguf",
+   "gguf_bytes": 1022638592,
+   "gguf_sha256": "2fc1d48e2ea8e96ff8429a734205c5915eac73bf774efa2299227b8126d7ecc2",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F32": 539
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-large/model.pth",
+   "checkpoint_sha256": "b3fb614f23b0a67a5862096aa9b8dc55c89c09a539a1420e7904410f001f9598",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-large-q8_0.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-large-q8_0.gguf",
+   "gguf_bytes": 335619552,
+   "gguf_sha256": "37a743155aab2390f5d7c8c4dd3d3c595d299870ce951db357dd1ade788ea6e2",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 1,
+    "F32": 404,
+    "Q8_0": 134
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-small/model.pth",
+   "checkpoint_sha256": "58c92367880d2be80f438bb4fb956d1bd917f363fb1b1b28df6b1f31eb838dc6",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-small-f16.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-small-f16.gguf",
+   "gguf_bytes": 180629120,
+   "gguf_sha256": "5cc130db41c1a7de0eb4da5d63539c605686eaadbcd649f92ae2e235f953edf0",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 539
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-small/model.pth",
+   "checkpoint_sha256": "58c92367880d2be80f438bb4fb956d1bd917f363fb1b1b28df6b1f31eb838dc6",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-small-f32.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-small-f32.gguf",
+   "gguf_bytes": 360738944,
+   "gguf_sha256": "b5290933a39cff1ef97f064d6965f4d3c5260955a37dbc30728ad21f9344c606",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F32": 539
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 539,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-small/model.pth",
+   "checkpoint_sha256": "58c92367880d2be80f438bb4fb956d1bd917f363fb1b1b28df6b1f31eb838dc6",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-small-q8_0.gguf",
+   "expected_tensor_count": 539,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-small-q8_0.gguf",
+   "gguf_bytes": 120376320,
+   "gguf_sha256": "d0d0431f4e1493c58aa4d428484fbae61b6d0aeb8197879a6f7fc3db17a36e84",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 1,
+    "F32": 404,
+    "Q8_0": 134
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 377,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-tiny/model.pth",
+   "checkpoint_sha256": "fb789c4c475f7f5b57167c3ccadac8adfd5c3c96f796bef85e6a7eaafbf17f49",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-tiny-f16.gguf",
+   "expected_tensor_count": 377,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-tiny-f16.gguf",
+   "gguf_bytes": 137340320,
+   "gguf_sha256": "785d3f0d324bb1412c69df1b89fe04be7cf3afe92258f1e68a78d89ce079a65f",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 377
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 377,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-tiny/model.pth",
+   "checkpoint_sha256": "fb789c4c475f7f5b57167c3ccadac8adfd5c3c96f796bef85e6a7eaafbf17f49",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-tiny-f32.gguf",
+   "expected_tensor_count": 377,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-tiny-f32.gguf",
+   "gguf_bytes": 274181024,
+   "gguf_sha256": "97fb3e7409699188926cf285d714620cc3dd0f89e13cbe2f3975ff1a78ebb272",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F32": 377
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 377,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-convnext-tiny/model.pth",
+   "checkpoint_sha256": "fb789c4c475f7f5b57167c3ccadac8adfd5c3c96f796bef85e6a7eaafbf17f49",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-convnext-tiny-q8_0.gguf",
+   "expected_tensor_count": 377,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-convnext-tiny-q8_0.gguf",
+   "gguf_bytes": 96192288,
+   "gguf_sha256": "018690fdaf159a9627de71506c93ee85624a77345d1148d3b174ef43a03ec10c",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 1,
+    "F32": 278,
+    "Q8_0": 98
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 392,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vitb16/model.pth",
+   "checkpoint_sha256": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-f16.gguf",
+   "expected_tensor_count": 392,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vitb16-f16.gguf",
+   "gguf_bytes": 247690848,
+   "gguf_sha256": "fbd6e868e171024182535c281b6ef142b166ea4e67060209d8cfd4b01ac5e911",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 392
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 392,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vitb16/model.pth",
+   "checkpoint_sha256": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-f32.gguf",
+   "expected_tensor_count": 392,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vitb16-f32.gguf",
+   "gguf_bytes": 494885344,
+   "gguf_sha256": "f7d2aa5765877e945d15fc9433c4c947a10e948091692b3f5208c71c24b8e17f",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F32": 392
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 392,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vitb16/model.pth",
+   "checkpoint_sha256": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vitb16-q8_0.gguf",
+   "expected_tensor_count": 392,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vitb16-q8_0.gguf",
+   "gguf_bytes": 143419168,
+   "gguf_sha256": "44f40492955b493c53d796c7b4ad65d968dce301cd09567920313bf88e4c2b61",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 1,
+    "F32": 257,
+    "Q8_0": 134
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 392,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16/model.pth",
+   "checkpoint_sha256": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-f16.gguf",
+   "expected_tensor_count": 392,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vits16-f16.gguf",
+   "gguf_bytes": 112374624,
+   "gguf_sha256": "bd5d0eabc41747af6d0243c755f789917c3f53864f763989bee5a4f0371767cf",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 392
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 392,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16/model.pth",
+   "checkpoint_sha256": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-f32.gguf",
+   "expected_tensor_count": 392,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vits16-f32.gguf",
+   "gguf_bytes": 224252896,
+   "gguf_sha256": "b87e7cff5e5678e2871cbfcf2804be22e5a9b814a89be763c54c95b9c39468f4",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F32": 392
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 392,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16/model.pth",
+   "checkpoint_sha256": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16-q8_0.gguf",
+   "expected_tensor_count": 392,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vits16-q8_0.gguf",
+   "gguf_bytes": 70450688,
+   "gguf_sha256": "d281ace4ad9a51edc78da26660ffd89a98d073df352de735711812b48e2dee53",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 1,
+    "F32": 257,
+    "Q8_0": 134
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 416,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16plus/model.pth",
+   "checkpoint_sha256": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f16.gguf",
+   "expected_tensor_count": 416,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vits16plus-f16.gguf",
+   "gguf_bytes": 126569376,
+   "gguf_sha256": "36ed9f832324dff4d06edf216782eb692645f8f10c0bd7d1b4c5fa58d44d7d39",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 416
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 416,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16plus/model.pth",
+   "checkpoint_sha256": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-f32.gguf",
+   "expected_tensor_count": 416,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vits16plus-f32.gguf",
+   "gguf_bytes": 252640288,
+   "gguf_sha256": "24970d851decd61bfdf4b109f5353ff81596ae8d7c9a35635f9de89d17f935e4",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F32": 416
+   },
+   "value_mismatch": []
+  },
+  {
+   "actual_tensor_count": 416,
+   "checkpoint": "cpp_ggml/models/pytorch/relsgg-vits16plus/model.pth",
+   "checkpoint_sha256": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
+   "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/gguf/relsgg-vits16plus-q8_0.gguf",
+   "expected_tensor_count": 416,
+   "extra": [],
+   "gguf": "cpp_ggml/models/gguf/relsgg-vits16plus-q8_0.gguf",
+   "gguf_bytes": 78046784,
+   "gguf_sha256": "c19c25acae196e3a762fcbb4032ba450e716847bc66540988d730e4c75572177",
+   "graph_kind": "relateanything_full_v1",
+   "missing": [],
+   "passed": true,
+   "runtime_vocabulary": true,
+   "shape_mismatch": {},
+   "type_counts": {
+    "F16": 1,
+    "F32": 269,
+    "Q8_0": 146
+   },
+   "value_mismatch": []
+  }
+ ]
 }

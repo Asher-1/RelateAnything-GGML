@@ -12,7 +12,8 @@ import json
 from datetime import datetime, timezone
 from pathlib import Path
 
-MODELS = ('relsgg-vits16', 'relsgg-vits16plus', 'relsgg-vitb16')
+MODELS = ('relsgg-vits16', 'relsgg-vits16plus', 'relsgg-vitb16',
+          'relsgg-convnext-tiny', 'relsgg-convnext-small', 'relsgg-convnext-base', 'relsgg-convnext-large')
 DTYPES = ('f32', 'f16', 'q8_0')
 
 

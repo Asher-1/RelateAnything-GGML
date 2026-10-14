@@ -36,6 +36,73 @@ def digest(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def test_strict_f32_compacts_only_valid_relation_pairs():
+    source = (Path(__file__).resolve().parents[1] / "src" / "full_model.cpp").read_text()
+    assert "bool compact_pairs() const { return options.compact_pairs; }" in source
+
+
+def test_export_gguf_writes_convnext_metadata_by_model_type():
+    source = (Path(__file__).resolve().parents[1] / "scripts" / "export_gguf.py").read_text()
+    assert 'model_family = str(cfg.get("model_type") or "dinov3_vit")' in source
+    assert '"layer_offsets": [-4, -3, -2, -1],' in source
+    assert 'writer.add_array("ra.hidden_sizes", meta["hidden_sizes"])' in source
+    assert 'writer.add_array("ra.depths", meta["depths"])' in source
+
+
+def test_runtime_implements_convnext_backbone_on_every_backend_path():
+    source = (Path(__file__).resolve().parents[1] / "src" / "full_model.cpp").read_text()
+    assert 'model_family == "dinov3_convnext"' in source
+    assert "ggml_conv_2d_dw_direct" in source
+    assert "GGML_SCALE_MODE_BILINEAR" in source
+    # The stage fusion must keep the shared ViT combiner: pixel_unshuffle folds
+    # into the r×r projection, so both families return the same fused layout.
+    assert 'return backbone_convnext(run, ctx, image, taps, height, width, trace);' in source
+    assert 't(p + ".depthwise_conv.bias")' in source
+
+
+def test_native_argmax_check_tolerates_bit_equal_ties_only():
+    source = (Path(__file__).resolve().parents[1] / "scripts" / "benchmark_full_graph.py").read_text()
+    # A bit-equal top-1 tie is implementation-defined across devices; the check
+    # must compare the two candidate logits before declaring a disagreement.
+    assert "chosen['predicate_id'] == p['predicate_id']: continue" in source
+    assert "out['logits'][i, chosen['predicate_id']] != out['logits'][i, p['predicate_id']]" in source
+
+
+def test_cuda_strict_backbone_reuses_packed_qkv_projection():
+    source = (Path(__file__).resolve().parents[1] / "src" / "full_model.cpp").read_text()
+    assert "if (options.strict_f32) {\n                const auto projection" not in source
+    assert "if (!options.strict_f32) {\n        packed_qkv.ctx" not in source
+    assert "auto * qkv = linear(ctx, y, packed_qkv.weights[layer], packed_qkv.biases[layer]);" in source
+
+
+def test_cuda_patch_embedding_uses_parallel_strict_f32_matmul():
+    source = (Path(__file__).resolve().parents[1] / "src" / "full_model.cpp").read_text()
+    patch_hint = (
+        "if (options.strict_f32 && options.backend == \"cuda\" && "
+        "kernel->type == GGML_TYPE_F32)\n"
+        "            ggml_mul_mat_set_hint(patches, GGML_HINT_STRICT_F32);"
+    )
+    assert patch_hint in source
+
+
+def test_optional_interface_comparison_aligns_scores_by_triplet_identity():
+    optional = load_script("validate_optional_interfaces")
+    reference = [
+        {"subject": 0, "object": 4, "predicate": "right", "score": 0.38},
+        {"subject": 0, "object": 1, "predicate": "right", "score": 0.57},
+    ]
+    native = [
+        {"subject": 0, "object": 1, "predicate": "right", "score": 0.571},
+        {"subject": 0, "object": 4, "predicate": "right", "score": 0.379},
+    ]
+
+    comparison = optional.compare_triplet_streams(reference, native)
+
+    assert comparison["triplet_set_equal"] is True
+    assert comparison["ranked_triplets_equal"] is False
+    assert comparison["max_score_error"] == pytest.approx(0.001)
+
+
 def make_completed_run(tmp_path: Path, files: dict[str, bytes] | None = None) -> Path:
     run = tmp_path / "run-1"
     reports = run / "reports"
@@ -164,13 +231,38 @@ def test_run_alignment_defaults_to_auto_precision_without_force_flag():
     assert alignment.precision_arguments("off") == ["--no-strict-f32"]
 
 
+def test_run_alignment_resume_skips_complete_and_preserves_failed_attempt():
+    alignment = load_run_alignment()
+    record = {"steps": [
+        {"name": "full-primary", "command": ["python", "full.py"],
+         "status": "complete", "returncode": 0},
+        {"name": "optional-interfaces", "command": ["python", "interfaces.py"],
+         "status": "failed", "returncode": 1},
+    ]}
+
+    assert alignment.prepare_step(record, "full-primary", ["python", "full.py"], True) is None
+    entry = alignment.prepare_step(
+        record, "optional-interfaces", ["python", "interfaces.py"], True
+    )
+
+    assert len(record["steps"]) == 2
+    assert entry["status"] == "running"
+    assert entry["attempts"] == [{
+        "name": "optional-interfaces", "command": ["python", "interfaces.py"],
+        "status": "failed", "returncode": 1,
+    }]
+    assert alignment.parse_args(["--resume", "--run-id", "release"]).resume is True
+
+
 def test_acceptance_uses_numeric_gates_and_allows_only_the_known_g2_deviation(tmp_path: Path):
     run = tmp_path / "release-run"
     full = run / "artifacts" / "full_graph"
     full.mkdir(parents=True)
     (run / "run.json").write_text(json.dumps({"status": "complete", "config": {"precision_request": "auto"}}))
     models = {}
-    for model in ("relsgg-vits16", "relsgg-vits16plus", "relsgg-vitb16"):
+    for model in ("relsgg-vits16", "relsgg-vits16plus", "relsgg-vitb16",
+                  "relsgg-convnext-tiny", "relsgg-convnext-small",
+                  "relsgg-convnext-base", "relsgg-convnext-large"):
         configs = {"python": {"latency_median_ms": 100.0}}
         for backend in ("cpu", "cuda", "vulkan"):
             for dtype in ("f32", "f16", "q8_0"):
@@ -191,9 +283,9 @@ def test_acceptance_uses_numeric_gates_and_allows_only_the_known_g2_deviation(tm
     statuses = {row["id"]: row for row in report["statuses"]}
 
     assert statuses["g1_numeric"]["status"] == "complete"
-    assert statuses["g1_numeric"]["passed"] == 27
+    assert statuses["g1_numeric"]["passed"] == 63
     assert statuses["g2_gpu_performance"]["status"] == "accepted_deviation"
-    assert statuses["g2_gpu_performance"]["passed"] == 17
+    assert statuses["g2_gpu_performance"]["passed"] == 41
     assert statuses["g2_gpu_performance"]["failed"] == [{
         "model": "relsgg-vitb16", "config": "cuda-f32",
         "native_ms": 101.0, "python_ms": 100.0,

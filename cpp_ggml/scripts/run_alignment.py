@@ -12,17 +12,40 @@ import sys
 from benchmark_layout import OUTPUTS, allocate, now, publish_reports, set_current
 from provenance import ROOT, build_fingerprint, fingerprint, save
 
-MODELS = ('relsgg-vits16', 'relsgg-vits16plus', 'relsgg-vitb16')
+MODELS = ('relsgg-vits16', 'relsgg-vits16plus', 'relsgg-vitb16',
+          'relsgg-convnext-tiny', 'relsgg-convnext-small', 'relsgg-convnext-base', 'relsgg-convnext-large')
 SCRIPTS = ROOT/'cpp_ggml/scripts'
 SUITES = ('full', 'stages', 'dense', 'interfaces', 'contracts', 'metrics')
 
 
-def execute(script, arguments, folder, name, record):
-    command = [sys.executable, str(SCRIPTS/script), *map(str, arguments)]
-    log = folder/'logs'/f'{name}.log'
-    log.parent.mkdir(parents=True, exist_ok=True)
+def prepare_step(record, name, command, resume=False):
+    entry = next((step for step in reversed(record['steps']) if step['name'] == name), None)
+    if resume and entry is not None:
+        if entry.get('command') != command:
+            raise RuntimeError(f'resume command changed for {name}')
+        if entry.get('status') == 'complete' and entry.get('returncode') == 0:
+            return None
+        previous = dict(entry)
+        attempts = [*previous.pop('attempts', []), previous]
+        entry.clear()
+        entry.update(name=name, command=command, status='running', started_utc=now(), attempts=attempts)
+        return entry
     entry = {'name': name, 'command': command, 'status': 'running', 'started_utc': now()}
     record['steps'].append(entry)
+    return entry
+
+
+def execute(script, arguments, folder, name, record, resume=False):
+    command = [sys.executable, str(SCRIPTS/script), *map(str, arguments)]
+    entry = prepare_step(record, name, command, resume)
+    if entry is None:
+        print(f'resume skip={name}', flush=True)
+        return
+    retry = len(entry.get('attempts', []))
+    suffix = f'.retry-{retry}' if retry else ''
+    log = folder/'logs'/f'{name}{suffix}.log'
+    entry['log'] = str(log.relative_to(folder))
+    log.parent.mkdir(parents=True, exist_ok=True)
     save(folder/'run.json', record)
     with log.open('w') as stream:
         process = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
@@ -70,6 +93,7 @@ def parse_args(argv=None):
                            help='force default accelerated arithmetic on every backend/storage type')
     parser.set_defaults(precision='auto')
     parser.add_argument('--current', action='store_true', help='advance report view after all selected suites succeed')
+    parser.add_argument('--resume', action='store_true', help='resume an interrupted run with identical config, builds and commands')
     return parser.parse_args(argv)
 
 
@@ -82,21 +106,40 @@ def main():
     if args.current and (set(args.suites) != set(SUITES) or
                          set(args.backends) != {'cpu', 'cuda', 'vulkan'}):
         raise SystemExit('--current requires every suite and all three backends')
-    folder = allocate(args.run_id, root=args.root)
+    config = {'suites': args.suites, 'backends': args.backends,
+              'precision_request': args.precision, 'warmup': args.warmup, 'repeats': args.repeats}
+    orchestrator = fingerprint([Path(__file__), SCRIPTS/'benchmark_layout.py'])
+    if args.resume:
+        if not args.run_id:
+            raise SystemExit('--resume requires --run-id')
+        folder = args.root/'runs'/args.run_id
+        if not (folder/'run.json').is_file():
+            raise SystemExit(f'cannot resume missing run: {folder}')
+        record = json.loads((folder/'run.json').read_text())
+        if record.get('status') not in ('failed', 'running') or record.get('config') != config:
+            raise SystemExit('resume requires a failed/running run with identical config')
+        previous_orchestrator = record.get('orchestrator')
+        record.update(status='running', resumed_utc=now(), resume_orchestrator=orchestrator)
+        record.pop('failure', None)
+        if previous_orchestrator != orchestrator:
+            record.setdefault('orchestrator_attempts', []).append(previous_orchestrator)
+    else:
+        folder = allocate(args.run_id, root=args.root)
+        record = json.loads((folder/'run.json').read_text())
+        record.update(status='running', started_utc=now(), steps=[], config=config,
+                      orchestrator=orchestrator)
     artifacts = folder/'artifacts'
-    artifacts.mkdir()
-    record = json.loads((folder/'run.json').read_text())
-    record.update(status='running', started_utc=now(), steps=[], config={
-        'suites': args.suites, 'backends': args.backends,
-        'precision_request': args.precision, 'warmup': args.warmup, 'repeats': args.repeats},
-        orchestrator=fingerprint([Path(__file__), SCRIPTS/'benchmark_layout.py']))
+    artifacts.mkdir(exist_ok=args.resume)
     save(folder/'run.json', record)
     print(f'run={folder}', flush=True)
     def run(script, arguments, name):
-        execute(script, arguments, folder, name, record)
+        execute(script, arguments, folder, name, record, resume=args.resume)
     try:
-        record['builds'] = {backend: build_fingerprint(ROOT/f'cpp_ggml/build-{backend}/relateanything-ggml', backend)
-                            for backend in args.backends}
+        builds = {backend: build_fingerprint(ROOT/f'cpp_ggml/build-{backend}/relateanything-ggml', backend)
+                  for backend in args.backends}
+        if args.resume and record.get('builds') != builds:
+            raise RuntimeError('build fingerprints changed since the failed run')
+        record['builds'] = builds
         save(folder/'run.json', record)
         run('audit_ggml_patch_state.py', ['--out', artifacts/'ggml_patch_audit.json'], 'patch-state')
         run('verify_patch_replay.py', ['--output', artifacts/'patch_replay.json'], 'patch-replay')
@@ -130,7 +173,7 @@ def main():
                 run('benchmark_full_graph.py', ['--stage', 'prepare', '--output', full], 'prepare-inputs')
         if 'stages' in args.suites:
             traces = artifacts/'traces_cpu'
-            traces.mkdir()
+            traces.mkdir(exist_ok=args.resume)
             for model in MODELS:
                 stem = 'python_stage_trace_'+model.removeprefix('relsgg-')
                 run('trace_python_stages.py', ['--model-name', model, '--device', 'cpu',

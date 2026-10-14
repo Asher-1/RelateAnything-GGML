@@ -12,7 +12,8 @@ import tempfile
 import time
 
 ROOT = Path(__file__).resolve().parents[2]
-MODELS = ('relsgg-vits16', 'relsgg-vits16plus', 'relsgg-vitb16')
+MODELS = ('relsgg-vits16', 'relsgg-vits16plus', 'relsgg-vitb16',
+          'relsgg-convnext-tiny', 'relsgg-convnext-small', 'relsgg-convnext-base', 'relsgg-convnext-large')
 DEMO_REQUESTS = {
     'horse': (ROOT / 'assets/reel/images/horse.jpg',
               [[470, 130, 650, 630], [90, 310, 1010, 875]],
