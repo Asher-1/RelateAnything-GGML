@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "zip_file_name": "relateanything_test_data.zip",
+  "extract_dir_name": "relateanything_test_data",
+  "zip_bytes": 14560715,
+  "zip_sha256": "7b61e73d3e1091d654961f06fbab847760ed39f20924a285bae881cfddb2b144",
+  "download_url": null,
+  "publication_status": "local_archive_ready",
+  "cache_relative_path": "download/relateanything_test_data.zip",
+  "extract_relative_path": "extract/relateanything_test_data",
+  "catalog_relative_path": "catalog.json",
+  "preview_relative_path": "index.html",
+  "autofill_fields": [
+    "image",
+    "boxes_xyxy",
+    "object_names"
+  ],
+  "samples": 100,
+  "suites": [
+    {
+      "id": "ra4m_50",
+      "samples": 50,
+      "manifest": "ra4m_50/manifest.json",
+      "source": "maelic/RA-4M",
+      "revision": "64829d57318dc8b32ac3e029ac84fbb9834a7700",
+      "split": "val"
+    },
+    {
+      "id": "metric_subsets/PSG",
+      "samples": 10,
+      "manifest": "metric_subsets/PSG/manifest.json",
+      "source": "maelic/PSG-coco-format",
+      "revision": "8a7e2f92840de2d267244c3ea26fa2daa0772120",
+      "split": "test"
+    },
+    {
+      "id": "metric_subsets/IndoorVG",
+      "samples": 10,
+      "manifest": "metric_subsets/IndoorVG/manifest.json",
+      "source": "maelic/IndoorVG-coco-format",
+      "revision": "63105f42838e6ce0867f8ab9e2956c2dcec043fa",
+      "split": "test"
+    },
+    {
+      "id": "metric_subsets/VG150",
+      "samples": 10,
+      "manifest": "metric_subsets/VG150/manifest.json",
+      "source": "maelic/VG150-coco-format",
+      "revision": "ea6fb3a56a0876eee98165ea17792fc6ec8460e6",
+      "split": "test"
+    },
+    {
+      "id": "metric_subsets/spatialsense/SpatialSense-valid",
+      "samples": 10,
+      "manifest": "metric_subsets/spatialsense/SpatialSense-valid/manifest.json",
+      "source": "https://zenodo.org/api/records/8104370",
+      "revision": 2,
+      "split": "valid"
+    },
+    {
+      "id": "metric_subsets/spatialsense/SpatialSense-test",
+      "samples": 10,
+      "manifest": "metric_subsets/spatialsense/SpatialSense-test/manifest.json",
+      "source": "https://zenodo.org/api/records/8104370",
+      "revision": 2,
+      "split": "test"
+    }
+  ],
+  "inference_ready_samples": 99,
+  "payload_files": 133,
+  "payload_bytes": 21632999,
+  "scope": "bounded labelled test subsets; original dataset terms apply; unlabelled relations are not negatives; missing full protocols are not supplied"
+}

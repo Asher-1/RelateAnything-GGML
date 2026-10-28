@@ -1,0 +1,164 @@
+{
+  "scope": "Final frozen binaries before benchmark; full real checkpoint API matrix is separate",
+  "rows": [
+    {
+      "backend": "cpu",
+      "passed": 5,
+      "command": [
+        "ctest",
+        "--test-dir",
+        "cpp_ggml/build-cpu",
+        "--output-on-failure"
+      ],
+      "log": "Internal ctest changing into directory: /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cpu\nTest project /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cpu\n    Start 1: relateanything_capi_c_header\n1/5 Test #1: relateanything_capi_c_header .............   Passed    0.00 sec\n    Start 2: relateanything_runtime_options\n2/5 Test #2: relateanything_runtime_options ...........   Passed    0.00 sec\n    Start 3: relateanything_runtime_defaults_frozen\n3/5 Test #3: relateanything_runtime_defaults_frozen ...   Passed    0.00 sec\n    Start 4: relateanything_capi_contract\n4/5 Test #4: relateanything_capi_contract .............   Passed    0.06 sec\n    Start 5: relateanything_ggml_self_test\n5/5 Test #5: relateanything_ggml_self_test ............   Passed    0.01 sec\n\n100% tests passed, 0 tests failed out of 5\n\nTotal Test time (real) =   0.08 sec\n",
+      "log_sha256": "429e2990792d4b1610c7f3770c26608d03a26431f1c1e9b18a7368d10248f645",
+      "runtime_build": {
+        "backend": "cpu",
+        "build_files": {
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cpu/CMakeCache.txt": "0fc96ff64b3f97c9d3bcd0adf785aca4b6444902621974728c89f07224476429"
+          },
+          "sha256": "9a00aaf5845bb74dc1bc4ce85072b71552acf9a8ce76c0e06bbb899b41a83afc"
+        },
+        "build_type": "Release",
+        "compiler": "c++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0\nCopyright (C) 2019 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+        "flags": " -O3 -DNDEBUG",
+        "ggml_commit": "8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b",
+        "source": {
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/CMakeLists.txt": "160597887197db17d73bb745571eaafab629450cbf5ca9b75171e2397a00e3f7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend.hpp": "89923f4c9927c62eac1c80523e8d78b3e8764af2ddbbc31a5686278491ca51cc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend_binding.h": "4375d11667036882e395b9ef1e140ebc0910a2843a6b70f49fbf614642cf5442",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/c_api.h": "1748471041bc79b9fdfa345ed7a05bb3e69f23878f0bdc0bc9e4c6baaf3ccff0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/full_model.hpp": "e4d04007d62cd291721095cf16fbdcdbf0d5c2776b293aa5277c40ac29d8350b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/gguf_model.hpp": "eef6abfa799616aa5d466ea2e12860c1eef11c849a53bc868819aaee279cb03c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/options.hpp": "5c7f5a4c7bc3d6663f8f283cd9a58de72cad391f17a5aa6dc47978c7eda50a28",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.h": "090c419b59fcbf6f0588e88f5337ff3db15b91d75196296ccf45256147451edb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.hpp": "2ad480f6db58e66d3f583ea28f60f1bad2a1b4541442a934c48a886045c625b8",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/types.hpp": "61daf6b8c6ca867ff28791f01e61724e4aeaeb3d00066236b188b19dda8d7dc0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/provenance.py": "88fd8efe37c2b1b653c84b0c8e450b1bd1516593ea209845fd9549e48b6d5b7f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/backend.cpp": "0c9bfc7a2c445c89394d4dc931500977c575b0ec34846afb840e91784879803a",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/c_api.cpp": "03e9ecc19f99b89bc788810a3bf8db7934fabe26a9afb492d7e5f09ff9ce30fb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/full_model.cpp": "25e49b794a6eb548b962268b3d4895b42d059e8630fd83b92e448c7e6bccb66f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/gguf_model.cpp": "a63b6540a7eb3298df0098d3639e9b738bbe72708a89e0e53eadc47ae78cbbc1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/image_io.cpp": "fa066a83e5fca5af9127ff90a2932042aea0ff779f86b3b2bd7ac1c8e5c5ddd7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/inference.cpp": "1234f5e66b945d6e41c9bfd8a34fddd35c365dcaf0b93d06b4bea43efc8c71ff",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/main.cpp": "e9cf74a2b3fcd850ed75fe64996db6092180883fe12fafa05ca51566524c2054",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/clip_tokenizer.hpp": "469f57954f9bfbc5b8646b1f8deb1fea82aa1525a68ee406a99a835c35053182",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/patches/0001-relateanything-ggml.patch": "de15bc039b037c8497806ed09e4cafdf52ffcb468c66da2a7ff77f96501da3b2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/relsgg/corpus_type_map.json": "0e6230a1cfd747404a2b82f6d47a0111e1d45f403a48259fda257bf16750346d"
+          },
+          "sha256": "aee226822d776084c41613566655bd6ecd6ec6a0b0af377f8ec38fc1689be709"
+        },
+        "binary": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cpu/relateanything-ggml",
+        "binary_sha256": "6d765b925c82c82d3b136694eea27563f05ba269e6f124f8020cfca83377cd33"
+      }
+    },
+    {
+      "backend": "cuda",
+      "passed": 6,
+      "command": [
+        "ctest",
+        "--test-dir",
+        "cpp_ggml/build-cuda",
+        "--output-on-failure"
+      ],
+      "log": "Internal ctest changing into directory: /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda\nTest project /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda\n    Start 1: relateanything_capi_c_header\n1/6 Test #1: relateanything_capi_c_header .............   Passed    0.04 sec\n    Start 2: relateanything_runtime_options\n2/6 Test #2: relateanything_runtime_options ...........   Passed    0.00 sec\n    Start 3: relateanything_runtime_defaults_frozen\n3/6 Test #3: relateanything_runtime_defaults_frozen ...   Passed    0.00 sec\n    Start 4: relateanything_capi_contract\n4/6 Test #4: relateanything_capi_contract .............   Passed    0.24 sec\n    Start 5: relateanything_ggml_self_test\n5/6 Test #5: relateanything_ggml_self_test ............   Passed    0.09 sec\n    Start 6: relateanything_ggml_cuda_self_test\n6/6 Test #6: relateanything_ggml_cuda_self_test .......   Passed    0.17 sec\n\n100% tests passed, 0 tests failed out of 6\n\nTotal Test time (real) =   0.54 sec\n",
+      "log_sha256": "c06ef2b970b862a3e8b63843eb9f2fe09c2ab017d029425c68f5df417afebb84",
+      "runtime_build": {
+        "backend": "cuda",
+        "build_files": {
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/CMakeCache.txt": "143574881b811fc596e001006fe0090916ee22563893153714810d248f5712cf"
+          },
+          "sha256": "86b326ba61ccdcdb2a760712da502184b837491d0d0d9c468c34a394eacc2f81"
+        },
+        "build_type": "Release",
+        "compiler": "c++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0\nCopyright (C) 2019 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+        "flags": " -O3 -DNDEBUG",
+        "ggml_commit": "8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b",
+        "source": {
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/CMakeLists.txt": "160597887197db17d73bb745571eaafab629450cbf5ca9b75171e2397a00e3f7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend.hpp": "89923f4c9927c62eac1c80523e8d78b3e8764af2ddbbc31a5686278491ca51cc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend_binding.h": "4375d11667036882e395b9ef1e140ebc0910a2843a6b70f49fbf614642cf5442",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/c_api.h": "1748471041bc79b9fdfa345ed7a05bb3e69f23878f0bdc0bc9e4c6baaf3ccff0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/full_model.hpp": "e4d04007d62cd291721095cf16fbdcdbf0d5c2776b293aa5277c40ac29d8350b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/gguf_model.hpp": "eef6abfa799616aa5d466ea2e12860c1eef11c849a53bc868819aaee279cb03c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/options.hpp": "5c7f5a4c7bc3d6663f8f283cd9a58de72cad391f17a5aa6dc47978c7eda50a28",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.h": "090c419b59fcbf6f0588e88f5337ff3db15b91d75196296ccf45256147451edb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.hpp": "2ad480f6db58e66d3f583ea28f60f1bad2a1b4541442a934c48a886045c625b8",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/types.hpp": "61daf6b8c6ca867ff28791f01e61724e4aeaeb3d00066236b188b19dda8d7dc0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/provenance.py": "88fd8efe37c2b1b653c84b0c8e450b1bd1516593ea209845fd9549e48b6d5b7f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/backend.cpp": "0c9bfc7a2c445c89394d4dc931500977c575b0ec34846afb840e91784879803a",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/c_api.cpp": "03e9ecc19f99b89bc788810a3bf8db7934fabe26a9afb492d7e5f09ff9ce30fb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/full_model.cpp": "25e49b794a6eb548b962268b3d4895b42d059e8630fd83b92e448c7e6bccb66f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/gguf_model.cpp": "a63b6540a7eb3298df0098d3639e9b738bbe72708a89e0e53eadc47ae78cbbc1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/image_io.cpp": "fa066a83e5fca5af9127ff90a2932042aea0ff779f86b3b2bd7ac1c8e5c5ddd7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/inference.cpp": "1234f5e66b945d6e41c9bfd8a34fddd35c365dcaf0b93d06b4bea43efc8c71ff",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/main.cpp": "e9cf74a2b3fcd850ed75fe64996db6092180883fe12fafa05ca51566524c2054",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/clip_tokenizer.hpp": "469f57954f9bfbc5b8646b1f8deb1fea82aa1525a68ee406a99a835c35053182",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/patches/0001-relateanything-ggml.patch": "de15bc039b037c8497806ed09e4cafdf52ffcb468c66da2a7ff77f96501da3b2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/relsgg/corpus_type_map.json": "0e6230a1cfd747404a2b82f6d47a0111e1d45f403a48259fda257bf16750346d"
+          },
+          "sha256": "aee226822d776084c41613566655bd6ecd6ec6a0b0af377f8ec38fc1689be709"
+        },
+        "binary": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml",
+        "binary_sha256": "d94bfac8a99be3953e8ed9a19b1890712daa057841f16c44a9068319d23050c4"
+      }
+    },
+    {
+      "backend": "vulkan",
+      "passed": 6,
+      "command": [
+        "ctest",
+        "--test-dir",
+        "cpp_ggml/build-vulkan",
+        "--output-on-failure"
+      ],
+      "log": "Internal ctest changing into directory: /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan\nTest project /home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan\n    Start 1: relateanything_capi_c_header\n1/6 Test #1: relateanything_capi_c_header .............   Passed    0.01 sec\n    Start 2: relateanything_runtime_options\n2/6 Test #2: relateanything_runtime_options ...........   Passed    0.00 sec\n    Start 3: relateanything_runtime_defaults_frozen\n3/6 Test #3: relateanything_runtime_defaults_frozen ...   Passed    0.00 sec\n    Start 4: relateanything_capi_contract\n4/6 Test #4: relateanything_capi_contract .............   Passed    0.21 sec\n    Start 5: relateanything_ggml_self_test\n5/6 Test #5: relateanything_ggml_self_test ............   Passed    0.16 sec\n    Start 6: relateanything_ggml_vulkan_self_test\n6/6 Test #6: relateanything_ggml_vulkan_self_test .....   Passed    0.21 sec\n\n100% tests passed, 0 tests failed out of 6\n\nTotal Test time (real) =   0.59 sec\n",
+      "log_sha256": "83f6cbe2e043a2203132c49c311ee702760e8c03b2159ccf7c31c898f4833fa6",
+      "runtime_build": {
+        "backend": "vulkan",
+        "build_files": {
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/CMakeCache.txt": "2cfa9a672a1e289b29edacc9109185be48af8b714924f00add568f6bb443e3e2"
+          },
+          "sha256": "c50e52fe6490cc715f7c88ecc2505e8e9f3449e32db696bf81176152030916a1"
+        },
+        "build_type": "Release",
+        "compiler": "c++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0\nCopyright (C) 2019 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+        "flags": " -O3 -DNDEBUG",
+        "ggml_commit": "8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b",
+        "source": {
+          "files": {
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/CMakeLists.txt": "160597887197db17d73bb745571eaafab629450cbf5ca9b75171e2397a00e3f7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend.hpp": "89923f4c9927c62eac1c80523e8d78b3e8764af2ddbbc31a5686278491ca51cc",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend_binding.h": "4375d11667036882e395b9ef1e140ebc0910a2843a6b70f49fbf614642cf5442",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/c_api.h": "1748471041bc79b9fdfa345ed7a05bb3e69f23878f0bdc0bc9e4c6baaf3ccff0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/full_model.hpp": "e4d04007d62cd291721095cf16fbdcdbf0d5c2776b293aa5277c40ac29d8350b",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/gguf_model.hpp": "eef6abfa799616aa5d466ea2e12860c1eef11c849a53bc868819aaee279cb03c",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/options.hpp": "5c7f5a4c7bc3d6663f8f283cd9a58de72cad391f17a5aa6dc47978c7eda50a28",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.h": "090c419b59fcbf6f0588e88f5337ff3db15b91d75196296ccf45256147451edb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.hpp": "2ad480f6db58e66d3f583ea28f60f1bad2a1b4541442a934c48a886045c625b8",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/types.hpp": "61daf6b8c6ca867ff28791f01e61724e4aeaeb3d00066236b188b19dda8d7dc0",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/provenance.py": "88fd8efe37c2b1b653c84b0c8e450b1bd1516593ea209845fd9549e48b6d5b7f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/backend.cpp": "0c9bfc7a2c445c89394d4dc931500977c575b0ec34846afb840e91784879803a",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/c_api.cpp": "03e9ecc19f99b89bc788810a3bf8db7934fabe26a9afb492d7e5f09ff9ce30fb",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/full_model.cpp": "25e49b794a6eb548b962268b3d4895b42d059e8630fd83b92e448c7e6bccb66f",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/gguf_model.cpp": "a63b6540a7eb3298df0098d3639e9b738bbe72708a89e0e53eadc47ae78cbbc1",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/image_io.cpp": "fa066a83e5fca5af9127ff90a2932042aea0ff779f86b3b2bd7ac1c8e5c5ddd7",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/inference.cpp": "1234f5e66b945d6e41c9bfd8a34fddd35c365dcaf0b93d06b4bea43efc8c71ff",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/main.cpp": "e9cf74a2b3fcd850ed75fe64996db6092180883fe12fafa05ca51566524c2054",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/clip_tokenizer.hpp": "469f57954f9bfbc5b8646b1f8deb1fea82aa1525a68ee406a99a835c35053182",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/patches/0001-relateanything-ggml.patch": "de15bc039b037c8497806ed09e4cafdf52ffcb468c66da2a7ff77f96501da3b2",
+            "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/relsgg/corpus_type_map.json": "0e6230a1cfd747404a2b82f6d47a0111e1d45f403a48259fda257bf16750346d"
+          },
+          "sha256": "aee226822d776084c41613566655bd6ecd6ec6a0b0af377f8ec38fc1689be709"
+        },
+        "binary": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-vulkan/relateanything-ggml",
+        "binary_sha256": "343579f46d23e517f14636c175faeb603a6f4ab4ebddf855fcec813175f8da3f"
+      }
+    }
+  ]
+}

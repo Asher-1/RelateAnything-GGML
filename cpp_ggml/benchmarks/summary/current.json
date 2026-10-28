@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "run_id": "20261024-current-r2",
+  "generated_utc": "2026-10-25T04:21:29.479228+00:00",
+  "report_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/reports/20261024-current-r2.zip",
+  "zip_file_name": "20261024-current-r2.zip",
+  "zip_bytes": 212257435,
+  "zip_sha256": "cb7b25437cc046bea1f69b6a8a5b947c61d3b68c431533bac36f370c25f10de0",
+  "report_files": 2276,
+  "source_run_json_sha256": "ce75be9f74b3dbcd78307c56f68067d118804bfc10f83a51071a5ee5eb2a7792"
+}

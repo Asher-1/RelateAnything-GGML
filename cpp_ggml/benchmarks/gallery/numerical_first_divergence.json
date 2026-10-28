@@ -1,0 +1,1022 @@
+[
+  {
+    "model": "relsgg-vits16",
+    "config": "cpu-f16",
+    "matched_logit_values": 92534932,
+    "equal_bits": 5545,
+    "bit_equal_fraction": 5.992331631042858e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.04159402847290039,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.31087589263916,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230266034
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.9107863306999207,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211340107
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "cpu-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 20075,
+    "bit_equal_fraction": 0.0002169450991761684,
+    "pair_logit_bit_equal_fraction": 0.030759702725020644,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.011565685272216797,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.3113861083984375,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230267104
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.9123294949531555,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211365997
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "cpu-q8_0",
+    "matched_logit_values": 92191078,
+    "equal_bits": 940,
+    "bit_equal_fraction": 1.0196214431943187e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9944233750745378,
+    "max_abs_error": 0.8253879547119141,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.363693714141846,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230376801
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.9223818778991699,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211534648
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "cuda-f16",
+    "matched_logit_values": 92534932,
+    "equal_bits": 5564,
+    "bit_equal_fraction": 6.0128644175153226e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.03605365753173828,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.311142921447754,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230266594
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.9109795093536377,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211343348
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "cuda-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 20405,
+    "bit_equal_fraction": 0.00022051131998454378,
+    "pair_logit_bit_equal_fraction": 0.030346820809248554,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.011538982391357422,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.311362266540527,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230267054
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.912322998046875,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211365888
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "cuda-q8_0",
+    "matched_logit_values": 92191078,
+    "equal_bits": 979,
+    "bit_equal_fraction": 1.061924886050253e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9944281454979129,
+    "max_abs_error": 1.3191030025482178,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.320839881896973,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230286930
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.918192446231842,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211464361
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "cuda-q8_0-f32-input",
+    "matched_logit_values": 92305696,
+    "equal_bits": 1552,
+    "bit_equal_fraction": 1.6813696957552868e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9962790697674418,
+    "max_abs_error": 0.8456273078918457,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.334288120269775,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230315133
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.9303494691848755,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211668322
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "vulkan-f16",
+    "matched_logit_values": 92515829,
+    "equal_bits": 5630,
+    "bit_equal_fraction": 6.0854451188023185e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9996899224806203,
+    "max_abs_error": 0.11124897003173828,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.311187744140625,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230266688
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.9111265540122986,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211345815
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "vulkan-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 20276,
+    "bit_equal_fraction": 0.00021911725185036067,
+    "pair_logit_bit_equal_fraction": 0.02332782824112304,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.011583805084228516,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.311371803283691,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230267074
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.9123274087905884,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211365962
+    }
+  },
+  {
+    "model": "relsgg-vits16",
+    "config": "vulkan-q8_0",
+    "matched_logit_values": 92305696,
+    "equal_bits": 1602,
+    "bit_equal_fraction": 1.7355375338917328e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9962790697674418,
+    "max_abs_error": 0.8454828262329102,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.312108039855957,
+      "candidate": -4.335131645202637,
+      "reference_bits": 3230268618,
+      "candidate_bits": 3230316902
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9123332500457764,
+      "candidate": -0.929802656173706,
+      "reference_bits": 3211366060,
+      "candidate_bits": 3211659148
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "cpu-f16",
+    "matched_logit_values": 92496726,
+    "equal_bits": 1565,
+    "bit_equal_fraction": 1.6919517778391423e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9993798449612403,
+    "max_abs_error": 0.9015786647796631,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.2561516761779785,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230151269
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.9192126393318176,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211481477
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "cpu-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 23812,
+    "bit_equal_fraction": 0.0002573298481485889,
+    "pair_logit_bit_equal_fraction": 0.021882741535920725,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.01842784881591797,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.258824825286865,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230156875
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.9181631803512573,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211463870
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "cpu-q8_0",
+    "matched_logit_values": 92305696,
+    "equal_bits": 1074,
+    "bit_equal_fraction": 1.1635251631708622e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9962790697674418,
+    "max_abs_error": 0.8360452651977539,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.295301914215088,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230233373
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.8960145711898804,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211092278
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "cuda-f16",
+    "matched_logit_values": 92496726,
+    "equal_bits": 1475,
+    "bit_equal_fraction": 1.5946510366215557e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9993798449612403,
+    "max_abs_error": 0.8993175029754639,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.254876136779785,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230148594
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.9193466305732727,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211483725
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "cuda-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 23630,
+    "bit_equal_fraction": 0.00025536302333912126,
+    "pair_logit_bit_equal_fraction": 0.020024772914946327,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.018430709838867188,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.258819580078125,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230156864
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        2
+      ],
+      "reference": -0.9856679439544678,
+      "candidate": -0.9856674671173096,
+      "reference_bits": 3212596412,
+      "candidate_bits": 3212596404
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "cuda-q8_0",
+    "matched_logit_values": 92267490,
+    "equal_bits": 1111,
+    "bit_equal_fraction": 1.2041077523621808e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9956636851520573,
+    "max_abs_error": 1.9939651489257812,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.284712314605713,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230211165
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.9116451740264893,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211354516
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "cuda-q8_0-f32-input",
+    "matched_logit_values": 92363005,
+    "equal_bits": 1754,
+    "bit_equal_fraction": 1.899028729089098e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9972093023255815,
+    "max_abs_error": 1.9477276802062988,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.258998870849609,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230157240
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.9177466034889221,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211456881
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "vulkan-f16",
+    "matched_logit_values": 92496726,
+    "equal_bits": 1526,
+    "bit_equal_fraction": 1.6497881233115212e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9993798449612403,
+    "max_abs_error": 0.9022719860076904,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.255693435668945,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230150308
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.9188245534896851,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211474966
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "vulkan-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 23679,
+    "bit_equal_fraction": 0.0002558925530955164,
+    "pair_logit_bit_equal_fraction": 0.01878612716763006,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.01842641830444336,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.258812427520752,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230156849
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.9181661009788513,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211463919
+    }
+  },
+  {
+    "model": "relsgg-vits16plus",
+    "config": "vulkan-q8_0",
+    "matched_logit_values": 92363005,
+    "equal_bits": 1729,
+    "bit_equal_fraction": 1.8719616149344644e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9972093023255815,
+    "max_abs_error": 1.9479491710662842,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.260128021240234,
+      "candidate": -4.259303569793701,
+      "reference_bits": 3230159608,
+      "candidate_bits": 3230157879
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.9181638956069946,
+      "candidate": -0.9178119897842407,
+      "reference_bits": 3211463882,
+      "candidate_bits": 3211457978
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "cpu-f16",
+    "matched_logit_values": 92534932,
+    "equal_bits": 8205,
+    "bit_equal_fraction": 8.866921737187854e-05,
+    "pair_logit_bit_equal_fraction": 0.00041288191577208916,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.050409555435180664,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.251577854156494,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230141677
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.5852564573287964,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205878622
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "cpu-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 33687,
+    "bit_equal_fraction": 0.0003640463041567913,
+    "pair_logit_bit_equal_fraction": 0.033236994219653176,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.017761707305908203,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.250118732452393,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230138617
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.5847837924957275,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205870692
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "cpu-q8_0",
+    "matched_logit_values": 92286593,
+    "equal_bits": 1187,
+    "bit_equal_fraction": 1.286210663340882e-05,
+    "pair_logit_bit_equal_fraction": 0.00020699648105982198,
+    "pair_set_jaccard": 0.9959689922480621,
+    "max_abs_error": 0.9046368598937988,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.280553817749023,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230202444
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.573010265827179,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205673165
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "cuda-f16",
+    "matched_logit_values": 92534932,
+    "equal_bits": 8356,
+    "bit_equal_fraction": 9.030103355995333e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.04922056198120117,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.2509589195251465,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230140379
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.585425853729248,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205881464
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "cuda-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 32932,
+    "bit_equal_fraction": 0.00035588722321641734,
+    "pair_logit_bit_equal_fraction": 0.03488852188274154,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.0177609920501709,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.250118255615234,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230138616
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.5847842693328857,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205870700
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "cuda-q8_0",
+    "matched_logit_values": 92305696,
+    "equal_bits": 1210,
+    "bit_equal_fraction": 1.3108616829019955e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9962790697674418,
+    "max_abs_error": 1.1086678504943848,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.275411605834961,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230191660
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.5756271481513977,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205717069
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "cuda-q8_0-f32-input",
+    "matched_logit_values": 92401211,
+    "equal_bits": 2174,
+    "bit_equal_fraction": 2.352783017097038e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.997829457364341,
+    "max_abs_error": 0.6438088417053223,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.277185440063477,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230195380
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.5923519730567932,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205997665
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "vulkan-f16",
+    "matched_logit_values": 92534932,
+    "equal_bits": 8299,
+    "bit_equal_fraction": 8.96850499657794e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.050350189208984375,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.251585006713867,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230141692
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.5853046178817749,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205879430
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "vulkan-f32",
+    "matched_logit_values": 92534932,
+    "equal_bits": 32966,
+    "bit_equal_fraction": 0.00035625465202697725,
+    "pair_logit_bit_equal_fraction": 0.022708505367464906,
+    "pair_set_jaccard": 1.0,
+    "max_abs_error": 0.017773866653442383,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.250114917755127,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230138609
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.584784746170044,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3205870708
+    }
+  },
+  {
+    "model": "relsgg-vitb16",
+    "config": "vulkan-q8_0",
+    "matched_logit_values": 92382108,
+    "equal_bits": 2155,
+    "bit_equal_fraction": 2.3327027783345234e-05,
+    "pair_logit_bit_equal_fraction": 0.0,
+    "pair_set_jaccard": 0.9975193798449612,
+    "max_abs_error": 0.6064634323120117,
+    "first_nonidentical_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "predicate_id": 0,
+      "predicate": "holding",
+      "reference": -4.249845504760742,
+      "candidate": -4.277378559112549,
+      "reference_bits": 3230138044,
+      "candidate_bits": 3230195785
+    },
+    "first_nonidentical_pair_logit": {
+      "sample": "000_9282",
+      "pair": [
+        0,
+        1
+      ],
+      "reference": -0.5847792625427246,
+      "candidate": -0.5927526950836182,
+      "reference_bits": 3205870616,
+      "candidate_bits": 3206004388
+    }
+  }
+]

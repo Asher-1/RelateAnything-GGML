@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "archive_file_name": "relate_datasets.zip",
+  "extract_dir_name": "relate_datasets",
+  "zip_bytes": 119359470,
+  "zip_sha256": "e0cf31c540dfa4ac8b122e7bc73c7d3070a5d385d17a7017229344a2b7895568",
+  "download_url": "https://huggingface.co/Asher-1/relateanything-ggml-full/resolve/main/assets/relate_datasets.zip",
+  "publication_status": "published",
+  "cache_relative_path": "download/relate_datasets.zip",
+  "extract_relative_path": "extract/relate_datasets",
+  "payload_members": 205,
+  "payload_files": 170,
+  "contents": [
+    "6 CC-licensed demo images",
+    "5 CC-licensed WebM demo videos",
+    "100 labelled benchmark images and annotations"
+  ],
+  "scope": "ACloudViewer demonstration and benchmark input assets; model weights are downloaded separately; original source dataset terms apply."
+}

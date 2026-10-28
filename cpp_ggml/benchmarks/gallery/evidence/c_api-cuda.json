@@ -1,0 +1,247 @@
+{
+  "producer": {
+    "sha256": "b6dc8ea7ae60338cc4102fbf2de0b7b52945351a54652db5e682273ae5193084",
+    "files": {
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/validate_c_api.py": "513117b9ac7778f710eb49e22e020cf2a784d560f3c08fc7921be5fae02b87dd",
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/tests/c_api_contract.cpp": "6c4b8af2c36d1d5bb5d714e4f1381ebd3d8fafc38cd2dae2ce242ca3ba64ad13"
+    }
+  },
+  "binary": {
+    "sha256": "82956e16e75cd500972b34953a1ec0fa62d76eb84d106cdcf6f4e4a832f2ba78",
+    "files": {
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract": "d47666a2182c5d381bd8d5a48c086157651669d52e1e5335526f2e5a4d639a67"
+    }
+  },
+  "runtime_build": {
+    "backend": "cuda",
+    "build_files": {
+      "files": {
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/CMakeCache.txt": "143574881b811fc596e001006fe0090916ee22563893153714810d248f5712cf"
+      },
+      "sha256": "86b326ba61ccdcdb2a760712da502184b837491d0d0d9c468c34a394eacc2f81"
+    },
+    "build_type": "Release",
+    "compiler": "c++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0\nCopyright (C) 2019 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "flags": " -O3 -DNDEBUG",
+    "ggml_commit": "8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b",
+    "source": {
+      "files": {
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/CMakeLists.txt": "160597887197db17d73bb745571eaafab629450cbf5ca9b75171e2397a00e3f7",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend.hpp": "89923f4c9927c62eac1c80523e8d78b3e8764af2ddbbc31a5686278491ca51cc",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend_binding.h": "4375d11667036882e395b9ef1e140ebc0910a2843a6b70f49fbf614642cf5442",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/c_api.h": "1748471041bc79b9fdfa345ed7a05bb3e69f23878f0bdc0bc9e4c6baaf3ccff0",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/full_model.hpp": "e4d04007d62cd291721095cf16fbdcdbf0d5c2776b293aa5277c40ac29d8350b",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/gguf_model.hpp": "eef6abfa799616aa5d466ea2e12860c1eef11c849a53bc868819aaee279cb03c",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/options.hpp": "5c7f5a4c7bc3d6663f8f283cd9a58de72cad391f17a5aa6dc47978c7eda50a28",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.h": "090c419b59fcbf6f0588e88f5337ff3db15b91d75196296ccf45256147451edb",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.hpp": "2ad480f6db58e66d3f583ea28f60f1bad2a1b4541442a934c48a886045c625b8",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/types.hpp": "61daf6b8c6ca867ff28791f01e61724e4aeaeb3d00066236b188b19dda8d7dc0",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/provenance.py": "88fd8efe37c2b1b653c84b0c8e450b1bd1516593ea209845fd9549e48b6d5b7f",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/backend.cpp": "0c9bfc7a2c445c89394d4dc931500977c575b0ec34846afb840e91784879803a",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/c_api.cpp": "03e9ecc19f99b89bc788810a3bf8db7934fabe26a9afb492d7e5f09ff9ce30fb",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/full_model.cpp": "25e49b794a6eb548b962268b3d4895b42d059e8630fd83b92e448c7e6bccb66f",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/gguf_model.cpp": "a63b6540a7eb3298df0098d3639e9b738bbe72708a89e0e53eadc47ae78cbbc1",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/image_io.cpp": "fa066a83e5fca5af9127ff90a2932042aea0ff779f86b3b2bd7ac1c8e5c5ddd7",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/inference.cpp": "1234f5e66b945d6e41c9bfd8a34fddd35c365dcaf0b93d06b4bea43efc8c71ff",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/main.cpp": "e9cf74a2b3fcd850ed75fe64996db6092180883fe12fafa05ca51566524c2054",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/clip_tokenizer.hpp": "469f57954f9bfbc5b8646b1f8deb1fea82aa1525a68ee406a99a835c35053182",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/patches/0001-relateanything-ggml.patch": "de15bc039b037c8497806ed09e4cafdf52ffcb468c66da2a7ff77f96501da3b2",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/relsgg/corpus_type_map.json": "0e6230a1cfd747404a2b82f6d47a0111e1d45f403a48259fda257bf16750346d"
+      },
+      "sha256": "aee226822d776084c41613566655bd6ecd6ec6a0b0af377f8ec38fc1689be709"
+    },
+    "binary": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml",
+    "binary_sha256": "d94bfac8a99be3953e8ed9a19b1890712daa057841f16c44a9068319d23050c4"
+  },
+  "rows": [
+    {
+      "model": "relsgg-vits16",
+      "dtype": "f32",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16-f32.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "9a2bed507999dfde6959f72e5276e480a2b185e7044efc142a8ae8b9d9b39db7",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16-f32.gguf": "ce90fb86c08716a45b9ca85f0bbfe74787966bf17eb267c3ad23f91094ced081",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vits16",
+      "dtype": "f16",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16-f16.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "f73ddaec1cef1e6e1517ca04d750eca3429953e9e26a44cec7969007f0dead4e",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16-f16.gguf": "e00c896a5ad816cdd6af285d63346baab27e5c002935dba59ab0a8e124828a59",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vits16",
+      "dtype": "q8_0",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16-q8_0.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "f9957ddd3d9e9ef8552a359456f8dc1104050ccd16a991bd0734522579d456f3",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16-q8_0.gguf": "ee168035fa5fa2dc334e159c70ab4785e1bf9c4758427c1264b59878200fa429",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "dtype": "f32",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16plus-f32.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "e74df5c6f94c62f7de89492bc2be38467bd1befaab67a67848c61dfb47723294",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16plus-f32.gguf": "996960494629efd0035379c2fa8ae7ca1ff0039b53d8ab61637e86b7e05ae52e",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "dtype": "f16",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16plus-f16.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "646240c5167f6a6570635c97b4ac14d3b367b97b1baa2a143a52d4375b63d596",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16plus-f16.gguf": "4e5631450416ec2496623631b7f7e2bde9f399570fe747fad1dd9a5f20fbcb37",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "dtype": "q8_0",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16plus-q8_0.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "df0dd9a0d3b0b49db1ceee2232a8cd3df3574c52a85f96e8d7b43799b5e13de7",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vits16plus-q8_0.gguf": "bb70680859abf090bb3942871a5932aa07155f6236e87c6999218ed14400c8f9",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vitb16",
+      "dtype": "f32",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vitb16-f32.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "be6ac6b5bd413547702cf8f6e9d887fe579c5e90761f148815e9a998e06b5f8c",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vitb16-f32.gguf": "1537ba73ae9042b9553774269a4bf44ecfba7ea8776cac44acbea02090fe0934",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vitb16",
+      "dtype": "f16",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vitb16-f16.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "eedcf4783038e58c51a8d9ded85dfbb5bccddfc3c6d5185d75fcbaaef9439e86",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vitb16-f16.gguf": "61222e4099c277d5272524507721fc6d65649051bae23984a06fe5cacb8e0806",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vitb16",
+      "dtype": "q8_0",
+      "backend": "cuda",
+      "command": [
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-capi-contract",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vitb16-q8_0.gguf",
+        "cuda",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip"
+      ],
+      "returncode": 0,
+      "stdout": "C_API_CONTRACT PASS\n",
+      "stderr": "ggml_cuda_init: found 1 CUDA devices (Total VRAM: 12015 MiB):\n  Device 0: NVIDIA GeForce RTX 3060, compute capability 8.6, VMM: yes, VRAM: 12015 MiB\ngguf_init_from_file: failed to open GGUF file '/absent/relateanything-model.gguf' (No such file or directory)\n",
+      "inputs": {
+        "sha256": "2ca7e84ee28badbf4bee225103b9942cca89d0e721be750b2fe10bc2dc2351fa",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/gguf/relsgg-vitb16-q8_0.gguf": "61bc2a07233a1d0e189dbcab96736d38afa9f9ade8d8028b327e3aa7a12c3dd5",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/runs/20261009-options-alignment/artifacts/full_graph/image_requests/000_9282.raip": "b2627219a5cb69ce380e0da51b205ac66bdff90d331db8b50f4076cff77d3c38"
+        }
+      }
+    }
+  ]
+}

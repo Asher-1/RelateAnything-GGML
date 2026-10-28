@@ -1,0 +1,178 @@
+{
+  "status": "pass",
+  "browser_version": "133.0.6943.98",
+  "checks": [
+    {
+      "model": "relsgg-vits16",
+      "config": "cpu-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "cpu-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "cpu-q8_0",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "cuda-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "cuda-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "cuda-q8_0",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "cuda-q8_0-f32-input",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "vulkan-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "vulkan-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16",
+      "config": "vulkan-q8_0",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "cpu-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "cpu-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "cpu-q8_0",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "cuda-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "cuda-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "cuda-q8_0",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "cuda-q8_0-f32-input",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "vulkan-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "vulkan-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "config": "vulkan-q8_0",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "cpu-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "cpu-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "cpu-q8_0",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "cuda-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "cuda-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "cuda-q8_0",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "cuda-q8_0-f32-input",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "vulkan-f16",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "vulkan-f32",
+      "samples": 50
+    },
+    {
+      "model": "relsgg-vitb16",
+      "config": "vulkan-q8_0",
+      "samples": 50
+    }
+  ],
+  "rendered_model_config_samples": 1500,
+  "png_figures": 42,
+  "svg_figures": 42,
+  "mobile_checks": [
+    {
+      "width": 390,
+      "document_width": 390
+    },
+    {
+      "width": 768,
+      "document_width": 768
+    }
+  ],
+  "index_sha256": "d2d6a7dda28211493225d48c98312800e2523cb01e76b0f651fa9e27bf51fff9",
+  "test_zip_sha256": "7b61e73d3e1091d654961f06fbab847760ed39f20924a285bae881cfddb2b144",
+  "test_samples": 100,
+  "inference_ready_samples": 99,
+  "comparison_index_sha256": "17f2febacfc24f23a23af612d95df378ab0128824539b7c4ea53bb7f66798b8d",
+  "comparison_index_images": 202,
+  "original_image_grids": 150,
+  "page_errors": [],
+  "failed_requests": []
+}

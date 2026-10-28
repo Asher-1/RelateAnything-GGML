@@ -1,0 +1,927 @@
+{
+  "time_utc": "2026-10-09T04:23:48.613981+00:00",
+  "retained_run": "outputs/runs/20261009-options-alignment",
+  "removed_bytes": 60376018415,
+  "entries": [
+    {
+      "path": "outputs/archive/20261008-accelerated",
+      "bytes": 17718692178,
+      "files": 7500,
+      "identity": {
+        "run.json": {
+          "sha256": "75d8befa396f393d23b262157b1d993fd67a41f6599c65ba28e2a71ee4dd5a54",
+          "bytes": 348
+        },
+        "relocation.json": {
+          "sha256": "4f0340050849ccb8116862538913ee94b3c40ae43c992061982ffee39de9f06d",
+          "bytes": 1532152
+        }
+      },
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "outputs/archive/september-full-graph",
+      "bytes": 10651811553,
+      "files": 2589,
+      "identity": {
+        "run.json": {
+          "sha256": "0c517a4f74600f2f7154a836d02b82911e669bfcb7ecd14abd23ed52f7919a17",
+          "bytes": 340
+        },
+        "relocation.json": {
+          "sha256": "a521eb7fa45c914cdddd063ef85ebccf282e932bd2c5cbb94ddf7fc913613965",
+          "bytes": 529834
+        }
+      },
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "outputs/runs/20261008-strict",
+      "bytes": 23416172951,
+      "files": 11342,
+      "identity": {
+        "run.json": {
+          "sha256": "89340996dac57a5b20576b8474ce682d81476bcb47ea66aab962e1a6e2d12b80",
+          "bytes": 347
+        },
+        "relocation.json": {
+          "sha256": "8d316391f4ec0199bcb3bc3e69be2cf14dfcc2a7e868ac5ce61026e0489d5142",
+          "bytes": 2257539
+        }
+      },
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "outputs/probes/strict-tiles-stages",
+      "bytes": 112109591,
+      "files": 115,
+      "identity": {
+        "summary.json": {
+          "sha256": "0551f146847bdccf4e26c25e9fc1ea6d9e84bd5b215869138440ca6e1eac96d4",
+          "bytes": 101862
+        }
+      },
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_vulkan_f32",
+      "bytes": 36067976,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_debug6",
+      "bytes": 36067976,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_debug5",
+      "bytes": 26027160,
+      "files": 23,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_cuda_f32",
+      "bytes": 36067976,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_vits16_f16",
+      "bytes": 0,
+      "files": 0,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph",
+      "bytes": 73097888,
+      "files": 2224,
+      "identity": {
+        "summary.json": {
+          "sha256": "30217bfa5df88a50a84499b0a3cde48c5abb39c37692eaecdbcea4de39468d32",
+          "bytes": 34900
+        },
+        "README.md": {
+          "sha256": "4b6b7f5965fc2270a00812f62cf12d3fd6791a21a656fb205dd60516aaa5907c",
+          "bytes": 16021
+        }
+      },
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_cuda_device_deform",
+      "bytes": 36330120,
+      "files": 26,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_vits16_f32",
+      "bytes": 36067976,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/continuation_20261008",
+      "bytes": 0,
+      "files": 0,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_runtime_vocab",
+      "bytes": 36067976,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_vits16_q8b",
+      "bytes": 36067976,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_debug3",
+      "bytes": 26027160,
+      "files": 23,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_vits16_q8",
+      "bytes": 36067976,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_vitb16_f32",
+      "bytes": 38072456,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_debug4",
+      "bytes": 26027160,
+      "files": 23,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/alignment_20261008",
+      "bytes": 0,
+      "files": 0,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_vits16_f16b",
+      "bytes": 36067976,
+      "files": 25,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_debug",
+      "bytes": 2408448,
+      "files": 2,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_validation",
+      "bytes": 1367753655,
+      "files": 956,
+      "identity": {
+        "summary.json": {
+          "sha256": "ff2be1073a5315dc87530a9acddf0d955a1ce5a442b128232285f9c4005315f6",
+          "bytes": 85367
+        },
+        "README.md": {
+          "sha256": "79db712b417985d4139c63337943138d9966a4039b7c3713671b6ef2ed715d4a",
+          "bytes": 6326
+        }
+      },
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/full_graph_debug2",
+      "bytes": 2408448,
+      "files": 2,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/explicit_f32_attention",
+      "bytes": 280820701,
+      "files": 215,
+      "identity": {
+        "summary.json": {
+          "sha256": "d2c0eca3af2be302a9f10a8bcf343531ffa6d0ebca0adb9e3b8c4527a0d4f60f",
+          "bytes": 19015
+        },
+        "README.md": {
+          "sha256": "43c15b1378cfd7109fc2efb662f50570cfcfc80fb3119f964871865f75095589",
+          "bytes": 1175
+        }
+      },
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/compact_validation",
+      "bytes": 60809557,
+      "files": 35,
+      "identity": {
+        "summary.json": {
+          "sha256": "24bdbd7c58e97fd9cfb720941199a965d213c2a06831fde3ac302f841c321581",
+          "bytes": 2730
+        }
+      },
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_50_audit.json",
+      "bytes": 1822,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/benchmark_provenance.json",
+      "bytes": 7864,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_50_contact_sheet.png",
+      "bytes": 2751290,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_verification.json",
+      "bytes": 522,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/dependencies.json",
+      "bytes": 4463,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_50_python.png",
+      "bytes": 109100,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/results.jsonl",
+      "bytes": 8322,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/upstream_inventory_check.json",
+      "bytes": 244,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_validation_audit.json",
+      "bytes": 3192,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ggml_patch_audit.json",
+      "bytes": 1105,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vitb16-q8_0-container.json",
+      "bytes": 738,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/pytorch_outputs.png",
+      "bytes": 371519,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/results.png",
+      "bytes": 61473,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/source_fingerprint.json",
+      "bytes": 1436,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/pytorch_cuda.png",
+      "bytes": 80892,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_50_audit.png",
+      "bytes": 145028,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/hf_release_verification.json",
+      "bytes": 2012,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vits16-f32-container.json",
+      "bytes": 719,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/patch_replay.json",
+      "bytes": 1057,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/model_metrics.png",
+      "bytes": 79387,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_50_python.json",
+      "bytes": 1179737,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vits16plus-f16-container.json",
+      "bytes": 731,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ctest_results.json",
+      "bytes": 5277,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vitb16-f16-container.json",
+      "bytes": 719,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/PYTORCH_CUDA.md",
+      "bytes": 2100,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/alignment_retention_20261008.json",
+      "bytes": 1627688,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_validation_audit.png",
+      "bytes": 161539,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/parity.png",
+      "bytes": 56570,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vits16plus-f32-container.json",
+      "bytes": 731,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/PARITY.md",
+      "bytes": 1848,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/parity_results.json",
+      "bytes": 1482,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/alignment_retention_20261008.md",
+      "bytes": 2120,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/model_metrics.json",
+      "bytes": 398,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/inference",
+      "bytes": 21431,
+      "files": 3,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_python_samples.png",
+      "bytes": 675029,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vits16-q8_0-container.json",
+      "bytes": 737,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/python_stage_trace_vits16.json",
+      "bytes": 12449,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/ra4m_python_samples.json",
+      "bytes": 22054,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vits16plus-q8_0-container.json",
+      "bytes": 749,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vitb16-f32-container.json",
+      "bytes": 719,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/relsgg-vits16-f16-container.json",
+      "bytes": 719,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/pytorch_cuda_results.jsonl",
+      "bytes": 3319,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/python_stage_trace.json",
+      "bytes": 12456,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "benchmarks/python_stage_trace_vitb16.json",
+      "bytes": 12452,
+      "files": 1,
+      "identity": {},
+      "reason": "superseded by complete 20261009-native-alignment"
+    },
+    {
+      "path": "outputs/probes/20261009-operator-audit/full_graph",
+      "files": 1412,
+      "bytes": 6056265825,
+      "retained_identity": {
+        "summary.json": "e1a4bf5a86c5b6b3baf6b1d54c470b06d946b7e545fc81ea5618357d8d3701b2",
+        "relsgg-vits16plus/cuda-f16/run_provenance.json": "c6286d59fd3809cb846ad2ecaa9f5455487d2bfff7cf390060a520c9b85f802f",
+        "relsgg-vits16plus/cuda-f16/results.json": "e04401aae7b984caf3753a2b4fa76848407d60d1201171eecc421c1e8389cde0",
+        "relsgg-vits16plus/cuda-q8_0/run_provenance.json": "aed40488758a37311b0dc9f4af6d9166556f2d57fa0a779afe3616e0d548f609",
+        "relsgg-vits16plus/cuda-q8_0/results.json": "bcd91ec1c39953a89725093d1d6f57b1c1a667080a8f79a81177cd92686c9725",
+        "relsgg-vits16plus/python/run_provenance.json": "9fe6bea60b967dff8488ad61b034cdf92f0115b3438e5debc3464cfc012748c1",
+        "relsgg-vits16plus/python/results.json": "3f901724d95111660cd2185c4386fbc62a9d221299cc90dc4117019b0139c454",
+        "relsgg-vits16plus/cuda-f32/run_provenance.json": "f6990c27f453e00c3c81851cfb5bff4df2e9d826df51d71af57aea38b223944a",
+        "relsgg-vits16plus/cuda-f32/results.json": "3aa35b27df2fb56dc3f2e90964936bb26d96e48c462676aa7ccc4231fa7a2179",
+        "relsgg-vits16/cuda-f16/run_provenance.json": "da4caf71f67693cc74928bf3f2066248caa5e0057b62489db93dc43dcaef684d",
+        "relsgg-vits16/cuda-f16/results.json": "ccc48f0afd82a0918979d0ccb390aa33f7e1f4d748e1ec51731828b765c2474d",
+        "relsgg-vits16/cuda-q8_0/run_provenance.json": "e5c329fe8b1ee91fd59a07fbe53328992c43050c440ef0b19b5f3e826595783e",
+        "relsgg-vits16/cuda-q8_0/results.json": "f6f8dc1d5d2915fdbb83497750e961a5e67a108eb6c7af74017392325fed6ed9",
+        "relsgg-vits16/python/run_provenance.json": "1ae26246bd92fabb6226374087a93548c88a7aed0a6b998b162d60bf5456512b",
+        "relsgg-vits16/python/results.json": "015b24093b47cac5ba49c6aa5a3deaa4c0718666f5d4d3dd96298d748af56ef4",
+        "relsgg-vits16/cuda-f32/run_provenance.json": "e7084aa2640ae57fab04c7eb07ab39772d82e4cbb312722b578079ae1e41457c",
+        "relsgg-vits16/cuda-f32/results.json": "245f3439bee4abc4633227248532bb58ef394d7c1f0367a7134ebc2c85103b21",
+        "relsgg-vitb16/cuda-f16/run_provenance.json": "d439bfdbaa6d2f17931b881c4c89cd94a4626d6d139c988fcb34e429a5223b76",
+        "relsgg-vitb16/cuda-f16/results.json": "430bebe5ce726971d6b44cba4d266858a8c7a2e018ce972cc7ee82350f41a9e2",
+        "relsgg-vitb16/cuda-q8_0/run_provenance.json": "af36a23d210c84f485b258a9d526a689fda4f5fc7f5b6f4ecb85002b3eee74ff",
+        "relsgg-vitb16/cuda-q8_0/results.json": "00e40053bcc99e9b6034f364324ff30573c035b535761e0cc05b5a445a387d8d",
+        "relsgg-vitb16/python/run_provenance.json": "b25b3182d2145720265d58c767a2bc253426262779426d62acf107f7ddbc541a",
+        "relsgg-vitb16/python/results.json": "a5334ea4c8d21917a6318a33e02be228bde9d07fc5d4112f006e5be146325525",
+        "relsgg-vitb16/cuda-f32/run_provenance.json": "3ad0c559f6eedda784fe062084a3e76a2cd6174c33e74993a9117cdb5d216f45",
+        "relsgg-vitb16/cuda-f32/results.json": "8fe94bab1547987ef04c38bb5941be3f46d206925c9e0ae3bbf5a998f49670a5"
+      },
+      "reason": "superseded by finalized precise patch/softmax builds and fresh CUDA benchmarks; summaries retained, previous raw artifacts removed"
+    },
+    {
+      "path": "outputs/probes/20261009-operator-audit/softmax",
+      "files": 253,
+      "bytes": 185204517,
+      "retained_identity": {
+        "summary.json": "fe02ea8009e201b4f5abbe81461cef58d798872677b0ce7b99536e9b18e64788"
+      },
+      "reason": "superseded by finalized precise patch/softmax builds and fresh CUDA benchmarks; summaries retained, previous raw artifacts removed"
+    }
+  ],
+  "additional_deletions": [
+    {
+      "path": "cpp_ggml/test_data/tmp-4-ref.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "76ca13d96ef8f58e5ba269adb9fb64b149688bd1ab7741a3366ef5326c84f75d",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo-weights.npz",
+      "bytes": 6494,
+      "files": 1,
+      "sha256": "7a9926a9bc311711089c39641d096e41bb085f667e0842072e9211916b2c3218",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-6.raio",
+      "bytes": 400,
+      "files": 1,
+      "sha256": "af8670d5784fe6f1ccd91035804035c30530d82ebe60be65077f0b35c16c7c82",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo-f16.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "adbc4b44291b9b2f3c158cff0bd80642ad9a26fb65de4bf360b1832f1b3ead90",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-3-ref.raoo",
+      "bytes": 184,
+      "files": 1,
+      "sha256": "3c181d0aaeacf4e6f79c64d93f64a8087fdf183f6070cd94e6aba4b5bcba15da",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/check.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "58fe642a754a036f8f9c5f0393006623944d68a09b4f9e41106fc4ebe7e1dff3",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/two.raim",
+      "bytes": 2408499,
+      "files": 1,
+      "sha256": "bc8ce4b4033ea1f0cb5360b474d9a44ef11d19441147b211d39482eaac1edcf5",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo-f32-v3-new.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "06c2e7926c11fbdd0741e89ffb6fc9f2c164a8a3995e8a46ab72b619699f98de",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-3.raoo",
+      "bytes": 184,
+      "files": 1,
+      "sha256": "33dbb69944c6d24f3e25dd712fb5c83b3f190e0367a481ea479fc044e3547a2f",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo-reference.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "76ca13d96ef8f58e5ba269adb9fb64b149688bd1ab7741a3366ef5326c84f75d",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/python_stage_trace_vits16.npz",
+      "bytes": 20960469,
+      "files": 1,
+      "sha256": "cbd2a21bf51b813a35115159b2ebef3f50891a5f6b8e91547ff27c3ea24d37d0",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-2.raoo",
+      "bytes": 72,
+      "files": 1,
+      "sha256": "e24b5881da4a8096cfae23c605504c15000ce2f7ed2be1859b8acffc7712fd5f",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo.raio",
+      "bytes": 271,
+      "files": 1,
+      "sha256": "74496354969ea99ebed7cec46582b171fb0e9b9bb5727e412fc99456040fd3c9",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-2.raio",
+      "bytes": 144,
+      "files": 1,
+      "sha256": "609865dde72222a38e5f3d523789b424ef729bc0ab960f51c7bd713a6ca805ae",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo-v2.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "ec76c3fc9558f72a091972db80b9f9e75d8580947f255bf3600edf311b773e5e",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo-q8_0.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "73b883fd158752e67485982cfb10c7f626e6ac9b54f458036fee0aa47fcdee75",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-4.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "58fe642a754a036f8f9c5f0393006623944d68a09b4f9e41106fc4ebe7e1dff3",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/python_stage_trace_vitb16.npz",
+      "bytes": 22274990,
+      "files": 1,
+      "sha256": "6f1cad4b18fe58cd7cf286ef6c891f1061ddfab7a2eb7e2b2437ea5ac728e3aa",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-5-ref.raoo",
+      "bytes": 576,
+      "files": 1,
+      "sha256": "4098ea9151fc40e2235a26ba6cf6dc92dc8071b0f1c4368ec72b6c71f00b4f0c",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-5.raio",
+      "bytes": 336,
+      "files": 1,
+      "sha256": "1b47f2b2ac48ba650caf59d3078050de37348b0787453b751a462927dc7e50a2",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-2-ref.raoo",
+      "bytes": 72,
+      "files": 1,
+      "sha256": "311173f587be2dee1c636364ec16e4543ce4ec1992b31c7d93c5e50ed798ac0b",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/trace.raim",
+      "bytes": 2408612,
+      "files": 1,
+      "sha256": "10d24d2a6be4f8920347313911b639f9eb83db229001175e9bcb3d2b2f1726fd",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-4.raio",
+      "bytes": 272,
+      "files": 1,
+      "sha256": "2e56f0bf5a8359ee0f2a5791403166630b8864c5539da6a5bf8784904f1c31b5",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo-v2.raio",
+      "bytes": 272,
+      "files": 1,
+      "sha256": "2e56f0bf5a8359ee0f2a5791403166630b8864c5539da6a5bf8784904f1c31b5",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/demo-f32-v3.raoo",
+      "bytes": 352,
+      "files": 1,
+      "sha256": "ec76c3fc9558f72a091972db80b9f9e75d8580947f255bf3600edf311b773e5e",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-5.raoo",
+      "bytes": 576,
+      "files": 1,
+      "sha256": "eec713bf3501bcd2ae809cddcbc8128f68a1bc2da29f49ef1303e81ed1ccb5e9",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-3.raio",
+      "bytes": 208,
+      "files": 1,
+      "sha256": "f7c40809a30501e764657e21efe03d169316ee6d94aca19a3fb3b83f50f91e6e",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-6-ref.raoo",
+      "bytes": 856,
+      "files": 1,
+      "sha256": "2e3d1260c86bee9672149f3edaed203ceeef45c8ed63ab60978b8ddbea27bc56",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/tmp-6.raoo",
+      "bytes": 856,
+      "files": 1,
+      "sha256": "a0381e50c43c3a474d3316d22e2d424b793d65083afd425a24def32fed90ec58",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "cpp_ggml/test_data/python_stage_trace.npz",
+      "bytes": 20941312,
+      "files": 1,
+      "sha256": "86425f2e36596bed52a962b11f863cfe4f8338e0e8ebea1930aeed0ca6031485",
+      "reason": "obsolete generated trace or duplicate fixture/temp output; canonical assets remain in subdirectories"
+    },
+    {
+      "path": "test_data/metric_subsets/spatialsense/images/nyu_living_room_0012_r-1295837982.994336-1005920793.png",
+      "bytes": 410575,
+      "sha256": "1ab74fdbe9ab97f58caa3dba15a48efbeb607d8fa9feb47888a10a0efddc7dc7",
+      "reason": "unreferenced by the six retained test manifests",
+      "deleted_utc": "2026-10-09T08:11:55.000702+00:00"
+    },
+    {
+      "path": "test_data/metric_subsets/spatialsense/images/nyu_study_0006_r-1315326208.670485-1262522520.png",
+      "bytes": 341242,
+      "sha256": "52972b937be5e474f05d803fdb67acad2818fc1995ffbf049f6ca58a1c3f5b8a",
+      "reason": "unreferenced by the six retained test manifests",
+      "deleted_utc": "2026-10-09T08:11:55.001654+00:00"
+    },
+    {
+      "path": "test_data/metric_subsets/spatialsense/images/nyu_bathroom_0021_r-1315443490.702493-425249685.png",
+      "bytes": 372015,
+      "sha256": "4e252d7d86eae23ff572a5d7967e44c323fdab76244d265c07280d0a52e6d68a",
+      "reason": "unreferenced by the six retained test manifests",
+      "deleted_utc": "2026-10-09T08:11:55.002527+00:00"
+    },
+    {
+      "path": "outputs/runs/20261009-native-alignment",
+      "bytes": 19795979957,
+      "files": 9738,
+      "identity": {
+        "run.json": {
+          "sha256": "9d4063feccda6b5615d9b9aa904571290411dabca9ef376b974157375af4a7c5",
+          "bytes": 30737
+        },
+        "reports.json": {
+          "sha256": "5dd0e6d7d6751dadab0d431d294c4b4734e7aca3d17a47e2e1de447b8274d192",
+          "bytes": 333720
+        },
+        "artifacts/acceptance_status.json": {
+          "sha256": "1e698664d22f6ad47a97243e19c4b9ed5ce598b4f89ade9718ec9c067dfb3c9a",
+          "bytes": 4196
+        }
+      },
+      "reason": "superseded after complete run/report/source hashes and offline browser audit passed",
+      "deleted_utc": "2026-10-09T08:18:21.210884+00:00"
+    },
+    {
+      "path": "outputs/probes",
+      "bytes": 1007935686,
+      "files": 264,
+      "identity": {
+        "report-layout/gallery/provenance.json": {
+          "sha256": "56b2bec58682b8b309ffa0ed740ce23621e5924be35bf238aaba3354dccc5af3",
+          "bytes": 3272
+        }
+      },
+      "reason": "superseded after complete run/report/source hashes and offline browser audit passed",
+      "deleted_utc": "2026-10-09T08:18:22.477560+00:00"
+    },
+    {
+      "path": "scripts/__pycache__",
+      "bytes": 771128,
+      "files": 56,
+      "reason": "regenerable Python bytecode after completed verification"
+    }
+  ],
+  "removed_bytes_total": 75009367499,
+  "last_cleanup_utc": "2026-10-09T08:18:22.509124+00:00",
+  "latest_cleanup_utc": "2026-10-09T09:59:39.073330+00:00",
+  "retained_runs": [
+    "outputs/runs/20261009-options-alignment",
+    "outputs/runs/20261009-strict-arithmetic"
+  ],
+  "depthwise_7x7_closeout": {
+    "verified_date": "2026-10-28",
+    "run_id": "20261026-dw7vk-release",
+    "acceptance": "complete",
+    "steps": "33/33",
+    "g1_numeric": "63/63",
+    "g2_gpu_performance": "42/42",
+    "auto_precision": "63/63",
+    "fresh_raw_audit": {"configurations": 70, "primary_images": 3150, "diagnostic_images": 350},
+    "regression_tests": {"python": "30/30", "ctest_cpu": "5/5", "ctest_cuda": "6/6", "ctest_vulkan": "6/6"},
+    "cleanup_status": "complete",
+    "cleanup_verified_date": "2026-10-28",
+    "post_cleanup_verification": {
+      "report_sources": "verify-run passed",
+      "raw_audit": {"configurations": 70, "primary_images": 3150, "diagnostic_images": 350, "status": "passed"},
+      "cuda_old_new_rafo": "48/48 byte-identical",
+      "vulkan_old_new_rafo": "48/48 byte-identical"
+    },
+    "deleted_paths_actor": "user",
+    "pending_paths": [],
+    "deleted_files": [
+      "outputs/scratch/dwconv/conv2d_dw7.comp.draft",
+      "outputs/scratch/dwconv/perf2.py"
+    ],
+    "deleted_paths": [
+      {"path": "outputs/scratch/dwconv/precheck", "observed_bytes_including_directory_metadata": 4078430421},
+      {"path": "outputs/scratch/dwconv/rafo-final", "observed_bytes_including_directory_metadata": 469647406},
+      {"path": "outputs/scratch/dwconv/lib-old", "observed_bytes_including_directory_metadata": 134545463},
+      {"path": "outputs/scratch/dwconv/lib-old-vk", "observed_bytes_including_directory_metadata": 55979635}
+    ],
+    "previous_blocker": "安全删除工具不支持目录；CUDA 旧库超过 20 MB 限制；24 个 9.8 MB RAFO 删除均返回 IDE recordFileDelete 失败，随后磁盘复核仍存在。没有重试大文件，也没有绕过安全删除工具。",
+    "retained_evidence": [
+      "outputs/runs",
+      "outputs/probes/cuda-f32",
+      "outputs/scratch/dwconv/rafo-old",
+      "outputs/scratch/dwconv/rafo-new",
+      "outputs/scratch/dwconv/rafo-vk-old",
+      "outputs/scratch/dwconv/rafo-vk-new",
+      "outputs/scratch/dwconv/ab.out",
+      "outputs/scratch/dwconv/ab-vk.out",
+      "outputs/scratch/dwconv/vkprof"
+    ],
+    "note": "用户删除四个指定目录后，逐路径核验文件与符号链接均不存在，verify-run 再次通过；被删除数据原占约 4.4 GiB（含目录元数据，非磁盘空闲量实测）。正式 run、profiling 和新旧数值对照保留。只更新本地 current 报告视图；未修改正式 run 的登记源、未提交 Git、未上传外部发布。"
+  }
+}

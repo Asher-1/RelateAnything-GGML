@@ -1,0 +1,277 @@
+{
+  "scope": "same official F32 input; next boundary after exact native patch embedding",
+  "torch": "2.6.0+cu118",
+  "rows": [
+    {
+      "model": "relsgg-vits16",
+      "epsilon": 1e-05,
+      "shape": [
+        1,
+        789,
+        384
+      ],
+      "against_official": {
+        "official_layer_norm": {
+          "bit_equal_fraction": 1.0,
+          "rmse": 0.0,
+          "max_abs": 0.0,
+          "first_difference": null
+        },
+        "welford_then_separate_affine": {
+          "bit_equal_fraction": 0.8571603031263202,
+          "rmse": 9.779723167861861e-08,
+          "max_abs": 3.814697265625e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              7
+            ],
+            "actual": -2.5808491706848145,
+            "expected": -2.5808489322662354,
+            "actual_bits": 3223661730,
+            "expected_bits": 3223661729
+          }
+        },
+        "one_pass_sum_square_separate_affine": {
+          "bit_equal_fraction": 0.7834151880016899,
+          "rmse": 1.6013247427376385e-07,
+          "max_abs": 5.7220458984375e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              16
+            ],
+            "actual": -2.9140539169311523,
+            "expected": -2.9140541553497314,
+            "actual_bits": 3225059292,
+            "expected_bits": 3225059293
+          }
+        }
+      },
+      "native_against_official": {
+        "bit_equal_fraction": 0.7850060730882974,
+        "rmse": 1.6152910286484445e-07,
+        "max_abs": 7.62939453125e-06,
+        "first_difference": {
+          "index": [
+            0,
+            0,
+            15
+          ],
+          "actual": -1.825178623199463,
+          "expected": -1.8251785039901733,
+          "actual_bits": 3219758964,
+          "expected_bits": 3219758963
+        }
+      },
+      "native_against_welford_separate_affine": {
+        "bit_equal_fraction": 0.8798815747782003,
+        "rmse": 1.4267230120219055e-07,
+        "max_abs": 7.62939453125e-06,
+        "first_difference": {
+          "index": [
+            0,
+            0,
+            7
+          ],
+          "actual": -2.5808489322662354,
+          "expected": -2.5808491706848145,
+          "actual_bits": 3223661729,
+          "expected_bits": 3223661730
+        }
+      },
+      "source": {
+        "sha256": "e5fc431500a792fb05f1d4d8969bc08922a5ab3dc82df52b2cfc9512886e5e74",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/pytorch/relsgg-vits16/model.pth": "e0c236553c90fb90e8e8c277f7640d801c2cf58652f5007235e8b029e556aad6",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/audit_layer_norm.py": "6799e945e262c4860bf92d19a94fe00191eca0f490306c54488e1ef58bfb1d0f",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/precise_patch_stages/relsgg-vits16/cuda-f32/stages/backbone_norm1.f32": "5e981f9d927a8bf13f7c41fbaa8e73444bd8ffd165e0de45c7dea71c6b3494ab",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/precise_patch_stages/traces_cuda/python_stage_trace_vits16.npz": "50b3ea3738537db7c1ecf52f0efc4bd1ca514927b61b81e6827968b9f508b72c"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vits16plus",
+      "epsilon": 1e-05,
+      "shape": [
+        1,
+        789,
+        384
+      ],
+      "against_official": {
+        "official_layer_norm": {
+          "bit_equal_fraction": 1.0,
+          "rmse": 0.0,
+          "max_abs": 0.0,
+          "first_difference": null
+        },
+        "welford_then_separate_affine": {
+          "bit_equal_fraction": 0.6809681294888044,
+          "rmse": 6.453152073454269e-08,
+          "max_abs": 1.9073486328125e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              1
+            ],
+            "actual": -0.044263340532779694,
+            "expected": -0.044263336807489395,
+            "actual_bits": 3174387066,
+            "expected_bits": 3174387065
+          }
+        },
+        "one_pass_sum_square_separate_affine": {
+          "bit_equal_fraction": 0.5030596482889734,
+          "rmse": 1.1206072176469505e-07,
+          "max_abs": 5.7220458984375e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              1
+            ],
+            "actual": -0.04426335543394089,
+            "expected": -0.044263336807489395,
+            "actual_bits": 3174387070,
+            "expected_bits": 3174387065
+          }
+        }
+      },
+      "native_against_official": {
+        "bit_equal_fraction": 0.49697665821715253,
+        "rmse": 1.1000655004239922e-07,
+        "max_abs": 5.7220458984375e-06,
+        "first_difference": {
+          "index": [
+            0,
+            0,
+            1
+          ],
+          "actual": -0.044263340532779694,
+          "expected": -0.044263336807489395,
+          "actual_bits": 3174387066,
+          "expected_bits": 3174387065
+        }
+      },
+      "native_against_welford_separate_affine": {
+        "bit_equal_fraction": 0.7030655893536122,
+        "rmse": 9.729502396931408e-08,
+        "max_abs": 5.7220458984375e-06,
+        "first_difference": {
+          "index": [
+            0,
+            0,
+            13
+          ],
+          "actual": 0.03873429819941521,
+          "expected": 0.038734305649995804,
+          "actual_bits": 1025419227,
+          "expected_bits": 1025419229
+        }
+      },
+      "source": {
+        "sha256": "3ed4eee6d4eb1ffd748053ba036a00e0f4e258543111ab441be4089044f60419",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/pytorch/relsgg-vits16plus/model.pth": "5d281bf0d89f2bbfd72ff5a14f9a40ce12534e790b0402e2ca970539c7bcc294",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/audit_layer_norm.py": "6799e945e262c4860bf92d19a94fe00191eca0f490306c54488e1ef58bfb1d0f",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/precise_patch_stages/relsgg-vits16plus/cuda-f32/stages/backbone_norm1.f32": "03262d3396cbbd3b19d9cf369d1b0dfb0331fd678ad8d10a5b00118e7d754712",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/precise_patch_stages/traces_cuda/python_stage_trace_vits16plus.npz": "3aa2e4e527f4b1c0a615239fab71b8737c390fefa5f3a1371feeda553ffb4ea2"
+        }
+      }
+    },
+    {
+      "model": "relsgg-vitb16",
+      "epsilon": 1e-05,
+      "shape": [
+        1,
+        789,
+        768
+      ],
+      "against_official": {
+        "official_layer_norm": {
+          "bit_equal_fraction": 1.0,
+          "rmse": 0.0,
+          "max_abs": 0.0,
+          "first_difference": null
+        },
+        "welford_then_separate_affine": {
+          "bit_equal_fraction": 0.7989708755809041,
+          "rmse": 6.913156357783283e-08,
+          "max_abs": 7.62939453125e-06,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              2
+            ],
+            "actual": 0.032062120735645294,
+            "expected": 0.032062117010354996,
+            "actual_bits": 1023628178,
+            "expected_bits": 1023628177
+          }
+        },
+        "one_pass_sum_square_separate_affine": {
+          "bit_equal_fraction": 0.6757432931981411,
+          "rmse": 1.4623543968190106e-07,
+          "max_abs": 1.52587890625e-05,
+          "first_difference": {
+            "index": [
+              0,
+              0,
+              2
+            ],
+            "actual": 0.0320621058344841,
+            "expected": 0.032062117010354996,
+            "actual_bits": 1023628174,
+            "expected_bits": 1023628177
+          }
+        }
+      },
+      "native_against_official": {
+        "bit_equal_fraction": 0.6784827841149134,
+        "rmse": 1.453564592284159e-07,
+        "max_abs": 1.52587890625e-05,
+        "first_difference": {
+          "index": [
+            0,
+            0,
+            1
+          ],
+          "actual": 0.06551781296730042,
+          "expected": 0.06551782786846161,
+          "actual_bits": 1032203828,
+          "expected_bits": 1032203830
+        }
+      },
+      "native_against_welford_separate_affine": {
+        "bit_equal_fraction": 0.8048327260245036,
+        "rmse": 1.3512968869596388e-07,
+        "max_abs": 1.52587890625e-05,
+        "first_difference": {
+          "index": [
+            0,
+            0,
+            1
+          ],
+          "actual": 0.06551781296730042,
+          "expected": 0.06551782786846161,
+          "actual_bits": 1032203828,
+          "expected_bits": 1032203830
+        }
+      },
+      "source": {
+        "sha256": "0f9d01fd095e038713476efeb1236f92fe18e121afdb9fb8a9d3afb51ec02aef",
+        "files": {
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/models/pytorch/relsgg-vitb16/model.pth": "9c27a8054d59477ee1235c9568d6b0a7c3c35ab5d886e2018b9ae8adce3cbb2d",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/audit_layer_norm.py": "6799e945e262c4860bf92d19a94fe00191eca0f490306c54488e1ef58bfb1d0f",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/precise_patch_stages/relsgg-vitb16/cuda-f32/stages/backbone_norm1.f32": "a18f03198b48f48eeadf7dce6fb1f73c4168e525185f03399b7eeec2e244ecc0",
+          "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/precise_patch_stages/traces_cuda/python_stage_trace_vitb16.npz": "4ed2e74649744f1cf2d087c44192dce12eed1d617f31e21e91e0871ca6f12e9a"
+        }
+      }
+    }
+  ],
+  "upstream_algorithm": "https://github.com/pytorch/pytorch/blob/v2.6.0/aten/src/ATen/native/cuda/layer_norm_kernel.cu"
+}

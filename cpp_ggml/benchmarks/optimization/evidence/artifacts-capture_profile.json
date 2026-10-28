@@ -1,0 +1,56 @@
+{
+  "scope": "actual image-to-triplets CLI; vits16 F32; 3 warmups + 5 timed iterations; CUDA graph compilation enabled",
+  "runtime_api_counts": {},
+  "cuda_graph_launches": 0,
+  "cuda_capture_begins": 0,
+  "inference_source": {
+    "backend": "cuda",
+    "build_files": {
+      "files": {
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/CMakeCache.txt": "31530acb9d67792c27b58958b995cb90d7d91db52dfb780a29581eb062b01ae2"
+      },
+      "sha256": "eb82ccf09ba0b4cb0e452394644e4d84a7a544bba84ca86e3a88a441e9db54c7"
+    },
+    "build_type": "Release",
+    "compiler": "c++ (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0\nCopyright (C) 2019 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "flags": " -O3 -DNDEBUG",
+    "ggml_commit": "8599e0ea3756c4bac4ef813af2241cb1a8bbfb0b",
+    "source": {
+      "files": {
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/CMakeLists.txt": "8b1f657fae9c6670a6b56c8e0e1b8f867c6bc9149eff137a1776df1c53d4b78e",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend.hpp": "89923f4c9927c62eac1c80523e8d78b3e8764af2ddbbc31a5686278491ca51cc",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/backend_binding.h": "4375d11667036882e395b9ef1e140ebc0910a2843a6b70f49fbf614642cf5442",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/c_api.h": "1748471041bc79b9fdfa345ed7a05bb3e69f23878f0bdc0bc9e4c6baaf3ccff0",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/full_model.hpp": "e4d04007d62cd291721095cf16fbdcdbf0d5c2776b293aa5277c40ac29d8350b",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/gguf_model.hpp": "eef6abfa799616aa5d466ea2e12860c1eef11c849a53bc868819aaee279cb03c",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/options.hpp": "5c7f5a4c7bc3d6663f8f283cd9a58de72cad391f17a5aa6dc47978c7eda50a28",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.h": "090c419b59fcbf6f0588e88f5337ff3db15b91d75196296ccf45256147451edb",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/runtime_options.hpp": "2ad480f6db58e66d3f583ea28f60f1bad2a1b4541442a934c48a886045c625b8",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/include/relateanything/types.hpp": "61daf6b8c6ca867ff28791f01e61724e4aeaeb3d00066236b188b19dda8d7dc0",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/scripts/provenance.py": "88fd8efe37c2b1b653c84b0c8e450b1bd1516593ea209845fd9549e48b6d5b7f",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/backend.cpp": "0c9bfc7a2c445c89394d4dc931500977c575b0ec34846afb840e91784879803a",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/c_api.cpp": "03e9ecc19f99b89bc788810a3bf8db7934fabe26a9afb492d7e5f09ff9ce30fb",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/full_model.cpp": "62d345fe4321d37b5183dc096b3f67e4af3b61cb44434577baeaf64a81f4d400",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/gguf_model.cpp": "a63b6540a7eb3298df0098d3639e9b738bbe72708a89e0e53eadc47ae78cbbc1",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/image_io.cpp": "fa066a83e5fca5af9127ff90a2932042aea0ff779f86b3b2bd7ac1c8e5c5ddd7",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/inference.cpp": "097af007f92905220a5aab1d974e22ffb6eda76e17694152723f7727a451c1c9",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/src/main.cpp": "e9cf74a2b3fcd850ed75fe64996db6092180883fe12fafa05ca51566524c2054",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/clip_tokenizer.hpp": "469f57954f9bfbc5b8646b1f8deb1fea82aa1525a68ee406a99a835c35053182",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/third_party/patches/0001-relateanything-ggml.patch": "9da78ec56826a857bf4b30b054904ab95c21f14aa988084f76fe524a68e87b8e",
+        "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/relsgg/corpus_type_map.json": "0e6230a1cfd747404a2b82f6d47a0111e1d45f403a48259fda257bf16750346d"
+      },
+      "sha256": "ea9a325766e02bfcc825fcc3738385a88161042df08bf6b609661d1e9f4fdd9d"
+    },
+    "binary": "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/build-cuda/relateanything-ggml",
+    "binary_sha256": "ba8797d7316162bfcbdc69919c778e3ffb5947d86084150d245e89b22b7a3a61"
+  },
+  "profiler": "Nsight Systems 2022.2",
+  "source": {
+    "sha256": "0bd4cf5aca64e69950e8e475b1975bb7dc8db64620df333d93a07a9c64d3b2fa",
+    "files": {
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/capture-validation.log": "26c068928b7b20c6898d4a859d76d59adebf9e954aa20e4de526856e37080832",
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/capture-validation.nsys-rep": "c3bb72880c49423a9ccccf29dc16e159b22a3b0da600420fabc40ea060a790f8",
+      "/home/ludahai/develop/code/github/dl/RelateAnything-GGML/cpp_ggml/outputs/probes/20261009-operator-audit/capture-validation.sqlite": "6f8cc13d9110a407ba8127fd2c976d4a2bdd84b2336377c04af62b456aa34e77"
+    }
+  }
+}

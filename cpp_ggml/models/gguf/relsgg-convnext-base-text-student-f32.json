@@ -1,0 +1,17 @@
+{
+  "checkpoint_sha256": "e0317830b68ea51e6711fc90d4a35954d0528e5bd78a8d5afd966601ce4ed119",
+  "gguf_sha256": "8cd368fa8692a987a4d8739fcc642dc74fd2902d73ac5544a65f24018656475b",
+  "tensors": 78,
+  "storage": "f32",
+  "cfg": {
+    "vocab_size": 49408,
+    "dim": 256,
+    "depth": 6,
+    "heads": 4,
+    "ffn_dim": 1024,
+    "out_dim": 512,
+    "max_len": 32,
+    "d_tok": 128,
+    "full": true
+  }
+}
